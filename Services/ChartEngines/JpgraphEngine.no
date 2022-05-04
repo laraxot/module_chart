@@ -1,0 +1,293 @@
+<?php
+/**
+* https://it.scribd.com/document/27111189/Jpgraph-Manual.
+*/
+
+declare(strict_types=1);
+
+namespace Modules\Chart\Services\ChartEngines;
+
+use Amenadiel\JpGraph\Graph\Graph;
+use Amenadiel\JpGraph\Graph\PieGraph;
+use Amenadiel\JpGraph\Plot\BarPlot;
+use Amenadiel\JpGraph\Plot\LinePlot;
+use Amenadiel\JpGraph\Plot\PiePlotC;
+use Amenadiel\JpGraph\Plot\PlotBand;
+use Amenadiel\JpGraph\Themes\UniversalTheme;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
+
+/**
+ * ---.
+ * */
+class JpgraphEngine extends BaseGraphEngine {
+    private static ?self $instance = null;
+
+    public int $width = 250;
+    public int $height = 250;
+
+    
+    public static function getInstance(): self {
+        if (null === self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    public static function make(): self {
+        return static::getInstance();
+    }
+
+    public function setWidthHeight(int $width, int $height) {
+        $this->width = $width;
+        $this->height = $height;
+
+        return $this;
+    }
+
+    public function getWidth() {
+        return $this->width ;
+    }
+
+    public function getHeight() {
+        return $this->height ;
+    }
+    
+
+    public function getGraph() {
+        // Create the graph. These two calls are always required
+        $graph = new Graph($this->getWidth(), $this->getHeight(), 'auto');
+        $graph->SetScale('textlin');
+
+        return $graph;
+    }
+
+    public function setData(Collection $data) {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    public function getData() {
+        return $this->data;
+    }
+
+    public function save(string $filename) {
+        $datax = array_values($this->getData()->map(function ($v) {
+            return $v['label'];
+        })->toArray());
+        $data1y = array_values($this->getData()->map(function ($v) {
+            return $v['value'];
+        })->toArray());
+
+        //bar1
+        //$data1y=array(115,130,135,130,110,130,130,150,130,130,150,120);
+        //bar2
+        //$data2y=array(180,200,220,190,170,195,190,210,200,205,195,150);
+        //bar3
+        //$data3y=array(220,230,210,175,185,195,200,230,200,195,180,130);
+        //$data4y=array(40,45,70,80,50,75,70,70,80,75,80,50);
+        //$data5y=array(20,20,25,22,30,25,35,30,27,25,25,45);
+        //line1
+        //$data6y=array(50,58,60,58,53,58,57,60,58,58,57,50);
+        //foreach ($data6y as &$y) { $y -=10; }
+
+        // Create the graph. These two calls are always required
+        //$graph = new Graph(750,320,'auto');
+        $graph = $this->getGraph();
+        $graph->SetScale('textlin');
+        $graph->SetY2Scale('lin', 0, 90);
+        $graph->SetY2OrderBack(false);
+
+        $theme_class = new UniversalTheme();
+        $graph->SetTheme($theme_class);
+
+        $graph->SetMargin(40, 20, 46, 80);
+
+        $graph->yaxis->SetTickPositions([0, 50, 100, 150, 200, 250, 300, 350], [25, 75, 125, 175, 275, 325]);
+        $graph->y2axis->SetTickPositions([30, 40, 50, 60, 70, 80, 90]);
+
+        /*$months = $gDateLocale->GetShortMonth();
+        $months = array_merge(array_slice($months,3,9), array_slice($months,0,3));
+        $graph->SetBox(false);*/
+
+        $graph->ygrid->SetFill(false);
+        $graph->xaxis->SetTickLabels(['A', 'B', 'C', 'D']);
+        $graph->yaxis->HideLine(false);
+        $graph->yaxis->HideTicks(false, false);
+        // Setup month as labels on the X-axis
+        $graph->xaxis->SetTickLabels($datax);
+
+        // Create the bar plots
+        $b1plot = new BarPlot($data1y);
+        /*$b2plot = new BarPlot($data2y);
+
+        $b3plot = new BarPlot($data3y);
+        $b4plot = new BarPlot($data4y);
+        $b5plot = new BarPlot($data5y);*/
+
+        /*$lplot = new LinePlot($data6y);*/
+
+        // Create the grouped bar plot
+        /*$gbbplot = new AccBarPlot(array($b3plot,$b4plot,$b5plot));
+        $gbplot = new GroupBarPlot(array($b1plot,$b2plot,$gbbplot));*/
+
+        // ...and add it to the graPH
+        /*$graph->Add($gbplot);
+        $graph->AddY2($lplot);*/
+
+        $b1plot->SetColor('#0000CD');
+        $b1plot->SetFillColor('#0000CD');
+        $b1plot->SetLegend('Cliants');
+
+        /*$b2plot->SetColor("#B0C4DE");
+        $b2plot->SetFillColor("#B0C4DE");
+        $b2plot->SetLegend("Machines");
+
+        $b3plot->SetColor("#8B008B");
+        $b3plot->SetFillColor("#8B008B");
+        $b3plot->SetLegend("First Track");
+
+        $b4plot->SetColor("#DA70D6");
+        $b4plot->SetFillColor("#DA70D6");
+        $b4plot->SetLegend("All");
+
+        $b5plot->SetColor("#9370DB");
+        $b5plot->SetFillColor("#9370DB");
+        $b5plot->SetLegend("Single Only");*/
+
+        /*$lplot->SetBarCenter();
+        $lplot->SetColor("yellow");
+        $lplot->SetLegend("Houses");
+        $lplot->mark->SetType(MARK_X,'',1.0);
+        $lplot->mark->SetWeight(2);
+        $lplot->mark->SetWidth(8);
+        $lplot->mark->setColor("yellow");
+        $lplot->mark->setFillColor("yellow");*/
+
+        $graph->legend->SetFrameWeight(1);
+        $graph->legend->SetColumns(1);
+        $graph->legend->SetColor('#4E4E4E', '#00A78A');
+
+        $band = new PlotBand(VERTICAL, BAND_RDIAG, 11, 'max', 'khaki4');
+        $band->ShowFrame(true);
+        $band->SetOrder(DEPTH_BACK);
+        $graph->Add($band);
+
+        $graph->title->Set('Combined Line and Bar plots');
+
+        // Display the graph
+        if(File::exists(public_path($filename))){
+            File::delete(public_path($filename));
+        }
+        $graph->Stroke($filename);
+
+    }
+
+    public function save01(string $filename) {
+        $datax = array_values($this->getData()->map(function ($v) {
+            return $v['label'];
+        })->toArray());
+        $datay = array_values($this->getData()->map(function ($v) {
+            return $v['value'];
+        })->toArray());
+
+        $graph = $this->getGraph();
+
+        $theme_class = new UniversalTheme();
+        $graph->SetTheme($theme_class);
+
+        /*$graph->Set90AndMargin(50, 40, 40, 40);
+        $graph->img->SetAngle(90);*/
+
+        // set major and minor tick positions manually
+        $graph->SetBox(false);
+
+        $graph->ygrid->Show(false);
+        $graph->ygrid->SetFill(false);
+
+        //LABEL
+        $graph->xaxis->SetTickLabels($datax);
+        $graph->yaxis->HideLine(false);
+        $graph->yaxis->HideTicks(false, false);
+
+        // For background to be gradient, setfill is needed first.
+        $graph->SetBackgroundGradient('#00CED1', '#FFFFFF', GRAD_HOR, BGRAD_PLOT);
+
+        // Create the bar plots
+        $b1plot = new BarPlot($datay);
+
+        // ...and add it to the graPH
+        $graph->Add($b1plot);
+
+        $b1plot->SetWeight(0);
+        $b1plot->SetFillGradient('#808000', '#90EE90', GRAD_HOR);
+        $b1plot->SetWidth(17);
+
+        // Display the graph
+        if(File::exists(public_path($filename))){
+            File::delete(public_path($filename));
+        }
+        $graph->Stroke($filename);
+
+        //$graph->title->Set('A Simple Pie Plot');
+        /*$graph=$this->getGraph();
+        $graph->SetBox(true);
+
+        $data = $this->getData();
+
+        $graph->Stroke($filename);*/
+    }
+
+    public function piePlotC($filename){
+        // Some data
+        //$data = array(50,28,25,27,31,20);
+        
+        $avg=$this->getData()->map(function ($v) {
+            return $v['value'];
+        })->avg();
+
+        $data = [$avg,10-$avg];
+       
+
+        // A new pie graph
+        $graph = new PieGraph(300,300,'auto');
+        
+        // Setup title
+        $graph->title->Set("Media Complessiva: $avg");
+        $graph->title->SetFont(FF_ARIAL,FS_BOLD,14);
+        $graph->title->SetMargin(8); // Add a little bit more margin from the top
+        
+        // Create the pie plot
+        $p1 = new PiePlotC($data);
+        
+        // Set size of pie
+        $p1->SetSize(0.32);
+        
+        // Label font and color setup
+        $p1->value->SetFont(FF_ARIAL,FS_BOLD,10);
+        $p1->value->SetColor('black');
+        
+        // Setup the title on the center circle
+        $p1->midtitle->Set("");
+        $p1->midtitle->SetFont(FF_ARIAL,FS_NORMAL,10);
+        
+        // Set color for mid circle
+        $p1->SetMidColor('white');
+        
+        // Use percentage values in the legends values (This is also the default)
+        //$p1->scale->hide();
+        //$p1->SetLabelType(PIE_VALUE_PER);
+        
+        // Add plot to pie graph
+        $graph->Add($p1);
+        
+        // .. and send the image on it's marry way to the browser
+        if(File::exists(public_path($filename))){
+            File::delete(public_path($filename));
+        }
+        $graph->Stroke($filename);
+ 
+    }
+}
