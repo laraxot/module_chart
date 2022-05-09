@@ -1,0 +1,309 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
+
+use Amenadiel\JpGraph\Plot\BarPlot;
+use Amenadiel\JpGraph\Plot\LinePlot;
+use Amenadiel\JpGraph\Plot\PlotLine;
+use Amenadiel\JpGraph\Text\Text;
+use Amenadiel\JpGraph\Themes\UniversalTheme;
+use Amenadiel\JpGraph\Util\DateScaleUtils;
+
+trait BarTrait {
+    /**
+     * Undocumented function.
+     */
+    public function bar1(): self {
+        // We need some data
+        $datay = $this->data->pluck('value')->all();
+        $datax = $this->data->pluck('label')->all();
+        $datax1 = $this->data->pluck('count')->all();
+
+        // Setup the graph.
+
+        $graph = $this->getGraph();
+        //$graph->title->set('Media Giudizi');
+        //$graph->img->SetMargin(60, 20, 35, 75);
+        $graph->SetScale('textlin', 5, 10);
+        //$graph->SetScale('lin', 5, 10);
+        //$graph->SetY2Scale('lin', 0, 10);
+        $graph->SetY2Scale('int', 5, 10);
+        $graph->SetY2OrderBack(false);
+
+        $graph->SetMarginColor('lightblue:1.1');
+        $graph->SetShadow();
+
+        $theme_class = new UniversalTheme();
+        $graph->SetTheme($theme_class);
+
+        // Set up the title for the graph
+        //$graph->title->Set('Bar gradient with left reflection');
+        $graph->title->SetMargin(8);
+        $graph->title->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style'], 12);
+        $graph->title->SetColor('darkred');
+
+        // Setup font for axis
+        $graph->xaxis->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style'], 10);
+        $graph->yaxis->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style'], 10);
+
+        // Show 0 label on Y-axis (default is not to show)
+        $graph->yscale->ticks->SupressZeroLabel(false);
+
+        // Setup X-axis labels
+        $graph->xaxis->SetTickLabels($datax);
+        $graph->xaxis->SetLabelAngle($this->vars['style']['x_label_angle']);
+
+        // Create the bar pot
+        $bplot = new BarPlot($datay);
+        $bplot->SetWidth(0.6);
+
+        // Setup color for gradient fill style
+        //$bplot->SetFillGradient('navy:0.9', 'navy:1.85', GRAD_LEFT_REFLECTION);
+        $bplot->SetFillColor('darkgreen');
+
+        // Set color for the frame of each bar
+        $bplot->SetColor('white');
+
+        //----------------------------------------------------------------
+        // Setup values
+        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
+        $bplot->value->Show();
+        $bplot->value->setColor('white');
+        $bplot->value->setAngle(50);
+        $bplot->value->SetFormat('%01.2f');
+        //$bplot->value->SetFont(FF_FONT1, FS_BOLD);
+        $bplot->value->SetFont(FF_VERDANA, FS_ITALIC);
+        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_listfontsex1.html
+        $bplot->value->SetFont(FF_ARIAL, FS_BOLD);
+
+        // Center the values in the bar
+        $bplot->SetValuePos('center');
+
+        // Make the bar a little bit wider
+        $bplot->SetWidth(0.7);
+        //----------------------------------------------------------------
+
+        $graph->Add($bplot);
+
+        //line1
+        $data6y = [7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5];
+
+        $lplot = new LinePlot($data6y);
+
+        $graph->AddY2($lplot);
+
+        $lplot->SetBarCenter();
+        $lplot->SetColor('navy');
+        $lplot->SetLegend('Riferimento '.$this->width);
+        //$lplot->mark->SetType(MARK_X, '', 1.0);
+        $lplot->mark->SetWeight(12);
+        $lplot->mark->SetWidth(18);
+        $lplot->mark->setColor('yellow');
+        $lplot->mark->setFillColor('yellow');
+        /*
+        $band = new PlotBand(VERTICAL, BAND_RDIAG, 5, 'max', 'khaki4');
+        $band->ShowFrame(true);
+        $band->SetOrder(DEPTH_BACK);
+        $graph->Add($band);
+
+        $uband = new PlotBand(HORIZONTAL, BAND_RDIAG, -2, 'max', 'green');
+        $uband->ShowFrame(false);
+        $uband->SetDensity(50); // 50% line density
+        $graph->AddBand($uband);
+        */
+        $delta = $this->width / count($datax1);
+        $delta = $delta - 1;
+        foreach ($datax1 as $i => $v) {
+            $txt = new Text($v.'');
+
+            // Position the string at absolute pixels (0,20).
+            // ( (0,0) is the upper left corner )
+            $txt->SetPos(55 + ($delta * $i), 70);
+
+            // Set color and fonr for the text
+            //$txt->SetColor('red');
+            //$txt->SetFont(FF_FONT2, FS_BOLD);
+
+            // ... and add the text to the graph
+            $graph->AddText($txt);
+        }
+        /*
+        // Finally send the graph to the browser
+        if (File::exists(public_path($this->filename))) {
+            File::delete(public_path($this->filename));
+        }
+
+        $graph->Stroke($this->filename);
+        */
+        //------------------------------
+        //$this->vars['title']
+
+        $this->graph = $graph;
+
+        return $this;
+    }
+
+    public function bar2(): self {
+        //dddx($this->vars['style']);
+        // We need some data
+        $datax = $this->data->pluck('label')->all();
+        $datay = $this->data->pluck('value')->all();
+        $datax1 = $this->data->pluck('value1')->all();
+
+        // Setup the graph.
+        $graph = $this->getGraph();
+
+        //$graph->title->set('Media Giudizi');
+        $graph->img->SetMargin(50, 50, 50, 100);
+        //$graph->SetScale('textlin', 5, 10);
+
+        //$graph->setMin(50);
+        //$graph->SetScale('lin', 50, 100);
+        //$graph->SetY2Scale('lin', 50, 100);
+        //$graph->SetY2Scale('int', 5, 10);
+        //$graph->SetY2OrderBack(false);
+
+        //$graph->SetMarginColor('lightblue:1.1');
+        //$graph->SetShadow();
+
+        //$theme_class = new UniversalTheme();
+        //$graph->SetTheme($theme_class);
+
+        //$this->setTitle(strip_tags($this->vars['title']));
+
+        // Setup font for axis
+        //$graph->xaxis->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style'], 10);
+        //$graph->yaxis->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style'], 10);
+
+        // Show 0 label on Y-axis (default is not to show)
+        $graph->yscale->ticks->SupressZeroLabel(false);
+
+        // Setup X-axis labels
+        $graph->xaxis->SetTickLabels($datax);
+        $graph->xaxis->SetLabelAngle($this->vars['x_label_angle']);
+
+        // Create the bar pot
+        $bplot = new BarPlot($datay);
+
+        $bplot = $this->applyPlotStyle($bplot);
+
+        //$bplot->SetWidth(0.6);
+
+        // Setup color for gradient fill style
+        //$bplot->SetFillGradient('navy:0.9', 'navy:1.85', GRAD_LEFT_REFLECTION);
+        //$bplot->SetFillColor($this->vars['style']['color']);
+
+        // Set color for the frame of each bar
+        //il colore del bordo dei rettangoli
+        //$bplot->SetColor($this->vars['style']['color']);
+
+        //----------------------------------------------------------------
+        // Setup values
+        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
+        $bplot->value->Show();
+        $bplot->value->setColor('white');
+        //$bplot->value->setAngle(50);
+        $bplot->value->SetFormat('%01.2f');
+        //$bplot->value->SetFont(FF_FONT1, FS_BOLD);
+        //$bplot->value->SetFont(FF_VERDANA, FS_ITALIC);
+        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_listfontsex1.html
+        //$bplot->value->SetFont(FF_ARIAL, FS_BOLD);
+        //$bplot->value->SetFont('FF_ARIAL', 'FS_BOLD');
+        //dddx($this->vars);
+        //$bplot->value->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style']);
+
+        // Center the values in the bar
+        $bplot->SetValuePos('center');
+
+        // Make the bar a little bit wider
+        //$bplot->SetWidth(0.9);
+        //----------------------------------------------------------------
+
+        $graph->Add($bplot);
+
+        //line1
+        /*
+        $data6y = [7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5];
+
+        $lplot = new LinePlot($data6y);
+
+        $graph->AddY2($lplot);
+
+        $lplot->SetBarCenter();
+        $lplot->SetColor('navy');
+        $lplot->SetLegend('Riferimento '.$this->width);
+        //$lplot->mark->SetType(MARK_X, '', 1.0);
+        $lplot->mark->SetWeight(12);
+        $lplot->mark->SetWidth(18);
+        $lplot->mark->setColor('yellow');
+        $lplot->mark->setFillColor('yellow');
+        */
+        /*
+        $band = new PlotBand(VERTICAL, BAND_RDIAG, 5, 'max', 'khaki4');
+        $band->ShowFrame(true);
+        $band->SetOrder(DEPTH_BACK);
+        $graph->Add($band);
+
+        $uband = new PlotBand(HORIZONTAL, BAND_RDIAG, -2, 'max', 'green');
+        $uband->ShowFrame(false);
+        $uband->SetDensity(50); // 50% line density
+        $graph->AddBand($uband);
+        */
+        //dddx(
+        //[
+        //   'a'=>$graph->img->GetWidth(),
+        //'b' => $graph->img->GetBBoxWidth(),
+        //    'methods'=>get_class_methods($graph->img)
+        //]);
+        //$dateUtils = new DateScaleUtils();
+        //[$tickPositions,$minTickPositions] = $dateUtils->GetTicks($datax);
+        //dddx([$tickPositions,$minTickPositions]);
+        /*
+        dddx([
+            $graph->xaxis->scale->ticks->GetMinor(),//1
+            $graph->xaxis->scale->ticks->GetMajor(),//2
+            get_class_methods($graph->xaxis->scale->ticks),
+        ]
+        );
+        */
+
+        $delta = ($this->width - 100) / count($datax1);
+        $delta = $delta;
+        foreach ($datax1 as $i => $v) {
+            $txt = new Text($v.'');
+
+            // Position the string at absolute pixels (0,20).
+            // ( (0,0) is the upper left corner )
+            $x = 50 + ($delta * ($i)) + ($delta / 3);
+
+            $txt->SetPos($x, 25);
+
+            // Set color and fonr for the text
+            //$txt->SetColor('red');
+            //$txt->SetFont(FF_FONT2, FS_BOLD);
+
+            // ... and add the text to the graph
+            $graph->AddText($txt);
+        }
+        /*
+        // Finally send the graph to the browser
+        if (File::exists(public_path($this->filename))) {
+            File::delete(public_path($this->filename));
+        }
+
+        $graph->Stroke($this->filename);
+        */
+        //------------------------------
+        //$graph->title->Set('aaa');
+
+        /*
+        $sline = new PlotLine(HORIZONTAL, 70, 'black', 1);
+        $graph->Add($sline);
+        */
+        $this->graph = $graph;
+
+        return $this;
+    }
+}
