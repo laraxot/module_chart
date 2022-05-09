@@ -8,10 +8,17 @@ use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
+<<<<<<< HEAD
 use Modules\Quaeris\Services\LimeModelService;
 use Modules\Xot\Services\FileService;
 
 //use Modules\Chart\Services\LimeModelService;
+=======
+use Modules\Quaeris\Services\LimeService;
+use Modules\Xot\Services\FileService;
+
+//use Modules\Chart\Services\LimeService;
+>>>>>>> 794c09d (first)
 
 trait MixedTrait {
     public function mixed(string $id): self {
@@ -34,7 +41,11 @@ trait MixedTrait {
             }
             //dddx($this);
             //dddx($vars);
+<<<<<<< HEAD
             $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+=======
+            $tmp = LimeService::make()->mergeVars($vars)->getImg();
+>>>>>>> 794c09d (first)
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),
                 'width' => $vars['width'],
@@ -53,7 +64,11 @@ trait MixedTrait {
         $vars['width'] = 300;
         $vars['height'] = 300;
         dddx($this);
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars($vars)->getImg();
+>>>>>>> 794c09d (first)
 
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
@@ -71,7 +86,11 @@ trait MixedTrait {
         $vars['sort_by'] = 'date:Y-m'; //m=1,2,3
         $vars['take'] = -4;
 
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars($vars)->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $vars['width'],
@@ -86,7 +105,11 @@ trait MixedTrait {
         $vars['width'] = 400;
         $vars['height'] = 400;
 
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars($vars)->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $vars['width'],
@@ -108,7 +131,11 @@ trait MixedTrait {
         $row->take = null;
         $row->width = 300;
         $row->height = 300;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars(get_object_vars($row))->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars(get_object_vars($row))->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $row->width,
@@ -122,7 +149,11 @@ trait MixedTrait {
         $row->take = -4;
         $row->width = 400;
         $row->height = 400;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars(get_object_vars($row))->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars(get_object_vars($row))->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $row->width,
@@ -136,7 +167,11 @@ trait MixedTrait {
         $row->take = -4;
         $row->width = 400;
         $row->height = 400;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars(get_object_vars($row))->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars(get_object_vars($row))->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $row->width,
@@ -159,7 +194,11 @@ trait MixedTrait {
         $row->take = null;
         $row->width = 300;
         $row->height = 300;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars(get_object_vars($row))->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars(get_object_vars($row))->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $row->width,
@@ -173,7 +212,11 @@ trait MixedTrait {
         $row->take = -4;
         $row->width = 400;
         $row->height = 400;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars(get_object_vars($row))->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars(get_object_vars($row))->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $row->width,
@@ -187,7 +230,11 @@ trait MixedTrait {
         $row->take = -4;
         $row->width = 400;
         $row->height = 400;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars(get_object_vars($row))->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars(get_object_vars($row))->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $row->width,
@@ -210,7 +257,11 @@ trait MixedTrait {
         $vars['take'] = -4;
         $vars['width'] = 550;
         $vars['height'] = 400;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars($vars)->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $vars['width'],
@@ -227,7 +278,11 @@ trait MixedTrait {
         $vars['height'] = 400;
         $vars['yaxis_hide'] = 0;
         $vars['x_label_margin'] = 10;
+<<<<<<< HEAD
         $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+=======
+        $tmp = LimeService::make()->mergeVars($vars)->getImg();
+>>>>>>> 794c09d (first)
         $imgs[] = [
             'img_path' => FileService::fixPath(public_path($tmp)),
             'width' => $vars['width'],
