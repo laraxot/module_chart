@@ -7,19 +7,11 @@ namespace Modules\Chart\Models\Panels\Traits;
 use Modules\Chart\Models\MixedChart;
 
 /**
-<<<<<<< HEAD
  * Undocumented trait.
  */
 trait ChartTrait {
     /**
      * Undocumented function.
-=======
- * Undocumented trait
- */
-trait ChartTrait {
-    /**
-     * Undocumented function
->>>>>>> 5cd95fd (first)
      */
     public function optionsChartType(): array {
         $options = [
@@ -79,19 +71,13 @@ trait ChartTrait {
                 'type' => 'Integer',
                 'name' => 'chart.width',
                 'col_size' => 4,
-<<<<<<< HEAD
                 'rules' => 'required',
-=======
->>>>>>> 5cd95fd (first)
             ],
             (object) [
                 'type' => 'Integer',
                 'name' => 'chart.height',
                 'col_size' => 4,
-<<<<<<< HEAD
                 'rules' => 'required',
-=======
->>>>>>> 5cd95fd (first)
             ],
             (object) [
                 'type' => 'Boolean',
@@ -348,8 +334,4 @@ trait ChartTrait {
             */
         ];
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5cd95fd (first)

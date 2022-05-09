@@ -117,24 +117,16 @@ trait LineTrait {
     }
 
     public function lineSubQuestion(): self {
-<<<<<<< HEAD
         //$datax = $this->data->pluck('label')->all();
         // Setup the graph.
         //$this->vars['names'] = ['A1', 'A2', 'A3', 'A4'];
         $names = $this->vars['names'];
         $n = count($names);
-=======
-        //dddx($this->data);
-        //$datax = $this->data->pluck('label')->all();
-        // Setup the graph.
-        $n = count($this->vars['names']);
->>>>>>> 5cd95fd (first)
 
         $graph = $this->getGraph();
 
         $datax = $this->data->pluck('label')->all();
         $datay = [];
-<<<<<<< HEAD
         $values = $this->data->pluck('values');
         foreach ($values as $v) {
             foreach ($names as $k1 => $v1) {
@@ -147,12 +139,6 @@ trait LineTrait {
         //for ($i = 0; $i < $n; ++$i) {
         //    $datay[$i] = $this->data->pluck('datay'.$i)->all();
         //}
-=======
-
-        for ($i = 0; $i < $n; ++$i) {
-            $datay[$i] = $this->data->pluck('datay'.$i)->all();
-        }
->>>>>>> 5cd95fd (first)
 
         //dddx(['DATA' => $this->data, 'Y' => $datay, 'X' => $datax]);
 
@@ -202,11 +188,7 @@ trait LineTrait {
             $p[$i] = new LinePlot($datay[$i]);
             $graph->Add($p[$i]);
             $p[$i]->SetColor($colors[$i]);
-<<<<<<< HEAD
             $p[$i]->SetLegend($names[$i]);
-=======
-            $p[$i]->SetLegend($this->vars['names'][$i]);
->>>>>>> 5cd95fd (first)
             $p[$i]->mark->SetType($marks[$i], '', 1.2);
             $p[$i]->mark->SetColor($colors[$i]);
             $p[$i]->mark->SetFillColor($colors[$i]);
