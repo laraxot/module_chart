@@ -10,6 +10,7 @@ use Amenadiel\JpGraph\Text\Text;
 trait HorizbarTrait {
     //-------------------
     public function horizbar1(): self {
+<<<<<<< HEAD
 
         $datay = $this->data->pluck('value')->all();
         $datax = $this->data->pluck('label')->all();
@@ -23,6 +24,15 @@ trait HorizbarTrait {
 
         //dddx([$this->data, $this->data->pluck('label')->all(), $this->vars['names'], $this->vars['group_by']]);
 
+=======
+        //dddx($this->data);
+        $datay = $this->data->pluck('value')->all();
+        $datax = $this->data->pluck('label')->all();
+        if (isset($this->vars['names']) && is_array($this->vars['names'])) {
+            $datax = $this->vars['names']; //4 debug
+        }
+
+>>>>>>> 5cd95fd (first)
         // Set the basic parameters of the graph
         $graph = $this->getGraph();
         $graph->SetScale('textlin');
@@ -66,6 +76,29 @@ trait HorizbarTrait {
         // Add the bar to the graph
         $graph->Add($bplot);
 
+<<<<<<< HEAD
+=======
+        //-----------------------------
+        //$txt = new Text('Totale Risposte '.$this->vars['tot']);
+        /*
+        $txt = new Text();
+        $txt->Set('Totale Risposte '.$this->vars['tot']);
+
+        // Position the string at absolute pixels (0,20).
+        // ( (0,0) is the upper left corner )
+        $txt->SetPos(100, 10);
+
+        // Set color and fonr for the text
+        $txt->SetColor('red');
+        $txt->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style']);
+
+        // ... and add the text to the graph
+        $graph->AddText($txt);
+        */
+        //------------------------------
+        //$graph->footer->right->SetFont($this->vars['style']['font_family'], $this->vars['style']['font_style']);
+        //$graph->footer->right->Set('Totale Risposte '.$this->vars['tot']);
+>>>>>>> 5cd95fd (first)
 
         $this->graph = $graph;
 

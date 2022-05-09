@@ -108,9 +108,13 @@ trait PieTrait {
     }
 
     public function pieAvg(): self {
+<<<<<<< HEAD
 
         $labels = $this->data->pluck('label')->all();
 
+=======
+        $labels = $this->data->pluck('label')->all();
+>>>>>>> 5cd95fd (first)
         $data = $this->data->pluck('value')->all();
         $color_array = explode(',', $this->vars['list_color']);
         if (isset($this->vars['max'])) {
@@ -119,8 +123,13 @@ trait PieTrait {
             if ($other > 0.01) {
                 $color_array[1] = 'white';
                 $data[] = $other;
+<<<<<<< HEAD
                 $labels[] = $this->vars['answer_value_no_txt'] ?? 'answer_value_no_txt';
                 if (2 == count($labels) && strlen((string)$labels[0]) < 3) {
+=======
+                $labels[] = $this->vars['answer_value_no_txt'];
+                if (2 == count($labels) && strlen($labels[0]) < 3) {
+>>>>>>> 5cd95fd (first)
                     $labels[0] = $this->vars['answer_value_txt'];
                 }
             }
@@ -147,7 +156,11 @@ trait PieTrait {
         $p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
         $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
 
+<<<<<<< HEAD
         $footer_txt = 'Media '.number_format($data[0], 2);
+=======
+        $footer_txt = 'Media '.round($data[0], 1);
+>>>>>>> 5cd95fd (first)
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
         $y = $this->vars['height'] / 2 - 8; // 8 è il font_size

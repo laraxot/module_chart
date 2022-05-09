@@ -83,10 +83,15 @@ class JpgraphEngine2 extends BaseChartEngine {
 
         if (Str::startsWith($this->vars['type'], 'mixed')) {
             $parz = array_slice(explode(':', $this->vars['type']), 1);
+<<<<<<< HEAD
 
             $res = $this->mixed(...$parz);
         } else {
 
+=======
+            $res = $this->mixed(...$parz);
+        } else {
+>>>>>>> 5cd95fd (first)
             $res = $this->{$this->vars['type']}();
         }
         if (! isset($this->vars['extras'])) {
