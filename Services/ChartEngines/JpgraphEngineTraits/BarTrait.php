@@ -202,11 +202,6 @@ trait BarTrait {
 
     public function bar2(): self {
         // We need some data
-<<<<<<< HEAD
-        $datax = $this->data->pluck('label')->all();
-        $datay = $this->data->pluck('value')->all();
-        $datax1 = $this->data->pluck('value1')->all();
-=======
 
         $datax = $this->data->pluck('label')->all();
         $datay = $this->data->pluck('value')->all();
@@ -218,7 +213,6 @@ trait BarTrait {
             'value' => $datay,
         ]);
          */
->>>>>>> a0584957969aa8d4a852dc136c953d06fd06a9c2
         //dddx($this->data->pluck('A1')->all());
         //dddx([$this->vars]);
         // Setup the graph.
