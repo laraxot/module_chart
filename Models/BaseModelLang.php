@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-////use Laravel\Scout\Searchable;
+// //use Laravel\Scout\Searchable;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Lang\Models\Traits\LinkedTrait;
@@ -15,10 +15,10 @@ use Modules\Xot\Traits\Updater;
  * Class BaseModelLang.
  */
 abstract class BaseModelLang extends Model {
-    use Updater;
-    //use Searchable;
-    use LinkedTrait;
     use HasFactory;
+    // use Searchable;
+    use LinkedTrait;
+    use Updater;
 
     protected $connection = 'chart';
 
@@ -26,7 +26,7 @@ abstract class BaseModelLang extends Model {
      * @var array
      */
     protected $casts = [
-        //'published_at' => 'datetime:Y-m-d', // da verificare
+        // 'published_at' => 'datetime:Y-m-d', // da verificare
     ];
 
     /**
@@ -48,7 +48,7 @@ abstract class BaseModelLang extends Model {
      * @var array
      */
     protected $hidden = [
-        //'password'
+        // 'password'
     ];
 
     /**
@@ -56,7 +56,7 @@ abstract class BaseModelLang extends Model {
      */
     public $timestamps = true;
 
-    //-----------
+    // -----------
     /*
     protected $id;
     protected $post;

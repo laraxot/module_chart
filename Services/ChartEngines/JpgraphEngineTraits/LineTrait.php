@@ -9,7 +9,7 @@ use Amenadiel\JpGraph\Plot\PlotLine;
 
 trait LineTrait {
     public function horizontalLine(float $y, string $string): self {
-        //\define('HORIZONTAL', 0);
+        // \define('HORIZONTAL', 0);
         $sline = new PlotLine(0, $y, 'black', 1);
         $this->graph->Add($sline);
 
@@ -17,9 +17,9 @@ trait LineTrait {
     }
 
     public function line1(): self {
-        //$datax = $this->data->pluck('label')->all();
+        // $datax = $this->data->pluck('label')->all();
         // Setup the graph.
-        $n = count($this->vars['names']);
+        $n = \count($this->vars['names']);
 
         $graph = $this->getGraph();
 
@@ -34,9 +34,9 @@ trait LineTrait {
 
         $graph->SetScale('textlin');
 
-        //$graph->SetMargin(40, 20, 33, 58);
+        // $graph->SetMargin(40, 20, 33, 58);
 
-        //$graph->title->Set('Background Image');
+        // $graph->title->Set('Background Image');
         $graph->SetBox(false);
 
         $this->applyGraphYStyle($graph->yaxis);
@@ -44,7 +44,7 @@ trait LineTrait {
         $graph->xaxis->SetTickLabels($datax);
 
         $graph->ygrid->SetFill(false);
-        //$graph->SetBackgroundImage('tiger_bkg.png', BGIMG_FILLFRAME);
+        // $graph->SetBackgroundImage('tiger_bkg.png', BGIMG_FILLFRAME);
         $p = [];
 
         $colors_custom = explode(',', $this->vars['list_color']);
@@ -57,20 +57,20 @@ trait LineTrait {
 
         $colors = array_merge($colors_custom, $colors_default);
         $marks = [
-            MARK_FILLEDCIRCLE, //A filled circle
+            MARK_FILLEDCIRCLE, // A filled circle
 
-            MARK_UTRIANGLE, //A triangle pointed upwards
+            MARK_UTRIANGLE, // A triangle pointed upwards
             MARK_SQUARE, // A filled square
-            MARK_DTRIANGLE, //A triangle pointed downwards
-            MARK_DIAMOND, //A diamond
-            MARK_CIRCLE, //A circle
+            MARK_DTRIANGLE, // A triangle pointed downwards
+            MARK_DIAMOND, // A diamond
+            MARK_CIRCLE, // A circle
 
             MARK_CROSS, // A cross
             MARK_STAR, // A star
-            MARK_X, //An 'X'
-            MARK_LEFTTRIANGLE, //A half triangle, vertical line to left (used as group markers for Gantt charts)
-            MARK_RIGHTTRIANGLE, //A half triangle, vertical line to right (used as group markers for Gantt charts)
-            MARK_FLASH, //A Zig-Zag vertical flash
+            MARK_X, // An 'X'
+            MARK_LEFTTRIANGLE, // A half triangle, vertical line to left (used as group markers for Gantt charts)
+            MARK_RIGHTTRIANGLE, // A half triangle, vertical line to right (used as group markers for Gantt charts)
+            MARK_FLASH, // A Zig-Zag vertical flash
         ];
 
         for ($i = 0; $i < $n; ++$i) {
@@ -108,7 +108,7 @@ trait LineTrait {
         */
 
         $graph->legend->SetFrameWeight(1);
-        $graph->legend->SetColor('#4E4E4E', '#00A78A'); //prende il primo colore
+        $graph->legend->SetColor('#4E4E4E', '#00A78A'); // prende il primo colore
         $graph->legend->SetMarkAbsSize(8);
 
         $this->graph = $graph;
@@ -117,11 +117,11 @@ trait LineTrait {
     }
 
     public function lineSubQuestion(): self {
-        //$datax = $this->data->pluck('label')->all();
+        // $datax = $this->data->pluck('label')->all();
         // Setup the graph.
-        //$this->vars['names'] = ['A1', 'A2', 'A3', 'A4'];
+        // $this->vars['names'] = ['A1', 'A2', 'A3', 'A4'];
         $names = $this->vars['names'];
-        $n = count($names);
+        $n = \count($names);
 
         $graph = $this->getGraph();
 
@@ -136,19 +136,19 @@ trait LineTrait {
         $datay = array_values($datay);
         $names = array_values($names);
 
-        //for ($i = 0; $i < $n; ++$i) {
+        // for ($i = 0; $i < $n; ++$i) {
         //    $datay[$i] = $this->data->pluck('datay'.$i)->all();
-        //}
+        // }
 
-        //dddx(['DATA' => $this->data, 'Y' => $datay, 'X' => $datax]);
+        // dddx(['DATA' => $this->data, 'Y' => $datay, 'X' => $datax]);
 
         // Setup the graph
 
         $graph->SetScale('textlin');
 
-        //$graph->SetMargin(40, 20, 33, 58);
+        // $graph->SetMargin(40, 20, 33, 58);
 
-        //$graph->title->Set('Background Image');
+        // $graph->title->Set('Background Image');
         $graph->SetBox(false);
 
         $graph->yaxis->HideZeroLabel();
@@ -159,7 +159,7 @@ trait LineTrait {
         $graph->xaxis->SetLabelAngle($this->vars['x_label_angle']);
 
         $graph->ygrid->SetFill(false);
-        //$graph->SetBackgroundImage('tiger_bkg.png', BGIMG_FILLFRAME);
+        // $graph->SetBackgroundImage('tiger_bkg.png', BGIMG_FILLFRAME);
         $p = [];
         $colors = [
             '#55bbdd',
@@ -168,20 +168,20 @@ trait LineTrait {
             '#0baa90',
         ];
         $marks = [
-            MARK_FILLEDCIRCLE, //A filled circle
+            MARK_FILLEDCIRCLE, // A filled circle
 
-            MARK_UTRIANGLE, //A triangle pointed upwards
+            MARK_UTRIANGLE, // A triangle pointed upwards
             MARK_SQUARE, // A filled square
-            MARK_DTRIANGLE, //A triangle pointed downwards
-            MARK_DIAMOND, //A diamond
-            MARK_CIRCLE, //A circle
+            MARK_DTRIANGLE, // A triangle pointed downwards
+            MARK_DIAMOND, // A diamond
+            MARK_CIRCLE, // A circle
 
             MARK_CROSS, // A cross
             MARK_STAR, // A star
-            MARK_X, //An 'X'
-            MARK_LEFTTRIANGLE, //A half triangle, vertical line to left (used as group markers for Gantt charts)
-            MARK_RIGHTTRIANGLE, //A half triangle, vertical line to right (used as group markers for Gantt charts)
-            MARK_FLASH, //A Zig-Zag vertical flash
+            MARK_X, // An 'X'
+            MARK_LEFTTRIANGLE, // A half triangle, vertical line to left (used as group markers for Gantt charts)
+            MARK_RIGHTTRIANGLE, // A half triangle, vertical line to right (used as group markers for Gantt charts)
+            MARK_FLASH, // A Zig-Zag vertical flash
         ];
 
         for ($i = 0; $i < $n; ++$i) {

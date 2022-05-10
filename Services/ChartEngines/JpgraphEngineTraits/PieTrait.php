@@ -16,37 +16,37 @@ trait PieTrait {
     public function pie1(): self {
         $labels = $this->data->pluck('label')->all();
         $data = $this->data->pluck('value')->all();
-        //dddx([$this->data, $data, $this->vars]);
+        // dddx([$this->data, $data, $this->vars]);
         if (isset($this->vars['max'])) {
             $sum = collect($data)->sum();
             $other = $this->vars['max'] - $sum;
             if ($other > 0.01) {
                 $data[] = $other;
                 $labels[] = $this->vars['answer_value_no_txt'];
-                if (2 == count($labels) && strlen($labels[0]) < 3) {
+                if (2 === \count($labels) && \strlen($labels[0]) < 3) {
                     $labels[0] = $this->vars['answer_value_txt'];
                 }
             }
-            //dddx($data);
+            // dddx($data);
         }
 
         // A new pie graph
         $graph = new PieGraph($this->width, $this->height, 'auto');
-        //$graph = $this->getGraph();
+        // $graph = $this->getGraph();
         $graph = $this->applyGraphStyle($graph);
         // Specify margins since we put the image in the plot area
-        //$graph->SetMargin(1, 1, 1, 1);
-        //$graph->SetMarginColor('navy');
-        //$graph->SetShadow(true);
+        // $graph->SetMargin(1, 1, 1, 1);
+        // $graph->SetMarginColor('navy');
+        // $graph->SetShadow(true);
         // Setup background
-        //$graph->SetBackgroundImage('worldmap1.jpg', BGIMG_FILLPLOT);
+        // $graph->SetBackgroundImage('worldmap1.jpg', BGIMG_FILLPLOT);
 
         /*
         $graph->SetScale('textlin', 0, 65); A plot has an illegal scale. This could for example be that you are trying to use text auto scaling to draw a line plot with only one point or that the plot area is too small. It could also be that no input data value is numeric (perhaps only '-' or 'x')
         */
 
-        //$graph->legend->SetPos(0.5, 0.97, 'center', 'bottom');
-        //$graph->legend->SetColumns(3);
+        // $graph->legend->SetPos(0.5, 0.97, 'center', 'bottom');
+        // $graph->legend->SetColumns(3);
 
         // Setup title
         /*
@@ -59,16 +59,16 @@ trait PieTrait {
 
         // Create the pie plot
         $p1 = new PiePlotC($data);
-        //$p1->SetSliceColors(['darkred', 'navy', 'lightblue', 'orange', 'gray', 'teal']);
-        //dddx($this->vars);
+        // $p1->SetSliceColors(['darkred', 'navy', 'lightblue', 'orange', 'gray', 'teal']);
+        // dddx($this->vars);
         $p1->SetSliceColors(explode(',', $this->vars['list_color']));
 
         // Set size of pie
-        //$p1->SetSize(0.32);
-        //$p1->SetLegends(['Si (%1.1f%%)', 'No (%1.1f%%)']);
+        // $p1->SetSize(0.32);
+        // $p1->SetLegends(['Si (%1.1f%%)', 'No (%1.1f%%)']);
         $p1->SetLegends($labels);
-        //$p1->SetLabels(['Si (%1.1f%%)', 'No (%1.1f%%)']);
-        //$p1->setLabels($labels);
+        // $p1->SetLabels(['Si (%1.1f%%)', 'No (%1.1f%%)']);
+        // $p1->setLabels($labels);
 
         // Enable and set policy for guide-lines. Make labels line up vertically
         $p1->SetGuideLines(true, false);
@@ -96,8 +96,8 @@ trait PieTrait {
         $p1->SetMidColor('white');
 
         // Use percentage values in the legends values (This is also the default)
-        //$p1->scale->hide();
-        //$p1->SetLabelType(PIE_VALUE_PER);
+        // $p1->scale->hide();
+        // $p1->SetLabelType(PIE_VALUE_PER);
 
         // Add plot to pie graph
         $graph->Add($p1);
@@ -108,7 +108,6 @@ trait PieTrait {
     }
 
     public function pieAvg(): self {
-
         $labels = $this->data->pluck('label')->all();
 
         $data = $this->data->pluck('value')->all();
@@ -120,12 +119,12 @@ trait PieTrait {
                 $color_array[1] = 'white';
                 $data[] = $other;
                 $labels[] = $this->vars['answer_value_no_txt'] ?? 'answer_value_no_txt';
-                if (2 == count($labels) && strlen((string)$labels[0]) < 3) {
+                if (2 === \count($labels) && \strlen((string) $labels[0]) < 3) {
                     $labels[0] = $this->vars['answer_value_txt'];
                 }
             }
         }
-        //dddx($data);
+        // dddx($data);
 
         // A new pie graph
         $graph = new PieGraph($this->width, $this->height, 'auto');
@@ -136,7 +135,7 @@ trait PieTrait {
         $p1->SetStartAngle(180);
         $p1->SetSliceColors($color_array);
 
-        //nasconde i label
+        // nasconde i label
         $p1->value->Show(false);
 
         // Set color for mid circle

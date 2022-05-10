@@ -68,7 +68,7 @@ class Chart extends BaseModel {
         if (! method_exists($parent, 'chart')) {
             return $this->attributes[$name] ?? null;
         }
-        //dddx([$name, $panel->row, $parent->{$name}]);
+        // dddx([$name, $panel->row, $parent->{$name}]);
         $value = $parent->chart->{$name};
         $this->{$name} = $value;
         $this->save();
@@ -97,14 +97,14 @@ class Chart extends BaseModel {
                 'file' => $e->getFile(),
                 'panel_row_class' => \get_class($panel_row),
             ];
-            //echo '<pre>'.print_r($msg,true).'</pre>';
+            // echo '<pre>'.print_r($msg,true).'</pre>';
             $value = null;
         }
 
         return $value;
     }
 
-    //---------- Mutator
+    // ---------- Mutator
     public function getColorAttribute(?string $value): ?string {
         if (null !== $value) {
             return $value;

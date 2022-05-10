@@ -30,8 +30,8 @@ use Modules\Xot\Services\HtmlService;
  * */
 class ChartService {
     private static ?self $instance = null;
-    private ChartEngineContract $chart_engine; //dobbiamo fare interfaccia e poi metterla
-    //private string $type = 'default'; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
+    private ChartEngineContract $chart_engine; // dobbiamo fare interfaccia e poi metterla
+    // private string $type = 'default'; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
 
     public function __construct() {
         $this->chart_engine = JpgraphEngine2::make();
@@ -50,7 +50,7 @@ class ChartService {
     }
 
     public function setData(Collection $data): self {
-        //$this->data = $data;
+        // $this->data = $data;
         $this->chart_engine->setData($data);
 
         return $this;
@@ -93,7 +93,7 @@ class ChartService {
     }
 
     public function setType(string $type): self {
-        //$this->type = $type;
+        // $this->type = $type;
         $this->chart_engine->setType($type);
 
         return $this;
@@ -128,9 +128,9 @@ class ChartService {
             ->build()
             ->save($img);
 
-        //if (count($this->chart_engine->imgs) > 0) {
+        // if (count($this->chart_engine->imgs) > 0) {
         //    dddx($this->chart_engine->imgs);
-        //}
+        // }
 
         return $img;
     }
@@ -138,7 +138,7 @@ class ChartService {
     public function toPdf(): self {
         $html = $this->toHtml()->render();
         $content = HtmlService::toPdf(['html' => $html, 'out' => 'content_PDF']);
-        if (! is_string($content)) {
+        if (! \is_string($content)) {
             throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
         }
 

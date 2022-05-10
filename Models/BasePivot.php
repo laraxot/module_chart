@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
-////use Laravel\Scout\Searchable;
+// //use Laravel\Scout\Searchable;
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -13,7 +13,7 @@ use Modules\Xot\Traits\Updater;
  */
 abstract class BasePivot extends Pivot {
     use Updater;
-    //use Searchable;
+    // use Searchable;
 
     /**
      * @var string

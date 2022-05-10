@@ -22,14 +22,14 @@ trait ChartTrait {
             'bar1' => 'bar1',
             'line1' => 'linea',
             'lineSubQuestion' => 'linea da usare con subquestion',
-            //'barYesNo' => 'barre si/no',
-            //'barNoYes' => 'barre no/si',
-            //'pieMonthBarWeekBar' => 'torta/mese/settimana',
-            //'pieMonthBarWeekBarSiNo' => 'torta/mese/settimana si/no',
-            //'pieMonthBarWeekBarNoSi' => 'torta/mese/settimana no/si',
-            //'lineHorizontalBar' => 'linea/barre orizzontali',
-            //'pieYesNo' => 'torta si/no',
-            //'pieNoYes' => 'torta no/si',
+            // 'barYesNo' => 'barre si/no',
+            // 'barNoYes' => 'barre no/si',
+            // 'pieMonthBarWeekBar' => 'torta/mese/settimana',
+            // 'pieMonthBarWeekBarSiNo' => 'torta/mese/settimana si/no',
+            // 'pieMonthBarWeekBarNoSi' => 'torta/mese/settimana no/si',
+            // 'lineHorizontalBar' => 'linea/barre orizzontali',
+            // 'pieYesNo' => 'torta si/no',
+            // 'pieNoYes' => 'torta no/si',
         ];
 
         $mixed = MixedChart::get()->pluck('name', 'id')->all();
@@ -87,7 +87,7 @@ trait ChartTrait {
 
             (object) [
                 'type' => 'Select',
-                //'type' => 'String',
+                // 'type' => 'String',
                 'name' => 'chart.font_family',
                 'comment' => null,
                 'col_size' => 4,
@@ -256,7 +256,7 @@ trait ChartTrait {
                 'name' => 'pdfStyle.font_size',
                 'comment' => null,
                 'col_size' => 4,
-                //'value' => 12,
+                // 'value' => 12,
 
                 'options' => [
                     '8' => '8',
@@ -275,7 +275,7 @@ trait ChartTrait {
                 'name' => 'pdfStyle.font_size_question',
                 'comment' => null,
                 'col_size' => 4,
-                //'value' => 12,
+                // 'value' => 12,
 
                 'options' => [
                     '100' => '100',
@@ -299,7 +299,7 @@ trait ChartTrait {
                 'type' => 'Integer',
                 'name' => 'pdfStyle.backtop',
                 'comment' => null,
-                //'value' => 35,
+                // 'value' => 35,
                 'default' => 35,
                 'col_size' => 4,
             ],

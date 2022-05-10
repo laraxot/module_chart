@@ -18,7 +18,7 @@ class MixedChart extends BaseModel {
         'name',
     ];
 
-    //---- relations
+    // ---- relations
 
     public function charts(): MorphMany {
         return $this->morphMany(Chart::class, 'post');

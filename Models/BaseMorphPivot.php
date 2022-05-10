@@ -31,7 +31,7 @@ abstract class BaseMorphPivot extends MorphPivot {
      * @var bool
      */
     public $timestamps = true;
-    //protected $attributes = ['related_type' => 'cuisine_cat'];
+    // protected $attributes = ['related_type' => 'cuisine_cat'];
     /**
      * @var string[]
      */

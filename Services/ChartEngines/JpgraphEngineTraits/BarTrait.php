@@ -22,11 +22,11 @@ trait BarTrait {
         // Setup the graph.
 
         $graph = $this->getGraph();
-        //$graph->title->set('Media Giudizi');
-        //$graph->img->SetMargin(60, 20, 35, 75);
+        // $graph->title->set('Media Giudizi');
+        // $graph->img->SetMargin(60, 20, 35, 75);
         $graph->SetScale('textlin', 5, 10);
-        //$graph->SetScale('lin', 5, 10);
-        //$graph->SetY2Scale('lin', 0, 10);
+        // $graph->SetScale('lin', 5, 10);
+        // $graph->SetY2Scale('lin', 0, 10);
         $graph->SetY2Scale('int', 5, 10);
         $graph->SetY2OrderBack(false);
 
@@ -37,7 +37,7 @@ trait BarTrait {
         $graph->SetTheme($theme_class);
 
         // Set up the title for the graph
-        //$graph->title->Set('Bar gradient with left reflection');
+        // $graph->title->Set('Bar gradient with left reflection');
         $graph->title->SetMargin(8);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 12);
         $graph->title->SetColor('darkred');
@@ -58,22 +58,22 @@ trait BarTrait {
         $bplot->SetWidth(0.6);
 
         // Setup color for gradient fill style
-        //$bplot->SetFillGradient('navy:0.9', 'navy:1.85', GRAD_LEFT_REFLECTION);
+        // $bplot->SetFillGradient('navy:0.9', 'navy:1.85', GRAD_LEFT_REFLECTION);
         $bplot->SetFillColor('darkgreen');
 
         // Set color for the frame of each bar
         $bplot->SetColor('white');
 
-        //----------------------------------------------------------------
+        // ----------------------------------------------------------------
         // Setup values
-        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
+        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
         $bplot->value->Show();
         $bplot->value->setColor('white');
         $bplot->value->setAngle(50);
         $bplot->value->SetFormat('%01.2f');
-        //$bplot->value->SetFont(FF_FONT1, FS_BOLD);
+        // $bplot->value->SetFont(FF_FONT1, FS_BOLD);
         $bplot->value->SetFont(FF_VERDANA, FS_ITALIC);
-        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_listfontsex1.html
+        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_listfontsex1.html
         $bplot->value->SetFont(FF_ARIAL, FS_BOLD);
 
         // Center the values in the bar
@@ -81,11 +81,11 @@ trait BarTrait {
 
         // Make the bar a little bit wider
         $bplot->SetWidth(0.7);
-        //----------------------------------------------------------------
+        // ----------------------------------------------------------------
 
         $graph->Add($bplot);
 
-        //line1
+        // line1
         $data6y = [7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5];
 
         $lplot = new LinePlot($data6y);
@@ -95,13 +95,13 @@ trait BarTrait {
         $lplot->SetBarCenter();
         $lplot->SetColor('navy');
         $lplot->SetLegend('Riferimento '.$this->width);
-        //$lplot->mark->SetType(MARK_X, '', 1.0);
+        // $lplot->mark->SetType(MARK_X, '', 1.0);
         $lplot->mark->SetWeight(12);
         $lplot->mark->SetWidth(18);
         $lplot->mark->setColor('yellow');
         $lplot->mark->setFillColor('yellow');
 
-        $delta = $this->width / count($datax1);
+        $delta = $this->width / \count($datax1);
         $delta = $delta - 1;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -111,8 +111,8 @@ trait BarTrait {
             $txt->SetPos(55 + ($delta * $i), 70);
 
             // Set color and fonr for the text
-            //$txt->SetColor('red');
-            //$txt->SetFont(FF_FONT2, FS_BOLD);
+            // $txt->SetColor('red');
+            // $txt->SetFont(FF_FONT2, FS_BOLD);
 
             // ... and add the text to the graph
             $graph->AddText($txt);
@@ -125,8 +125,8 @@ trait BarTrait {
 
         $graph->Stroke($this->filename);
         */
-        //------------------------------
-        //$this->vars['title']
+        // ------------------------------
+        // $this->vars['title']
 
         $this->graph = $graph;
 
@@ -134,7 +134,7 @@ trait BarTrait {
     }
 
     public function bar2_old(): self {
-        //dddx($this->vars);
+        // dddx($this->vars);
         // We need some data
         $datax = $this->data->pluck('label')->all();
         $datay = $this->data->pluck('value')->all();
@@ -157,34 +157,34 @@ trait BarTrait {
 
         $bplot = $this->applyPlotStyle($bplot);
 
-        //----------------------------------------------------------------
+        // ----------------------------------------------------------------
         // Setup values
-        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
-        //se tolto non mostra i valori
+        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
+        // se tolto non mostra i valori
         $bplot->value->Show();
 
-        //colore del font che scrivi
+        // colore del font che scrivi
         $bplot->value->setColor('white');
 
-        //da fare
-        //plot_value_color
-        //plot_value_show
-        //plot_value_format
-        //plot_value_pos
+        // da fare
+        // plot_value_color
+        // plot_value_show
+        // plot_value_format
+        // plot_value_pos
 
-        //$bplot->value->setAngle(50);
+        // $bplot->value->setAngle(50);
         $bplot->value->SetFormat('%01.2f');
 
         // Center the values in the bar
         $bplot->SetValuePos('center');
 
         // Make the bar a little bit wider
-        //$bplot->SetWidth(0.9);
-        //----------------------------------------------------------------
+        // $bplot->SetWidth(0.9);
+        // ----------------------------------------------------------------
 
         $graph->Add($bplot);
 
-        $delta = ($this->width - 100) / count($datax1);
+        $delta = ($this->width - 100) / \count($datax1);
         $delta = $delta;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -213,8 +213,8 @@ trait BarTrait {
             'value' => $datay,
         ]);
          */
-        //dddx($this->data->pluck('A1')->all());
-        //dddx([$this->vars]);
+        // dddx($this->data->pluck('A1')->all());
+        // dddx([$this->vars]);
         // Setup the graph.
         $graph = $this->getGraph();
 
@@ -232,28 +232,28 @@ trait BarTrait {
 
         $bplot = $this->applyPlotStyle($bplot);
 
-        //----------------------------------------------------------------
+        // ----------------------------------------------------------------
         // Setup values
-        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
-        //se tolto non mostra i valori
-        //$bplot->value->Show();
+        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
+        // se tolto non mostra i valori
+        // $bplot->value->Show();
 
-        //colore del font che scrivi
-        //$bplot->value->setColor('white');
+        // colore del font che scrivi
+        // $bplot->value->setColor('white');
 
-        //$bplot->value->setAngle(50);
-        //$bplot->value->SetFormat('%01.2f');
+        // $bplot->value->setAngle(50);
+        // $bplot->value->SetFormat('%01.2f');
 
         // Center the values in the bar
-        //$bplot->SetValuePos('center');
+        // $bplot->SetValuePos('center');
 
         // Make the bar a little bit wider
-        //$bplot->SetWidth(0.9);
-        //----------------------------------------------------------------
+        // $bplot->SetWidth(0.9);
+        // ----------------------------------------------------------------
 
         $graph->Add($bplot);
 
-        $delta = ($this->width - 100) / count($datax1);
+        $delta = ($this->width - 100) / \count($datax1);
         $delta = $delta;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -265,13 +265,13 @@ trait BarTrait {
             $graph->AddText($txt);
         }
 
-        //dddx(collect($datay));
+        // dddx(collect($datay));
         $avg = round(collect($datay)->avg(), 2);
-        $tmp = array_fill(0, count($datay) - 1, '-');
+        $tmp = array_fill(0, \count($datay) - 1, '-');
         $tmp = array_merge([$avg], $tmp, [$avg]);
-        //dddx($tmp);
+        // dddx($tmp);
 
-        //linea della media
+        // linea della media
         /*
         $lplot = new LinePlot($tmp);
         $lplot->SetStyle('dotted'); //tipo di linea
@@ -289,7 +289,7 @@ trait BarTrait {
         $graph->Add($lplot);
         */
 
-        //https://jpgraph.net/download/manuals/chunkhtml/ch14s04.html
+        // https://jpgraph.net/download/manuals/chunkhtml/ch14s04.html
         /*
         $vars['extras'] = [
             (object) [

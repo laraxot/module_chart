@@ -10,12 +10,10 @@ namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 use Amenadiel\JpGraph\Graph\CanvasGraph;
 use Amenadiel\JpGraph\Text\GTextTable;
 
-trait TableTrait
-{
-    //https://jpgraph.net/download/manuals/chunkhtml/example_src/table_mex00.html
-    public function table1(): self
-    {
-        //dddx($this->vars);
+trait TableTrait {
+    // https://jpgraph.net/download/manuals/chunkhtml/example_src/table_mex00.html
+    public function table1(): self {
+        // dddx($this->vars);
 
         // Setup a basic canvas to use as graph to add the table
         $graph = new CanvasGraph(500, 200);
@@ -25,58 +23,57 @@ trait TableTrait
         $votes = ['', 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 'N'];
         // Setup the basic table
         $data = [
-            /* array_merge([''], $this->vars['votes']),*/
+            /* array_merge([''], $this->vars['votes']), */
             $votes,
         ];
 
-        /*$max=0;*/
+        /* $max=0; */
         $totals = ['Totale', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         foreach ($this->vars['answers'] as $week => $items) {
             $array_to_push = [
-                @count($this->vars['answers'][$week][10]),
-                @count($this->vars['answers'][$week][9]),
-                @count($this->vars['answers'][$week][8]),
-                @count($this->vars['answers'][$week][7]),
-                @count($this->vars['answers'][$week][6]),
-                @count($this->vars['answers'][$week][5]),
-                @count($this->vars['answers'][$week][4]),
-                @count($this->vars['answers'][$week][3]),
-                @count($this->vars['answers'][$week][2]),
-                @count($this->vars['answers'][$week][1]),
-                @count($this->vars['answers'][$week][0]),
-                @count($this->vars['answers'][$week]['']), ];
+                @\count($this->vars['answers'][$week][10]),
+                @\count($this->vars['answers'][$week][9]),
+                @\count($this->vars['answers'][$week][8]),
+                @\count($this->vars['answers'][$week][7]),
+                @\count($this->vars['answers'][$week][6]),
+                @\count($this->vars['answers'][$week][5]),
+                @\count($this->vars['answers'][$week][4]),
+                @\count($this->vars['answers'][$week][3]),
+                @\count($this->vars['answers'][$week][2]),
+                @\count($this->vars['answers'][$week][1]),
+                @\count($this->vars['answers'][$week][0]),
+                @\count($this->vars['answers'][$week]['']), ];
 
-            $totals[1] += @count($this->vars['answers'][$week][10]);
-            $totals[2] += @count($this->vars['answers'][$week][9]);
-            $totals[3] += @count($this->vars['answers'][$week][8]);
-            $totals[4] += @count($this->vars['answers'][$week][7]);
-            $totals[5] += @count($this->vars['answers'][$week][6]);
-            $totals[6] += @count($this->vars['answers'][$week][5]);
-            $totals[7] += @count($this->vars['answers'][$week][4]);
-            $totals[8] += @count($this->vars['answers'][$week][3]);
-            $totals[9] += @count($this->vars['answers'][$week][2]);
-            $totals[10] += @count($this->vars['answers'][$week][1]);
-            $totals[11] += @count($this->vars['answers'][$week][0]);
-            $totals[12] += @count($this->vars['answers'][$week]['']);
+            $totals[1] += @\count($this->vars['answers'][$week][10]);
+            $totals[2] += @\count($this->vars['answers'][$week][9]);
+            $totals[3] += @\count($this->vars['answers'][$week][8]);
+            $totals[4] += @\count($this->vars['answers'][$week][7]);
+            $totals[5] += @\count($this->vars['answers'][$week][6]);
+            $totals[6] += @\count($this->vars['answers'][$week][5]);
+            $totals[7] += @\count($this->vars['answers'][$week][4]);
+            $totals[8] += @\count($this->vars['answers'][$week][3]);
+            $totals[9] += @\count($this->vars['answers'][$week][2]);
+            $totals[10] += @\count($this->vars['answers'][$week][1]);
+            $totals[11] += @\count($this->vars['answers'][$week][0]);
+            $totals[12] += @\count($this->vars['answers'][$week]['']);
 
             /*$max_current_array=max($array_to_push);
             if($max<$max_current_array){
                 $max=$max_current_array;
             }*/
 
-            array_push(
-                $data,
+                $data[] =
                 /*array_merge([$week], collect($items)->map(function ($el) {
                    return count($el);
                 })->toArray()*/
                 array_merge([$week], $array_to_push)
-            );
+            ;
         }
 
-        array_push($data, $totals);
+        $data[] = $totals;
 
-        //dddx($data);
+        // dddx($data);
 
         // Create a basic table and default fonr
         $table = new GTextTable();
@@ -104,7 +101,7 @@ trait TableTrait
         $table->SetRowGrid($rows_number-1, 1, 'black', TGRID_DOUBLE2);*/
 
         // Merge all cells in row 0
-        /*$table->MergeRow(0);*/
+        /* $table->MergeRow(0); */
 
         // Set aligns
         /* $table->SetAlign(3, 0, 6, 6, 'right');
@@ -115,24 +112,24 @@ trait TableTrait
             $r = 0;
             $partecipants = 0;
 
-            //dddx(count($this->vars['answers'][$week][$vote]));
+            // dddx(count($this->vars['answers'][$week][$vote]));
             $i = 0;
             foreach ($this->vars['answers'] as $week) {
-                if (@count($week[$vote]) > $partecipants) {
-                    $partecipants = @count($week[$vote]);
+                if (@\count($week[$vote]) > $partecipants) {
+                    $partecipants = @\count($week[$vote]);
 
                     $r = $i;
 
-                    //dddx([$r, $c]);
+                    // dddx([$r, $c]);
                 }
 
                 ++$r;
             }
-            //dddx([$r, $i]);
+            // dddx([$r, $i]);
             $table->SetFillColor($r, $c, $r, $c, 'yellow@0');
         }
 
-        //$table->SetFillColor(2, 2, 2, 2, 'yellow@0');
+        // $table->SetFillColor(2, 2, 2, 2, 'yellow@0');
 
         // Set background colors
         $table->SetRowFillColor(0, 'lightgray@0.5');
@@ -149,7 +146,7 @@ trait TableTrait
         $graph->Add($table);
 
         // Send back the table graph to the client
-        //$graph->Stroke();
+        // $graph->Stroke();
 
         $this->graph = $graph;
 
@@ -157,8 +154,7 @@ trait TableTrait
     }
 
     // https://jpgraph.net/download/manuals/chunkhtml/example_src/table_mex3.html
-    public function table2(): self
-    {
+    public function table2(): self {
         $graph = new CanvasGraph(500, 200);
 
         $data = [
@@ -192,10 +188,10 @@ trait TableTrait
         $table->SetFont(1, 2, 1, 3, FF_ARIAL, FS_BOLD, 11);
 
         // Setup grids
-        //191    Constant TGRID_SINGLE not found.
-        //$table->SetRowGrid(4, 2, 'black', TGRID_SINGLE);
-        //$table->SetColGrid(1, 1, 'black', TGRID_SINGLE);
-        //$table->SetRowGrid(1, 1, 'black', TGRID_SINGLE);
+        // 191    Constant TGRID_SINGLE not found.
+        // $table->SetRowGrid(4, 2, 'black', TGRID_SINGLE);
+        // $table->SetColGrid(1, 1, 'black', TGRID_SINGLE);
+        // $table->SetRowGrid(1, 1, 'black', TGRID_SINGLE);
 
         // Setup colors
         $table->SetFillColor(0, 1, 0, 6, 'black');
@@ -208,7 +204,7 @@ trait TableTrait
         $graph->Add($table);
 
         // Send back to the client
-        //$graph->Stroke();
+        // $graph->Stroke();
 
         $this->graph = $graph;
 

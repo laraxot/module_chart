@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines;
 
-//use Amenadiel\JpGraph\Graph;
+// use Amenadiel\JpGraph\Graph;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Themes\UniversalTheme;
@@ -22,12 +22,12 @@ use Intervention\Image\Facades\Image;
  * */
 class JpgraphEngine2 extends BaseChartEngine {
     use JpgraphEngineTraits\BarTrait;
-    use JpgraphEngineTraits\HorizbarTrait;
-    use JpgraphEngineTraits\PieTrait;
-    use JpgraphEngineTraits\LineTrait;
-    use JpgraphEngineTraits\TableTrait;
-    use JpgraphEngineTraits\MixedTrait;
     use JpgraphEngineTraits\CommonTrait;
+    use JpgraphEngineTraits\HorizbarTrait;
+    use JpgraphEngineTraits\LineTrait;
+    use JpgraphEngineTraits\MixedTrait;
+    use JpgraphEngineTraits\PieTrait;
+    use JpgraphEngineTraits\TableTrait;
 
     private static ?self $instance = null;
 
@@ -38,7 +38,7 @@ class JpgraphEngine2 extends BaseChartEngine {
 
     private string $type = ''; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
 
-    public string $title = ''; //'Lei ha appena svolto una pratica con BIM GSP S.p.A. o utilizzato un canale di contatto di BIM GSP S.p.A. può indicarci il motivo del contatto? ';
+    public string $title = ''; // 'Lei ha appena svolto una pratica con BIM GSP S.p.A. o utilizzato un canale di contatto di BIM GSP S.p.A. può indicarci il motivo del contatto? ';
 
     public string $filename;
 
@@ -48,7 +48,7 @@ class JpgraphEngine2 extends BaseChartEngine {
 
     public Collection $data;
 
-    //--- FONT
+    // --- FONT
     public string $color;
     public string $family;
     public string $style;
@@ -79,14 +79,13 @@ class JpgraphEngine2 extends BaseChartEngine {
 
     public function build(): self {
         $this->setWidthHeight((int) $this->vars['width'], (int) $this->vars['height']);
-        //dddx($this->vars['type']);
+        // dddx($this->vars['type']);
 
         if (Str::startsWith($this->vars['type'], 'mixed')) {
-            $parz = array_slice(explode(':', $this->vars['type']), 1);
+            $parz = \array_slice(explode(':', $this->vars['type']), 1);
 
             $res = $this->mixed(...$parz);
         } else {
-
             $res = $this->{$this->vars['type']}();
         }
         if (! isset($this->vars['extras'])) {
@@ -100,7 +99,7 @@ class JpgraphEngine2 extends BaseChartEngine {
             $res = $this->{$extra->type}(...$var);
         }
 
-        //$res1 = $this->horizontalLine(70, 'riferimento');
+        // $res1 = $this->horizontalLine(70, 'riferimento');
 
         return $this;
     }
@@ -152,18 +151,18 @@ class JpgraphEngine2 extends BaseChartEngine {
         // Create the graph. These two calls are always required
         $graph = new Graph($this->width, $this->height, 'auto');
         $graph->SetScale('textlin');
-        //.$this->vars['title']
-        //$graph->title->Set('aaa');
+        // .$this->vars['title']
+        // $graph->title->Set('aaa');
         $graph->SetShadow();
         $theme_class = new UniversalTheme();
         // Setup font for axis
         /*$graph->xaxis->SetFont(FF_VERDANA, FS_NORMAL, 10);
         $graph->yaxis->SetFont(FF_VERDANA, FS_NORMAL, 10);*/
 
-        //$graph->xaxis->setFont($this->family, $this->style, $this->size);
-        //$graph->yaxis->setFont($this->family, $this->style, $this->size);
+        // $graph->xaxis->setFont($this->family, $this->style, $this->size);
+        // $graph->yaxis->setFont($this->family, $this->style, $this->size);
 
-        //$graph->setColor($this->color);
+        // $graph->setColor($this->color);
 
         $graph->SetTheme($theme_class);
 
@@ -188,7 +187,7 @@ class JpgraphEngine2 extends BaseChartEngine {
             File::delete(public_path($this->filename));
         }
 
-        if (count($this->imgs) > 0) {
+        if (\count($this->imgs) > 0) {
             /*
             https://github.com/Intervention/image/issues/376
             */
@@ -196,7 +195,7 @@ class JpgraphEngine2 extends BaseChartEngine {
             $width = $imgs->sum('width');
             $height = $imgs->max('height');
             // 172    Parameter #1 $width of static method Intervention\Image\ImageManager::canvas()
-            //expects int, mixed given.
+            // expects int, mixed given.
             if (! is_numeric($width) || ! is_numeric($height)) {
                 throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
             }
