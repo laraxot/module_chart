@@ -41,7 +41,7 @@ trait HorizbarTrait {
         if (isset($this->vars['tot'])) {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
             if (isset($this->vars['tot_nulled'])) {
-                $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
+                $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
             $graph->subsubtitle->Set($subtitle);
             $graph->subsubtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);

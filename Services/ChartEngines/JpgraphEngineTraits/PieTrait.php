@@ -84,7 +84,7 @@ trait PieTrait {
             
             $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
             /*if (isset($this->vars['tot_nulled'])) {
-                $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
+                $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
             $p1->title->Set($subtitle);
             $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
@@ -92,7 +92,7 @@ trait PieTrait {
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
             if (isset($this->vars['tot_nulled'])) {
-                $subtitle1 = 'Astenuti '.$this->vars['tot_nulled'];
+                $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
                 $graph->subtitle->Set($subtitle1);
                 $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
             }
@@ -166,7 +166,7 @@ trait PieTrait {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
             /*
             if (isset($this->vars['tot_nulled'])) {
-                $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
+                $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
             $p1->title->Set($subtitle);
             $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
@@ -175,7 +175,7 @@ trait PieTrait {
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
             if (isset($this->vars['tot_nulled'])) {
-                $subtitle1 = 'Astenuti '.$this->vars['tot_nulled'];
+                $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
                 $graph->subtitle->Set($subtitle1);
                 $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
             }
