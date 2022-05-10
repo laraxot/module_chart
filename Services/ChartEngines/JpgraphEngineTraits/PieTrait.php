@@ -80,8 +80,17 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        $p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
-        $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        if (isset($this->vars['tot'])) {
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
+            if (isset($this->vars['tot_nulled'])) {
+                $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
+            }
+            $p1->title->Set($subtitle);
+            $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        }
+
+        //$p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
+        //$p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
 
         // Label font and color setup
         $p1->value->SetFont(FF_ARIAL, FS_BOLD, 10);
@@ -143,8 +152,14 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        $p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
-        $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        if (isset($this->vars['tot'])) {
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
+            if (isset($this->vars['tot_nulled'])) {
+                $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
+            }
+            $p1->title->Set($subtitle);
+            $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        }
 
         $footer_txt = 'Media '.number_format($data[0], 2);
         $graph->footer->center->Set($footer_txt);
