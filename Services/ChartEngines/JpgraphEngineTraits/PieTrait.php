@@ -56,7 +56,7 @@ trait PieTrait {
         $graph->subtitle->SetFont(FF_ARIAL, FS_BOLD, 10);
         $graph->subtitle->Set('(common objects)');
         */
-
+       
         // Create the pie plot
         $p1 = new PiePlotC($data);
         // $p1->SetSliceColors(['darkred', 'navy', 'lightblue', 'orange', 'gray', 'teal']);
@@ -81,12 +81,22 @@ trait PieTrait {
         $p1->SetMidSize(0.8);
 
         if (isset($this->vars['tot'])) {
+            
             $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
-            if (isset($this->vars['tot_nulled'])) {
+            /*if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
             }
             $p1->title->Set($subtitle);
             $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            */
+            $graph->title->Set($subtitle);
+            $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            if (isset($this->vars['tot_nulled'])) {
+                $subtitle1 = 'Astenuti '.$this->vars['tot_nulled'];
+                $graph->subtitle->Set($subtitle1);
+                $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            }
+            
         }
 
         //$p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
@@ -154,11 +164,21 @@ trait PieTrait {
 
         if (isset($this->vars['tot'])) {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
+            /*
             if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Astenuti '.$this->vars['tot_nulled'];
             }
             $p1->title->Set($subtitle);
             $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            */
+
+            $graph->title->Set($subtitle);
+            $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            if (isset($this->vars['tot_nulled'])) {
+                $subtitle1 = 'Astenuti '.$this->vars['tot_nulled'];
+                $graph->subtitle->Set($subtitle1);
+                $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            }
         }
 
         $footer_txt = 'Media '.number_format($data[0], 2);
