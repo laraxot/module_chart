@@ -56,7 +56,7 @@ trait PieTrait {
         $graph->subtitle->SetFont(FF_ARIAL, FS_BOLD, 10);
         $graph->subtitle->Set('(common objects)');
         */
-       
+
         // Create the pie plot
         $p1 = new PiePlotC($data);
         // $p1->SetSliceColors(['darkred', 'navy', 'lightblue', 'orange', 'gray', 'teal']);
@@ -81,7 +81,6 @@ trait PieTrait {
         $p1->SetMidSize(0.8);
 
         if (isset($this->vars['tot'])) {
-            
             $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
             /*if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
@@ -96,11 +95,10 @@ trait PieTrait {
                 $graph->subtitle->Set($subtitle1);
                 $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
             }
-            
         }
 
-        //$p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
-        //$p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        // $p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
+        // $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
 
         // Label font and color setup
         $p1->value->SetFont(FF_ARIAL, FS_BOLD, 10);

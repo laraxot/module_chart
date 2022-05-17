@@ -63,7 +63,7 @@ trait TableTrait {
                 $max=$max_current_array;
             }*/
 
-                $data[] =
+            $data[] =
                 /*array_merge([$week], collect($items)->map(function ($el) {
                    return count($el);
                 })->toArray()*/

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Modules\Xot\Models\Panels\XotBasePanel;
 
 /**
- * MixedChartPanel
+ * MixedChartPanel.
  */
 class MixedChartPanel extends XotBasePanel {
     /**
