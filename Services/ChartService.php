@@ -21,6 +21,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Chart\Contracts\ChartEngineContract;
+use Modules\Chart\Services\ChartEngines\ChartJsEngine;
 use Modules\Chart\Services\ChartEngines\JpgraphEngine2;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\HtmlService;
@@ -32,9 +33,20 @@ class ChartService {
     private static ?self $instance = null;
     private ChartEngineContract $chart_engine; // dobbiamo fare interfaccia e poi metterla
     // private string $type = 'default'; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
+    private int $type = 0;
 
     public function __construct() {
-        $this->chart_engine = JpgraphEngine2::make();
+        switch ($this->type) {
+            case 0:
+                $this->chart_engine = JpgraphEngine2::make();
+            break;
+            case 1:
+                $this->chart_engine = ChartJsEngine::make();
+            break;
+            default:
+                throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
+            break;
+        }
     }
 
     public static function getInstance(): self {
