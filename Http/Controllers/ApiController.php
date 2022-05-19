@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @see https://stackoverflow.com/questions/42102803/how-to-save-base64-image-server-side
+ */
+
 declare(strict_types=1);
 
 namespace Modules\Chart\Http\Controllers;
