@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\Traits;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Modules\Chart\Contracts\ChartEngineContract;
 
 /**
  * Undocumented trait.
@@ -14,14 +15,14 @@ trait ChartEngineTrait {
     /**
      * Undocumented function.
      */
-    public function setWidthHeight(int $width, int $height): self {
+    public function setWidthHeight(int $width, int $height): ChartEngineContract {
         $this->width = $width;
         $this->height = $height;
 
         return $this;
     }
 
-    public function mergeVars(array $vars): self {
+    public function mergeVars(array $vars): ChartEngineContract {
         $this->vars = array_merge($this->vars, $vars);
 
         return $this;
@@ -31,25 +32,25 @@ trait ChartEngineTrait {
         return $this->vars;
     }
 
-    public function setData(Collection $data): self {
+    public function setData(Collection $data): ChartEngineContract {
         $this->data = $data;
 
         return $this;
     }
 
-    public function setType(string $type): self {
+    public function setType(string $type): ChartEngineContract {
         $this->type = $type;
 
         return $this;
     }
 
-    public function setColor(string $color): self {
+    public function setColor(string $color): ChartEngineContract {
         $this->color = $color;
 
         return $this;
     }
 
-    public function setFont(string $family, string $style, int $size): self {
+    public function setFont(string $family, string $style, int $size): ChartEngineContract {
         $this->family = $family;
         $this->style = $style;
         $this->size = $size;
@@ -60,7 +61,8 @@ trait ChartEngineTrait {
     /**
      * Undocumented function.
      */
-    public function build(): self {
+    public function build(): ChartEngineContract {
+        //dddx([$this->vars['width'], $this->vars['height']]);
         $this->setWidthHeight((int) $this->vars['width'], (int) $this->vars['height']);
         // dddx($this->vars['type']);
 
