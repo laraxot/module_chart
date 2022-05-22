@@ -15,6 +15,8 @@ trait HorizbarTrait {
             'filename' => 'prova123',
         ];
 
+        //dddx($view_params);
+
         $out = view()->make($view, $view_params);
         $html = $out->render();
         exit($html);

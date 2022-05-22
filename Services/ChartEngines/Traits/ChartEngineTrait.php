@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Modules\Chart\Contracts\ChartEngineContract;
 
 /**
@@ -64,7 +64,7 @@ trait ChartEngineTrait {
     public function build(): ChartEngineContract {
         //dddx([$this->vars['width'], $this->vars['height']]);
         $this->setWidthHeight((int) $this->vars['width'], (int) $this->vars['height']);
-        // dddx($this->vars['type']);
+        //dddx($this->vars['type']);
 
         if (Str::startsWith($this->vars['type'], 'mixed')) {
             $parz = \array_slice(explode(':', $this->vars['type']), 1);
