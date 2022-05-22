@@ -1,6 +1,6 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<div>
+<div class="chart-container" style="position: relative; height:400px; width:700px">
     <canvas id="myChart"></canvas>
 </div>
 
