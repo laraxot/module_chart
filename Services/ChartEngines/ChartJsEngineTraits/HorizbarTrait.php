@@ -1,8 +1,8 @@
 <?php
 /**
- * @link https://www.larashout.com/laravel-collection-using-tojson-method
- * @link https://codepen.io/k-sav/pen/PXxywK
- * @link https://chartjs-plugin-datalabels.netlify.app/
+ * @see https://www.larashout.com/laravel-collection-using-tojson-method
+ * @see https://codepen.io/k-sav/pen/PXxywK
+ * @see https://chartjs-plugin-datalabels.netlify.app/
  */
 
 declare(strict_types=1);
@@ -15,19 +15,19 @@ trait HorizbarTrait {
     /**
      * Undocumented function.
      */
-    public function horizbar1OLD(): self {
+    public function horizbar1(): self {
         //$view = 'chart::'.(inAdmin()?'admin.':'').'chartjs.'.__FUNCTION__;
 
-        $labels=$this->data->pluck('label')->all();
-        $data=$this->data->pluck('value')->all();
+        $labels = $this->data->pluck('label')->all();
+        $data = $this->data->pluck('value')->all();
         //dddx(['data'=>$this->data]);
         $view = 'chart::chartjs.'.__FUNCTION__;
-        //$view.='.1';
+        $view .= '.2';
         $view_params = [
             'view' => $view,
             'filename' => 'prova123',
-            'labels'=>$labels,
-            'data'=>$data,
+            'labels' => $labels,
+            'data' => $data,
         ];
 
         //dddx($view_params);
@@ -39,29 +39,28 @@ trait HorizbarTrait {
         return $this;
     }
 
-    public function horizbar1(): self {
-        $labels=$this->data->pluck('label')->all();
-        $data=$this->data->pluck('value')->all();
-        $options=[
-            'indexAxis'=> 'y',
-            'plugins'=>[
-                'datalabels'=>[
-                    'color'=> '#d60021',
+    public function horizbar1_obj(): self {
+        $labels = $this->data->pluck('label')->all();
+        $data = $this->data->pluck('value')->all();
+        $options = [
+            'indexAxis' => 'y',
+            'plugins' => [
+                'datalabels' => [
+                    'color' => '#d60021',
                 ],
             ],
-            'scales'=>[
-                'yAxes'=>[
-                   [
-                       'type'=>'category',
-                        'offset'=>true,
-                        'position'=>'right',
-                   ],
-
-                ]
-            ]
+            'scales' => [
+                'yAxes' => [
+                    [
+                        'type' => 'category',
+                        'offset' => true,
+                        'position' => 'right',
+                    ],
+                ],
+            ],
         ];
 
-        $optionsRaw="{
+        $optionsRaw = "{
             indexAxis: 'y',
             scales: {
 
@@ -97,7 +96,7 @@ trait HorizbarTrait {
             }
         }";
 
-        $optionsRaw="{
+        $optionsRaw = "{
             indexAxis: 'y',
             type: 'category',
             position: 'right',
@@ -110,8 +109,7 @@ trait HorizbarTrait {
             }
           }";
 
-
-          $optionsRaw="{
+        $optionsRaw = "{
             indexAxis: 'y',
             scales: {
                 xAxes: [{
@@ -137,7 +135,7 @@ trait HorizbarTrait {
             }
         }";
 
-        $optionsRaw="{
+        $optionsRaw = "{
             maintainAspectRatio: false,
             responsive: true,
               scales: {
@@ -173,7 +171,7 @@ trait HorizbarTrait {
 
       }";
 
-      $optionsRaw="{
+        $optionsRaw = "{
         plugins: {
           datalabels: {
             backgroundColor: function(context) {
@@ -212,7 +210,6 @@ trait HorizbarTrait {
         }
       }";
 
-
         $chartjs = ChartJsBuilder::make()
         ->name(__FUNCTION__)
         ->type('bar')
@@ -220,13 +217,13 @@ trait HorizbarTrait {
         ->labels($labels)
         ->datasets([
             [
-                "label" => "#",
-                'backgroundColor' => "rgba(38, 185, 154, 0.31)",
-                'borderColor' => "rgba(38, 185, 154, 0.7)",
-                "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
-                "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
-                "pointHoverBackgroundColor" => "#fff",
-                "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                'label' => '#',
+                'backgroundColor' => 'rgba(38, 185, 154, 0.31)',
+                'borderColor' => 'rgba(38, 185, 154, 0.7)',
+                'pointBorderColor' => 'rgba(38, 185, 154, 0.7)',
+                'pointBackgroundColor' => 'rgba(38, 185, 154, 0.7)',
+                'pointHoverBackgroundColor' => '#fff',
+                'pointHoverBorderColor' => 'rgba(220,220,220,1)',
                 'data' => $data,
             ],
         ])
@@ -238,6 +235,5 @@ trait HorizbarTrait {
         exit($html);
 
         return $this;
-
     }
 }
