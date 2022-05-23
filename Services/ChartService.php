@@ -33,7 +33,7 @@ class ChartService {
     private static ?self $instance = null;
     private ChartEngineContract $chart_engine; // dobbiamo fare interfaccia e poi metterla
     // private string $type = 'default'; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
-    private int $type = 1;
+    private int $type = 0;
 
     public function __construct() {
         switch ($this->type) {
