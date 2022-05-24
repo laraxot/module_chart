@@ -88,7 +88,17 @@
                 // Change options for ALL labels of THIS CHART
                 datalabels: {
                     color: "#navy",
-                    align: "center"
+                    align: "center",
+                    labels: {
+                        title: {
+                            font: {
+                            weight: 'bold'
+                            }
+                        },
+                        value: {
+                            color: 'green'
+                        }
+                    }
                 }
             },
             scales: {
