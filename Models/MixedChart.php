@@ -9,6 +9,29 @@ namespace Modules\Chart\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
+/**
+ * Modules\Chart\Models\MixedChart
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Chart\Models\Chart[] $charts
+ * @property-read int|null $charts_count
+ * @method static \Modules\Chart\Database\Factories\MixedChartFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MixedChart whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class MixedChart extends BaseModel {
     /**
      * @var array<string>

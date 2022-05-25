@@ -43,7 +43,7 @@ trait ChartTrait {
         return $options;
     }
 
-    public function chartFields() {
+    public function chartFields(): array {
         return [
             (object) [
                 'type' => 'Select',
@@ -112,7 +112,7 @@ trait ChartTrait {
                     9001 => 'FS_NORMAL',
                     9002 => 'FS_BOLD',
                     9003 => 'FS_ITALIC',
-                    9004 => 'FS_BOLDIT',
+                    // 9004 => 'FS_BOLDIT',
                     9004 => 'FS_BOLDITALIC',
                 ],
             ],
@@ -208,14 +208,14 @@ trait ChartTrait {
         ];
     }
 
-    public function optionsUrlDecode() {
+    public function optionsUrlDecode(): array {
         return [
             1 => 'percentuale',
             2 => '2 cifre decimali',
         ];
     }
 
-    public function pdfStyleFields() {
+    public function pdfStyleFields(): array {
         return [
             /*
             (object) [
@@ -283,7 +283,7 @@ trait ChartTrait {
                     '120' => '120',
                     '130' => '130',
                     '140' => '140',
-                    '160' => '150',
+                    '150' => '150',
                     '160' => '160',
                 ],
             ],

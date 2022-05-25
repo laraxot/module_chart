@@ -265,8 +265,8 @@ trait BarTrait {
             $graph->AddText($txt);
         }
 
-        // dddx(collect($datay));
-        $avg = round(collect($datay)->avg(), 2);
+        $avg = collect($datay)->avg();
+        $avg = round($avg, 2);
         $tmp = array_fill(0, \count($datay) - 1, '-');
         $tmp = array_merge([$avg], $tmp, [$avg]);
         // dddx($tmp);

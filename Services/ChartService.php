@@ -36,6 +36,11 @@ class ChartService {
     private int $type = 0;
 
     public function __construct() {
+        $type = config('chart.type', 0);
+        if (! is_int($type)) {
+            throw new Exception('config chart.type is not an Integer');
+        }
+        $this->type = $type;
         switch ($this->type) {
             case 0:
                 $this->chart_engine = JpgraphEngine2::make();
@@ -45,7 +50,7 @@ class ChartService {
             break;
             default:
                 throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
-            break;
+            // break; //Unreachable statement - code above always terminates.
         }
     }
 

@@ -37,7 +37,7 @@ class JpgraphEngine2 extends BaseChartEngine {
     public int $width = 250;
     public int $height = 250;
 
-    private string $type = ''; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
+    // private string $type = ''; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
 
     public string $title = ''; // 'Lei ha appena svolto una pratica con BIM GSP S.p.A. o utilizzato un canale di contatto di BIM GSP S.p.A. può indicarci il motivo del contatto? ';
 
@@ -75,8 +75,10 @@ class JpgraphEngine2 extends BaseChartEngine {
         return static::getInstance();
     }
 
+    /*
     public function default() {
     }
+    */
 
     public function getGraph(): Graph {
         // Create the graph. These two calls are always required

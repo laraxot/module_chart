@@ -39,7 +39,7 @@ trait ChartEngineTrait {
     }
 
     public function setType(string $type): ChartEngineContract {
-        $this->type = $type;
+        $this->vars['type'] = $type;
 
         return $this;
     }
@@ -62,9 +62,9 @@ trait ChartEngineTrait {
      * Undocumented function.
      */
     public function build(): ChartEngineContract {
-        //dddx([$this->vars['width'], $this->vars['height']]);
+        // dddx([$this->vars['width'], $this->vars['height']]);
         $this->setWidthHeight((int) $this->vars['width'], (int) $this->vars['height']);
-        //dddx($this->vars['type']);
+        // dddx($this->vars['type']);
 
         if (Str::startsWith($this->vars['type'], 'mixed')) {
             $parz = \array_slice(explode(':', $this->vars['type']), 1);

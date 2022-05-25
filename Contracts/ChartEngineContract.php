@@ -29,4 +29,6 @@ interface ChartEngineContract {
     public function save(string $filename): self;
 
     // public function horizontalLine(float $y, string $string): self;
+
+    public function mixed(string $id): self;
 }

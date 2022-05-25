@@ -23,11 +23,17 @@ class MixedChartPanel extends XotBasePanel {
      */
     public static string $title = 'title';
 
+    /**
+     * Undocumented function.
+     *
+     * @param \Modules\Chart\Models\MixedChart $row
+     */
     public function optionLabel($row): string {
         return $row->name;
     }
 
     public function title(): ?string {
+        // Cannot access property $name on mixed.
         return optional($this->row)->name;
     }
 

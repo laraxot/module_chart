@@ -20,7 +20,7 @@ abstract class BasePivot extends Pivot {
      *
      * @var bool
      */
-    // public static $snakeAttributes = true;
+     public static $snakeAttributes = true;
 
     protected $perPage = 30;
 

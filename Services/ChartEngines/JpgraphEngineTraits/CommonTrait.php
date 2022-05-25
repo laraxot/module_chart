@@ -4,8 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
+use Amenadiel\JpGraph\Graph\Graph;
+
+/**
+ * Undocumented trait.
+ */
 trait CommonTrait {
-    public function applyGraphStyle($graph) {
+    /**
+     * Undocumented function.
+     */
+    public function applyGraphStyle(Graph $graph): Graph {
         $style = $this->vars;
 
         // Nice shadow

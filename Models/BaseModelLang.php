@@ -26,7 +26,7 @@ abstract class BaseModelLang extends Model {
      *
      * @var bool
      */
-    // public static $snakeAttributes = true;
+     public static $snakeAttributes = true;
 
     protected $perPage = 30;
 

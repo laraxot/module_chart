@@ -12,11 +12,11 @@ trait PieTrait {
             'filename' => 'prova123',
         ];
 
-        //dddx($view_params);
+        // dddx($view_params);
 
         $out = view()->make($view, $view_params);
         $html = $out->render();
-        exit($html);
+        echo $html; // se non mostro js non viene elaborato
 
         return $this;
     }

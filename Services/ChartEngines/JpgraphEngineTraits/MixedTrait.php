@@ -16,12 +16,13 @@ use Modules\Xot\Services\FileService;
 trait MixedTrait {
     public function mixed(string $id): self {
         // dddx($this);
-        $mixed = MixedChart::find($id);
+        $mixed = MixedChart::findOrFail($id);
 
         $charts = $mixed->charts()->get(); // ->take(1);
         if (0 === $charts->count()) {
             $rows = $mixed->charts();
-            $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());
+            // $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());
+            $sql = str_replace('?', $rows->getBindings(), $rows->toSql());
             throw new Exception('charts vuoto sql:['.$sql.']');
         }
 

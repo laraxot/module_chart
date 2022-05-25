@@ -16,13 +16,13 @@ trait HorizbarTrait {
      * Undocumented function.
      */
     public function horizbar1(): self {
-        //$view = 'chart::'.(inAdmin()?'admin.':'').'chartjs.'.__FUNCTION__;
+        // $view = 'chart::'.(inAdmin()?'admin.':'').'chartjs.'.__FUNCTION__;
 
         $labels = $this->data->pluck('label')->all();
         $data = $this->data->pluck('value')->all();
-        //dddx(['data'=>$this->data]);
+        // dddx(['data'=>$this->data]);
         $view = 'chart::chartjs.'.__FUNCTION__;
-        $view.='.1';
+        $view .= '.1';
         $view_params = [
             'view' => $view,
             'filename' => 'prova123',
@@ -30,11 +30,11 @@ trait HorizbarTrait {
             'data' => $data,
         ];
 
-        //dddx($view_params);
+        // dddx($view_params);
 
         $out = view()->make($view, $view_params);
         $html = $out->render();
-        exit($html);
+        echo $html; // se non mostro js non viene elaborato
 
         return $this;
     }
@@ -229,10 +229,11 @@ trait HorizbarTrait {
         ])
         ->optionsRaw($optionsRaw);
         $view = 'chart::chartjs.default';
+        $view_params = compact('chartjs');
 
-        $out = view($view, compact('chartjs'));
+        $out = view()->make($view, $view_params);
         $html = $out->render();
-        exit($html);
+        echo $html; // se non mostro js non viene elaborato e non salva.. ipotesi phantomJS
 
         return $this;
     }
