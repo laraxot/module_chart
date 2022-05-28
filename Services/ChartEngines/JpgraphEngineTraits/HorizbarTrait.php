@@ -38,14 +38,19 @@ trait HorizbarTrait {
 
         // Setup title
         // https://jpgraph.net/download/manuals/chunkhtml/ch14s02.html
+        //dddx($this->vars['mandatory']);
+
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
-            if (isset($this->vars['tot_nulled'])) {
-                $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot'].' - (obbligatorio '.$this->vars['mandatory'].')';
+            if (isset($this->vars['mandatory']) && 'Y' != $this->vars['mandatory']) {
+                if (isset($this->vars['tot_nulled'])) {
+                    $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
+                }
             }
             $graph->subsubtitle->Set($subtitle);
             $graph->subsubtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
+
         // $this->setTitle('aaaa');
 
         // Setup X-axis

@@ -90,10 +90,12 @@ trait PieTrait {
             */
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if (isset($this->vars['tot_nulled'])) {
-                $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
-                $graph->subtitle->Set($subtitle1);
-                $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            if (isset($this->vars['mandatory']) && 'Y' != $this->vars['mandatory']) {
+                if (isset($this->vars['tot_nulled'])) {
+                    $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
+                    $graph->subtitle->Set($subtitle1);
+                    $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+                }
             }
         }
 
@@ -172,10 +174,12 @@ trait PieTrait {
 
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if (isset($this->vars['tot_nulled'])) {
-                $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
-                $graph->subtitle->Set($subtitle1);
-                $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            if (isset($this->vars['mandatory']) && 'Y' != $this->vars['mandatory']) {
+                if (isset($this->vars['tot_nulled'])) {
+                    $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
+                    $graph->subtitle->Set($subtitle1);
+                    $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+                }
             }
         }
 
