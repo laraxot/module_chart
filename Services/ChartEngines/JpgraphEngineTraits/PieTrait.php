@@ -87,7 +87,7 @@ trait PieTrait {
         }
 
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot'].' - ('.$mandatory.')';
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$mandatory.')';
             /*if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
