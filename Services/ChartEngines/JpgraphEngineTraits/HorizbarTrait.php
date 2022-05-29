@@ -41,7 +41,7 @@ trait HorizbarTrait {
         //dddx($this->vars['mandatory']);
 
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot'].' - (obbligatorio '.$this->vars['mandatory'].')';
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - (obbligatorio '.$this->vars['mandatory'].')';
             if (isset($this->vars['mandatory']) && 'Y' != $this->vars['mandatory']) {
                 if (isset($this->vars['tot_nulled'])) {
                     $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
