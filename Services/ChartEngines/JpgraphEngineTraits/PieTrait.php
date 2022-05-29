@@ -80,8 +80,14 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
+        //dddx($this->vars['mandatory']);
+        $mandatory = $this->vars['mandatory'];
+        if (is_null($this->vars['mandatory'])) {
+            $mandatory = 'null';
+        }
+
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$this->vars['mandatory'].')';
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot'].' - ('.$mandatory.')';
             /*if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
@@ -90,7 +96,7 @@ trait PieTrait {
             */
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if (isset($this->vars['mandatory']) && 'Y' != $this->vars['mandatory']) {
+            if ('Y' != $this->vars['mandatory']) {
                 if (isset($this->vars['tot_nulled'])) {
                     $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
                     $graph->subtitle->Set($subtitle1);
@@ -162,8 +168,14 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
+        //dddx($this->vars['mandatory']);
+        $mandatory = $this->vars['mandatory'];
+        if (is_null($this->vars['mandatory'])) {
+            $mandatory = 'null';
+        }
+
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$this->vars['mandatory'].')';
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot'].' - ('.$mandatory.')';
             /*
             if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
@@ -174,7 +186,7 @@ trait PieTrait {
 
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if (isset($this->vars['mandatory']) && 'Y' != $this->vars['mandatory']) {
+            if ('Y' != $this->vars['mandatory']) {
                 if (isset($this->vars['tot_nulled'])) {
                     $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
                     $graph->subtitle->Set($subtitle1);
