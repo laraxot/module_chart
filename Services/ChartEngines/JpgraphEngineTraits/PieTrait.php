@@ -81,7 +81,7 @@ trait PieTrait {
         $p1->SetMidSize(0.8);
 
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$this->vars['mandatory'].')';
             /*if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
@@ -163,7 +163,7 @@ trait PieTrait {
         $p1->SetMidSize(0.8);
 
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$this->vars['mandatory'].')';
             /*
             if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
