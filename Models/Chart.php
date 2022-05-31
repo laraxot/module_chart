@@ -39,7 +39,6 @@ use Modules\Xot\Services\PanelService;
  * @property string|null                     $group_by
  * @property string|null                     $sort_by
  * @property string|null                     $grace
- *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
