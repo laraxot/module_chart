@@ -33,7 +33,7 @@ abstract class BaseModelLang extends Model {
     protected $connection = 'chart';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         // 'published_at' => 'datetime:Y-m-d', // da verificare
@@ -55,7 +55,7 @@ abstract class BaseModelLang extends Model {
     public $incrementing = true;
 
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         // 'password'
