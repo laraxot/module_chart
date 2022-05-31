@@ -34,7 +34,12 @@ class MixedChartPanel extends XotBasePanel {
 
     public function title(): ?string {
         // Cannot access property $name on mixed.
-        return optional($this->row)->name;
+        $value = $this->row->getAttributeValue('name');
+        if (! is_string($value)) {
+            return null;
+        }
+
+        return $value;
     }
 
     /**

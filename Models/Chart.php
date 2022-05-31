@@ -8,37 +8,38 @@ use ErrorException;
 use Modules\Xot\Services\PanelService;
 
 /**
- * Modules\Chart\Models\Chart
+ * Modules\Chart\Models\Chart.
  *
- * @property int $id
- * @property string|null $post_type
- * @property int|null $post_id
- * @property string|null $color
- * @property string|null $bg_color
- * @property int $font_family
- * @property int $font_style
- * @property int $font_size
+ * @property int                             $id
+ * @property string|null                     $post_type
+ * @property int|null                        $post_id
+ * @property string|null                     $color
+ * @property string|null                     $bg_color
+ * @property int                             $font_family
+ * @property int                             $font_style
+ * @property int                             $font_size
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property int|null $y_grace
- * @property int|null $yaxis_hide
- * @property string|null $list_color
- * @property string|null $x_label_angle
- * @property int|null $show_box
- * @property int|null $x_label_margin
- * @property int|null $width
- * @property int|null $height
- * @property string|null $type
- * @property int|null $plot_perc_width
- * @property int|null $plot_value_show
- * @property string|null $plot_value_format
- * @property int|null $plot_value_pos
- * @property string|null $plot_value_color
- * @property string|null $group_by
- * @property string|null $sort_by
- * @property string|null $grace
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ * @property int|null                        $y_grace
+ * @property int|null                        $yaxis_hide
+ * @property string|null                     $list_color
+ * @property string|null                     $x_label_angle
+ * @property int|null                        $show_box
+ * @property int|null                        $x_label_margin
+ * @property int|null                        $width
+ * @property int|null                        $height
+ * @property string|null                     $type
+ * @property int|null                        $plot_perc_width
+ * @property int|null                        $plot_value_show
+ * @property string|null                     $plot_value_format
+ * @property int|null                        $plot_value_pos
+ * @property string|null                     $plot_value_color
+ * @property string|null                     $group_by
+ * @property string|null                     $sort_by
+ * @property string|null                     $grace
+ *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
@@ -78,7 +79,7 @@ class Chart extends BaseModel {
     /**
      * Undocumented variable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'id',
@@ -131,12 +132,22 @@ class Chart extends BaseModel {
      */
     public function getParentStyle(string $name) {
         $panel = PanelService::make()->getRequestPanel();
-        $parent = $panel->getParent()->row;
+        if (null == $panel) {
+            return $this->attributes[$name] ?? null;
+        }
+        $parent = $panel->getParent();
+        if (null == $parent) {
+            return $this->attributes[$name] ?? null;
+        }
+        $parent = $parent->row;
         if (! method_exists($parent, 'chart')) {
             return $this->attributes[$name] ?? null;
         }
         // dddx([$name, $panel->row, $parent->{$name}]);
-        $value = $parent->chart->{$name};
+        // $value = $parent->chart->{$name};
+        // Access to an undefined property Illuminate\Database\Eloquent\Model::$chart.
+        $value = $parent->chart->getAttribute($name);
+
         $this->{$name} = $value;
         $this->save();
 
@@ -177,7 +188,7 @@ class Chart extends BaseModel {
             return $value;
         }
 
-        return $this->getParentStyle('color');
+        return (string) $this->getParentStyle('color');
     }
 
     public function getListColorAttribute(?string $value): ?string {
@@ -185,7 +196,7 @@ class Chart extends BaseModel {
             return $value;
         }
 
-        return $this->getParentStyle('list_color');
+        return (string) $this->getParentStyle('list_color');
     }
 
     public function getXLabelAngleAttribute(?string $value): ?string {
@@ -199,7 +210,7 @@ class Chart extends BaseModel {
 
         return $value;
 */
-        return $this->getParentStyle('x_label_angle');
+        return (string) $this->getParentStyle('x_label_angle');
     }
 
     public function getFontFamilyAttribute(?int $value): int {
@@ -207,7 +218,7 @@ class Chart extends BaseModel {
             return (int) $value;
         }
 
-        return $this->getParentStyle('font_family');
+        return (int) $this->getParentStyle('font_family');
     }
 
     public function getFontStyleAttribute(?int $value): int {
@@ -215,7 +226,7 @@ class Chart extends BaseModel {
             return (int) $value;
         }
 
-        return $this->getParentStyle('font_style');
+        return (int) $this->getParentStyle('font_style');
     }
 
     public function getFontSizeAttribute(?int $value): int {
@@ -223,7 +234,7 @@ class Chart extends BaseModel {
             return (int) $value;
         }
 
-        return $this->getParentStyle('font_size');
+        return (int) $this->getParentStyle('font_size');
     }
 
     public function getTypeAttribute(?string $value): ?string {
@@ -234,7 +245,7 @@ class Chart extends BaseModel {
             return $this->attributes['type'];
         }
 
-        return $this->getPanelRow('chart_type', 'type');
+        return (string) $this->getPanelRow('chart_type', 'type');
     }
 
     public function getWidthAttribute(?string $value): ?int {
