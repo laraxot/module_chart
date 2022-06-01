@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
+use Amenadiel\JpGraph\Graph\Axis;
 use Amenadiel\JpGraph\Graph\Graph;
+use Amenadiel\JpGraph\Plot\BarPlot;
 
 /**
  * Undocumented trait.
@@ -27,7 +29,7 @@ trait CommonTrait {
         return $graph;
     }
 
-    public function applyGraphXStyle($xaxis) {
+    public function applyGraphXStyle(Axis $xaxis): void {
         $style = $this->vars;
         $xaxis->SetFont($style['font_family'], $style['font_style'], $style['font_size']);
         $xaxis->SetLabelAngle($style['x_label_angle']);
@@ -37,7 +39,7 @@ trait CommonTrait {
         // $graph->xaxis->SetLabelAlign('right', 'center');
     }
 
-    public function applyGraphYStyle($yaxis) {
+    public function applyGraphYStyle(Axis $yaxis): void {
         $style = $this->vars;
         // Add some grace to y-axis so the bars doesn't go
         // all the way to the end of the plot area
@@ -55,7 +57,7 @@ trait CommonTrait {
         $yaxis->HideTicks(false, false);
     }
 
-    public function applyPlotStyle($plot) {
+    public function applyPlotStyle(BarPlot $plot): BarPlot {
         $style = $this->vars;
         $plot->SetFillColor($style['color']);
         // $bplot->SetShadow('darkgreen', 1, 1);

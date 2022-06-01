@@ -8,13 +8,14 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Services\FileService;
 
 class ApiController extends Controller {
-    public function imageStore(Request $request) {
+    public function imageStore(Request $request): JsonResponse {
         $data = $request->all();
 
         $img = 'chart/'.$data['filename'].'-1.png';

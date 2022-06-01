@@ -5,39 +5,41 @@ declare(strict_types=1);
 namespace Modules\Chart\Models;
 
 use ErrorException;
+use Modules\Quaeris\Models\SurveyPdf;
 use Modules\Xot\Services\PanelService;
 
 /**
- * Modules\Chart\Models\Chart
+ * Modules\Chart\Models\Chart.
  *
- * @property int $id
- * @property string|null $post_type
- * @property int|null $post_id
- * @property string|null $color
- * @property string|null $bg_color
- * @property int $font_family
- * @property int $font_style
- * @property int $font_size
+ * @property int                             $id
+ * @property string|null                     $post_type
+ * @property int|null                        $post_id
+ * @property string|null                     $color
+ * @property string|null                     $bg_color
+ * @property int                             $font_family
+ * @property int                             $font_style
+ * @property int                             $font_size
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property int|null $y_grace
- * @property int|null $yaxis_hide
- * @property string|null $list_color
- * @property string|null $x_label_angle
- * @property int|null $show_box
- * @property int|null $x_label_margin
- * @property int|null $width
- * @property int|null $height
- * @property string|null $type
- * @property int|null $plot_perc_width
- * @property int|null $plot_value_show
- * @property string|null $plot_value_format
- * @property int|null $plot_value_pos
- * @property string|null $plot_value_color
- * @property string|null $group_by
- * @property string|null $sort_by
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ * @property int|null                        $y_grace
+ * @property int|null                        $yaxis_hide
+ * @property string|null                     $list_color
+ * @property string|null                     $x_label_angle
+ * @property int|null                        $show_box
+ * @property int|null                        $x_label_margin
+ * @property int|null                        $width
+ * @property int|null                        $height
+ * @property string|null                     $type
+ * @property int|null                        $plot_perc_width
+ * @property int|null                        $plot_value_show
+ * @property string|null                     $plot_value_format
+ * @property int|null                        $plot_value_pos
+ * @property string|null                     $plot_value_color
+ * @property string|null                     $group_by
+ * @property string|null                     $sort_by
+ *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
@@ -142,11 +144,17 @@ class Chart extends BaseModel {
         }
         // dddx([$name, $panel->row, $parent->{$name}]);
         // $value = $parent->chart->{$name};
-        // Access to an undefined property Illuminate\Database\Eloquent\Model::$chart.
+
+        if (! $parent instanceof SurveyPdf) {
+            return $this->attributes[$name] ?? null;
+        }
         $value = $parent->chart->getAttribute($name);
 
         $this->{$name} = $value;
         $this->save();
+        if (! is_string($value) && ! is_integer($value)) {
+            return null;
+        }
 
         return $value;
     }
@@ -182,7 +190,7 @@ class Chart extends BaseModel {
     // ---------- Mutator
     public function getColorAttribute(?string $value): ?string {
         if (null !== $value) {
-            return $value;
+            //      return $value;
         }
 
         return (string) $this->getParentStyle('color');

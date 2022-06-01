@@ -266,9 +266,13 @@ trait BarTrait {
         }
 
         $avg = collect($datay)->avg();
-        $avg = round($avg, 2);
+        if (! is_numeric($avg)) {
+            $avg = 0;
+        }
+
+        $avg = round($avg * 1, 2);
         $tmp = array_fill(0, \count($datay) - 1, '-');
-        $tmp = array_merge([$avg], $tmp, [$avg]);
+        $tmp = array_merge([$avg], (array) $tmp, [$avg]);
         // dddx($tmp);
 
         // linea della media
