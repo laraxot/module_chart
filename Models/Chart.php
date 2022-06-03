@@ -131,10 +131,12 @@ class Chart extends BaseModel {
      */
     public function getParentStyle(string $name) {
         $panel = PanelService::make()->getRequestPanel();
+
         if (null == $panel) {
             return $this->attributes[$name] ?? null;
         }
         $parent = $panel->getParent();
+
         if (null == $parent) {
             return $this->attributes[$name] ?? null;
         }
@@ -148,7 +150,8 @@ class Chart extends BaseModel {
         if (! $parent instanceof SurveyPdf) {
             return $this->attributes[$name] ?? null;
         }
-        $value = $parent->chart->getAttribute($name);
+
+        $value = $parent->chart->attributes[$name] ?? null;
 
         $this->{$name} = $value;
         $this->save();
@@ -190,7 +193,7 @@ class Chart extends BaseModel {
     // ---------- Mutator
     public function getColorAttribute(?string $value): ?string {
         if (null !== $value) {
-            //      return $value;
+            //return $value;
         }
 
         return (string) $this->getParentStyle('color');
