@@ -26,7 +26,7 @@ class MixedChartFactory extends Factory {
        
 
         return [
-            'id' => $this->faker->randomNumber,
+            'id' => $this->faker->randomNumber(5, false),
             'name' => $this->faker->name
         ];
     }
