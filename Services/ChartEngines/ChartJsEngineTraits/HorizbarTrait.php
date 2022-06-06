@@ -16,11 +16,17 @@ trait HorizbarTrait {
      * Undocumented function.
      */
     public function horizbar1(): self {
-        // $view = 'chart::'.(inAdmin()?'admin.':'').'chartjs.'.__FUNCTION__;
+        /** 
+        * @phpstan-var view-string
+        */
+        $view = 'chart::'.(inAdmin()?'admin.':'').'chartjs.'.__FUNCTION__;
 
         $labels = $this->data->pluck('label')->all();
         $data = $this->data->pluck('value')->all();
         // dddx(['data'=>$this->data]);
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view .= '.1';
         $view_params = [
@@ -228,6 +234,9 @@ trait HorizbarTrait {
             ],
         ])
         ->optionsRaw($optionsRaw);
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::chartjs.default';
         $view_params = compact('chartjs');
 

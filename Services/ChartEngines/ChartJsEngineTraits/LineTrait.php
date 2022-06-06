@@ -6,6 +6,9 @@ namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
 trait LineTrait {
     public function line1(): self {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view_params = [
             'view' => $view,

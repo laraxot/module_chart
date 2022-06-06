@@ -9,6 +9,9 @@ trait BarTrait {
         $labels = $this->data->pluck('label')->all();
         $data = $this->data->pluck('value')->all();
 
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view_params = [
             'view' => $view,

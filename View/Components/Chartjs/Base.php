@@ -26,6 +26,9 @@ class Base extends Component {
      * Get the view / contents that represent the component.
      */
     public function render(): Renderable {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::components.chartjs.'.$this->type;
 
         $view_params = [

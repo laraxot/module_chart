@@ -123,6 +123,9 @@ class ChartJsBuilder {
     public function render(): Renderable {
         $chart = $this->charts[$this->name];
 
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::chartjs.template';
         $optionsRaw = isset($chart['optionsRaw']) ? $chart['optionsRaw'] : '';
         $options = isset($chart['options']) ? $chart['options'] : [];

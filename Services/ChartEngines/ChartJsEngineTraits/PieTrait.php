@@ -6,6 +6,9 @@ namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
 trait PieTrait {
     public function pie1(): self {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view_params = [
             'view' => $view,

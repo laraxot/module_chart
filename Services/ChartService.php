@@ -122,6 +122,9 @@ class ChartService {
     public function toHtml(): Renderable {
         $img = $this->getImg();
 
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'chart::tests.four';
 
         $view_params = [
