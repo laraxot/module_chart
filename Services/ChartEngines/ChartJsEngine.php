@@ -23,7 +23,7 @@ class ChartJsEngine extends BaseChartEngine {
     use ChartJsEngineTraits\LineTrait;
     use ChartJsEngineTraits\MixedTrait;
     use ChartJsEngineTraits\PieTrait;
-    use ChartJsEngineTraits\TableTrait;
+    //use ChartJsEngineTraits\TableTrait;
 
     public int $width = 250;
     public int $height = 250;

@@ -146,9 +146,9 @@ class Chart extends BaseModel {
         // dddx([$name, $panel->row, $parent->{$name}]);
         // $value = $parent->chart->{$name};
 
-        if (! $parent instanceof SurveyPdf) {
-            return $this->attributes[$name] ?? null;
-        }
+        //if (! $parent instanceof SurveyPdf) { //outside Quae
+        //    return $this->attributes[$name] ?? null; 
+        //}
 
         $value = $parent->chart->attributes[$name] ?? null;
 

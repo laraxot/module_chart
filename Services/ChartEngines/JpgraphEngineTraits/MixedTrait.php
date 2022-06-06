@@ -31,10 +31,8 @@ trait MixedTrait {
             $vars = $this->vars;
             $vars = array_merge($vars, $chart->toArray());
             if (Str::startsWith($vars['type'], 'mixed')) {
-                throw new Exception('crei un loop infinito');
+                throw new Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
             }
-            // dddx($this);
-            // dddx($vars);
             $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),

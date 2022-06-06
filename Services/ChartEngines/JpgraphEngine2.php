@@ -28,7 +28,7 @@ class JpgraphEngine2 extends BaseChartEngine {
     use JpgraphEngineTraits\LineTrait;
     use JpgraphEngineTraits\MixedTrait;
     use JpgraphEngineTraits\PieTrait;
-    use JpgraphEngineTraits\TableTrait;
+    //use JpgraphEngineTraits\TableTrait;
 
     private static ?self $instance = null;
 
