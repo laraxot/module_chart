@@ -246,8 +246,13 @@ trait MixedTrait {
         $data = $data->map(
             function ($item, $group) {
                 $item = collect($item);
-
+                /**
+                 * @var array
+                 */
                 $yes = $item->firstWhere('label', 'Sì');
+                /**
+                 * @var array
+                 */
                 $no = $item->firstWhere('label', 'No');
 
                 $yes_perc = $yes['value'] ?? 0;
@@ -287,7 +292,11 @@ trait MixedTrait {
     public function getDataNoYes(Collection $data): Collection {
         $data = $this->getDataYesNo($data);
         $data = $data->map(
-            function ($item) {
+            function ($i) {
+                /**
+                 * @var array
+                 */
+                $item = $i;
                 $item['value'] = 100 - $item['value'];
 
                 return $item;
