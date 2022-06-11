@@ -6,6 +6,7 @@ namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
 use Amenadiel\JpGraph\Plot\LinePlot;
 use Amenadiel\JpGraph\Plot\PlotLine;
+use Illuminate\Support\Collection;
 
 trait LineTrait {
     public function horizontalLine(float $y, string $string): self {
@@ -128,7 +129,11 @@ trait LineTrait {
         $datax = $this->data->pluck('label')->all();
         $datay = [];
         $values = $this->data->pluck('values');
-        foreach ($values as $v) {
+        foreach ($values as $item) {
+            /**
+             * @var Collection
+             */
+            $v = $item;
             foreach ($names as $k1 => $v1) {
                 $datay[$k1][] = $v->get($k1) ?? '-';
             }
