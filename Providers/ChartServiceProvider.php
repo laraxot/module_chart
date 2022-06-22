@@ -19,6 +19,7 @@ class ChartServiceProvider extends XotBaseServiceProvider {
 
         app(\ConsoleTVs\Charts\Registrar::class)->register([
             \Modules\LU\Charts\DailyUsersChart::class,
+            \Modules\Chart\Charts\ExampleBarChart::class,
         ]);
     }
 
