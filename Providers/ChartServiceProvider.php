@@ -16,6 +16,10 @@ class ChartServiceProvider extends XotBaseServiceProvider {
 
     public function bootCallback(): void {
         BladeService::registerComponents($this->module_dir.'/../View/Components', 'Modules\\Chart');
+
+        app(\ConsoleTVs\Charts\Registrar::class)->register([
+            \Modules\LU\Charts\DailyUsersChart::class,
+        ]);
     }
 
     public function registerCallback(): void {
