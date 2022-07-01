@@ -80,14 +80,14 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        //dddx($this->vars['mandatory']);
+        // dddx($this->vars['mandatory']);
         $mandatory = $this->vars['mandatory'];
         if (is_null($this->vars['mandatory'])) {
             $mandatory = 'null';
         }
 
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$mandatory.')';
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
             /*if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
             }
@@ -168,14 +168,14 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        //dddx($this->vars['mandatory']);
+        // dddx($this->vars['mandatory']);
         $mandatory = $this->vars['mandatory'];
         if (is_null($this->vars['mandatory'])) {
             $mandatory = 'null';
         }
 
         if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; //.' - ('.$mandatory.')';
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
             /*
             if (isset($this->vars['tot_nulled'])) {
                 $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
@@ -195,7 +195,7 @@ trait PieTrait {
             }
         }
 
-        $footer_txt = 'Media '.number_format($data[0], 2);
+        $footer_txt = 'Media '.number_format((float) $data[0], 2);
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
         $y = $this->vars['height'] / 2 - 8; // 8 è il font_size
