@@ -122,9 +122,9 @@ class ChartService {
     public function toHtml(): Renderable {
         $img = $this->getImg();
 
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::tests.four';
 
         $view_params = [
@@ -166,4 +166,10 @@ class ChartService {
 
         return $this;
     }
+
+    /*
+    public function getGraph() {
+        return $this->chart_engine->getGraph();
+    }
+    */
 }
