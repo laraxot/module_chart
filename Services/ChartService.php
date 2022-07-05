@@ -36,7 +36,7 @@ class ChartService {
     private int $type = 0;
 
     public function __construct() {
-        $type = config('chart.type', 1);
+        $type = config('chart.type', 0);
         if (! is_int($type)) {
             throw new Exception('config chart.type is not an Integer');
         }
