@@ -81,7 +81,8 @@ class Chart extends BaseModel {
      */
     protected $fillable = [
         'id',
-        'post_id', 'post_type',
+        'post_id', 
+        'post_type',
         'type',
         'width', 'height',
         'color',
