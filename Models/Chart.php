@@ -72,8 +72,6 @@ use Modules\Xot\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereYGrace($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereYaxisHide($value)
  * @mixin \Eloquent
- * @property string|null $grace
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGrace($value)
  */
 class Chart extends BaseModel {
     /**
