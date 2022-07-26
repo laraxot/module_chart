@@ -103,10 +103,12 @@ class CreateChartsTable extends XotBaseMigration {
                 if (! $this->hasColumn('sort_by')) {
                     $table->string('sort_by')->nullable();
                 }
-
                 if ($this->hasColumn('style_type')) {
                     $table->renameColumn('style_type', 'post_type');
                     $table->renameColumn('style_id', 'post_id');
+                }
+                if (! $this->hasColumn('lang')) {
+                    $table->string('lang')->nullable();
                 }
             }
         );

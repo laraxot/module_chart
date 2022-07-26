@@ -28,7 +28,7 @@ class JpgraphEngine2 extends BaseChartEngine {
     use JpgraphEngineTraits\LineTrait;
     use JpgraphEngineTraits\MixedTrait;
     use JpgraphEngineTraits\PieTrait;
-    //use JpgraphEngineTraits\TableTrait;
+    // use JpgraphEngineTraits\TableTrait;
 
     private static ?self $instance = null;
 
@@ -83,8 +83,8 @@ class JpgraphEngine2 extends BaseChartEngine {
     public function getGraph(): Graph {
         // Create the graph. These two calls are always required
         $graph = new Graph($this->width, $this->height, 'auto');
-        //dddx(['width'=>$this->width,'height'=>$this->height]);
-        $graph->SetScale('textlin');
+        // dddx(['width'=>$this->width,'height'=>$this->height]);
+        $graph->SetScale('textlin'); // se da errore qui inserire la dimensione del grafico
         // .$this->vars['title']
         // $graph->title->Set('aaa');
         $graph->SetShadow();

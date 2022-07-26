@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
 use Amenadiel\JpGraph\Plot\BarPlot;
+use Amenadiel\JpGraph\Plot\GroupBarPlot;
 use Amenadiel\JpGraph\Plot\LinePlot;
 use Amenadiel\JpGraph\Text\Text;
 use Amenadiel\JpGraph\Themes\UniversalTheme;
@@ -101,7 +102,7 @@ trait BarTrait {
         $lplot->mark->setColor('yellow');
         $lplot->mark->setFillColor('yellow');
 
-        $delta = $this->width / \count($datax1);
+        $delta = $this->width / count($datax1);
         $delta = $delta - 1;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -133,74 +134,7 @@ trait BarTrait {
         return $this;
     }
 
-    public function bar2_old(): self {
-        // dddx($this->vars);
-        // We need some data
-        $datax = $this->data->pluck('label')->all();
-        $datay = $this->data->pluck('value')->all();
-        $datax1 = $this->data->pluck('value1')->all();
-
-        // Setup the graph.
-        $graph = $this->getGraph();
-
-        $graph->img->SetMargin(50, 50, 50, 100);
-
-        // Show 0 label on Y-axis (default is not to show)
-        $graph->yscale->ticks->SupressZeroLabel(false);
-
-        // Setup X-axis labels
-        $graph->xaxis->SetTickLabels($datax);
-        $graph->xaxis->SetLabelAngle($this->vars['x_label_angle']);
-
-        // Create the bar pot
-        $bplot = new BarPlot($datay);
-
-        $bplot = $this->applyPlotStyle($bplot);
-
-        // ----------------------------------------------------------------
-        // Setup values
-        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
-        // se tolto non mostra i valori
-        $bplot->value->Show();
-
-        // colore del font che scrivi
-        $bplot->value->setColor('white');
-
-        // da fare
-        // plot_value_color
-        // plot_value_show
-        // plot_value_format
-        // plot_value_pos
-
-        // $bplot->value->setAngle(50);
-        $bplot->value->SetFormat('%01.2f');
-
-        // Center the values in the bar
-        $bplot->SetValuePos('center');
-
-        // Make the bar a little bit wider
-        // $bplot->SetWidth(0.9);
-        // ----------------------------------------------------------------
-
-        $graph->Add($bplot);
-
-        $delta = ($this->width - 100) / \count($datax1);
-        $delta = $delta;
-        foreach ($datax1 as $i => $v) {
-            $txt = new Text($v.'');
-
-            $x = 50 + ($delta * ($i)) + ($delta / 3);
-
-            $txt->SetPos($x, 25);
-
-            $graph->AddText($txt);
-        }
-        $this->graph = $graph;
-
-        return $this;
-    }
-
-    public function bar2(): self {
+    public function bar2_funzionante(): self {
         // We need some data
 
         $datax = $this->data->pluck('label')->all();
@@ -253,7 +187,7 @@ trait BarTrait {
 
         $graph->Add($bplot);
 
-        $delta = ($this->width - 100) / \count($datax1);
+        $delta = ($this->width - 100) / count($datax1);
         $delta = $delta;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -271,7 +205,7 @@ trait BarTrait {
         }
 
         $avg = round($avg * 1, 2);
-        $tmp = array_fill(0, \count($datay) - 1, '-');
+        $tmp = array_fill(0, count($datay) - 1, '-');
         $tmp = array_merge([$avg], (array) $tmp, [$avg]);
         // dddx($tmp);
 
@@ -313,6 +247,91 @@ trait BarTrait {
 
         $graph->AddText($txt);
         */
+        $this->graph = $graph;
+
+        return $this;
+    }
+
+    public function bar2() {
+        // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
+        $graph = $this->getGraph();
+        $graph->img->SetMargin(50, 50, 50, 100);
+        $labels = $this->data->pluck('label')->all();
+        $datay = $this->data->pluck('value')->all();
+        $datay1 = $this->data->pluck('value1')->all();
+
+        if (! is_array($datay[0])) {
+            $datay = [$datay];
+        } else {
+            $tmp = [];
+            foreach ($datay as $arr) {
+                foreach ($arr as $k => $v) {
+                    $tmp[$k][] = $v;
+                }
+            }
+            $datay = $tmp;
+        }
+        // dddx(array_flip($datay));
+
+        $graph->ygrid->SetFill(false);
+        $graph->xaxis->SetTickLabels($labels);
+        $graph->xaxis->SetLabelAngle($this->vars['x_label_angle']);
+        $graph->yaxis->HideLine(false);
+        $graph->yaxis->HideTicks(false, false);
+
+        $graph->yscale->ticks->SupressZeroLabel(false);
+
+        // Create the bar plots
+        $colors = explode(',', $this->vars['list_color']);
+        $bplot = [];
+        foreach ($datay as $k => $v) {
+            $tmp = new BarPlot($v);
+            $tmp = $this->applyPlotStyle($tmp);
+            $tmp->SetColor('white');
+            $tmp->SetFillColor($colors[$k]);
+
+            $bplot[] = $tmp;
+        }
+
+        // Create the grouped bar plot
+        $gbplot = new GroupBarPlot($bplot);
+        // ...and add it to the graPH
+        $graph->Add($gbplot);
+
+        if (isset($this->vars['tot'])) {
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
+            if ('Y' != $this->vars['mandatory']) {
+                if (isset($this->vars['tot_nulled'])) {
+                    $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
+                }
+            }
+            $graph->subtitle->Set($subtitle);
+            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        }
+
+        $delta = ($this->width - 100) / count($datay1);
+        $delta = $delta;
+        foreach ($datay1 as $i => $v) {
+            $txt = new Text($v.'');
+
+            $x = 50 + ($delta * ($i)) + ($delta / 3);
+
+            $txt->SetPos($x, 25);
+
+            $graph->AddText($txt);
+        }
+
+        $avg = collect($datay1)->avg();
+        if (! is_numeric($avg)) {
+            $avg = 0;
+        }
+
+        $avg = round($avg * 1, 2);
+        $tmp = array_fill(0, count($datay1) - 1, '-');
+        $tmp = array_merge([$avg], (array) $tmp, [$avg]);
+
+        // $graph->title->Set('Totale Rispondenti');
+
         $this->graph = $graph;
 
         return $this;

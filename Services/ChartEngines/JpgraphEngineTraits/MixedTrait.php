@@ -27,9 +27,15 @@ trait MixedTrait {
         }
 
         $imgs = [];
-        foreach ($charts as $chart) {
+        foreach ($charts as $k => $chart) {
             $vars = $this->vars;
             $vars = array_merge($vars, $chart->toArray());
+            /*
+            if ($k > 0) {
+                unset($vars['tot']);
+                //dddx($vars);
+            }
+            */
             if (Str::startsWith($vars['type'], 'mixed')) {
                 throw new Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
             }

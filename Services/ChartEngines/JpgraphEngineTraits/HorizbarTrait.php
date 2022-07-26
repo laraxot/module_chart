@@ -51,8 +51,8 @@ trait HorizbarTrait {
                     $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
                 }
             }
-            $graph->subsubtitle->Set($subtitle);
-            $graph->subsubtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+            $graph->subtitle->Set($subtitle);
+            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
 
         // $this->setTitle('aaaa');
