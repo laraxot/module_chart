@@ -253,12 +253,26 @@ trait BarTrait {
     }
 
     public function bar2() {
+        // dddx($this->vars);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         $graph = $this->getGraph();
         $graph->img->SetMargin(50, 50, 50, 100);
         $labels = $this->data->pluck('label')->all();
         $datay = $this->data->pluck('value')->all();
         $datay1 = $this->data->pluck('value1')->all();
+
+        // dddx($datay[0]);
+        // dddx($datay1);
+        // nel caso non ci siano risultati
+        // gli do dei dati vuoti per fargli produrre un grafico vuoto
+        if (! isset($datay[0])) {
+            // dddx($datay1);
+            // dddx('errore');
+            $datay1 = [0 => 0];
+            $datay[0] = [0 => 0];
+            $datay[1] = [1 => 0];
+            // dddx($datay[0]);
+        }
 
         if (! is_array($datay[0])) {
             $datay = [$datay];
@@ -310,9 +324,12 @@ trait BarTrait {
         // dddx(get_defined_vars());
 
         if (count($datay) > 1) {
-            $subtitle = 'Totale rispondenti';
-            $graph->subtitle->Set($subtitle);
-            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+            // dddx($this->data->first()['title_type']);
+            $title = $this->vars['title'];
+
+            // $subtitle = 'Totale rispondenti';
+            $graph->title->Set($title);
+            $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
 
         // if (isset($this->vars['tot'])) {
@@ -346,20 +363,10 @@ trait BarTrait {
 
             $txt->SetPos($x, 25);
 
+            // dddx($txt);
+
             $graph->AddText($txt);
         }
-
-        $avg = collect($datay1)->avg();
-        if (! is_numeric($avg)) {
-            $avg = 0;
-        }
-
-        $avg = round($avg * 1, 2);
-        $tmp = array_fill(0, count($datay1) - 1, '-');
-        $tmp = array_merge([$avg], (array) $tmp, [$avg]);
-        // fine cifre sopra il grafico
-
-        // $graph->title->Set('Totale Rispondenti');
 
         $this->graph = $graph;
 
