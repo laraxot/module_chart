@@ -1,8 +1,12 @@
+
 {{-- <x-chartjs.base type="horizbar1" /> --}}
 @extends('chart::layouts.app')
 
 @section('content')
-    <div class="chart-container" style="position: relative; height:400px; width:700px">
+
+
+
+<div class="chart-container" style="position: relative; height:400px; width:700px">
         <canvas id="myChart"></canvas>
     </div>
 @endsection

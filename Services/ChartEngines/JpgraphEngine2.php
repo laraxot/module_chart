@@ -115,6 +115,7 @@ class JpgraphEngine2 extends BaseChartEngine {
     }
 
     public function save(string $filename): self {
+        
         $this->filename = $filename;
         // Finally send the graph to the browser
         if (File::exists(public_path($this->filename))) {

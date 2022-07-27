@@ -1,7 +1,7 @@
 <script>
     var base_url = '{{ asset('/') }}';
     var lang = '{{ app()->getLocale() }}';
-    {{-- var google_maps_api='{{ config('xra.google.maps.api') }}'; --}}
+   
     @if (\Request::has('address'))
         var address = "{{ \Request::input('address') }}";
     @endif
@@ -17,7 +17,9 @@ Theme::add('pub_theme::dist/js/vendor.js');
 Theme::add('pub_theme::dist/js/app.js');
 //Theme::add('pub_theme::js/theme.js');
 @endphp
+
+
 {!! Theme::showScripts(false) !!}
 
-<livewire:scripts />
+
 @stack('scripts')
