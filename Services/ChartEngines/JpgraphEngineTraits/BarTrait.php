@@ -298,7 +298,28 @@ trait BarTrait {
         // ...and add it to the graPH
         $graph->Add($gbplot);
 
-        if (isset($this->vars['tot'])) {
+        // dddx($this->vars['tot']);
+        // dddx([count($datay), $labels, $datay, $datay1]);
+        /*
+        if (! isset($datay[0])) {
+            unset($this->vars['tot']);
+            // dddx([$this->vars]);
+        }
+        */
+
+        // dddx(get_defined_vars());
+
+        if (count($datay) > 1) {
+            $subtitle = 'Totale rispondenti';
+            $graph->subtitle->Set($subtitle);
+            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        }
+
+        // if (isset($this->vars['tot'])) {
+        // if (array_key_exists('tot', $this->vars)) {
+        // if (! isset($datay[1])) {
+        /*
+        if (count($datay) > 1) {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
             if ('Y' != $this->vars['mandatory']) {
                 if (isset($this->vars['tot_nulled'])) {
@@ -307,8 +328,15 @@ trait BarTrait {
             }
             $graph->subtitle->Set($subtitle);
             $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        } else {
+            dddx($this->vars);
+            $subtitle = 'testo di prova';
+            $graph->subtitle->Set($subtitle);
+            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
+        */
 
+        // cifre sopra il grafico
         $delta = ($this->width - 100) / count($datay1);
         $delta = $delta;
         foreach ($datay1 as $i => $v) {
@@ -329,6 +357,7 @@ trait BarTrait {
         $avg = round($avg * 1, 2);
         $tmp = array_fill(0, count($datay1) - 1, '-');
         $tmp = array_merge([$avg], (array) $tmp, [$avg]);
+        // fine cifre sopra il grafico
 
         // $graph->title->Set('Totale Rispondenti');
 

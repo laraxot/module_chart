@@ -212,6 +212,7 @@ trait ChartTrait {
         return [
             1 => 'percentuale',
             2 => '2 cifre decimali',
+            3 => '0 cifre decimali',
         ];
     }
 

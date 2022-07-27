@@ -33,7 +33,7 @@ trait MixedTrait {
             /*
             if ($k > 0) {
                 unset($vars['tot']);
-                //dddx($vars);
+                // dddx([$k, $vars]);
             }
             */
             if (Str::startsWith($vars['type'], 'mixed')) {

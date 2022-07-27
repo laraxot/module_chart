@@ -93,6 +93,9 @@ trait CommonTrait {
             case 2:
                 $plot->value->SetFormat('%.1f');
               break;
+            case 3:
+                $plot->value->SetFormat('%.0f');
+              break;
             default:
                 $plot->value->SetFormat('%.1f &#37;');
         }
