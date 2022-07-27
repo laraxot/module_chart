@@ -1,148 +1,72 @@
-{{-- <x-chartjs.base type="horizbar1" /> --}}
-@extends('chart::layouts.app')
 
-@section('content')
+
+@php
+use Illuminate\Support\Str;
+
+$uuid = Str::uuid()->toString();
+@endphp
+
     <div class="chart-container" style="position: relative; height:400px; width:700px">
-        <canvas id="myChart"></canvas>
+        <canvas id="myChart_{{$uuid}}"></canvas>
     </div>
-@endsection
+
 
 @push('scripts')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src='https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js'>
     </script>
     <script>
-        // Label formatter function
-        const formatter = (value, ctx) => {
-            const otherDatasetIndex = ctx.datasetIndex === 0 ? 1 : 0;
-            const total =
-                ctx.chart.data.datasets[otherDatasetIndex].data[ctx.dataIndex] + value;
 
-            return `${(value / total * 100).toFixed(0)}%`;
-        };
+    var uuid=@json($uuid);
 
-        const data = [{
-                // stack: 'test',
-                label: "New",
-                backgroundColor: "#1d3f74",
-                data: [6310, 5742, 4044, 5564],
-                // Change options only for labels of THIS DATASET
-                datalabels: {
-                    color: "white",
-                    formatter: formatter
-                }
-            },
-            {
-                // stack: 'test',
-                label: "Repeat",
-                backgroundColor: "#6c92c8",
-                data: [11542, 12400, 12510, 11450],
-                // Change options only for labels of THIS DATASET
-                datalabels: {
-                    color: "yellow",
-                    formatter: formatter
-                }
-            }
-        ];
+    console.log(uuid);
+    //closure per poter ridichiarare poi i let per un altro grafico
+    
+    var make=function(){
+        let rawData = @json($data);
+        let rawLabels = @json($labels);
 
-        const options = {
-            maintainAspectRatio: false,
-            spanGaps: false,
-            responsive: true,
-            legend: {
-                display: true,
-                position: "bottom",
-                labels: {
-                    fontColor: "#000",
-                    boxWidth: 14,
-                    fontFamily: "proximanova"
+        
+        let data = {
+            labels: rawLabels,
+            datasets: [{
+                    label: 'Answers',
+                    data: rawData.map((v)=>parseInt(v)),
+                    borderColor: '#FF0000',
+                    backgroundColor: '#00FFFF',
                 }
-            },
-            tooltips: {
-                mode: "label",
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        const type = data.datasets[tooltipItem.datasetIndex].label;
-                        const value =
-                            data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                        let total = 0;
-                        for (let i = 0; i < data.datasets.length; i++)
-                            total += data.datasets[i].data[tooltipItem.index];
-                        if (tooltipItem.datasetIndex !== data.datasets.length - 1) {
-                            return (
-                                type + " : " + value.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
-                            );
-                        } else {
-                            return [
-                                type +
-                                " : " +
-                                value.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,"),
-                                "Overall : " + total
-                            ];
-                        }
-                    }
-                }
-            },
-            plugins: {
-                // Change options for ALL labels of THIS CHART
-                datalabels: {
-                    color: "#navy",
-                    align: "center",
-                    labels: {
-                        title: {
-                            font: {
-                            weight: 'bold'
-                            }
-                        },
-                        value: {
-                            color: 'green'
-                        }
-                    }
-                }
-            },
-            scales: {
+            ]
+        }
 
-                xAxes: [{
-                        stacked: true,
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            fontColor: "#navy"
-                        }
-                    },
-                    {
-                        type: 'category',
-                        offset: true,
-                        position: 'top',
-                        ticks: {
-                            fontColor: "#navy",
-                            callback: function(value, index, values) {
-                                return data[0].data[index] + data[1].data[index]
-                            }
-                        }
-                    }
-                ],
-                yAxes: [{
-                    stacked: true,
-                    display: false,
-                    ticks: {
-                        fontColor: "#fff"
-                    }
-                }]
-            }
-        };
-
-        const ctx = document.getElementById("myChart").getContext("2d");
+        let ctx = document.getElementById("myChart_"+uuid).getContext("2d");
 
         new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Jun", "July", "Aug", "Sept"],
-                datasets: data
+            type: 'bar',
+            data: data,
+            options: {
+                indexAxis: 'y',
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each horizontal bar to be 2px wide
+                elements: {
+                    bar: {
+                        borderWidth: 2,
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Horizontal Bar Chart'
+                    }
+                }
             },
-            options: options
         });
+    }
+    make();
+    
     </script>
 @endpush

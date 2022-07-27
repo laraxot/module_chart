@@ -9,6 +9,7 @@ use Amenadiel\JpGraph\Plot\BarPlot;
 trait HorizbarTrait {
     // -------------------
     public function horizbar1(): self {
+
         $datay = $this->data->pluck('value')->all();
         $datax = $this->data->pluck('label')->all();
 

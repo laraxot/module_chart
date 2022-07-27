@@ -36,22 +36,12 @@ class ChartService {
     private int $type = 0;
 
     public function __construct() {
-        $type = config('chart.type', 0);
-        if (! is_int($type)) {
-            throw new Exception('config chart.type is not an Integer');
-        }
-        $this->type = $type;
-        switch ($this->type) {
-            case 0:
-                $this->chart_engine = JpgraphEngine2::make();
-            break;
-            case 1:
-                $this->chart_engine = ChartJsEngine::make();
-            break;
-            default:
-                throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
-            // break; //Unreachable statement - code above always terminates.
-        }
+
+        //ne setti uno di default e semmai cambi tipo
+        $this->chart_engine = JpgraphEngine2::make();
+
+        
+
     }
 
     public static function getInstance(): self {
@@ -94,6 +84,7 @@ class ChartService {
     public function mergeVars(array $vars): self {
         $this->chart_engine->mergeVars($vars);
 
+        
         return $this;
     }
 
@@ -138,11 +129,47 @@ class ChartService {
         return view()->make($view, $view_params);
     }
 
+
+    public function setEngine(?string $type="jpgraph"):self{
+
+        $this->mergeVars(['engine_type'=>$type]);
+
+        //dddx($this);
+
+        if($this->chart_engine->vars['engine_type']==="jpgraph"){
+            $type_number = config('chart.type', 0);
+        }else if($this->chart_engine->vars['engine_type']==="chartjs"){
+            $type_number = config('chart.type', 1);
+        }else{
+            $type_number = config('chart.type', 0);
+        }
+        
+        if (! is_int($type_number)) {
+            throw new Exception('config chart.type is not an Integer');
+        }
+        $this->type_number = $type_number;
+        switch ($this->type_number) {
+            case 0:
+                $this->chart_engine = JpgraphEngine2::make();
+            break;
+            case 1:
+                $this->chart_engine = ChartJsEngine::make();
+            break;
+            default:
+                throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
+        }
+
+        return $this;
+    }
+
     public function getImg(): string {
+
         $img = 'chart/'.Str::uuid().'.png';
         $filename = public_path($img);
 
         FileService::createDirectoryForFilename($filename);
+
+        //dddx($this->chart_engine->data);
 
         $this->chart_engine
             ->build()
