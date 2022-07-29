@@ -136,9 +136,20 @@ trait PieTrait {
         $labels = $this->data->pluck('label')->all();
 
         $data = $this->data->pluck('value')->all();
+        /*
+        dddx([
+           '$this->data' => $this->data,
+           '$data' => $data,
+           '$this->vars' => $this->vars,
+           '$labels' => $labels,
+        ]);
+        */
         $color_array = explode(',', $this->vars['list_color']);
         if (isset($this->vars['max'])) {
+            // dddx($this->vars['max']);
+            // dddx([$data, collect($data)->sum()]);
             $sum = collect($data)->sum();
+            // $sum = 2000;
             $other = $this->vars['max'] - $sum;
             if ($other > 0.01) {
                 $color_array[1] = 'white';
@@ -149,7 +160,6 @@ trait PieTrait {
                 }
             }
         }
-        // dddx($data);
 
         // A new pie graph
         $graph = new PieGraph($this->width, $this->height, 'auto');
