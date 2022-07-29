@@ -19,6 +19,9 @@ trait MixedTrait {
         $mixed = MixedChart::findOrFail($id);
 
         $charts = $mixed->charts()->get(); // ->take(1);
+        if ('1' == $charts->count()) {
+            // dddx($charts->count());
+        }
         if (0 === $charts->count()) {
             $rows = $mixed->charts();
             // $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());

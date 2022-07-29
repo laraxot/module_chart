@@ -136,23 +136,24 @@ trait PieTrait {
         $labels = $this->data->pluck('label')->all();
 
         $data = $this->data->pluck('value')->all();
+        if (isset($this->data->first()['avg'])) {
+            $data = $this->data->pluck('avg')->all();
+        }
+
         /*
         dddx([
-           '$this->data' => $this->data,
-           '$data' => $data,
-           '$this->vars' => $this->vars,
-           '$labels' => $labels,
+            '$this->data' => $this->data,
+            '$data' => $data,
+            '$this->vars' => $this->vars,
+            '$labels' => $labels,
         ]);
         */
         $color_array = explode(',', $this->vars['list_color']);
         if (isset($this->vars['max'])) {
-            // dddx($this->vars['max']);
-            // dddx([$data, collect($data)->sum()]);
             $sum = collect($data)->sum();
-            // $sum = 2000;
             $other = $this->vars['max'] - $sum;
             if ($other > 0.01) {
-                $color_array[1] = 'white';
+                // $color_array[1] = 'white';
                 $data[] = $other;
                 $labels[] = $this->vars['answer_value_no_txt'] ?? 'answer_value_no_txt';
                 if (2 === \count($labels) && \strlen((string) $labels[0]) < 3) {
@@ -178,32 +179,32 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        // dddx($this->vars['mandatory']);
-        $mandatory = $this->vars['mandatory'];
-        if (is_null($this->vars['mandatory'])) {
-            $mandatory = 'null';
-        }
-
-        if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-            /*
-            if (isset($this->vars['tot_nulled'])) {
-                $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
+        // dddx($this->vars);
+        $title = $this->vars['title'];
+        $graph->title->Set($title);
+        $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        /* da spostare tutto il limemodelservice
+        if ('' != $this->vars['title']) {
+            $mandatory = $this->vars['mandatory'];
+            if (is_null($this->vars['mandatory'])) {
+                $mandatory = 'null';
             }
-            $p1->title->Set($subtitle);
-            $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            */
 
-            $graph->title->Set($subtitle);
-            $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if ('Y' != $this->vars['mandatory']) {
-                if (isset($this->vars['tot_nulled'])) {
-                    $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
-                    $graph->subtitle->Set($subtitle1);
-                    $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            if (isset($this->vars['tot'])) {
+                $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
+
+                $graph->title->Set($subtitle);
+                $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+                if ('Y' != $this->vars['mandatory']) {
+                    if (isset($this->vars['tot_nulled'])) {
+                        $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
+                        $graph->subtitle->Set($subtitle1);
+                        $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+                    }
                 }
             }
         }
+         */
 
         $footer_txt = 'Media '.number_format((float) $data[0], 2);
         $graph->footer->center->Set($footer_txt);
