@@ -325,6 +325,7 @@ trait BarTrait {
 
         if (count($datay) > 1) {
             // dddx($this->data->first()['title_type']);
+            // dddx($this->vars['title']);
             $title = $this->vars['title'];
 
             // $subtitle = 'Totale rispondenti';

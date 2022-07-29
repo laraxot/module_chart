@@ -9,7 +9,6 @@ use Amenadiel\JpGraph\Plot\BarPlot;
 trait HorizbarTrait {
     // -------------------
     public function horizbar1(): self {
-
         $datay = $this->data->pluck('value')->all();
         $datax = $this->data->pluck('label')->all();
 
@@ -45,6 +44,11 @@ trait HorizbarTrait {
             $mandatory = 'null';
         }
 
+        $title = $this->vars['title'];
+        $graph->title->Set($title);
+        $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+
+        /* da spostare in limeModelService
         if (isset($this->vars['tot'])) {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
             if ('Y' != $this->vars['mandatory']) {
@@ -55,6 +59,7 @@ trait HorizbarTrait {
             $graph->subtitle->Set($subtitle);
             $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
+        */
 
         // $this->setTitle('aaaa');
 

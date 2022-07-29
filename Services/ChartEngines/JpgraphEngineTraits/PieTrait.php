@@ -86,14 +86,18 @@ trait PieTrait {
             $mandatory = 'null';
         }
 
+        $title = $this->vars['title'];
+
+        $graph->title->Set($title);
+        $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        $subtitle = $this->vars['subtitle'];
+        $graph->subtitle->Set($subtitle);
+        $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+
+        /*
         if (isset($this->vars['tot'])) {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-            /*if (isset($this->vars['tot_nulled'])) {
-                $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
-            }
-            $p1->title->Set($subtitle);
-            $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            */
+
             $graph->title->Set($subtitle);
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
             if ('Y' != $this->vars['mandatory']) {
@@ -104,6 +108,7 @@ trait PieTrait {
                 }
             }
         }
+        */
 
         // $p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
         // $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
@@ -183,6 +188,10 @@ trait PieTrait {
         $title = $this->vars['title'];
         $graph->title->Set($title);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        $subtitle = $this->vars['subtitle'];
+        $graph->subtitle->Set($subtitle);
+        $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+
         /* da spostare tutto il limemodelservice
         if ('' != $this->vars['title']) {
             $mandatory = $this->vars['mandatory'];

@@ -227,6 +227,13 @@ trait LineTrait {
         $graph->legend->SetColor('#4E4E4E', '#00A78A');
         $graph->legend->SetMarkAbsSize(8);
 
+        $title = $this->vars['title'];
+        $graph->title->Set($title);
+        $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        $subtitle = $this->vars['subtitle'];
+        $graph->subtitle->Set($subtitle);
+        $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+
         $this->graph = $graph;
 
         return $this;

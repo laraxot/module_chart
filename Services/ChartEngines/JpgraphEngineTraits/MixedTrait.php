@@ -19,9 +19,7 @@ trait MixedTrait {
         $mixed = MixedChart::findOrFail($id);
 
         $charts = $mixed->charts()->get(); // ->take(1);
-        if ('1' == $charts->count()) {
-            // dddx($charts->count());
-        }
+
         if (0 === $charts->count()) {
             $rows = $mixed->charts();
             // $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());
@@ -33,16 +31,17 @@ trait MixedTrait {
         foreach ($charts as $k => $chart) {
             $vars = $this->vars;
             $vars = array_merge($vars, $chart->toArray());
-            /*
-            if ($k > 0) {
-                unset($vars['tot']);
-                // dddx([$k, $vars]);
-            }
-            */
+
             if (Str::startsWith($vars['type'], 'mixed')) {
                 throw new Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
             }
+
+            if ($k > 0) {
+                $vars['title'] = 'no_title';
+            }
+
             $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),
                 'width' => $vars['width'],
