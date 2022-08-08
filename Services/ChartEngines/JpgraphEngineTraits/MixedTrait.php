@@ -10,20 +10,26 @@ use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
 use Modules\Quaeris\Services\LimeModelService;
 use Modules\Xot\Services\FileService;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
-// use Modules\Chart\Services\LimeModelService;
+
 
 trait MixedTrait {
     public function mixed(string $id): self {
-        // dddx($this);
-        $mixed = MixedChart::findOrFail($id);
 
-        $charts = $mixed->charts()->get(); // ->take(1);
+        $map = [
+            'mixed_chart' => 'Modules\Chart\Models\MixedChart',
+        ];
+
+        Relation::morphMap($map);
+
+        $mixed = MixedChart::findOrFail($id);
+        $charts = $mixed->charts()->get(); 
 
         if (0 === $charts->count()) {
-            $rows = $mixed->charts();
-            // $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());
-            $sql = str_replace('?', $rows->getBindings(), $rows->toSql());
+            $sql = rowsToSql($mixed->charts());
+            
+            
             throw new Exception('charts vuoto sql:['.$sql.']');
         }
 
