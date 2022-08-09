@@ -63,16 +63,22 @@ trait HorizbarTrait {
           ]
       ]);
 
+      //dddx($chartjs);
+
       $view='chart::chartjs.example';
       $view_params=compact('chartjs');
       $view_params['view']=$view;
       $view_params['filename'] = 'prova123';
 
+      /* echo '<pre>';
+      echo var_export($view_params,true);
+      echo '</pre>'; */
+
       //dddx($view_params);
       $out = view()->make($view, $view_params);
       $html = $out->render();
       echo $html; 
-
+      //dddx($html);
       return $this;
     }
 
@@ -275,6 +281,7 @@ trait HorizbarTrait {
         $html = $out->render();
         echo $html; // se non mostro js non viene elaborato e non salva.. ipotesi phantomJS
 
+        
         return $this;
     }
 }

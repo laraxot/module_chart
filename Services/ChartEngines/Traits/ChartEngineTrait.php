@@ -93,7 +93,7 @@ trait ChartEngineTrait {
                 $var = array_values($var);
                 $res = $this->{$extra->type}(...$var);
             }
-        
+        //dddx($this);
        return $this;
     }
 }

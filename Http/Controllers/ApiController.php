@@ -18,7 +18,7 @@ class ApiController extends Controller {
     public function imageStore(Request $request): JsonResponse {
         $data = $request->all();
 
-        $img = 'chart/'.$data['filename'].'-1.png';
+        $img = 'chart/'.$data['filename'].'.png';
         $filename = public_path($img);
 
         FileService::createDirectoryForFilename($filename);
@@ -33,8 +33,7 @@ class ApiController extends Controller {
         File::put($filename, $image_base64);
 
         return response()->json([
-            'message' => 'tutto ok',
-            // 'state' => 'CA',
+            'message' => 'true',
         ], 200);
     }
 }

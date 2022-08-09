@@ -134,7 +134,7 @@ class ChartService {
 
         $this->mergeVars(['engine_type'=>$type]);
 
-        //dddx($this);
+        //dddx($this); 
 
         if($this->chart_engine->vars['engine_type']==="jpgraph"){
             $type_number = config('chart.type', 0);
@@ -144,6 +144,8 @@ class ChartService {
             $type_number = config('chart.type', 0);
         }
         
+        //dddx([$this->chart_engine->vars['engine_type'],$type_number]);
+
         if (! is_int($type_number)) {
             throw new Exception('config chart.type is not an Integer');
         }
@@ -174,6 +176,8 @@ class ChartService {
         $this->chart_engine
             ->build()
             ->save($img);
+
+            //dddx($img);
 
         // if (count($this->chart_engine->imgs) > 0) {
         //    dddx($this->chart_engine->imgs);

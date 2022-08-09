@@ -96,44 +96,6 @@ class ChartJsEngine extends BaseChartEngine {
 
     public function save(string $filename): self {
 
-        
-        /*$this->filename = $filename;
-        // Finally send the graph to the browser
-        if (File::exists(public_path($this->filename))) {
-            File::delete(public_path($this->filename));
-        }
-
-        if (\count($this->imgs) > 0) {
-           
-            $imgs = collect($this->imgs);
-            $width = $imgs->sum('width');
-            $height = $imgs->max('height');
-            // 172    Parameter #1 $width of static method Intervention\Image\ImageManager::canvas()
-            // expects int, mixed given.
-            if (! is_numeric($width) || ! is_numeric($height)) {
-                throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
-            }
-            $width = (int) $width;
-            $height = (int) $height;
-            $img_canvas = Image::canvas($width, $height);
-            $delta = 0;
-            foreach ($imgs as $v) {
-                $img = Image::make($v['img_path']);
-                $img_canvas->insert($img, 'top-left ', $delta, 0);
-                $delta += $img->width();
-            }
-            $img_canvas->save(public_path($this->filename), 100);
-        } else {
-            try {
-                //cos'ha che non va?
-            
-
-                //$this->graph->Stroke(public_path($this->filename));
-            } catch (Exception $e) {
-                dddx([$e->getMessage(), $e->getFile(), $e->getLine(), $e]);
-            }
-        }*/
-
         return $this;
     }
 }
