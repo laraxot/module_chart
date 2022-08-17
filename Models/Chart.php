@@ -194,7 +194,7 @@ class Chart extends BaseModel {
         return $value;
     }
 
-    // ---------- Mutator
+    // ---------- Getter
     public function getColorAttribute(?string $value): ?string {
         if (null !== $value) {
             //return $value;
