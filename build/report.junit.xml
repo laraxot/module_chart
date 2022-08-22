@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Modules\Chart\Tests\Unit\FirstTest" file="/var/www/html/staging.mediamonitor.it/laravel/Modules/Chart/Tests/Unit/FirstTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.138812">
+    <testcase name="testExample" class="Modules\Chart\Tests\Unit\FirstTest" classname="Modules.Chart.Tests.Unit.FirstTest" file="/var/www/html/staging.mediamonitor.it/laravel/Modules/Chart/Tests/Unit/FirstTest.php" line="15" assertions="1" time="0.138812"/>
+  </testsuite>
+</testsuites>
