@@ -26,7 +26,6 @@ use Modules\Xot\Services\PanelService;
  * @property int|null $y_grace
  * @property int|null $yaxis_hide
  * @property string|null $list_color
- * @property string|null $grace
  * @property string|null $x_label_angle
  * @property int|null $show_box
  * @property int|null $x_label_margin
@@ -36,10 +35,11 @@ use Modules\Xot\Services\PanelService;
  * @property int|null $plot_perc_width
  * @property int|null $plot_value_show
  * @property string|null $plot_value_format
- * @property string|null $plot_value_pos
+ * @property int|null $plot_value_pos
  * @property string|null $plot_value_color
  * @property string|null $group_by
  * @property string|null $sort_by
+ * @property string|null $grace
  * @property string|null $lang
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
