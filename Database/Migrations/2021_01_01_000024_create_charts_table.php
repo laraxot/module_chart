@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-//---- models ---
+// ---- models ---
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
@@ -16,7 +16,7 @@ class CreateChartsTable extends XotBaseMigration {
      * @return void
      */
     public function up() {
-        //-- CREATE --
+        // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
                 $table->increments('id');
@@ -33,7 +33,7 @@ class CreateChartsTable extends XotBaseMigration {
             }
         );
 
-        //-- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table) {
                 if ($this->tableExists('charts') && $this->tableExists('chart_styles')) {
@@ -103,10 +103,12 @@ class CreateChartsTable extends XotBaseMigration {
                 if (! $this->hasColumn('sort_by')) {
                     $table->string('sort_by')->nullable();
                 }
-
                 if ($this->hasColumn('style_type')) {
                     $table->renameColumn('style_type', 'post_type');
                     $table->renameColumn('style_id', 'post_id');
+                }
+                if (! $this->hasColumn('lang')) {
+                    $table->string('lang')->nullable();
                 }
             }
         );

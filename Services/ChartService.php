@@ -21,6 +21,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Chart\Contracts\ChartEngineContract;
+use Modules\Chart\Services\ChartEngines\ChartJsEngine;
 use Modules\Chart\Services\ChartEngines\JpgraphEngine2;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\HtmlService;
@@ -30,11 +31,17 @@ use Modules\Xot\Services\HtmlService;
  * */
 class ChartService {
     private static ?self $instance = null;
-    private ChartEngineContract $chart_engine; //dobbiamo fare interfaccia e poi metterla
-    //private string $type = 'default'; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
+    private ChartEngineContract $chart_engine; // dobbiamo fare interfaccia e poi metterla
+    // private string $type = 'default'; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
+    private int $type = 0;
 
     public function __construct() {
+
+        //ne setti uno di default e semmai cambi tipo
         $this->chart_engine = JpgraphEngine2::make();
+
+        
+
     }
 
     public static function getInstance(): self {
@@ -50,7 +57,7 @@ class ChartService {
     }
 
     public function setData(Collection $data): self {
-        //$this->data = $data;
+        // $this->data = $data;
         $this->chart_engine->setData($data);
 
         return $this;
@@ -77,6 +84,7 @@ class ChartService {
     public function mergeVars(array $vars): self {
         $this->chart_engine->mergeVars($vars);
 
+        
         return $this;
     }
 
@@ -93,7 +101,7 @@ class ChartService {
     }
 
     public function setType(string $type): self {
-        //$this->type = $type;
+        // $this->type = $type;
         $this->chart_engine->setType($type);
 
         return $this;
@@ -105,6 +113,9 @@ class ChartService {
     public function toHtml(): Renderable {
         $img = $this->getImg();
 
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::tests.four';
 
         $view_params = [
@@ -118,19 +129,59 @@ class ChartService {
         return view()->make($view, $view_params);
     }
 
+
+    public function setEngine(?string $type="jpgraph"):self{
+
+        $this->mergeVars(['engine_type'=>$type]);
+
+        //dddx($this); 
+
+        if($this->chart_engine->vars['engine_type']==="jpgraph"){
+            $type_number = config('chart.type', 0);
+        }else if($this->chart_engine->vars['engine_type']==="chartjs"){
+            $type_number = config('chart.type', 1);
+        }else{
+            $type_number = config('chart.type', 0);
+        }
+        
+        //dddx([$this->chart_engine->vars['engine_type'],$type_number]);
+
+        if (! is_int($type_number)) {
+            throw new Exception('config chart.type is not an Integer');
+        }
+        $this->type_number = $type_number;
+        switch ($this->type_number) {
+            case 0:
+                $this->chart_engine = JpgraphEngine2::make();
+            break;
+            case 1:
+                $this->chart_engine = ChartJsEngine::make();
+            break;
+            default:
+                throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
+        }
+
+        return $this;
+    }
+
     public function getImg(): string {
+
         $img = 'chart/'.Str::uuid().'.png';
         $filename = public_path($img);
 
         FileService::createDirectoryForFilename($filename);
 
+        //dddx($this->chart_engine->data);
+
         $this->chart_engine
             ->build()
             ->save($img);
 
-        //if (count($this->chart_engine->imgs) > 0) {
+            //dddx($img);
+
+        // if (count($this->chart_engine->imgs) > 0) {
         //    dddx($this->chart_engine->imgs);
-        //}
+        // }
 
         return $img;
     }
@@ -138,7 +189,7 @@ class ChartService {
     public function toPdf(): self {
         $html = $this->toHtml()->render();
         $content = HtmlService::toPdf(['html' => $html, 'out' => 'content_PDF']);
-        if (! is_string($content)) {
+        if (! \is_string($content)) {
             throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
         }
 
@@ -146,4 +197,10 @@ class ChartService {
 
         return $this;
     }
+
+    /*
+    public function getGraph() {
+        return $this->chart_engine->getGraph();
+    }
+    */
 }

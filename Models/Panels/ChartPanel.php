@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Models\Panels;
 
 use Illuminate\Http\Request;
-//--- Services --
+// --- Services --
 
 use Illuminate\Support\Str;
 use Modules\Chart\Models\Panels\Traits\ChartTrait;

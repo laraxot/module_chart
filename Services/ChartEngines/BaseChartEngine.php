@@ -12,6 +12,5 @@ use Modules\Chart\Contracts\ChartEngineContract;
 /**
  * ---.
  * */
-abstract class BaseChartEngine implements ChartEngineContract
-{
+abstract class BaseChartEngine implements ChartEngineContract {
 }

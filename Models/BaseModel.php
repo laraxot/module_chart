@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Chart\Models;
 
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-//---------- traits
+// ---------- traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-////use Laravel\Scout\Searchable;
+// //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Services\FactoryService;
 use Modules\Xot\Traits\Updater;
@@ -16,18 +16,28 @@ use Modules\Xot\Traits\Updater;
  * Class BaseModel.
  */
 abstract class BaseModel extends Model {
-    use Updater;
-    //use Searchable;
-    //use Cachable;
     use HasFactory;
+    // use Searchable;
+    // use Cachable;
+    use Updater;
+    /**
+     * Indicates whether attributes are snake cased on arrays.
+     *
+     * @see  https://laravel-news.com/6-eloquent-secrets
+     *
+     * @var bool
+     */
+     public static $snakeAttributes = true;
+
+    protected $perPage = 30;
 
     protected $connection = 'chart';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
-        //'published_at' => 'datetime:Y-m-d', // da verificare
+        // 'published_at' => 'datetime:Y-m-d', // da verificare
     ];
 
     /**
@@ -43,10 +53,10 @@ abstract class BaseModel extends Model {
      */
     public $incrementing = true;
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
-        //'password'
+        // 'password'
     ];
     /**
      * @var bool

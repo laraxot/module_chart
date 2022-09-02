@@ -10,31 +10,44 @@ use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
 use Modules\Quaeris\Services\LimeModelService;
 use Modules\Xot\Services\FileService;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
-//use Modules\Chart\Services\LimeModelService;
+
 
 trait MixedTrait {
     public function mixed(string $id): self {
-        //dddx($this);
-        $mixed = MixedChart::find($id);
 
-        $charts = $mixed->charts()->get(); //->take(1);
-        if (0 == $charts->count()) {
-            $rows = $mixed->charts();
-            $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());
+        $map = [
+            'mixed_chart' => 'Modules\Chart\Models\MixedChart',
+        ];
+
+        Relation::morphMap($map);
+
+        $mixed = MixedChart::findOrFail($id);
+        $charts = $mixed->charts()->get(); 
+
+        if (0 === $charts->count()) {
+            $sql = rowsToSql($mixed->charts());
+            
+            
             throw new Exception('charts vuoto sql:['.$sql.']');
         }
 
         $imgs = [];
-        foreach ($charts as $chart) {
+        foreach ($charts as $k => $chart) {
             $vars = $this->vars;
             $vars = array_merge($vars, $chart->toArray());
+
             if (Str::startsWith($vars['type'], 'mixed')) {
-                throw new Exception('crei un loop infinito');
+                throw new Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
             }
-            //dddx($this);
-            //dddx($vars);
+
+            if ($k > 0) {
+                $vars['title'] = 'no_title';
+            }
+
             $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),
                 'width' => $vars['width'],
@@ -61,14 +74,14 @@ trait MixedTrait {
             'height' => $vars['height'],
         ];
 
-        //-------------------
+        // -------------------
         $vars = $this->vars;
         $vars['type'] = 'bar2';
         $vars['width'] = 400;
         $vars['height'] = 400;
         $vars['x_label_angle'] = 50;
-        $vars['group_by'] = 'date:Y-M'; //M = mar,april,giu
-        $vars['sort_by'] = 'date:Y-m'; //m=1,2,3
+        $vars['group_by'] = 'date:Y-M'; // M = mar,april,giu
+        $vars['sort_by'] = 'date:Y-m'; // m=1,2,3
         $vars['take'] = -4;
 
         $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
@@ -78,7 +91,7 @@ trait MixedTrait {
             'height' => $vars['height'],
         ];
 
-        //-------------------
+        // -------------------
         $vars['group_by'] = 'date:o-W';
         $vars['sort_by'] = 'date:o-W';
         $vars['chart_type'] = 'bar2';
@@ -102,7 +115,7 @@ trait MixedTrait {
         $row = $this->vars['row'];
 
         $imgs = [];
-        //-------------------------------
+        // -------------------------------
         $row->group_by = null;
         $row->chart_type = 'pie1';
         $row->take = null;
@@ -114,10 +127,10 @@ trait MixedTrait {
             'width' => $row->width,
             'height' => $row->height,
         ];
-        //-------------------------------
+        // -------------------------------
 
-        $row->group_by = 'date:Y-M'; //M = mar,april,giu
-        $row->sort_by = 'date:Y-m'; //m=1,2,3
+        $row->group_by = 'date:Y-M'; // M = mar,april,giu
+        $row->sort_by = 'date:Y-m'; // m=1,2,3
         $row->chart_type = 'barYesNo';
         $row->take = -4;
         $row->width = 400;
@@ -129,7 +142,7 @@ trait MixedTrait {
             'height' => $row->height,
         ];
 
-        //-------------------------------
+        // -------------------------------
         $row->group_by = 'date:o-W';
         $row->sort_by = 'date:o-W';
         $row->chart_type = 'barYesNo';
@@ -142,7 +155,7 @@ trait MixedTrait {
             'width' => $row->width,
             'height' => $row->height,
         ];
-        //-------------------------------
+        // -------------------------------
 
         $this->imgs = $imgs;
 
@@ -153,7 +166,7 @@ trait MixedTrait {
         $row = $this->vars['row'];
 
         $imgs = [];
-        //-------------------------------
+        // -------------------------------
         $row->group_by = null;
         $row->chart_type = 'pie1';
         $row->take = null;
@@ -165,10 +178,10 @@ trait MixedTrait {
             'width' => $row->width,
             'height' => $row->height,
         ];
-        //-------------------------------
+        // -------------------------------
 
-        $row->group_by = 'date:Y-M'; //M = mar,april,giu
-        $row->sort_by = 'date:Y-m'; //m=1,2,3
+        $row->group_by = 'date:Y-M'; // M = mar,april,giu
+        $row->sort_by = 'date:Y-m'; // m=1,2,3
         $row->chart_type = 'barNoYes';
         $row->take = -4;
         $row->width = 400;
@@ -180,7 +193,7 @@ trait MixedTrait {
             'height' => $row->height,
         ];
 
-        //-------------------------------
+        // -------------------------------
         $row->group_by = 'date:o-W';
         $row->sort_by = 'date:o-W';
         $row->chart_type = 'barNoYes';
@@ -193,7 +206,7 @@ trait MixedTrait {
             'width' => $row->width,
             'height' => $row->height,
         ];
-        //-------------------------------
+        // -------------------------------
 
         $this->imgs = $imgs;
 
@@ -217,7 +230,7 @@ trait MixedTrait {
             'height' => $vars['height'],
         ];
 
-        //------------------------------------
+        // ------------------------------------
         $vars['subquestion'] = null;
         $vars['group_by'] = 'field:Q41';
         $vars['sort_by'] = 'field:Q41';
@@ -233,7 +246,7 @@ trait MixedTrait {
             'width' => $vars['width'],
             'height' => $vars['height'],
         ];
-        //*/
+        // */
 
         $this->imgs = $imgs;
 
@@ -241,14 +254,19 @@ trait MixedTrait {
     }
 
     public function getDataYesNo(Collection $data): Collection {
-        //dddx($data);
+        // dddx($data);
 
-        //Sì No
+        // Sì No
         $data = $data->map(
             function ($item, $group) {
                 $item = collect($item);
-
+                /**
+                 * @var array
+                 */
                 $yes = $item->firstWhere('label', 'Sì');
+                /**
+                 * @var array
+                 */
                 $no = $item->firstWhere('label', 'No');
 
                 $yes_perc = $yes['value'] ?? 0;
@@ -257,17 +275,17 @@ trait MixedTrait {
                 $yes_count = $yes['value1'] ?? 0;
                 $no_count = $no['value1'] ?? 0;
 
-                //$yes_perc = $yes['value'] ?? 0;
-                //$no_perc = $no['value'] ?? 0;
+                // $yes_perc = $yes['value'] ?? 0;
+                // $no_perc = $no['value'] ?? 0;
 
-                //--non metto gli astenuti
+                // --non metto gli astenuti
                 $tot = $yes_count + $no_count;
 
-                //if (0 == $tot) {
+                // if (0 == $tot) {
                 //    $value = 0;
-                //} else {
+                // } else {
                 //    $value = $yes_count * 100 / $tot;
-                //}
+                // }
 
                 return [
                     'label' => $group,
@@ -288,7 +306,11 @@ trait MixedTrait {
     public function getDataNoYes(Collection $data): Collection {
         $data = $this->getDataYesNo($data);
         $data = $data->map(
-            function ($item) {
+            function ($i) {
+                /**
+                 * @var array
+                 */
+                $item = $i;
                 $item['value'] = 100 - $item['value'];
 
                 return $item;
@@ -314,7 +336,7 @@ trait MixedTrait {
     }
 
     public function pieYesNo(): self {
-        //$this->data = $this->getDataYesNo($this->data);
+        // $this->data = $this->getDataYesNo($this->data);
 
         $this->pie1();
 
@@ -322,7 +344,7 @@ trait MixedTrait {
     }
 
     public function pieNoYes(): self {
-        //$this->data = $this->getDataNoYes($this->data);
+        // $this->data = $this->getDataNoYes($this->data);
 
         $this->pie1();
 

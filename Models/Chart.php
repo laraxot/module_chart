@@ -5,17 +5,88 @@ declare(strict_types=1);
 namespace Modules\Chart\Models;
 
 use ErrorException;
+use Modules\Quaeris\Models\SurveyPdf;
 use Modules\Xot\Services\PanelService;
 
+/**
+ * Modules\Chart\Models\Chart
+ *
+ * @property int $id
+ * @property string|null $post_type
+ * @property int|null $post_id
+ * @property string|null $color
+ * @property string|null $bg_color
+ * @property int $font_family
+ * @property int $font_style
+ * @property int $font_size
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property int|null $y_grace
+ * @property int|null $yaxis_hide
+ * @property string|null $list_color
+ * @property string|null $grace
+ * @property string|null $x_label_angle
+ * @property int|null $show_box
+ * @property int|null $x_label_margin
+ * @property int|null $width
+ * @property int|null $height
+ * @property string|null $type
+ * @property int|null $plot_perc_width
+ * @property int|null $plot_value_show
+ * @property string|null $plot_value_format
+ * @property string|null $plot_value_pos
+ * @property string|null $plot_value_color
+ * @property string|null $group_by
+ * @property string|null $sort_by
+ * @property string|null $lang
+ * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereBgColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontFamily($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontStyle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGrace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGroupBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereHeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereLang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereListColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotPercWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValueColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValueFormat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValuePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValueShow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePostId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePostType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereShowBox($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereSortBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereXLabelAngle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereXLabelMargin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereYGrace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereYaxisHide($value)
+ * @mixin \Eloquent
+ */
 class Chart extends BaseModel {
     /**
      * Undocumented variable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'id',
-        'post_id', 'post_type',
+        'post_id', 
+        'post_type',
         'type',
         'width', 'height',
         'color',
@@ -64,14 +135,33 @@ class Chart extends BaseModel {
      */
     public function getParentStyle(string $name) {
         $panel = PanelService::make()->getRequestPanel();
-        $parent = $panel->getParent()->row;
+
+        if (null == $panel) {
+            return $this->attributes[$name] ?? null;
+        }
+        $parent = $panel->getParent();
+
+        if (null == $parent) {
+            return $this->attributes[$name] ?? null;
+        }
+        $parent = $parent->row;
         if (! method_exists($parent, 'chart')) {
             return $this->attributes[$name] ?? null;
         }
-        //dddx([$name, $panel->row, $parent->{$name}]);
-        $value = $parent->chart->{$name};
+        // dddx([$name, $panel->row, $parent->{$name}]);
+        // $value = $parent->chart->{$name};
+
+        //if (! $parent instanceof SurveyPdf) { //outside Quae
+        //    return $this->attributes[$name] ?? null; 
+        //}
+
+        $value = $parent->chart->attributes[$name] ?? null;
+
         $this->{$name} = $value;
         $this->save();
+        if (! is_string($value) && ! is_integer($value)) {
+            return null;
+        }
 
         return $value;
     }
@@ -97,20 +187,20 @@ class Chart extends BaseModel {
                 'file' => $e->getFile(),
                 'panel_row_class' => \get_class($panel_row),
             ];
-            //echo '<pre>'.print_r($msg,true).'</pre>';
+            // echo '<pre>'.print_r($msg,true).'</pre>';
             $value = null;
         }
 
         return $value;
     }
 
-    //---------- Mutator
+    // ---------- Getter
     public function getColorAttribute(?string $value): ?string {
         if (null !== $value) {
-            return $value;
+            //return $value;
         }
 
-        return $this->getParentStyle('color');
+        return (string) $this->getParentStyle('color');
     }
 
     public function getListColorAttribute(?string $value): ?string {
@@ -118,7 +208,7 @@ class Chart extends BaseModel {
             return $value;
         }
 
-        return $this->getParentStyle('list_color');
+        return (string) $this->getParentStyle('list_color');
     }
 
     public function getXLabelAngleAttribute(?string $value): ?string {
@@ -132,7 +222,7 @@ class Chart extends BaseModel {
 
         return $value;
 */
-        return $this->getParentStyle('x_label_angle');
+        return (string) $this->getParentStyle('x_label_angle');
     }
 
     public function getFontFamilyAttribute(?int $value): int {
@@ -140,7 +230,7 @@ class Chart extends BaseModel {
             return (int) $value;
         }
 
-        return $this->getParentStyle('font_family');
+        return (int) $this->getParentStyle('font_family');
     }
 
     public function getFontStyleAttribute(?int $value): int {
@@ -148,7 +238,7 @@ class Chart extends BaseModel {
             return (int) $value;
         }
 
-        return $this->getParentStyle('font_style');
+        return (int) $this->getParentStyle('font_style');
     }
 
     public function getFontSizeAttribute(?int $value): int {
@@ -156,7 +246,7 @@ class Chart extends BaseModel {
             return (int) $value;
         }
 
-        return $this->getParentStyle('font_size');
+        return (int) $this->getParentStyle('font_size');
     }
 
     public function getTypeAttribute(?string $value): ?string {
@@ -167,7 +257,7 @@ class Chart extends BaseModel {
             return $this->attributes['type'];
         }
 
-        return $this->getPanelRow('chart_type', 'type');
+        return (string) $this->getPanelRow('chart_type', 'type');
     }
 
     public function getWidthAttribute(?string $value): ?int {

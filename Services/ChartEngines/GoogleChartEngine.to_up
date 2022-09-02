@@ -10,6 +10,5 @@ namespace Modules\Chart\Services\ChartEngines;
 /**
  * ---.
  * */
-class googleChartEngine
-{
+class GoogleChartEngine {
 }

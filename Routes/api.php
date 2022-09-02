@@ -22,3 +22,7 @@ Route::middleware('auth:api')->get(
 );
 
 */
+
+Route::middleware('auth:api')
+    ->post('/chart/image/store', 'ApiController@imageStore')
+    ->name('api.chart.image.store');
