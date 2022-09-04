@@ -308,7 +308,7 @@ trait BarTrait {
 
             //$tmp->SetLegend("Houses"); //qui gli posso mettere la legenda, ma come?
             if(isset($this->vars['legend'])){
-                $str = $this->vars['legend'][$k];
+                $str = $this->vars['legend'][$k] ?? '--no set';
                 $tmp->SetLegend($str);
             }
 
@@ -342,7 +342,10 @@ trait BarTrait {
         }
 
         if(isset($this->vars['totali'])){
-            $str = 'totale: invitati '.$this->vars['totali']['invitati'].' - '.'rispondenti '.$this->vars['totali']['rispondenti'].' - '.'percentuale risposte '.$this->vars['totali']['tot_perc'];
+            $str = "";
+            foreach($this->vars['totali'] as $k=>$v){
+                $str .= $k.' '.$v.' - ';
+            }
             $graph->footer->center->Set($str);
             $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
