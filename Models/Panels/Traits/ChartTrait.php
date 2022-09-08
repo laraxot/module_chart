@@ -72,14 +72,22 @@ trait ChartTrait {
                 'name' => 'chart.width',
                 'col_size' => 4,
                 'rules' => 'required',
+<<<<<<< HEAD
                 'value' => '500',
+=======
+                //'value' => '500',
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
             ],
             (object) [
                 'type' => 'Integer',
                 'name' => 'chart.height',
                 'col_size' => 4,
                 'rules' => 'required',
+<<<<<<< HEAD
                 'value' => '400',
+=======
+                //'value' => '400',
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
             ],
             (object) [
                 'type' => 'Boolean',

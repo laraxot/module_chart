@@ -26,7 +26,10 @@ use Modules\Xot\Services\PanelService;
  * @property int|null $y_grace
  * @property int|null $yaxis_hide
  * @property string|null $list_color
+<<<<<<< HEAD
  * @property string|null $grace
+=======
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
  * @property string|null $x_label_angle
  * @property int|null $show_box
  * @property int|null $x_label_margin
@@ -36,7 +39,11 @@ use Modules\Xot\Services\PanelService;
  * @property int|null $plot_perc_width
  * @property int|null $plot_value_show
  * @property string|null $plot_value_format
+<<<<<<< HEAD
  * @property string|null $plot_value_pos
+=======
+ * @property int|null $plot_value_pos
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
  * @property string|null $plot_value_color
  * @property string|null $group_by
  * @property string|null $sort_by
@@ -52,7 +59,10 @@ use Modules\Xot\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontFamily($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontStyle($value)
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGrace($value)
+=======
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGroupBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereId($value)

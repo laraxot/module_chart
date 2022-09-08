@@ -298,12 +298,26 @@ trait BarTrait {
         // Create the bar plots
         $colors = explode(',', $this->vars['list_color']);
         $bplot = [];
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
         foreach ($datay as $k => $v) {
             $tmp = new BarPlot($v);
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetColor('white');
             $tmp->SetFillColor($colors[$k]);
 
+<<<<<<< HEAD
+=======
+            //$tmp->SetLegend("Houses"); //qui gli posso mettere la legenda, ma come?
+            if(isset($this->vars['legend'])){
+                $str = $this->vars['legend'][$k] ?? '--no set';
+                $tmp->SetLegend($str);
+            }
+
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
             $bplot[] = $tmp;
         }
 
@@ -333,6 +347,18 @@ trait BarTrait {
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
 
+<<<<<<< HEAD
+=======
+        if(isset($this->vars['totali'])){
+            $str = "";
+            foreach($this->vars['totali'] as $k=>$v){
+                $str .= $k.' '.$v.' - ';
+            }
+            $graph->footer->center->Set($str);
+            $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        }
+
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
         // if (isset($this->vars['tot'])) {
         // if (array_key_exists('tot', $this->vars)) {
         // if (! isset($datay[1])) {
@@ -369,6 +395,11 @@ trait BarTrait {
             $graph->AddText($txt);
         }
 
+<<<<<<< HEAD
+=======
+        
+
+>>>>>>> 693901b860d9586f49e16e4ec7df1b2e00ecb261
         $this->graph = $graph;
 
         return $this;
