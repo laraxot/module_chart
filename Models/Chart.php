@@ -27,9 +27,12 @@ use Modules\Xot\Services\PanelService;
  * @property int|null $yaxis_hide
  * @property string|null $list_color
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @property string|null $grace
 >>>>>>> 73c0891 (.)
+=======
+>>>>>>> 5c076b7 (.)
  * @property string|null $x_label_angle
  * @property int|null $show_box
  * @property int|null $x_label_margin
@@ -40,10 +43,14 @@ use Modules\Xot\Services\PanelService;
  * @property int|null $plot_value_show
  * @property string|null $plot_value_format
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @property int|null $plot_value_pos
 =======
  * @property string|null $plot_value_pos
 >>>>>>> 73c0891 (.)
+=======
+ * @property int|null $plot_value_pos
+>>>>>>> 5c076b7 (.)
  * @property string|null $plot_value_color
  * @property string|null $group_by
  * @property string|null $sort_by
@@ -60,9 +67,12 @@ use Modules\Xot\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontStyle($value)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGrace($value)
 >>>>>>> 73c0891 (.)
+=======
+>>>>>>> 5c076b7 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGroupBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereId($value)
@@ -96,10 +106,14 @@ class Chart extends BaseModel {
     protected $fillable = [
         'id',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'post_id',
 =======
         'post_id', 
 >>>>>>> 73c0891 (.)
+=======
+        'post_id',
+>>>>>>> 5c076b7 (.)
         'post_type',
         'type',
         'width', 'height',
@@ -167,10 +181,14 @@ class Chart extends BaseModel {
 
         //if (! $parent instanceof SurveyPdf) { //outside Quae
 <<<<<<< HEAD
+<<<<<<< HEAD
         //    return $this->attributes[$name] ?? null;
 =======
         //    return $this->attributes[$name] ?? null; 
 >>>>>>> 73c0891 (.)
+=======
+        //    return $this->attributes[$name] ?? null;
+>>>>>>> 5c076b7 (.)
         //}
 
         $value = $parent->chart->attributes[$name] ?? null;

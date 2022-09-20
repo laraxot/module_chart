@@ -73,10 +73,14 @@ trait ChartTrait {
                 'col_size' => 4,
                 'rules' => 'required',
 <<<<<<< HEAD
+<<<<<<< HEAD
                 //'value' => '500',
 =======
                 'value' => '500',
 >>>>>>> 73c0891 (.)
+=======
+                //'value' => '500',
+>>>>>>> 5c076b7 (.)
             ],
             (object) [
                 'type' => 'Integer',
@@ -84,10 +88,14 @@ trait ChartTrait {
                 'col_size' => 4,
                 'rules' => 'required',
 <<<<<<< HEAD
+<<<<<<< HEAD
                 //'value' => '400',
 =======
                 'value' => '400',
 >>>>>>> 73c0891 (.)
+=======
+                //'value' => '400',
+>>>>>>> 5c076b7 (.)
             ],
             (object) [
                 'type' => 'Boolean',
