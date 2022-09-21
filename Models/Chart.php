@@ -8,95 +8,6 @@ use ErrorException;
 use Modules\Quaeris\Models\SurveyPdf;
 use Modules\Xot\Services\PanelService;
 
-/**
- * Modules\Chart\Models\Chart
- *
- * @property int $id
- * @property string|null $post_type
- * @property int|null $post_id
- * @property string|null $color
- * @property string|null $bg_color
- * @property int $font_family
- * @property int $font_style
- * @property int $font_size
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property int|null $y_grace
- * @property int|null $yaxis_hide
- * @property string|null $list_color
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- * @property string|null $grace
->>>>>>> 73c0891 (.)
-=======
->>>>>>> 5c076b7 (.)
- * @property string|null $x_label_angle
- * @property int|null $show_box
- * @property int|null $x_label_margin
- * @property int|null $width
- * @property int|null $height
- * @property string|null $type
- * @property int|null $plot_perc_width
- * @property int|null $plot_value_show
- * @property string|null $plot_value_format
-<<<<<<< HEAD
-<<<<<<< HEAD
- * @property int|null $plot_value_pos
-=======
- * @property string|null $plot_value_pos
->>>>>>> 73c0891 (.)
-=======
- * @property int|null $plot_value_pos
->>>>>>> 5c076b7 (.)
- * @property string|null $plot_value_color
- * @property string|null $group_by
- * @property string|null $sort_by
- * @property string|null $lang
- * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Chart query()
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereBgColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontFamily($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontStyle($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGrace($value)
->>>>>>> 73c0891 (.)
-=======
->>>>>>> 5c076b7 (.)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGroupBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereHeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereLang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereListColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotPercWidth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValueColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValueFormat($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValuePos($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePlotValueShow($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePostId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePostType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereShowBox($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereSortBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereWidth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereXLabelAngle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereXLabelMargin($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereYGrace($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Chart whereYaxisHide($value)
- * @mixin \Eloquent
- */
 class Chart extends BaseModel {
     /**
      * Undocumented variable.
@@ -105,15 +16,7 @@ class Chart extends BaseModel {
      */
     protected $fillable = [
         'id',
-<<<<<<< HEAD
-<<<<<<< HEAD
         'post_id',
-=======
-        'post_id', 
->>>>>>> 73c0891 (.)
-=======
-        'post_id',
->>>>>>> 5c076b7 (.)
         'post_type',
         'type',
         'width', 'height',
@@ -179,17 +82,7 @@ class Chart extends BaseModel {
         // dddx([$name, $panel->row, $parent->{$name}]);
         // $value = $parent->chart->{$name};
 
-        //if (! $parent instanceof SurveyPdf) { //outside Quae
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //    return $this->attributes[$name] ?? null;
-=======
-        //    return $this->attributes[$name] ?? null; 
->>>>>>> 73c0891 (.)
-=======
-        //    return $this->attributes[$name] ?? null;
->>>>>>> 5c076b7 (.)
-        //}
+        // if (! $parent instanceof SurveyPdf) { //outside Quae
 
         $value = $parent->chart->attributes[$name] ?? null;
 
@@ -233,7 +126,7 @@ class Chart extends BaseModel {
     // ---------- Getter
     public function getColorAttribute(?string $value): ?string {
         if (null !== $value) {
-            //return $value;
+            // return $value;
         }
 
         return (string) $this->getParentStyle('color');

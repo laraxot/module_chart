@@ -192,7 +192,7 @@ trait BarTrait {
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
 
-            $x = 50 + ($delta * ($i)) + ($delta / 3);
+            $x = 50 + ($delta * $i) + ($delta / 3);
 
             $txt->SetPos($x, 25);
 
@@ -298,37 +298,19 @@ trait BarTrait {
         // Create the bar plots
         $colors = explode(',', $this->vars['list_color']);
         $bplot = [];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 73c0891 (.)
-=======
-
-
->>>>>>> 5c076b7 (.)
         foreach ($datay as $k => $v) {
             $tmp = new BarPlot($v);
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetColor('white');
             $tmp->SetFillColor($colors[$k]);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5c076b7 (.)
-            //$tmp->SetLegend("Houses"); //qui gli posso mettere la legenda, ma come?
-            if(isset($this->vars['legend'])){
+            // $tmp->SetLegend("Houses"); //qui gli posso mettere la legenda, ma come?
+            if (isset($this->vars['legend'])) {
                 $str = $this->vars['legend'][$k] ?? '--no set';
                 $tmp->SetLegend($str);
             }
 
-<<<<<<< HEAD
-=======
->>>>>>> 73c0891 (.)
-=======
->>>>>>> 5c076b7 (.)
             $bplot[] = $tmp;
         }
 
@@ -358,24 +340,15 @@ trait BarTrait {
             $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5c076b7 (.)
-        if(isset($this->vars['totali'])){
-            $str = "";
-            foreach($this->vars['totali'] as $k=>$v){
+        if (isset($this->vars['totali'])) {
+            $str = '';
+            foreach ($this->vars['totali'] as $k => $v) {
                 $str .= $k.' '.$v.' - ';
             }
             $graph->footer->center->Set($str);
             $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> 73c0891 (.)
-=======
->>>>>>> 5c076b7 (.)
         // if (isset($this->vars['tot'])) {
         // if (array_key_exists('tot', $this->vars)) {
         // if (! isset($datay[1])) {
@@ -403,7 +376,7 @@ trait BarTrait {
         foreach ($datay1 as $i => $v) {
             $txt = new Text($v.'');
 
-            $x = 50 + ($delta * ($i)) + ($delta / 3);
+            $x = 50 + ($delta * $i) + ($delta / 3);
 
             $txt->SetPos($x, 25);
 
@@ -412,16 +385,6 @@ trait BarTrait {
             $graph->AddText($txt);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 73c0891 (.)
-=======
-
-
->>>>>>> 5c076b7 (.)
         $this->graph = $graph;
 
         return $this;
