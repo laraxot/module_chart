@@ -27,48 +27,19 @@ trait PieTrait {
                     $labels[0] = $this->vars['answer_value_txt'];
                 }
             }
-            // dddx($data);
         }
 
         // A new pie graph
         $graph = new PieGraph($this->width, $this->height, 'auto');
         // $graph = $this->getGraph();
         $graph = $this->applyGraphStyle($graph);
-        // Specify margins since we put the image in the plot area
-        // $graph->SetMargin(1, 1, 1, 1);
-        // $graph->SetMarginColor('navy');
-        // $graph->SetShadow(true);
-        // Setup background
-        // $graph->SetBackgroundImage('worldmap1.jpg', BGIMG_FILLPLOT);
-
-        /*
-        $graph->SetScale('textlin', 0, 65); A plot has an illegal scale. This could for example be that you are trying to use text auto scaling to draw a line plot with only one point or that the plot area is too small. It could also be that no input data value is numeric (perhaps only '-' or 'x')
-        */
-
-        // $graph->legend->SetPos(0.5, 0.97, 'center', 'bottom');
-        // $graph->legend->SetColumns(3);
-
-        // Setup title
-        /*
-        $graph->title->Set('Media Complessiva:');
-        $graph->title->SetFont(FF_ARIAL, FS_BOLD, 14);
-        $graph->title->SetMargin(8); // Add a little bit more margin from the top
-        $graph->subtitle->SetFont(FF_ARIAL, FS_BOLD, 10);
-        $graph->subtitle->Set('(common objects)');
-        */
 
         // Create the pie plot
         $p1 = new PiePlotC($data);
-        // $p1->SetSliceColors(['darkred', 'navy', 'lightblue', 'orange', 'gray', 'teal']);
-        // dddx($this->vars);
         $p1->SetSliceColors(explode(',', $this->vars['list_color']));
 
-        // Set size of pie
-        // $p1->SetSize(0.32);
-        // $p1->SetLegends(['Si (%1.1f%%)', 'No (%1.1f%%)']);
         $p1->SetLegends($labels);
-        // $p1->SetLabels(['Si (%1.1f%%)', 'No (%1.1f%%)']);
-        // $p1->setLabels($labels);
+        $graph->legend->SetPos(0.5,0.98,'center','bottom');
 
         // Enable and set policy for guide-lines. Make labels line up vertically
         $p1->SetGuideLines(true, false);
@@ -80,38 +51,16 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        // dddx($this->vars['mandatory']);
         $mandatory = $this->vars['mandatory'];
         if (is_null($this->vars['mandatory'])) {
             $mandatory = 'null';
         }
 
-        $title = $this->vars['title'];
-
-        $graph->title->Set($title);
+        $graph->title->Set($this->vars['title']);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
-        $subtitle = $this->vars['subtitle'];
-        $graph->subtitle->Set($subtitle);
+ 
+        $graph->subtitle->Set($this->vars['subtitle']);
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
-
-        /*
-        if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-
-            $graph->title->Set($subtitle);
-            $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if ('Y' != $this->vars['mandatory']) {
-                if (isset($this->vars['tot_nulled'])) {
-                    $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
-                    $graph->subtitle->Set($subtitle1);
-                    $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-                }
-            }
-        }
-        */
-
-        // $p1->title->Set('Totale Rispondenti '.$this->vars['tot']);
-        // $p1->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
 
         // Label font and color setup
         $p1->value->SetFont(FF_ARIAL, FS_BOLD, 10);
@@ -125,10 +74,6 @@ trait PieTrait {
         // Set color for mid circle
         $p1->SetMidColor('white');
 
-        // Use percentage values in the legends values (This is also the default)
-        // $p1->scale->hide();
-        // $p1->SetLabelType(PIE_VALUE_PER);
-
         // Add plot to pie graph
         $graph->Add($p1);
 
@@ -138,21 +83,17 @@ trait PieTrait {
     }
 
     public function pieAvg(): self {
+        //$this->vars['subtitle']='nnn';
+        //$this->vars['footer']='media';
         $labels = $this->data->pluck('label')->all();
+
+        $this->vars['footer']='Media: '.round($this->data->avg('value'),2);
 
         $data = $this->data->pluck('value')->all();
         if (isset($this->data->first()['avg'])) {
             $data = $this->data->pluck('avg')->all();
         }
 
-        /*
-        dddx([
-            '$this->data' => $this->data,
-            '$data' => $data,
-            '$this->vars' => $this->vars,
-            '$labels' => $labels,
-        ]);
-        */
         $color_array = explode(',', $this->vars['list_color']);
         if (isset($this->vars['max'])) {
             $sum = collect($data)->sum();
@@ -184,42 +125,19 @@ trait PieTrait {
 
         $p1->SetMidSize(0.8);
 
-        // dddx($this->vars);
-        $title = $this->vars['title'];
-        $graph->title->Set($title);
+        $graph->title->Set($this->vars['title']);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
-        $subtitle = $this->vars['subtitle'];
-        $graph->subtitle->Set($subtitle);
+ 
+        $graph->subtitle->Set($this->vars['subtitle']);
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
-        /* da spostare tutto il limemodelservice
-        if ('' != $this->vars['title']) {
-            $mandatory = $this->vars['mandatory'];
-            if (is_null($this->vars['mandatory'])) {
-                $mandatory = 'null';
-            }
-
-            if (isset($this->vars['tot'])) {
-                $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-
-                $graph->title->Set($subtitle);
-                $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-                if ('Y' != $this->vars['mandatory']) {
-                    if (isset($this->vars['tot_nulled'])) {
-                        $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
-                        $graph->subtitle->Set($subtitle1);
-                        $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-                    }
-                }
-            }
-        }
-         */
-
+        
         $footer_txt = 'Media '.number_format((float) $data[0], 2);
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-        $y = $this->vars['height'] / 2 - 8; // 8 è il font_size
 
+        // posiziona al centro del pie
+        $y = $this->vars['height'] / 2 - 8; // 8 è il font_size
         $graph->footer->SetMargin(0, 0, $y);
 
         // con 0 metto al centro la percentuale
