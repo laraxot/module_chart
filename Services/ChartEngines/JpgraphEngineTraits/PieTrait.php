@@ -39,7 +39,7 @@ trait PieTrait {
         $p1->SetSliceColors(explode(',', $this->vars['list_color']));
 
         $p1->SetLegends($labels);
-        $graph->legend->SetPos(0.5,0.98,'center','bottom');
+        // $graph->legend->SetPos(0.5,0.98,'center','bottom');
 
         // Enable and set policy for guide-lines. Make labels line up vertically
         $p1->SetGuideLines(true, false);

@@ -222,7 +222,7 @@ trait LineTrait {
         //$p2->value->SetMargin(14);
         $p2->SetCenter();
         */
-
+        
         $graph->legend->SetFrameWeight(1);
         $graph->legend->SetColor('#4E4E4E', '#00A78A');
         $graph->legend->SetMarkAbsSize(8);
@@ -233,6 +233,8 @@ trait LineTrait {
         $subtitle = $this->vars['subtitle'];
         $graph->subtitle->Set($subtitle);
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+
+        $graph->footer->center->Set('');
 
         $this->graph = $graph;
 
