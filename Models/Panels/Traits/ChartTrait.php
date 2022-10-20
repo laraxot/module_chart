@@ -81,7 +81,7 @@ trait ChartTrait {
                 'value' => '400',
             ],
             (object) [
-                'type' => 'Boolean',
+                'type' => 'CheckboxBoolean',
                 'name' => 'chart.show_box',
                 'col_size' => 4,
             ],
@@ -135,7 +135,7 @@ trait ChartTrait {
             ],
 
             (object) [
-                'type' => 'Color',
+                'type' => 'SelectColor',
                 'name' => 'chart.color',
                 'comment' => null,
                 'col_size' => 4,
@@ -155,7 +155,7 @@ trait ChartTrait {
                 'col_size' => 4,
             ],
             (object) [
-                'type' => 'Boolean',
+                'type' => 'CheckboxBoolean',
                 'name' => 'chart.yaxis_hide',
                 'comment' => null,
                 'col_size' => 4,
@@ -182,7 +182,7 @@ trait ChartTrait {
             ],
 
             (object) [
-                'type' => 'Boolean',
+                'type' => 'CheckboxBoolean',
                 'name' => 'chart.plot_value_show',
                 'comment' => null,
                 'col_size' => 4,
@@ -195,13 +195,13 @@ trait ChartTrait {
                 'options' => $this->optionsUrlDecode(),
             ],
             (object) [
-                'type' => 'Boolean',
+                'type' => 'CheckboxBoolean',
                 'name' => 'chart.plot_value_pos',
                 'comment' => null,
                 'col_size' => 4,
             ],
             (object) [
-                'type' => 'Color',
+                'type' => 'SelectColor',
                 'name' => 'chart.plot_value_color',
                 'comment' => null,
                 'col_size' => 4,
@@ -291,7 +291,7 @@ trait ChartTrait {
             ],
 
             (object) [
-                'type' => 'Color',
+                'type' => 'ListColor',
                 'name' => 'pdfStyle.color',
                 'comment' => null,
                 'col_size' => 4,
