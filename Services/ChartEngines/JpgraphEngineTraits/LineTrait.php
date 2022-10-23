@@ -81,6 +81,7 @@ trait LineTrait {
             $p[$i]->SetLegend($this->vars['names'][$i]);
             $p[$i]->mark->SetType($marks[$i], '', 1.2);
             $p[$i]->mark->SetColor($colors[$i]);
+            // $p[$i]->mark->SetFillColor($colors[$i].'@0.6'); // trasparenza da 0 a 1
             $p[$i]->mark->SetFillColor($colors[$i]);
             $p[$i]->SetCenter();
         }
@@ -196,6 +197,8 @@ trait LineTrait {
             $p[$i]->SetLegend($names[$i]);
             $p[$i]->mark->SetType($marks[$i], '', 1.2);
             $p[$i]->mark->SetColor($colors[$i]);
+            // dddx($this->vars['transparency']);
+            // $p[$i]->mark->SetFillColor($colors[$i].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
             $p[$i]->mark->SetFillColor($colors[$i]);
             $p[$i]->SetCenter();
         }
@@ -222,7 +225,7 @@ trait LineTrait {
         //$p2->value->SetMargin(14);
         $p2->SetCenter();
         */
-        
+
         $graph->legend->SetFrameWeight(1);
         $graph->legend->SetColor('#4E4E4E', '#00A78A');
         $graph->legend->SetMarkAbsSize(8);

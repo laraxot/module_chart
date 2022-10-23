@@ -303,9 +303,9 @@ trait BarTrait {
             $tmp = new BarPlot($v);
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetColor('white');
-            $tmp->SetFillColor($colors[$k]);
+            $tmp->SetFillColor($colors[$k].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
+            // $tmp->SetFillColor($colors[$k]);
 
-            // $tmp->SetLegend("Houses"); //qui gli posso mettere la legenda, ma come?
             if (isset($this->vars['legend'])) {
                 $str = $this->vars['legend'][$k] ?? '--no set';
                 $tmp->SetLegend($str);

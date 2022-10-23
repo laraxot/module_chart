@@ -59,7 +59,9 @@ trait CommonTrait {
 
     public function applyPlotStyle(BarPlot $plot): BarPlot {
         $style = $this->vars;
-        $plot->SetFillColor($style['color']);
+        // $plot->SetFillColor($style['color']);
+        $plot->SetFillColor($style['color'].'@'.$this->vars['transparency']); // trasparenza, da 0 a 1
+
         // $bplot->SetShadow('darkgreen', 1, 1);
         $plot->SetColor($style['color']);
 
@@ -89,13 +91,13 @@ trait CommonTrait {
         switch ($style['plot_value_format']) {
             case 1:
                 $plot->value->SetFormat('%.1f &#37;');
-              break;
+                break;
             case 2:
                 $plot->value->SetFormat('%.1f');
-              break;
+                break;
             case 3:
                 $plot->value->SetFormat('%.0f');
-              break;
+                break;
             default:
                 $plot->value->SetFormat('%.1f &#37;');
         }

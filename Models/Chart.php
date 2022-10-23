@@ -40,6 +40,8 @@ use Modules\Xot\Services\PanelService;
  * @property string|null $group_by
  * @property string|null $sort_by
  * @property string|null $lang
+ * @property string|null $grace
+ * @property string $transparency
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart newQuery()
@@ -51,6 +53,7 @@ use Modules\Xot\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontFamily($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereFontStyle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGrace($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereGroupBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereId($value)
@@ -65,6 +68,7 @@ use Modules\Xot\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart wherePostType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereShowBox($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereSortBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereTransparency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereUpdatedBy($value)
@@ -106,6 +110,7 @@ class Chart extends BaseModel {
         'plot_value_color',
         'group_by',
         'sort_by',
+        'transparency',
     ];
 
     /**

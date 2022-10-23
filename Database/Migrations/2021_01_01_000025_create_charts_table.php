@@ -110,6 +110,9 @@ class CreateChartsTable extends XotBaseMigration {
                 if (! $this->hasColumn('lang')) {
                     $table->string('lang')->nullable();
                 }
+                if (! $this->hasColumn('transparency')) {
+                    $table->string('transparency')->default(1);
+                }
             }
         );
     }

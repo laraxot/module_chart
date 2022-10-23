@@ -36,7 +36,14 @@ trait PieTrait {
 
         // Create the pie plot
         $p1 = new PiePlotC($data);
-        $p1->SetSliceColors(explode(',', $this->vars['list_color']));
+
+        // $p1->SetSliceColors(explode(',', $this->vars['list_color']));
+        // trasparenza da 0 a 1, inserito per ogni colore
+        $color_array = explode(',', $this->vars['list_color']);
+        foreach ($color_array as $k => $color) {
+            $color_array[$k] = $color.'@'.$this->vars['transparency'];
+        }
+        $p1->SetSliceColors($color_array);
 
         $p1->SetLegends($labels);
         // $graph->legend->SetPos(0.5,0.98,'center','bottom');
@@ -58,7 +65,7 @@ trait PieTrait {
 
         $graph->title->Set($this->vars['title']);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
- 
+
         $graph->subtitle->Set($this->vars['subtitle']);
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
@@ -83,18 +90,17 @@ trait PieTrait {
     }
 
     public function pieAvg(): self {
-        //$this->vars['subtitle']='nnn';
-        //$this->vars['footer']='media';
+        // $this->vars['subtitle']='nnn';
+        // $this->vars['footer']='media';
         $labels = $this->data->pluck('label')->all();
 
-        $this->vars['footer']='Media: '.round($this->data->avg('value'),2);
+        $this->vars['footer'] = 'Media: '.round($this->data->avg('value'), 2);
 
         $data = $this->data->pluck('value')->all();
         if (isset($this->data->first()['avg'])) {
             $data = $this->data->pluck('avg')->all();
         }
 
-        $color_array = explode(',', $this->vars['list_color']);
         if (isset($this->vars['max'])) {
             $sum = collect($data)->sum();
             $other = $this->vars['max'] - $sum;
@@ -115,6 +121,12 @@ trait PieTrait {
         // Create the pie plot
         $p1 = new PiePlotC($data);
         $p1->SetStartAngle(180);
+
+        // trasparenza da 0 a 1, inserito per ogni colore
+        $color_array = explode(',', $this->vars['list_color']);
+        foreach ($color_array as $k => $color) {
+            $color_array[$k] = $color.'@0.6';
+        }
         $p1->SetSliceColors($color_array);
 
         // nasconde i label
@@ -127,11 +139,10 @@ trait PieTrait {
 
         $graph->title->Set($this->vars['title']);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
- 
+
         $graph->subtitle->Set($this->vars['subtitle']);
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
-        
         $footer_txt = 'Media '.number_format((float) $data[0], 2);
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
