@@ -302,7 +302,7 @@ trait BarTrait {
         foreach ($datay as $k => $v) {
             $tmp = new BarPlot($v);
             $tmp = $this->applyPlotStyle($tmp);
-            $tmp->SetColor('white');
+            $tmp->SetColor($colors[$k]);
             $tmp->SetFillColor($colors[$k].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
             // $tmp->SetFillColor($colors[$k]);
 

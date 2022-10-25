@@ -100,6 +100,7 @@ trait ChartTrait {
                     15 => 'FF_ARIAL',
                     16 => 'FF_GEORGIA',
                     17 => 'FF_TREBUCHE',
+                    18 => 'FF_COLIBRI',
                 ],
             ],
 
@@ -153,7 +154,7 @@ trait ChartTrait {
                 'name' => 'chart.transparency',
                 'comment' => null,
                 'col_size' => 4,
-                'rules' => 'required',
+                // 'rules' => 'required',
                 'options' => $this->optionsTransparency(),
             ],
 

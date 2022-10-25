@@ -48,21 +48,6 @@ trait HorizbarTrait {
         $graph->title->Set($title);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
-        /* da spostare in limeModelService
-        if (isset($this->vars['tot'])) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-            if ('Y' != $this->vars['mandatory']) {
-                if (isset($this->vars['tot_nulled'])) {
-                    $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
-                }
-            }
-            $graph->subtitle->Set($subtitle);
-            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
-        }
-        */
-
-        // $this->setTitle('aaaa');
-
         // Setup X-axis
         $graph->xaxis->SetTickLabels($datax) + 10;
 
