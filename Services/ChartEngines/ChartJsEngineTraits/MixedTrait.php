@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
 use Exception;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
 use Modules\Quaeris\Services\LimeModelService;
@@ -20,7 +19,6 @@ trait MixedTrait {
         $mixed = MixedChart::findOrFail($id);
 
         $charts = $mixed->charts()->get(); // ->take(1);
-        
 
         if (0 === $charts->count()) {
             $rows = $mixed->charts();
@@ -39,19 +37,18 @@ trait MixedTrait {
 
             $vars['style_float'] = 'left';
             $vars['style_clear'] = 'none';
-           
+
             $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
 
-           
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),
                 'width' => $vars['width'],
                 'height' => $vars['height'],
             ];
         }
-       
+
         $this->imgs = $imgs;
-       
+
         return $this;
     }
 }

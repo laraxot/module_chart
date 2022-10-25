@@ -22,12 +22,12 @@ $uuid = Str::uuid()->toString();
 
     console.log(uuid);
     //closure per poter ridichiarare poi i let per un altro grafico
-    
+
     var make=function(){
         let rawData = @json($data);
         let rawLabels = @json($labels);
 
-        
+
         let data = {
             labels: rawLabels,
             datasets: [{
@@ -67,6 +67,6 @@ $uuid = Str::uuid()->toString();
         });
     }
     make();
-    
+
     </script>
 @endpush

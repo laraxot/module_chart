@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines;
 
-//use Amenadiel\JpGraph\Graph;
+// use Amenadiel\JpGraph\Graph;
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\BarPlot;
 use Amenadiel\JpGraph\Plot\LinePlot;
@@ -76,10 +76,10 @@ class JpgraphEngine3 {
         // Setup the graph.
 
         $graph = $this->getGraph();
-        //$graph->img->SetMargin(60, 20, 35, 75);
+        // $graph->img->SetMargin(60, 20, 35, 75);
         $graph->SetScale('textlin', 5, 10);
-        //$graph->SetScale('lin', 5, 10);
-        //$graph->SetY2Scale('lin', 0, 10);
+        // $graph->SetScale('lin', 5, 10);
+        // $graph->SetY2Scale('lin', 0, 10);
         $graph->SetY2Scale('int', 5, 10);
         $graph->SetY2OrderBack(false);
 
@@ -90,7 +90,7 @@ class JpgraphEngine3 {
         $graph->SetTheme($theme_class);
 
         // Set up the title for the graph
-        //$graph->title->Set('Bar gradient with left reflection');
+        // $graph->title->Set('Bar gradient with left reflection');
         $graph->title->SetMargin(8);
         $graph->title->SetFont(FF_VERDANA, FS_BOLD, 12);
         $graph->title->SetColor('darkred');
@@ -111,22 +111,22 @@ class JpgraphEngine3 {
         $bplot->SetWidth(0.6);
 
         // Setup color for gradient fill style
-        //$bplot->SetFillGradient('navy:0.9', 'navy:1.85', GRAD_LEFT_REFLECTION);
+        // $bplot->SetFillGradient('navy:0.9', 'navy:1.85', GRAD_LEFT_REFLECTION);
         $bplot->SetFillColor('darkgreen');
 
         // Set color for the frame of each bar
         $bplot->SetColor('white');
 
-        //----------------------------------------------------------------
+        // ----------------------------------------------------------------
         // Setup values
-        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
+        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_example20.5.html
         $bplot->value->Show();
         $bplot->value->setColor('white');
         $bplot->value->setAngle(50);
         $bplot->value->SetFormat('%01.2f');
-        //$bplot->value->SetFont(FF_FONT1, FS_BOLD);
+        // $bplot->value->SetFont(FF_FONT1, FS_BOLD);
         $bplot->value->SetFont(FF_VERDANA, FS_ITALIC);
-        //http://www.digialliance.com/docs/jpgraph/html/exframes/frame_listfontsex1.html
+        // http://www.digialliance.com/docs/jpgraph/html/exframes/frame_listfontsex1.html
         $bplot->value->SetFont(FF_ARIAL, FS_BOLD);
 
         // Center the values in the bar
@@ -134,11 +134,11 @@ class JpgraphEngine3 {
 
         // Make the bar a little bit wider
         $bplot->SetWidth(0.7);
-        //----------------------------------------------------------------
+        // ----------------------------------------------------------------
 
         $graph->Add($bplot);
 
-        //line1
+        // line1
         $data6y = [7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5];
 
         $lplot = new LinePlot($data6y);
@@ -148,7 +148,7 @@ class JpgraphEngine3 {
         $lplot->SetBarCenter();
         $lplot->SetColor('navy');
         $lplot->SetLegend('Riferimento');
-        //$lplot->mark->SetType(MARK_X, '', 1.0);
+        // $lplot->mark->SetType(MARK_X, '', 1.0);
         $lplot->mark->SetWeight(12);
         $lplot->mark->SetWidth(18);
         $lplot->mark->setColor('yellow');
@@ -164,8 +164,6 @@ class JpgraphEngine3 {
         $uband->SetDensity(50); // 50% line density
         $graph->AddBand($uband);
         */
-
-
 
         // Finally send the graph to the browser
         if (File::exists(public_path($this->filename))) {

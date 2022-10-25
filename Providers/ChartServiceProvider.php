@@ -23,7 +23,6 @@ class ChartServiceProvider extends XotBaseServiceProvider {
                 \Modules\Chart\Charts\ExampleBarChart::class,
             ]);
         }*/
-
     }
 
     public function registerCallback(): void {

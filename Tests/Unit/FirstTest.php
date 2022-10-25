@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Chart\Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FirstTest extends TestCase {
     /**
@@ -13,7 +13,6 @@ class FirstTest extends TestCase {
      * @return void
      */
     public function testExample() {
-        
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 }

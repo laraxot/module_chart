@@ -1,7 +1,7 @@
 <script>
     var base_url = '{{ asset('/') }}';
     var lang = '{{ app()->getLocale() }}';
-   
+
     @if (\Request::has('address'))
         var address = "{{ \Request::input('address') }}";
     @endif

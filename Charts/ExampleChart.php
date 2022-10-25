@@ -8,8 +8,6 @@ use Carbon\Carbon;
 use Chartisan\PHP\Chartisan;
 use Fidum\ChartTile\Charts\Chart;
 use Illuminate\Http\Request;
-use Modules\Limesurvey\Models\LimeQuestion;
-use Modules\Quaeris\Services\LimeModelService;
 
 class ExampleChart extends Chart {
     public function handler(Request $request): Chartisan {
@@ -24,7 +22,7 @@ class ExampleChart extends Chart {
 
         return Chartisan::build()
             ->labels($data->pluck('x')->toArray())
-            ->dataset("Test", $data->toArray());
+            ->dataset('Test', $data->toArray());
     }
 
     public function type(): string {

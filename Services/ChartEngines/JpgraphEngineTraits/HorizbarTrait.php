@@ -40,7 +40,7 @@ trait HorizbarTrait {
         // https://jpgraph.net/download/manuals/chunkhtml/ch14s02.html
         // dddx($this->vars['mandatory']);
         $mandatory = $this->vars['mandatory'];
-        if (is_null($this->vars['mandatory'])) {
+        if (null === $this->vars['mandatory']) {
             $mandatory = 'null';
         }
 

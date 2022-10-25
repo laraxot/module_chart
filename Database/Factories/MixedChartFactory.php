@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Modules\Chart\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-
 use Modules\Chart\Models\MixedChart;
 
 class MixedChartFactory extends Factory {
@@ -23,11 +21,9 @@ class MixedChartFactory extends Factory {
      * @return array
      */
     public function definition() {
-       
-
         return [
             'id' => $this->faker->randomNumber(5, false),
-            'name' => $this->faker->name
+            'name' => $this->faker->name,
         ];
     }
 }

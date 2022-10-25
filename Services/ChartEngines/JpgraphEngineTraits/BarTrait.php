@@ -102,7 +102,7 @@ trait BarTrait {
         $lplot->mark->setColor('yellow');
         $lplot->mark->setFillColor('yellow');
 
-        $delta = $this->width / count($datax1);
+        $delta = $this->width / \count($datax1);
         $delta = $delta - 1;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -187,7 +187,7 @@ trait BarTrait {
 
         $graph->Add($bplot);
 
-        $delta = ($this->width - 100) / count($datax1);
+        $delta = ($this->width - 100) / \count($datax1);
         $delta = $delta;
         foreach ($datax1 as $i => $v) {
             $txt = new Text($v.'');
@@ -205,7 +205,7 @@ trait BarTrait {
         }
 
         $avg = round($avg * 1, 2);
-        $tmp = array_fill(0, count($datay) - 1, '-');
+        $tmp = array_fill(0, \count($datay) - 1, '-');
         $tmp = array_merge([$avg], (array) $tmp, [$avg]);
         // dddx($tmp);
 
@@ -274,7 +274,7 @@ trait BarTrait {
             // dddx($datay[0]);
         }
 
-        if (! is_array($datay[0])) {
+        if (! \is_array($datay[0])) {
             $datay = [$datay];
         } else {
             $tmp = [];
@@ -330,7 +330,7 @@ trait BarTrait {
 
         // dddx(get_defined_vars());
 
-        if (count($datay) > 1) {
+        if (\count($datay) > 1) {
             // dddx($this->data->first()['title_type']);
             // dddx($this->vars['title']);
             $title = $this->vars['title'];
@@ -371,7 +371,7 @@ trait BarTrait {
         */
 
         // cifre sopra il grafico
-        $delta = ($this->width - 100) / count($datay1);
+        $delta = ($this->width - 100) / \count($datay1);
         $delta = $delta;
         foreach ($datay1 as $i => $v) {
             $txt = new Text($v.'');

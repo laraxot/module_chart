@@ -7,28 +7,23 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines;
 
-use Exception;
-
-
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Str;
+
 // use Amenadiel\JpGraph\Graph;
 
 /**
  * ---.
  * */
 class ChartJsEngine extends BaseChartEngine {
-    use Traits\ChartEngineTrait;
-
     use ChartJsEngineTraits\BarTrait;
+
     use ChartJsEngineTraits\CommonTrait;
     use ChartJsEngineTraits\HorizbarTrait;
     use ChartJsEngineTraits\LineTrait;
     use ChartJsEngineTraits\MixedTrait;
     use ChartJsEngineTraits\PieTrait;
-    //use ChartJsEngineTraits\TableTrait;
+    use Traits\ChartEngineTrait;
+    // use ChartJsEngineTraits\TableTrait;
 
     public int $width = 250;
     public int $height = 250;
@@ -75,13 +70,12 @@ class ChartJsEngine extends BaseChartEngine {
     }
 
     public function getGraph() {
+        // qui è dove deve costruire il grafico anche per chartjs
+        // $graph = new Graph($this->width, $this->height, 'auto');
 
-        //qui è dove deve costruire il grafico anche per chartjs
-        //$graph = new Graph($this->width, $this->height, 'auto');
+        dddx('getGraph');
 
-        dddx("getGraph");
-
-        //$graph={$this->vars}();
+        // $graph={$this->vars}();
 
         $graph->SetScale('textlin');
         $graph->SetShadow();
@@ -95,7 +89,6 @@ class ChartJsEngine extends BaseChartEngine {
     }
 
     public function save(string $filename): self {
-
         return $this;
     }
 }

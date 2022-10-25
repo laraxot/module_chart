@@ -6,12 +6,10 @@ namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
 use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
 use Modules\Quaeris\Services\LimeModelService;
 use Modules\Xot\Services\FileService;
-
 
 trait MixedTrait {
     public function mixed(string $id): self {
@@ -22,7 +20,6 @@ trait MixedTrait {
 
         $mixed = MixedChart::findOrFail($id);
         $charts = $mixed->charts()->get();
-        
 
         if (0 === $charts->count()) {
             $sql = rowsToSql($mixed->charts());

@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
-use Modules\Chart\Services\ChartJsBuilder;
 use Illuminate\Support\Str;
+use Modules\Chart\Services\ChartJsBuilder;
 
 trait PieTrait {
     public function pie1(): self {
         $uuid = Str::uuid()->toString();
-        $uuid = str_replace('-','',$uuid);
-        $uuid = substr($uuid,-8);
+        $uuid = str_replace('-', '', $uuid);
+        $uuid = substr($uuid, -8);
 
         $datay = $this->data->pluck('value')->all();
         $datax = $this->data->pluck('label')->all();
 
-        $subtitle = 'Totale Rispondenti '.$this->vars['tot']; 
-  
-        $chartjsbuilder=ChartJsBuilder::make();
-  
+        $subtitle = 'Totale Rispondenti '.$this->vars['tot'];
+
+        $chartjsbuilder = ChartJsBuilder::make();
+
         $chartjs = $chartjsbuilder
         ->name('c'.$uuid)
         ->type('pie')
@@ -29,33 +29,33 @@ trait PieTrait {
             [
                 'backgroundColor' => ['#FF6384', '#36A2EB'],
                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
-                'data' => $datay
-            ]
+                'data' => $datay,
+            ],
         ])
         ->options(['responsive' => false,
-        'plugins'=> [
-        'title'=> [
-            'display'=> true,
-            'text'=> $subtitle
-        ]]]);
-  
-        $view='chart::chartjs.example';
-        $view_params=compact('chartjs');
-        $view_params['view']=$view;
+            'plugins' => [
+                'title' => [
+                    'display' => true,
+                    'text' => $subtitle,
+                ], ], ]);
+
+        $view = 'chart::chartjs.example';
+        $view_params = compact('chartjs');
+        $view_params['view'] = $view;
         $view_params['filename'] = 'prova123';
-  
-        //dddx($view_params);
+
+        // dddx($view_params);
         $out = view()->make($view, $view_params);
         $html = $out->render();
-        echo $html; 
-  
+        echo $html;
+
         return $this;
     }
 
     public function pieMonthBarWeekBarNoSi(): self {
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view_params = [
             'view' => $view,
@@ -72,9 +72,9 @@ trait PieTrait {
     }
 
     public function pieMonthBarWeekBar(): self {
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view_params = [
             'view' => $view,
@@ -91,9 +91,7 @@ trait PieTrait {
     }
 
     public function pieAvg(): self {
-
-        //dddx($this);
-       
+        // dddx($this);
 
         $labels = $this->data->pluck('label')->all();
 
@@ -111,16 +109,15 @@ trait PieTrait {
                 }
             }
         }
-        
-        
+
         $uuid = Str::uuid()->toString();
-        $uuid = str_replace('-','',$uuid);
-        $uuid = substr($uuid,-8);
+        $uuid = str_replace('-', '', $uuid);
+        $uuid = substr($uuid, -8);
 
         $datay = $this->data->pluck('value')->all();
         $datax = $this->data->pluck('label')->all();
-  
-        $chartjsbuilder=ChartJsBuilder::make();
+
+        $chartjsbuilder = ChartJsBuilder::make();
 
         // Create the pie plot
         /*$p1 = new PiePlotC($data);
@@ -137,40 +134,40 @@ trait PieTrait {
 
         // dddx($this->vars['mandatory']);
         $mandatory = $this->vars['mandatory'];
-        if (is_null($this->vars['mandatory'])) {
+        if (null === $this->vars['mandatory']) {
             $mandatory = 'null';
         }
 
-       // dddx($this->vars);
+        // dddx($this->vars);
 
-        $subtitle = "";
+        $subtitle = '';
         if (isset($this->vars['tot'])) {
             $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-           
-            //$graph->title->Set($subtitle);
-            //$graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
-            if ('Y' != $this->vars['mandatory']) {
+
+            // $graph->title->Set($subtitle);
+            // $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+            if ('Y' !== $this->vars['mandatory']) {
                 if (isset($this->vars['tot_nulled'])) {
                     $subtitle1 = 'Non rispondenti '.$this->vars['tot_nulled'];
-                    //$graph->subtitle->Set($subtitle1);
-                    //$graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+                    // $graph->subtitle->Set($subtitle1);
+                    // $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
                 }
             }
         }
 
         $footer_txt = 'Media '.number_format((float) $data[0], 2);
 
-        //dddx([$subtitle, $footer_txt]);
-        //$graph->footer->center->Set($footer_txt);
-        //$graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        // dddx([$subtitle, $footer_txt]);
+        // $graph->footer->center->Set($footer_txt);
+        // $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
         $y = $this->vars['height'] / 2 - 8; // 8 è il font_size
 
-        //$graph->footer->SetMargin(0, 0, $y);
+        // $graph->footer->SetMargin(0, 0, $y);
 
         // con 0 metto al centro la percentuale
 
         // Add plot to pie graph
-        //$graph->Add($p1);
+        // $graph->Add($p1);
 
         $chartjs = $chartjsbuilder
         ->name('c'.$uuid)
@@ -181,28 +178,28 @@ trait PieTrait {
             [
                 'backgroundColor' => ['#FF6384', '#36A2EB'],
                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
-                'data' => $datay
-            ]
+                'data' => $datay,
+            ],
         ])
         ->options([
             'responsive' => false,
-            'plugins'=> [
-                'title'=> [
-                    'display'=> true,
-                    'text'=> $footer_txt . ' / ' . $subtitle
-                ]
-            ]
+            'plugins' => [
+                'title' => [
+                    'display' => true,
+                    'text' => $footer_txt.' / '.$subtitle,
+                ],
+            ],
         ]);
-  
-        $view='chart::chartjs.example';
-        $view_params=compact('chartjs');
-        $view_params['view']=$view;
+
+        $view = 'chart::chartjs.example';
+        $view_params = compact('chartjs');
+        $view_params['view'] = $view;
         $view_params['filename'] = 'prova123';
-  
-        //dddx($view_params);
+
+        // dddx($view_params);
         $out = view()->make($view, $view_params);
         $html = $out->render();
-        echo $html; 
+        echo $html;
 
         return $this;
     }

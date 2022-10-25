@@ -9,77 +9,76 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
-use Modules\Chart\Services\ChartJsBuilder;
 use Illuminate\Support\Str;
+use Modules\Chart\Services\ChartJsBuilder;
 
 trait HorizbarTrait {
     /**
      * Undocumented function.
      */
     public function horizbar1(): self {
+        // dddx($this);
 
-      //dddx($this);
+        $uuid = Str::uuid()->toString();
+        $uuid = str_replace('-', '', $uuid);
+        $uuid = substr($uuid, -8);
 
-      $uuid = Str::uuid()->toString();
-      $uuid = str_replace('-','',$uuid);
-      $uuid = substr($uuid,-8);
-            
-      $datay = $this->data->pluck('value')->all();
-      $datax = $this->data->pluck('label')->all();
+        $datay = $this->data->pluck('value')->all();
+        $datax = $this->data->pluck('label')->all();
 
-      $chartjsbuilder=ChartJsBuilder::make();
+        $chartjsbuilder = ChartJsBuilder::make();
 
-      $chartjs = $chartjsbuilder
-      //attenzione: rand andrà sostuito con un id univoco per il canvas
-      //ho provato con uuid ma vedo che non funziona. forse troppo lungo
-      ->name('c'.$uuid)
-      //a seconda del type
-      ->type('bar')
-      ->size(['width' => $this->vars['width'], 'height' => $this->vars['height']])
-      ->labels($datax)
-      ->datasets([
-          [
-              "label" => "Anwers",
-              'backgroundColor' => ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-              'data' => $datay
-          ]
-          ])
-      ->options([
-          'indexAxis'=> 'y',
-          'elements'=> [
-              'bar'=> [
-                  'borderWidth'=> 2
-                  ]
-          ],
-          'responsive'=> false,
-          'plugins'=> [
-              'legend'=> [
-                  'position'=> 'right',
-              ],
-              'title'=> [
-                  'display'=> true,
-                  'text'=> 'Totale Rispondenti: '.$this->vars['tot']
-              ]
-          ]
-      ]);
+        $chartjs = $chartjsbuilder
+        // attenzione: rand andrà sostuito con un id univoco per il canvas
+        // ho provato con uuid ma vedo che non funziona. forse troppo lungo
+        ->name('c'.$uuid)
+        // a seconda del type
+        ->type('bar')
+        ->size(['width' => $this->vars['width'], 'height' => $this->vars['height']])
+        ->labels($datax)
+        ->datasets([
+            [
+                'label' => 'Anwers',
+                'backgroundColor' => ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                'data' => $datay,
+            ],
+        ])
+        ->options([
+            'indexAxis' => 'y',
+            'elements' => [
+                'bar' => [
+                    'borderWidth' => 2,
+                ],
+            ],
+            'responsive' => false,
+            'plugins' => [
+                'legend' => [
+                    'position' => 'right',
+                ],
+                'title' => [
+                    'display' => true,
+                    'text' => 'Totale Rispondenti: '.$this->vars['tot'],
+                ],
+            ],
+        ]);
 
-      //dddx($chartjs);
+        // dddx($chartjs);
 
-      $view='chart::chartjs.example';
-      $view_params=compact('chartjs');
-      $view_params['view']=$view;
-      $view_params['filename'] = 'prova123';
+        $view = 'chart::chartjs.example';
+        $view_params = compact('chartjs');
+        $view_params['view'] = $view;
+        $view_params['filename'] = 'prova123';
 
-      /* echo '<pre>';
-      echo var_export($view_params,true);
-      echo '</pre>'; */
+        /* echo '<pre>';
+        echo var_export($view_params,true);
+        echo '</pre>'; */
 
-      //dddx($view_params);
-      $out = view()->make($view, $view_params);
-      $html = $out->render();
-      echo $html; 
-      //dddx($html);
-      return $this;
+        // dddx($view_params);
+        $out = view()->make($view, $view_params);
+        $html = $out->render();
+        echo $html;
+        // dddx($html);
+        return $this;
     }
 
     public function horizbar1_obj(): self {
@@ -271,9 +270,9 @@ trait HorizbarTrait {
             ],
         ])
         ->optionsRaw($optionsRaw);
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::chartjs.default';
         $view_params = compact('chartjs');
 
@@ -281,7 +280,6 @@ trait HorizbarTrait {
         $html = $out->render();
         echo $html; // se non mostro js non viene elaborato e non salva.. ipotesi phantomJS
 
-        
         return $this;
     }
 }

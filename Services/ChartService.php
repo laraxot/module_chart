@@ -139,7 +139,7 @@ class ChartService {
 
         // dddx([$this->chart_engine->vars['engine_type'],$type_number]);
 
-        if (! is_int($type_number)) {
+        if (! \is_int($type_number)) {
             throw new Exception('config chart.type is not an Integer');
         }
         $this->type_number = $type_number;

@@ -90,7 +90,7 @@ class ChartJsBuilder {
     }
 
     public function type(string $type): self {
-        if (! in_array($type, $this->types)) {
+        if (! \in_array($type, $this->types, true)) {
             throw new \InvalidArgumentException('Invalid Chart type.');
         }
 
@@ -123,13 +123,13 @@ class ChartJsBuilder {
     public function render(): Renderable {
         $chart = $this->charts[$this->name];
 
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::chartjs.template';
         $optionsRaw = isset($chart['optionsRaw']) ? $chart['optionsRaw'] : '';
         $options = isset($chart['options']) ? $chart['options'] : [];
-        if ('' == $optionsRaw) {
+        if ('' === $optionsRaw) {
             $optionsRaw = json_encode($options, JSON_FORCE_OBJECT);
             // $optionsRaw=str_replace(':{"0":{',':{',$optionsRaw);
         }
@@ -147,14 +147,14 @@ class ChartJsBuilder {
         return view()->make($view, $view_params);
     }
 
-    /*
+    /**
      * @return mixed
      *   Method Modules\Chart\Services\ChartJsBuilder::get() is unused.
 
     private function get(string $key) {
         return Arr::get($this->charts[$this->name], $key);
     }
-    */
+     */
 
     /**
      * @param mixed $value

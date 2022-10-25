@@ -26,7 +26,7 @@ class ApiController extends Controller {
         $image_parts = explode(';base64,', $content);
         $image_type_aux = explode('image/', $image_parts[0]);
         $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
+        $image_base64 = base64_decode($image_parts[1], true);
 
         // $content = base64_decode($data['content']);
 

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
-use Modules\Chart\Services\ChartJsBuilder;
 use Illuminate\Support\Str;
+use Modules\Chart\Services\ChartJsBuilder;
 
 trait LineTrait {
     public function line1(): self {
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'chart::chartjs.'.__FUNCTION__;
         $view_params = [
             'view' => $view,
@@ -28,15 +28,14 @@ trait LineTrait {
     }
 
     public function lineSubQuestion(): self {
-
         $uuid = Str::uuid()->toString();
-        $uuid = str_replace('-','',$uuid);
-        $uuid = substr($uuid,-8);
+        $uuid = str_replace('-', '', $uuid);
+        $uuid = substr($uuid, -8);
 
         $names = $this->vars['names'];
         $n = \count($names);
 
-        //$graph = $this->getGraph();
+        // $graph = $this->getGraph();
 
         $datax = $this->data->pluck('label')->all();
         $datay = [];
@@ -53,59 +52,57 @@ trait LineTrait {
         $datay = array_values($datay);
         $names = array_values($names);
 
-        //dddx(['datay'=>$datay,'values'=>$values,'names'=>$names,'datax'=>$datax]);
+        // dddx(['datay'=>$datay,'values'=>$values,'names'=>$names,'datax'=>$datax]);
 
-        $names_length=count($names);
-        $datasets=[];
-        for($i=0;$i<$names_length;$i++){
-            $datasets[]=[
-                "label" => $names[$i],
+        $names_length = \count($names);
+        $datasets = [];
+        for ($i = 0; $i < $names_length; ++$i) {
+            $datasets[] = [
+                'label' => $names[$i],
                 'backgroundColor' => ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-                'data' => $datay[$i]
+                'data' => $datay[$i],
             ];
         }
 
-        $chartjsbuilder=ChartJsBuilder::make();
+        $chartjsbuilder = ChartJsBuilder::make();
 
-      $chartjs = $chartjsbuilder
-      //attenzione: rand andrà sostuito con un id univoco per il canvas
-      //ho provato con uuid ma vedo che non funziona. forse troppo lungo
-      ->name('c'.$uuid)
-      //a seconda del type
-      ->type('line')
-      ->size(['width' => $this->vars['width'], 'height' => $this->vars['height']])
-      ->labels($datax)
-      ->datasets($datasets)
-      ->options([
-          'indexAxis'=> 'x',
-          'elements'=> [
-              'bar'=> [
-                  'borderWidth'=> 2
-                  ]
-          ],
-          'responsive'=> false,
-          'plugins'=> [
-              'legend'=> [
-                  'position'=> 'right',
-              ],
-              'title'=> [
-                  'display'=> true,
-                  'text'=> 'Totale Rispondenti: '.$this->vars['tot']
-              ]
-          ]
-      ]);
+        $chartjs = $chartjsbuilder
+        // attenzione: rand andrà sostuito con un id univoco per il canvas
+        // ho provato con uuid ma vedo che non funziona. forse troppo lungo
+        ->name('c'.$uuid)
+        // a seconda del type
+        ->type('line')
+        ->size(['width' => $this->vars['width'], 'height' => $this->vars['height']])
+        ->labels($datax)
+        ->datasets($datasets)
+        ->options([
+            'indexAxis' => 'x',
+            'elements' => [
+                'bar' => [
+                    'borderWidth' => 2,
+                ],
+            ],
+            'responsive' => false,
+            'plugins' => [
+                'legend' => [
+                    'position' => 'right',
+                ],
+                'title' => [
+                    'display' => true,
+                    'text' => 'Totale Rispondenti: '.$this->vars['tot'],
+                ],
+            ],
+        ]);
 
-      $view='chart::chartjs.example';
-      $view_params=compact('chartjs');
-      $view_params['view']=$view;
-      $view_params['filename'] = 'prova123';
+        $view = 'chart::chartjs.example';
+        $view_params = compact('chartjs');
+        $view_params['view'] = $view;
+        $view_params['filename'] = 'prova123';
 
-      //dddx($view_params);
-      $out = view()->make($view, $view_params);
-      $html = $out->render();
-      echo $html; 
-
-        
+        // dddx($view_params);
+        $out = view()->make($view, $view_params);
+        $html = $out->render();
+        echo $html;
 
         /*$graph->SetScale('textlin');
         $graph->SetBox(false);

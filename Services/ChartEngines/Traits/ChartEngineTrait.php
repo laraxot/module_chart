@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\Traits;
 
-use Modules\Chart\Services\ChartJsBuilder;
 use Illuminate\Support\Collection;
-use Modules\Chart\Contracts\ChartEngineContract;
 use Illuminate\Support\Str;
-
+use Modules\Chart\Contracts\ChartEngineContract;
 
 /**
  * Undocumented trait.
@@ -64,36 +62,35 @@ trait ChartEngineTrait {
      * Undocumented function.
      */
     public function build(): ChartEngineContract {
-
-        if(!method_exists($this,explode(':',$this->vars['type'])[0])){
-            dddx(["metodo non esistente",explode(':',$this->vars['type'])[0]]);
-        }else{
-            //echo $this->vars['type'];
+        if (! method_exists($this, explode(':', $this->vars['type'])[0])) {
+            dddx(['metodo non esistente', explode(':', $this->vars['type'])[0]]);
+        } else {
+            // echo $this->vars['type'];
         }
-            //dddx($this->vars['engine_type']);
-        
-            // dddx([$this->vars['width'], $this->vars['height']]);
-            $this->setWidthHeight((int) $this->vars['width'], (int) $this->vars['height']);
-            // dddx($this->vars['type']);
+        // dddx($this->vars['engine_type']);
 
-            if (Str::startsWith($this->vars['type'], 'mixed')) {
-                $parz = \array_slice(explode(':', $this->vars['type']), 1);
+        // dddx([$this->vars['width'], $this->vars['height']]);
+        $this->setWidthHeight((int) $this->vars['width'], (int) $this->vars['height']);
+        // dddx($this->vars['type']);
 
-                $res = $this->mixed(...$parz);
-            } else {
-                $res = $this->{$this->vars['type']}(); 
-            }
-            if (! isset($this->vars['extras'])) {
-                $this->vars['extras'] = [];
-            }
-            $extras = $this->vars['extras'];
-            foreach ($extras as $extra) {
-                $var = get_object_vars($extra);
-                unset($var['type']);
-                $var = array_values($var);
-                $res = $this->{$extra->type}(...$var);
-            }
-        //dddx($this);
-       return $this;
+        if (Str::startsWith($this->vars['type'], 'mixed')) {
+            $parz = \array_slice(explode(':', $this->vars['type']), 1);
+
+            $res = $this->mixed(...$parz);
+        } else {
+            $res = $this->{$this->vars['type']}();
+        }
+        if (! isset($this->vars['extras'])) {
+            $this->vars['extras'] = [];
+        }
+        $extras = $this->vars['extras'];
+        foreach ($extras as $extra) {
+            $var = get_object_vars($extra);
+            unset($var['type']);
+            $var = array_values($var);
+            $res = $this->{$extra->type}(...$var);
+        }
+        // dddx($this);
+        return $this;
     }
 }

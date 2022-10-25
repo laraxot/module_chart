@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Modules\Chart\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-
 use Modules\Chart\Models\Chart;
 
 class ChartFactory extends Factory {
@@ -23,8 +21,6 @@ class ChartFactory extends Factory {
      * @return array
      */
     public function definition() {
-       
-
         return [
             'id' => $this->faker->randomNumber(5, false),
             'post_id' => $this->faker->randomNumber(5, false),
@@ -50,7 +46,7 @@ class ChartFactory extends Factory {
             'plot_value_pos' => $this->faker->boolean,
             'plot_value_color' => $this->faker->word,
             'group_by' => $this->faker->word,
-            'sort_by' => $this->faker->word
+            'sort_by' => $this->faker->word,
         ];
     }
 }

@@ -59,7 +59,7 @@ trait PieTrait {
         $p1->SetMidSize(0.8);
 
         $mandatory = $this->vars['mandatory'];
-        if (is_null($this->vars['mandatory'])) {
+        if (null === $this->vars['mandatory']) {
             $mandatory = 'null';
         }
 
