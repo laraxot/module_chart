@@ -148,12 +148,13 @@ class ChartJsBuilder {
     }
 
     /**
-     * @return mixed
-     *   Method Modules\Chart\Services\ChartJsBuilder::get() is unused.
-
     private function get(string $key) {
         return Arr::get($this->charts[$this->name], $key);
     }
+     * @param mixed $value
+     *
+     * @return mixed
+     *               Method Modules\Chart\Services\ChartJsBuilder::get() is unused.
      */
 
     /**
