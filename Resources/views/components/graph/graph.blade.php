@@ -1,46 +1,51 @@
 <div>
-    <canvas id="{{ $graph_id }}" width="400" height="400"></canvas>
+    <canvas id="{{ $graph_id }}" width="400" height="400" url="{{ $url }}"
+        type="{{ $type }}"></canvas>
+    @php
+        //  $url = url_queries(['api_token' => \Auth::user()->api_token], $url);
+    @endphp
 </div>
+@pushonce('scripts')
+    <script>
+        class Graph {
+            constructor(id) {
+
+                this.ctx = document.getElementById(id).getContext('2d');
+                this.url = document.getElementById(id).getAttribute('url');
+                this.type = document.getElementById(id).getAttribute('type');
+
+                console.log(id, this);
+
+                this.load();
+            }
+
+            fetchData = async function() {
+                const response = await fetch(this.url);
+                const data = await response.json();
+                return data;
+            }
+
+            load = function() {
+                this.fetchData().then(data => {
+                    const myChart = new Chart(this.ctx, {
+                        type: this.type,
+                        data: data,
+                        options: {
+                            /*scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }*/
+                        }
+                    });
+                });
+            }
+        }
+    </script>
+@endpushonce
+
 @push('scripts')
     <script>
-        const ctx = document.getElementById('{{ $graph_id }}').getContext('2d');
-
-        async function fetchData() {
-            const url = "{{ $url }}";
-
-
-
-            const options = {
-                method: "GET",
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': "application/json",
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), 
-                }
-            }
-            const test = await fetch('/api/intellinet', options);
-
-            const response = await fetch(url, options);
-            const data = await response.json();
-            console.log(data);
-            return data;
-        }
-
-        fetchData().then(data => {
-            //myChart.config.data=data;
-            //myChart.update();
-            const myChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
+        new Graph('{{ $graph_id }}');
     </script>
 @endpush
