@@ -15,6 +15,7 @@ class Base extends Component {
     public array $labels;
     public array $data;
     public string $chartid;
+
     /**
      * Create a new component instance.
      *
@@ -24,8 +25,8 @@ class Base extends Component {
         $this->type = $type;
         $this->labels = $labels;
         $this->data = $data;
-        $this->chartid=$chartid;
-        //dddx([$type, $labels, $data]);
+        $this->chartid = $chartid;
+        // dddx([$type, $labels, $data]);
     }
 
     /**
@@ -39,9 +40,9 @@ class Base extends Component {
 
         $view_params = [
             'view' => $view,
-            'labels'=>$this->labels,
-            'data'=>$this->data,
-            'chartid'=>$this->chartid
+            'labels' => $this->labels,
+            'data' => $this->data,
+            'chartid' => $this->chartid,
         ];
 
         return view()->make($view, $view_params);
