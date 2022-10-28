@@ -17,7 +17,7 @@
                         ];
                     */
 
-        var filename = "{{ $filename }}";
+        //var filename = "{{ $filename }}";
         const labels = {!! json_encode($labels, JSON_INVALID_UTF8_IGNORE) !!};
         const mydata = {!! json_encode($data, JSON_INVALID_UTF8_IGNORE) !!};
 
@@ -25,7 +25,7 @@
         const data = {
             labels: labels,
             datasets: [{
-                label: 'My First Dataset',
+                label: '{{$title}}',
                 //data: [65, 59, 80, 81, 56, 55, 40],
                 data: mydata,
                 /*
@@ -63,7 +63,7 @@
                     }
                 },
                 animation: {
-                    onComplete: function() {
+                    /*onComplete: function() {
                         axios.post('/chart/image/store', {
                                 filename: filename,
                                 content: myChart.toBase64Image()
@@ -74,7 +74,7 @@
                             .catch(err => {
                                 console.log(err)
                             });
-                    }
+                    }*/
                 }
             },
         };

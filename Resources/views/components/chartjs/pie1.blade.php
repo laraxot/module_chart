@@ -15,11 +15,13 @@
         const labels = {!! json_encode($labels, JSON_INVALID_UTF8_IGNORE) !!};
         const mydata = {!! json_encode($data, JSON_INVALID_UTF8_IGNORE) !!};
 
+        //console.log(mydata);
+
         const data = {
             labels: labels,
             datasets: [{
-                label: 'My First Dataset',
-                data: [300, 50, 100],
+                label: '{{$title}}',
+                data: mydata,
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
@@ -35,7 +37,7 @@
             options: {
                 indexAxis: 'y',
                 animation: {
-                    onComplete: function() {
+                    /*onComplete: function() {
                         axios.post('/chart/image/store', {
                                 filename: filename,
                                 content: myChart.toBase64Image()
@@ -46,7 +48,7 @@
                             .catch(err => {
                                 console.log(err)
                             });
-                    }
+                    }*/
                 }
             }
         };

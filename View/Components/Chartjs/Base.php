@@ -21,11 +21,12 @@ class Base extends Component {
      *
      * @return void
      */
-    public function __construct(string $chartid, string $type, array $labels, array $data) {
+    public function __construct(string $chartid, string $type, array $labels, array $data, string $title) {
         $this->type = $type;
         $this->labels = $labels;
         $this->data = $data;
         $this->chartid = $chartid;
+        $this->title = $title;
         // dddx([$type, $labels, $data]);
     }
 
@@ -43,6 +44,7 @@ class Base extends Component {
             'labels' => $this->labels,
             'data' => $this->data,
             'chartid' => $this->chartid,
+            'title' => $this->title,
         ];
 
         return view()->make($view, $view_params);
