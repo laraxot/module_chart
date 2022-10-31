@@ -20,7 +20,10 @@ class Graph extends Component {
 
     public function __construct(string $id, string $url, ?string $type = 'graph') {
         $this->graph_id = $id;
-        $this->url = url_queries(['api_token' => Auth::user()->api_token], $url);
+        $this->url = '#';
+        if(Auth::check()){
+            $this->url = url_queries(['api_token' => Auth::user()->api_token], $url);
+        }
         $this->type = $type;
         $this->colors = config('graph.colors',[]);
     }
