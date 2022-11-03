@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
+use Amenadiel\JpGraph\Plot\AccBarPlot;
 use Amenadiel\JpGraph\Plot\BarPlot;
 use Amenadiel\JpGraph\Plot\GroupBarPlot;
 use Amenadiel\JpGraph\Plot\LinePlot;
@@ -316,6 +317,163 @@ trait BarTrait {
 
         // Create the grouped bar plot
         $gbplot = new GroupBarPlot($bplot);
+        // ...and add it to the graPH
+        $graph->Add($gbplot);
+
+        // dddx($this->vars['tot']);
+        // dddx([count($datay), $labels, $datay, $datay1]);
+        /*
+        if (! isset($datay[0])) {
+            unset($this->vars['tot']);
+            // dddx([$this->vars]);
+        }
+        */
+
+        // dddx(get_defined_vars());
+
+        if (\count($datay) > 1) {
+            // dddx($this->data->first()['title_type']);
+            // dddx($this->vars['title']);
+            $title = $this->vars['title'];
+
+            // $subtitle = 'Totale rispondenti';
+            $graph->title->Set($title);
+            $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        }
+
+        if (isset($this->vars['totali'])) {
+            $str = '';
+            foreach ($this->vars['totali'] as $k => $v) {
+                $str .= $k.' '.$v.' - ';
+            }
+            $graph->footer->center->Set($str);
+            $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        }
+
+        // if (isset($this->vars['tot'])) {
+        // if (array_key_exists('tot', $this->vars)) {
+        // if (! isset($datay[1])) {
+        /*
+        if (count($datay) > 1) {
+            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
+            if ('Y' != $this->vars['mandatory']) {
+                if (isset($this->vars['tot_nulled'])) {
+                    $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
+                }
+            }
+            $graph->subtitle->Set($subtitle);
+            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        } else {
+            dddx($this->vars);
+            $subtitle = 'testo di prova';
+            $graph->subtitle->Set($subtitle);
+            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
+        }
+        */
+
+        // cifre sopra il grafico
+        $delta = ($this->width - 100) / \count($datay1);
+        $delta = $delta;
+        foreach ($datay1 as $i => $v) {
+            $txt = new Text($v.'');
+
+            $x = 50 + ($delta * $i) + ($delta / 3);
+
+            $txt->SetPos($x, 25);
+
+            // dddx($txt);
+
+            $graph->AddText($txt);
+        }
+
+        $this->graph = $graph;
+
+        return $this;
+    }
+
+    public function bar3() {
+        // dddx($this->vars);
+        // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
+        $graph = $this->getGraph();
+        $graph->img->SetMargin(50, 50, 50, 100);
+        $labels = $this->data->pluck('label')->all();
+        $datay = $this->data->pluck('value')->all();
+        $datay1 = $this->data->pluck('value1')->all();
+
+        // nel caso non ci siano risultati
+        // gli do dei dati vuoti per fargli produrre un grafico vuoto
+        if (! isset($datay[0])) {
+            // dddx($datay1);
+            // dddx('errore');
+            $datay1 = [0 => 0];
+            $datay[0] = [0 => 0];
+            $datay[1] = [1 => 0];
+            // dddx($datay[0]);
+        }
+
+        if (! \is_array($datay[0])) {
+            $datay = [$datay];
+        } else {
+            $tmp = [];
+            foreach ($datay as $arr) {
+                foreach ($arr as $k => $v) {
+                    $tmp[$k][] = $v;
+                }
+            }
+            $datay = $tmp;
+        }
+        // dddx(array_flip($datay));
+
+        $graph->ygrid->SetFill(false);
+        $graph->xaxis->SetTickLabels($labels);
+        $graph->xaxis->SetLabelAngle($this->vars['x_label_angle']);
+        $graph->yaxis->HideLine(false);
+        $graph->yaxis->HideTicks(false, false);
+
+        $graph->yscale->ticks->SupressZeroLabel(false);
+
+        // Create the bar plots
+        $colors = explode(',', $this->vars['list_color']);
+
+        // dddx([$datay, $datay1, $labels]);
+
+        // Create the bar plots
+        // nel grafico, la colonna è la somma delle variabili
+        // $data1y = [1200, 800, 1900, 300, 1000, 500];
+        // $data2y = [800, 200, 1100, 700, 1400, 400];
+        // $data3y = [700, 100, 1000, 600, 2000, 300];
+
+        // dddx($colors);
+        $bplot = [];
+        foreach ($datay as $k => $v) {
+            $tmp = new BarPlot($v);
+            $tmp = $this->applyPlotStyle($tmp);
+            $tmp->SetColor($colors[$k]);
+            $tmp->SetFillColor($colors[$k].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
+
+            if (isset($this->vars['legend'])) {
+                $str = $this->vars['legend'][$k] ?? '--no set';
+                $tmp->SetLegend($str);
+            }
+
+            $bplot[] = $tmp;
+        }
+
+        // $b1plot = new BarPlot($data1y);
+        // $b1plot->SetFillColor('orange');
+        // $b2plot = new BarPlot($data2y);
+        // $b2plot->SetFillColor('blue');
+        // $b3plot = new BarPlot($data3y);
+        // $b3plot->SetFillColor('green');
+
+        // Create the grouped bar plot
+        $gbplot = new AccBarPlot($bplot);
+
+        // // ...and add it to the graPH
+        // $graph->Add($gbplot);
+
+        // // Create the grouped bar plot
+        // $gbplot = new GroupBarPlot($bplot);
         // ...and add it to the graPH
         $graph->Add($gbplot);
 
