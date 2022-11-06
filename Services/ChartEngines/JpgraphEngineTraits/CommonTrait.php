@@ -7,6 +7,7 @@ namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 use Amenadiel\JpGraph\Graph\Axis;
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\BarPlot;
+use Illuminate\Support\Str;
 
 /**
  * Undocumented trait.
@@ -64,7 +65,7 @@ trait CommonTrait {
 
         // $bplot->SetShadow('darkgreen', 1, 1);
         // dddx([get_defined_vars(), $this->vars]);
-        
+
         $plot->SetColor($style['color']);
 
         // You can change the width of the bars if you like
@@ -116,28 +117,27 @@ trait CommonTrait {
     }
 
     public function applyPlotStyle(BarPlot $plot): BarPlot {
-        // dddx($this->data[5]['color']);
+        // dddx($this);
         $style = $this->vars;
         // $plot->SetFillColor(['red','red','red','red','red', 'green']);
 
         $colors = [];
+        // dddx(collect($this->vars['chart_type']));
 
-           
-        foreach($this->data as $k => $data){
-            
-            if($this->data[$k]['label'] == 'NR'){
-
-                $list_color = explode(',', $this->vars['list_color']);
-                $colors[$k] = $list_color[0].'@'.$this->vars['transparency'];
-            }else{
-                $colors[$k] = $style['color'].'@'.$this->vars['transparency'];
+        foreach ($this->data as $k => $data) {
+            if (Str::contains($this->vars['chart_type'], 'horiz')) {
+                if ('NR' == $this->data[$k]['label']) {
+                    $list_color = explode(',', $this->vars['list_color']);
+                    $colors[$k] = $list_color[0].'@'.$this->vars['transparency'];
+                } else {
+                    $colors[$k] = $style['color'].'@'.$this->vars['transparency'];
+                }
+            } else {
+                $colors = $style['color'].'@'.$this->vars['transparency'];
             }
         }
 
         $plot->SetFillColor($colors); // trasparenza, da 0 a 1
-
-        
-
 
         // $plot->SetFillColor($this->data[5]['color'].'@'.$this->vars['transparency']); // trasparenza, da 0 a 1
 
