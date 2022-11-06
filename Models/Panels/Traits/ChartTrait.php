@@ -19,6 +19,7 @@ trait ChartTrait {
             'pieAvg' => 'torta con media',
             'horizbar1' => 'barre orizzontali',
             'horizbar2' => 'barre orizzontali accumulata',
+            // 'horizbar3' => 'barre orizzontali con NR differente',
             'bar2' => 'barre verticali',
             'bar3' => 'barre verticali accumulata',
             'bar1' => 'bar1',

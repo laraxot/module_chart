@@ -547,4 +547,5 @@ trait BarTrait {
 
         return $this;
     }
+
 }

@@ -57,12 +57,93 @@ trait CommonTrait {
         $yaxis->HideTicks(false, false);
     }
 
-    public function applyPlotStyle(BarPlot $plot): BarPlot {
+    public function applyPlotStyle_old(BarPlot $plot): BarPlot {
         $style = $this->vars;
         // $plot->SetFillColor($style['color']);
         $plot->SetFillColor($style['color'].'@'.$this->vars['transparency']); // trasparenza, da 0 a 1
 
         // $bplot->SetShadow('darkgreen', 1, 1);
+        // dddx([get_defined_vars(), $this->vars]);
+        
+        $plot->SetColor($style['color']);
+
+        // You can change the width of the bars if you like
+        $plot->SetWidth($style['plot_perc_width'] / 100);
+        // $bplot->SetWidth(0.5);
+
+        // We want to display the value of each bar at the top
+        // se tolto non mostra i valori
+        if (null === $style['plot_value_show'] || 0 === $style['plot_value_show']) {
+            $plot->value->Show();
+        }
+
+        $plot->value->SetFont($style['font_family'], $style['font_style'], $style['font_size']);
+
+        $plot->value->SetAlign('left', 'center');
+        // colore del font che scrivi
+        if (null !== $style['plot_value_color']) {
+            $plot->value->SetColor($style['plot_value_color']);
+        } else {
+            $plot->value->SetColor('black', 'darkred');
+        }
+
+        // visualizza il risultato con % oppure no
+        // $plot->value->SetFormat('%.2f &#37;');
+        // 2f significa 2 cifre decimali, 1f solo una cifra decimale
+        switch ($style['plot_value_format']) {
+            case 1:
+                $plot->value->SetFormat('%.1f &#37;');
+                break;
+            case 2:
+                $plot->value->SetFormat('%.1f');
+                break;
+            case 3:
+                $plot->value->SetFormat('%.0f');
+                break;
+            default:
+                $plot->value->SetFormat('%.1f &#37;');
+        }
+
+        // Center the values in the bar
+        if (null === $style['plot_value_pos'] || 0 === $style['plot_value_pos']) {
+            $plot->SetValuePos('center');
+        }
+
+        $plot->value->setAngle($style['x_label_angle']);
+        // $plot->value->setAngle(50);
+
+        return $plot;
+    }
+
+    public function applyPlotStyle(BarPlot $plot): BarPlot {
+        // dddx($this->data[5]['color']);
+        $style = $this->vars;
+        // $plot->SetFillColor(['red','red','red','red','red', 'green']);
+
+        $colors = [];
+
+           
+        foreach($this->data as $k => $data){
+            
+            if($this->data[$k]['label'] == 'NR'){
+
+                $list_color = explode(',', $this->vars['list_color']);
+                $colors[$k] = $list_color[0].'@'.$this->vars['transparency'];
+            }else{
+                $colors[$k] = $style['color'].'@'.$this->vars['transparency'];
+            }
+        }
+
+        $plot->SetFillColor($colors); // trasparenza, da 0 a 1
+
+        
+
+
+        // $plot->SetFillColor($this->data[5]['color'].'@'.$this->vars['transparency']); // trasparenza, da 0 a 1
+
+        // $bplot->SetShadow('darkgreen', 1, 1);
+        // dddx([get_defined_vars(), $this->vars]);
+
         $plot->SetColor($style['color']);
 
         // You can change the width of the bars if you like
