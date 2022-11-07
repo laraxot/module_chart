@@ -391,6 +391,7 @@ trait BarTrait {
         return $this;
     }
 
+    // barre verticali accumulate
     public function bar3() {
         // dddx($this->vars);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
@@ -507,45 +508,51 @@ trait BarTrait {
             $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
         }
 
-        // if (isset($this->vars['tot'])) {
-        // if (array_key_exists('tot', $this->vars)) {
-        // if (! isset($datay[1])) {
-        /*
-        if (count($datay) > 1) {
-            $subtitle = 'Totale Rispondenti '.$this->vars['tot']; // .' - ('.$mandatory.')';
-            if ('Y' != $this->vars['mandatory']) {
-                if (isset($this->vars['tot_nulled'])) {
-                    $subtitle .= ' Non rispondenti '.$this->vars['tot_nulled'];
-                }
-            }
-            $graph->subtitle->Set($subtitle);
-            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
-        } else {
-            dddx($this->vars);
-            $subtitle = 'testo di prova';
-            $graph->subtitle->Set($subtitle);
-            $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
-        }
-        */
-
         // cifre sopra il grafico
         $delta = ($this->width - 100) / \count($datay1);
         $delta = $delta;
-        foreach ($datay1 as $i => $v) {
-            $txt = new Text($v.'');
 
-            $x = 50 + ($delta * $i) + ($delta / 3);
+        if (is_array($datay1)) {
+            foreach ($datay1 as $i => $v) {
+                $txt = new Text($v[0].'');
+                $x = 50 + ($delta * $i) + ($delta / 3);
+                // $txt->SetPos($x, 25);
+                $txt->SetPos($x, 20);
+                $graph->AddText($txt);
 
-            $txt->SetPos($x, 25);
+                $txt2 = new Text($v[1]);
+                $txt2->SetPos($x, 35);
+                $graph->AddText($txt2);
+            }
+        } else {
+            foreach ($datay1 as $i => $v) {
+                $txt = new Text($v.'');
 
-            // dddx($txt);
+                $x = 50 + ($delta * $i) + ($delta / 3);
 
-            $graph->AddText($txt);
+                $txt->SetPos($x, 25);
+
+                $graph->AddText($txt);
+            }
         }
+
+        // foreach ($datay1 as $i => $v) {
+        //     $txt = new Text($v.'');
+
+        //     $x = 50 + ($delta * $i) + ($delta / 3);
+
+        //     $txt->SetPos($x, 25);
+        //     // $txt->SetPos($x, 20);
+
+        //     $graph->AddText($txt);
+
+        //     // $txt2 = new Text('aaa');
+        //     // $txt2->SetPos($x, 35);
+        //     // $graph->AddText($txt2);
+        // }
 
         $this->graph = $graph;
 
         return $this;
     }
-
 }
