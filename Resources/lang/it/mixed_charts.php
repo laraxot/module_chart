@@ -6,5 +6,8 @@ return [
     'tab' => [
         'index' => 'Lista',
         'create' => 'Aggiungi',
+        'charts' => [
+            'label' => 'Lista Grafici',
+        ],
     ],
 ];

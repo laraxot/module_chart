@@ -81,7 +81,7 @@ trait ChartTrait {
                 'name' => 'chart.height',
                 'col_size' => 4,
                 'rules' => 'required',
-                'value' => '400',
+                // 'value' => '400',
             ],
             (object) [
                 'type' => 'CheckboxBoolean',
