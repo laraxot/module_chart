@@ -478,6 +478,12 @@ trait BarTrait {
         // ...and add it to the graPH
         $graph->Add($gbplot);
 
+        // $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
+        // $graph->subtitle->Set('The Subtitle');
+        // $graph->subtitle->Setcolor('#0060A0');
+        // // $graph->subsubtitle->SetFont(FF_ARIAL, FS_BOLD, 9);
+        // $graph->subsubtitle->Set('The Subsubitle');
+
         // dddx($this->vars['tot']);
         // dddx([count($datay), $labels, $datay, $datay1]);
         /*
@@ -517,10 +523,12 @@ trait BarTrait {
                 $txt = new Text($v[0].'');
                 $x = 50 + ($delta * $i) + ($delta / 3);
                 // $txt->SetPos($x, 25);
+                // $txt->SetPos($x, $this->height - 60);
                 $txt->SetPos($x, 20);
                 $graph->AddText($txt);
 
                 $txt2 = new Text($v[1]);
+                // $txt2->SetPos($x, $this->height - 40);
                 $txt2->SetPos($x, 35);
                 $graph->AddText($txt2);
             }
