@@ -46,10 +46,10 @@ trait CommonTrait {
         // all the way to the end of the plot area
         // "restringe" la visualizzazione delle barre
         $yaxis->scale->SetGrace($style['y_grace']);
-
+        // dddx($style['yaxis_hide']);
         // We don't want to display Y-axis
         // visualizza delle colonne verticali "in sottofondo/di riferimento"
-        if (null === $style['yaxis_hide'] || 0 === $style['yaxis_hide']) {
+        if (null == $style['yaxis_hide'] || 0 == $style['yaxis_hide']) {
             $yaxis->Hide();
         }
 
@@ -74,7 +74,7 @@ trait CommonTrait {
 
         // We want to display the value of each bar at the top
         // se tolto non mostra i valori
-        if (null === $style['plot_value_show'] || 0 === $style['plot_value_show']) {
+        if (null == $style['plot_value_show'] || 0 == $style['plot_value_show']) {
             $plot->value->Show();
         }
 
@@ -106,7 +106,7 @@ trait CommonTrait {
         }
 
         // Center the values in the bar
-        if (null === $style['plot_value_pos'] || 0 === $style['plot_value_pos']) {
+        if (null == $style['plot_value_pos'] || 0 == $style['plot_value_pos']) {
             $plot->SetValuePos('center');
         }
 
@@ -152,7 +152,7 @@ trait CommonTrait {
 
         // We want to display the value of each bar at the top
         // se tolto non mostra i valori
-        if (null === $style['plot_value_show'] || 0 === $style['plot_value_show']) {
+        if (null == $style['plot_value_show'] || 0 == $style['plot_value_show']) {
             $plot->value->Show();
         }
 
@@ -184,7 +184,7 @@ trait CommonTrait {
         }
 
         // Center the values in the bar
-        if (null === $style['plot_value_pos'] || 0 === $style['plot_value_pos']) {
+        if (null == $style['plot_value_pos'] || 0 == $style['plot_value_pos']) {
             $plot->SetValuePos('center');
         }
 

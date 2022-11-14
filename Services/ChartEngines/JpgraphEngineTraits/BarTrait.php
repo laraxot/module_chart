@@ -393,7 +393,6 @@ trait BarTrait {
 
     // barre verticali accumulate
     public function bar3() {
-        // dddx($this->vars);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         $graph = $this->getGraph();
         $graph->img->SetMargin(50, 50, 50, 100);
