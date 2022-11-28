@@ -148,7 +148,7 @@ trait CommonTrait {
 
         // You can change the width of the bars if you like
         $plot->SetWidth($style['plot_perc_width'] / 100);
-        // $bplot->SetWidth(0.5);
+        // $plot->SetWidth(10);
 
         // We want to display the value of each bar at the top
         // se tolto non mostra i valori

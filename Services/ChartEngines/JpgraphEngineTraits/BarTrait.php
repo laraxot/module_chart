@@ -448,11 +448,12 @@ trait BarTrait {
         $value_pos = ['bottom', 'top'];
         foreach ($datay as $k => $v) {
             $tmp = new BarPlot($v);
+            
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetValuePos($value_pos[$k]);
             $tmp->SetColor($colors[$k]);
             $tmp->SetFillColor($colors[$k].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
-
+            // $tmp->SetWidth(50);
             if (isset($this->vars['legend'])) {
                 $str = $this->vars['legend'][$k] ?? '--no set';
                 $tmp->SetLegend($str);
@@ -470,7 +471,7 @@ trait BarTrait {
 
         // Create the grouped bar plot
         $gbplot = new AccBarPlot($bplot);
-
+        $gbplot->SetWidth($this->vars['plot_perc_width'] / 100);
         // // ...and add it to the graPH
         // $graph->Add($gbplot);
 
@@ -524,12 +525,12 @@ trait BarTrait {
                 $txt = new Text($v[0].'');
                 $x = 50 + ($delta * $i) + ($delta / 3);
                 // $txt->SetPos($x, 25);
-                // $txt->SetPos($x, $this->height - 60);
+                // $txt->SetPos($x, $this->height - 75);
                 $txt->SetPos($x, 20);
                 $graph->AddText($txt);
 
                 $txt2 = new Text($v[1]);
-                // $txt2->SetPos($x, $this->height - 40);
+                // $txt2->SetPos($x, $this->height - 58);
                 $txt2->SetPos($x, 35);
                 $graph->AddText($txt2);
             }
@@ -559,6 +560,8 @@ trait BarTrait {
         //     // $txt2->SetPos($x, 35);
         //     // $graph->AddText($txt2);
         // }
+
+        // $graph->legend->Pos(0.36,0.9);
 
         $this->graph = $graph;
 

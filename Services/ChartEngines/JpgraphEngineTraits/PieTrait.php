@@ -20,15 +20,17 @@ trait PieTrait {
         if (isset($this->vars['max'])) {
             $sum = collect($data)->sum();
             $other = $this->vars['max'] - $sum;
+            // dddx([$sum, $other, $this->vars['max']]);
             if ($other > 0.01) {
                 $data[] = $other;
                 $labels[] = $this->vars['answer_value_no_txt'];
+                
                 if (2 === \count($labels) && \strlen($labels[0]) < 3) {
                     $labels[0] = $this->vars['answer_value_txt'];
                 }
             }
         }
-
+        // dddx([$data, $other, $labels]);
         // A new pie graph
         $graph = new PieGraph($this->width, $this->height, 'auto');
         // $graph = $this->getGraph();
