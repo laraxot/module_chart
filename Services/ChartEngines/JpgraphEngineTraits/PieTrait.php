@@ -24,7 +24,7 @@ trait PieTrait {
             if ($other > 0.01) {
                 $data[] = $other;
                 $labels[] = $this->vars['answer_value_no_txt'];
-                
+
                 if (2 === \count($labels) && \strlen($labels[0]) < 3) {
                     $labels[0] = $this->vars['answer_value_txt'];
                 }
@@ -58,7 +58,8 @@ trait PieTrait {
         $p1->SetLabelType(PIE_VALUE_PER);
         $p1->value->Show();
 
-        $p1->SetMidSize(0.8);
+        // $p1->SetMidSize(0.8);
+        $p1->SetMidSize($this->vars['plot_perc_width'] / 100);
 
         $mandatory = $this->vars['mandatory'];
         if (null === $this->vars['mandatory']) {
@@ -137,7 +138,8 @@ trait PieTrait {
         // Set color for mid circle
         $p1->SetMidColor('white');
 
-        $p1->SetMidSize(0.8);
+        // $p1->SetMidSize(0.8);
+        $p1->SetMidSize($this->vars['plot_perc_width'] / 100);
 
         $graph->title->Set($this->vars['title']);
         $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
