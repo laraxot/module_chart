@@ -1,3 +1,12 @@
+---
+title: About Chart
+description: About Chart
+extends: _layouts.documentation
+section: content
+---
+
+# About Chart {#about-chart}
+
 Il modulo "module_chart" è un pacchetto per Laravel che fornisce funzionalità per la creazione di grafici all'interno di un'applicazione Laravel. Il modulo utilizza il framework JavaScript Chart.js per generare i grafici, e include metodi per creare facilmente i grafici e personalizzare le loro proprietà.
 
 Per utilizzare il modulo, è necessario installarlo tramite Composer con il comando composer require laraxot/module_chart. Una volta installato, il modulo può essere utilizzato nell'applicazione Laravel tramite il seguente codice:
