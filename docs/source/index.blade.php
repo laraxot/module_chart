@@ -10,9 +10,9 @@
 
             <p class="text-lg">Give your documentation a boost with Jigsaw. <br class="hidden sm:block">Generate elegant, static docs quickly and easily.</p>
             ----------------
-             Url: {{ url('/') }}
+            <br/>Url: {{ url('/') }}
             @foreach ($docs  as $doc)            
-                <h2><a href="{{ $doc->getPath() }}">{{ $doc->title }}</a></h2>
+                <h2><a href="{{ url($doc->getPath()) }}">{{ $doc->title }}</a></h2>
             @endforeach
             ------------------
 
