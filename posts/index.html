@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="Beautiful docs powered by Jigsaw">
+
+        <meta property="og:site_name" content="Docs Starter Template"/>
+        <meta property="og:title" content="Docs Starter Template"/>
+        <meta property="og:description" content="Beautiful docs powered by Jigsaw"/>
+        <meta property="og:url" content="https://jigsaw-docs-template.tighten.co/posts"/>
+        <meta property="og:image" content="/assets/img/logo.png"/>
+        <meta property="og:type" content="website"/>
+
+        <meta name="twitter:image:alt" content="Docs Starter Template">
+        <meta name="twitter:card" content="summary_large_image">
+
+        
+        <title>Docs Starter Template</title>
+
+        <link rel="home" href="https://jigsaw-docs-template.tighten.co">
+        <link rel="icon" href="/favicon.ico">
+
+        
+                    <!-- Insert analytics code here -->
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=12c10017fa91ec9c02002a68f599828c">
+
+            </head>
+
+    <body class="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 leading-normal font-sans">
+        <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
+            <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
+                <div class="flex items-center">
+                    <a href="/" title="Docs Starter Template home" class="inline-flex items-center">
+                        <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="Docs Starter Template logo" />
+
+                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Docs Starter Template</h1>
+                    </a>
+                </div>
+
+                <div class="flex flex-1 justify-end items-center text-right md:pl-10">
+                                    </div>
+            </div>
+
+                    </header>
+
+        <main role="main" class="w-full flex-auto">
+                <h1>Blog Posts</h1>
+    
+            <h2><a href="/it/posts/algolia-docsearch">Algolia DocSearch</a></h2>
+        <h3>By </h3>
+        &lt;h1 id=&quot;algolia-docsearch&quot;&gt;Algolia DocSearch&lt;/h1&gt;
+
+&lt;p&gt;This starter template includes support for &lt;a href=&quot;https://community.algolia.com/docsearch/&quot;&gt;DocSearch&lt;/a&gt;, a documentation indexing and search tool provided by Algolia for free. To configure this tool, you’ll need to sign up with Algolia and set your API Key and index name in &lt;code&gt;config.php&lt;/code&gt;. Algolia will then crawl your documentation regularly, and index all your content.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://community.algolia.com/docsearch/#join-docsearch-program&quot;&gt;Get your DocSearch credentials here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// config.php
+return [
+    &#039;docsearchApiKey&#039; =&amp;gt; &#039;&#039;,
+    &#039;docsearchIndexName&#039; =&amp;gt; &#039;&#039;,
+];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once the &lt;code&gt;docsearchApiKey&lt;/code&gt; and &lt;code&gt;docsearchIndexName&lt;/code&gt; values are set in &lt;code&gt;config.php&lt;/code&gt;, the search field at the top of the page is ready to use.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;block m-auto&quot; src=&quot;/assets/img/docsearch.png&quot; alt=&quot;Screenshot of search results&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To help Algolia index your pages correctly, it&#039;s good practice to add a unique &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;name&lt;/code&gt; attribute to each heading tag (&lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;h2&amp;gt;&lt;/code&gt;, etc.). By doing so, a user will be taken directly to the appropriate section of the page when they click a search result.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;algolia-adding-custom-styles&quot;&gt;Adding Custom Styles&lt;/h2&gt;
+
+&lt;p&gt;If you&#039;d like to customize the styling of the search results, Algolia exposes custom CSS classes that you can modify:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;/* Main dropdown wrapper */
+.algolia-autocomplete .ds-dropdown-menu {
+  width: 500px;
+}
+
+/* Main category (eg. Getting Started) */
+.algolia-autocomplete .algolia-docsearch-suggestion--category-header {
+  color: darkgray;
+  border: 1px solid gray;
+}
+
+/* Category (eg. Downloads) */
+.algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+  color: gray;
+}
+
+/* Title (eg. Bootstrap CDN) */
+.algolia-autocomplete .algolia-docsearch-suggestion--title {
+  font-weight: bold;
+  color: black;
+}
+
+/* Description description (eg. Bootstrap currently works...) */
+.algolia-autocomplete .algolia-docsearch-suggestion--text {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+/* Highlighted text */
+.algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+  color: blue;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;For more details, visit the &lt;a href=&quot;https://community.algolia.com/docsearch/what-is-docsearch.html&quot;&gt;official Algolia DocSearch documentation.&lt;/a&gt;&lt;/p&gt;
+
+            <h2><a href="/it/posts/first-blog-post">My First Post</a></h2>
+        <h3>By Keith Damiani</h3>
+        &lt;h2&gt;This is my &lt;em&gt;very first&lt;/em&gt; blog post, and it&#039;s a brilliant one!&lt;/h2&gt;
+
+            <h2><a href="/it/posts/my-first-blog-post">My First Blog Post</a></h2>
+        <h3>By </h3>
+        &lt;p&gt;This is my blog post.&lt;/p&gt;
+
+&lt;h2&gt;Here is a heading 2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;here&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;is&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;a&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;list&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Even a blockqute&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.laravel-news.com/&quot;&gt;And a link&lt;/a&gt;&lt;/p&gt;
+
+            </main>
+
+        <script src="/assets/build/js/main.js?id=73af017f2129fa41a4b5f03922c4c99d"></script>
+
+        
+        <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
+            <ul class="flex flex-col md:flex-row justify-center">
+                <li class="md:mr-2">
+                    &copy; <a href="https://tighten.co" title="Tighten website">Tighten</a> 2022.
+                </li>
+
+                <li>
+                    Built with <a href="http://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
+                    and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>
