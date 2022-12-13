@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'baseUrl' => 'https://jigsaw-docs-template.tighten.co',
+    'baseUrl' => 'https://laraxot.github.io/module_chart',
     'production' => true,
 
     // DocSearch credentials
