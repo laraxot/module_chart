@@ -13,9 +13,11 @@
             <br/>Url: {{ url('/') }}
             @foreach ($docs  as $doc)            
                 <h2><a href="{{ url($doc->getPath()) }}">{{ $doc->title }}</a>
+                    {{--  
                     <br/>getPath: {{ $doc->getPath()  }}
                     <br/>url getPath: {{ url($doc->getPath()) }}
                     <br/>doc url: {{ $doc->url('/') }}
+                    --}}
                 </h2>
             @endforeach
             ------------------

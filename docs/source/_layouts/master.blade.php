@@ -6,12 +6,12 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="{{ $page->description ?? $page->siteDescription }}">
 
-        <meta property="og:site_name" content="{{ $page->siteName }}"/>
-        <meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}"/>
-        <meta property="og:description" content="{{ $page->description ?? $page->siteDescription }}"/>
-        <meta property="og:url" content="{{ $page->getUrl() }}"/>
-        <meta property="og:image" content="/assets/img/logo.png"/>
-        <meta property="og:type" content="website"/>
+        <meta property="og:site_name" content="{{ $page->siteName }}" />
+        <meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}" />
+        <meta property="og:description" content="{{ $page->description ?? $page->siteDescription }}" />
+        <meta property="og:url" content="{{ $page->getUrl() }}" />
+        <meta property="og:image" content="{{ url('/assets/img/logo.png') }}" />
+        <meta property="og:type" content="website" />
 
         <meta name="twitter:image:alt" content="{{ $page->siteName }}">
         <meta name="twitter:card" content="summary_large_image">
