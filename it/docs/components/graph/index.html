@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Installazione Automatizzata">
+        <meta name="description" content="Graph">
 
         <meta property="og:site_name" content="Modulo Chart" />
-        <meta property="og:title" content="Installazione Automatizzata | Modulo Chart" />
-        <meta property="og:description" content="Installazione Automatizzata" />
-        <meta property="og:url" content="https://laraxot.github.io/module_chart/it/docs/installazione" />
+        <meta property="og:title" content="Graph | Modulo Chart" />
+        <meta property="og:description" content="Graph" />
+        <meta property="og:url" content="https://laraxot.github.io/module_chart/it/docs/components/graph" />
         <meta property="og:image" content="https://laraxot.github.io/module_chart/assets/img/logo.png" />
         <meta property="og:type" content="website" />
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Modulo Chart | Installazione Automatizzata</title>
+        <title>Modulo Chart | Graph</title>
 
         <link rel="home" href="https://laraxot.github.io/module_chart">
         <link rel="icon" href="https://laraxot.github.io/module_chart/favicon.ico">
@@ -90,7 +90,7 @@
             <li class="pl-4">
             
         <a href="https://laraxot.github.io/module_chart/it/docs/installazione"
-            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+            class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Installazione
         </a>
@@ -171,7 +171,7 @@
             <li class="pl-4">
             
         <a href="https://laraxot.github.io/module_chart/it/docs/components/graph"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Graph
         </a>
@@ -213,16 +213,34 @@
         </nav>
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="installazione">Installazione</h1>
+            <h1 id="graph">Graph</h1>
 
-<p>Un'applicazione Laravel fresca è il modo ideale per iniziare con questo pacchetto.</p>
+<p>Nome Componente:</p>
 
-<p>Per installare il bacchetto basta mettere il seguente comando nella linea di comando:</p>
-
-<pre><code class="language-console">composer require laraxot/module_chart
-
-php artisan module_chart:install
+<pre><code class="language-php">x-graph
 </code></pre>
+
+<p>Parametri:</p>
+
+<pre><code class="language-php">string $id
+string $url
+?string $type = 'graph' (solo graph per ora)
+</code></pre>
+
+<p>Esempio:</p>
+
+<pre><code class="language-php">&lt;x-graph
+id="1"
+url=""
+type = "graph"
+&gt;
+
+&lt;/x-graph&gt;
+</code></pre>
+
+<p>e ti restituisce il grafico fatto in Chartjs corrispondente.</p>
+
+<p>Per altre informazioni leggere documentazione <a href="https://www.chartjs.org/docs/latest/">ChartJs</a>.</p>
         </div>
     </div>
 </section>

@@ -78,6 +78,37 @@
         <h3>By </h3>
         &lt;h1 id=&quot;base&quot;&gt;Base&lt;/h1&gt;
 
+&lt;p&gt;Nome Componente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;x-chartjs.base 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Parametri:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;string $chartid 
+string $type (base)
+array $labels
+array $data
+string $title
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;&amp;lt;x-chartjs.base 
+chartId=&quot;1&quot; 
+type=&quot;base&quot; 
+:labels=&quot;[&#039;day 1&#039;,&#039;day 2&#039;,&#039;day 3&#039;]&quot; 
+:data=[4,2,1] 
+title=&quot;Valori Giornalieri&quot;
+&amp;gt;
+
+&amp;lt;/x-chartjs.base&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;e ti restituisce il grafico fatto in Chartjs corrispondente.&lt;/p&gt;
+
+&lt;p&gt;Per altre informazioni leggere documentazione &lt;a href=&quot;https://www.chartjs.org/docs/latest/&quot;&gt;ChartJs&lt;/a&gt;.&lt;/p&gt;
+
             <h2><a href="/it/docs/advanced/echarts">Echarts</a></h2>
         <h3>By </h3>
         &lt;h1 id=&quot;echarts&quot;&gt;Echarts&lt;/h1&gt;
@@ -134,6 +165,37 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In questo modo, puoi utilizzare Echarts con Laravel e Apache per creare un grafico e visualizzare i dati. Tuttavia, questo è solo un semplice esempio e puoi personalizzare il codice per soddisfare le tue esigenze specifiche.&lt;/p&gt;
+
+            <h2><a href="/it/docs/components/graph">Graph</a></h2>
+        <h3>By </h3>
+        &lt;h1 id=&quot;graph&quot;&gt;Graph&lt;/h1&gt;
+
+&lt;p&gt;Nome Componente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;x-graph
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Parametri:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;string $id
+string $url
+?string $type = &#039;graph&#039; (solo graph per ora)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;&amp;lt;x-graph
+id=&quot;1&quot;
+url=&quot;&quot;
+type = &quot;graph&quot;
+&amp;gt;
+
+&amp;lt;/x-graph&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;e ti restituisce il grafico fatto in Chartjs corrispondente.&lt;/p&gt;
+
+&lt;p&gt;Per altre informazioni leggere documentazione &lt;a href=&quot;https://www.chartjs.org/docs/latest/&quot;&gt;ChartJs&lt;/a&gt;.&lt;/p&gt;
 
             <h2><a href="/it/docs/installazione">Installazione Automatizzata</a></h2>
         <h3>By </h3>

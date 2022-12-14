@@ -168,6 +168,15 @@
     </li>
     </ul>
     </li>
+            <li class="pl-4">
+            
+        <a href="https://laraxot.github.io/module_chart/it/docs/components/graph"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            Graph
+        </a>
+    
+    </li>
     </ul>
     </li>
             <li class="pl-4">
@@ -205,6 +214,37 @@
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1 id="base">Base</h1>
+
+<p>Nome Componente:</p>
+
+<pre><code class="language-php">x-chartjs.base 
+</code></pre>
+
+<p>Parametri:</p>
+
+<pre><code class="language-php">string $chartid 
+string $type (base)
+array $labels
+array $data
+string $title
+</code></pre>
+
+<p>Esempio:</p>
+
+<pre><code class="language-php">&lt;x-chartjs.base 
+chartId="1" 
+type="base" 
+:labels="['day 1','day 2','day 3']" 
+:data=[4,2,1] 
+title="Valori Giornalieri"
+&gt;
+
+&lt;/x-chartjs.base&gt;
+</code></pre>
+
+<p>e ti restituisce il grafico fatto in Chartjs corrispondente.</p>
+
+<p>Per altre informazioni leggere documentazione <a href="https://www.chartjs.org/docs/latest/">ChartJs</a>.</p>
         </div>
     </div>
 </section>
