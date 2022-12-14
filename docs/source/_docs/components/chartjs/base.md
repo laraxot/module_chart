@@ -7,3 +7,36 @@ path: it/docs/components/chartjs
 ---
 
 # Base {#base}
+
+Nome Componente:
+```php
+x-chartjs.base 
+```
+
+Parametri:
+
+```php
+string $chartid 
+string $type (base)
+array $labels
+array $data
+string $title
+```
+
+Esempio:
+
+```php
+<x-chartjs.base 
+chartId="1" 
+type="base" 
+:labels="['day 1','day 2','day 3']" 
+:data=[4,2,1] 
+title="Valori Giornalieri"
+>
+
+</x-chartjs.base>
+```
+
+e ti restituisce il grafico fatto in Chartjs corrispondente.
+
+Per altre informazioni leggere documentazione [ChartJs](https://www.chartjs.org/docs/latest/).

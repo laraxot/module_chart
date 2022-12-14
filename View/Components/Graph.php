@@ -21,18 +21,18 @@ class Graph extends Component {
     public function __construct(string $id, string $url, ?string $type = 'graph') {
         $this->graph_id = $id;
         $this->url = '#';
-        if(Auth::check()){
+        if (Auth::check()) {
             $this->url = url_queries(['api_token' => Auth::user()->api_token], $url);
         }
         $this->type = $type;
-        $this->colors = config('graph.colors',[]);
+        $this->colors = config('graph.colors', []);
     }
 
     public function render(): Renderable {
         /**
          * @phpstan-var view-string
          */
-        $view = 'chart::components.graph.graph';
+        $view = 'chart::components.graph.'.$this->type;
 
         $view_params = [];
 

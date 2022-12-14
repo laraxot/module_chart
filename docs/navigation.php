@@ -51,6 +51,9 @@ return [
                     ],
                 ],
             ],
+            'Graph' => [
+                'url' => 'docs/components/graph',
+            ],
         ],
         'Componenti 2' => [
             'url' => 'docs/components/',
