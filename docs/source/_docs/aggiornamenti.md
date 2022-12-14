@@ -26,5 +26,5 @@ Infine, se si sono pubblicati il file di configurazione o i modelli Blade, assic
 È possibile utilizzare il comando Artisan incorporato per visualizzare le versioni installate dei pacchetti:
 
 ```console
-php artisan splade:show-versions
+php artisan module_chart:show-versions
 ```
