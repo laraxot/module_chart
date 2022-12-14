@@ -8,6 +8,8 @@ path: it/docs/components
 
 # Graph {#graph}
 
+Scarica via API un grafico in Chartjs in formato Json da un Url e lo visualizza
+
 Nome Componente:
 ```php
 x-graph
@@ -26,13 +28,11 @@ Esempio:
 ```php
 <x-graph
 id="1"
-url=""
+url="http://site.xx/chartjs/1"
 type = "graph"
 >
 
 </x-graph>
 ```
-
-e ti restituisce il grafico fatto in Chartjs corrispondente.
 
 Per altre informazioni leggere documentazione [ChartJs](https://www.chartjs.org/docs/latest/).

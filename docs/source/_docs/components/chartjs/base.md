@@ -8,6 +8,8 @@ path: it/docs/components/chartjs
 
 # Base {#base}
 
+Crea un grafico in Chartjs
+
 Nome Componente:
 ```php
 x-chartjs.base 
@@ -36,7 +38,5 @@ title="Valori Giornalieri"
 
 </x-chartjs.base>
 ```
-
-e ti restituisce il grafico fatto in Chartjs corrispondente.
 
 Per altre informazioni leggere documentazione [ChartJs](https://www.chartjs.org/docs/latest/).
