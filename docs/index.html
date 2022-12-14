@@ -4,20 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Beautiful docs powered by Jigsaw">
+        <meta name="description" content="Modulo Chart">
 
-        <meta property="og:site_name" content="Docs Starter Template" />
-        <meta property="og:title" content="Docs Starter Template" />
-        <meta property="og:description" content="Beautiful docs powered by Jigsaw" />
+        <meta property="og:site_name" content="Modulo Chart" />
+        <meta property="og:title" content="Modulo Chart" />
+        <meta property="og:description" content="Modulo Chart" />
         <meta property="og:url" content="https://laraxot.github.io/module_chart/docs" />
         <meta property="og:image" content="https://laraxot.github.io/module_chart/assets/img/logo.png" />
         <meta property="og:type" content="website" />
 
-        <meta name="twitter:image:alt" content="Docs Starter Template">
+        <meta name="twitter:image:alt" content="Modulo Chart">
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Docs Starter Template</title>
+        <title>Modulo Chart</title>
 
         <link rel="home" href="https://laraxot.github.io/module_chart">
         <link rel="icon" href="https://laraxot.github.io/module_chart/favicon.ico">
@@ -26,7 +26,7 @@
                     <!-- Insert analytics code here -->
         
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
-        <link rel="stylesheet" href="https://laraxot.github.io/module_chart/assets/build/css/main.css?id=12c10017fa91ec9c02002a68f599828c">
+        <link rel="stylesheet" href="https://laraxot.github.io/module_chart/assets/build/css/main.css?id=2a2535c432c92639df3dfdf3441781ef">
 
             </head>
 
@@ -34,10 +34,10 @@
         <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
             <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
                 <div class="flex items-center">
-                    <a href="https://laraxot.github.io/module_chart/" title="Docs Starter Template home" class="inline-flex items-center">
-                        <img class="h-8 md:h-10 mr-3" src="https://laraxot.github.io/module_chart/assets/img/logo.svg" alt="Docs Starter Template logo" />
+                    <a href="https://laraxot.github.io/module_chart/" title="Modulo Chart home" class="inline-flex items-center">
+                        <img class="h-8 md:h-10 mr-3" src="https://laraxot.github.io/module_chart/assets/img/logo.svg" alt="Modulo Chart logo" />
 
-                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Docs Starter Template</h1>
+                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Modulo Chart</h1>
                     </a>
                 </div>
 
@@ -50,226 +50,65 @@
         <main role="main" class="w-full flex-auto">
                 <h1>Doc Posts</h1>
     
-            <h2><a href="/it/docs/about">About Chart</a></h2>
+            <h2><a href="/it/docs/aggiornamenti">Aggiornamenti</a></h2>
         <h3>By </h3>
-        &lt;h1 id=&quot;about-chart&quot;&gt;About Chart&lt;/h1&gt;
+        &lt;h1 id=&quot;aggiornamenti&quot;&gt;Aggiornamenti&lt;/h1&gt;
 
-&lt;p&gt;Il modulo &quot;module_chart&quot; è un pacchetto per Laravel che fornisce funzionalità per la creazione di grafici all&#039;interno di un&#039;applicazione Laravel. Il modulo utilizza il framework JavaScript Chart.js per generare i grafici, e include metodi per creare facilmente i grafici e personalizzare le loro proprietà.&lt;/p&gt;
+&lt;p&gt;Chart consiste in un pacchetto PHP.&lt;/p&gt;
 
-&lt;p&gt;Per utilizzare il modulo, è necessario installarlo tramite Composer con il comando composer require laraxot/module_chart. Una volta installato, il modulo può essere utilizzato nell&#039;applicazione Laravel tramite il seguente codice:&lt;/p&gt;
+&lt;p&gt;Quindi per aggiornare basta dare il comando in console:&lt;/p&gt;
 
-&lt;p&gt;Copy code
-use Laraxot\ModuleChart\Facades\ModuleChart;
-Il modulo include diverse funzionalità per la creazione dei grafici, come ad esempio il metodo create() per creare un nuovo grafico, o il metodo setType() per impostare il tipo di grafico da utilizzare (ad esempio linea, barra, torta, ecc.).&lt;/p&gt;
+&lt;p&gt;composer update laraxot/module_chart&lt;/p&gt;
 
-&lt;p&gt;Per utilizzare il modulo, è necessario prima configurare l&#039;applicazione per supportare le funzionalità dei grafici. La configurazione può essere eseguita tramite il comando Artisan php artisan chart:install, che aggiungerà il provider e il facade per l&#039;utilizzo del modulo all&#039;applicazione, e caricherà i file JavaScript di Chart.js nell&#039;applicazione.&lt;/p&gt;
+&lt;p&gt;Assicurarsi di cancellare la cache delle viste di Laravel dopo l&#039;aggiornamento:&lt;/p&gt;
 
-&lt;p&gt;Una volta configurato il modulo, è possibile utilizzarlo per creare i grafici e personalizzarne le proprietà. Ad esempio, per creare un nuovo grafico di tipo linea e impostarne le proprietà, è possibile utilizzare il seguente codice:&lt;/p&gt;
-
-&lt;p&gt;Copy code
-$chart = ModuleChart::create();
-$chart-&gt;setType(&#039;line&#039;);
-$chart-&gt;setLabels([&#039;Gennaio&#039;, &#039;Febbraio&#039;, &#039;Marzo&#039;]);
-$chart-&gt;addDataset(&#039;Vendite&#039;, [100, 200, 300]);
-$chart-&gt;addDataset(&#039;Acquisti&#039;, [50, 100, 150]);
-Il codice precedente creerà un nuovo grafico di tipo linea con due serie di dati (vendite e acquisti) e tre punti per ogni serie. È possibile personalizzare ulteriormente il grafico impostando altre proprietà, come ad esempio i colori da utilizzare per le serie di dati o le etichette per l&#039;asse X e Y.&lt;/p&gt;
-
-&lt;p&gt;Una volta creato il grafico, è possibile utilizzare il metodo render() per generare il codice HTML del grafico e inserirlo nella vista blade dell&#039;applicazione:&lt;/p&gt;
-
-&lt;p&gt;Copy code
-{!! $chart-&gt;render() !!}
-Per ulteriori informazioni su come utilizzare il modulo e su tutte le sue funzionalità, consultare la documentazione disponibile nel repository su GitHub.&lt;/p&gt;
-
-            <h2><a href="/it/docs/algolia-docsearch">Algolia DocSearch</a></h2>
-        <h3>By </h3>
-        &lt;h1 id=&quot;algolia-docsearch&quot;&gt;Algolia DocSearch&lt;/h1&gt;
-
-&lt;p&gt;This starter template includes support for &lt;a href=&quot;https://community.algolia.com/docsearch/&quot;&gt;DocSearch&lt;/a&gt;, a documentation indexing and search tool provided by Algolia for free. To configure this tool, you’ll need to sign up with Algolia and set your API Key and index name in &lt;code&gt;config.php&lt;/code&gt;. Algolia will then crawl your documentation regularly, and index all your content.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://community.algolia.com/docsearch/#join-docsearch-program&quot;&gt;Get your DocSearch credentials here.&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// config.php
-return [
-    &#039;docsearchApiKey&#039; =&amp;gt; &#039;&#039;,
-    &#039;docsearchIndexName&#039; =&amp;gt; &#039;&#039;,
-];
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;php artisan view:clear
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Once the &lt;code&gt;docsearchApiKey&lt;/code&gt; and &lt;code&gt;docsearchIndexName&lt;/code&gt; values are set in &lt;code&gt;config.php&lt;/code&gt;, the search field at the top of the page is ready to use.&lt;/p&gt;
+&lt;p&gt;Infine, se si sono pubblicati il file di configurazione o i modelli Blade, assicurarsi che le personalizzazioni siano aggiornate con i valori predefiniti.&lt;/p&gt;
 
-&lt;p&gt;&lt;img class=&quot;block m-auto&quot; src=&quot;/assets/img/docsearch.png&quot; alt=&quot;Screenshot of search results&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Verifica dei pacchetti installati&lt;/h3&gt;
 
-&lt;p&gt;To help Algolia index your pages correctly, it&#039;s good practice to add a unique &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;name&lt;/code&gt; attribute to each heading tag (&lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;h2&amp;gt;&lt;/code&gt;, etc.). By doing so, a user will be taken directly to the appropriate section of the page when they click a search result.&lt;/p&gt;
+&lt;p&gt;È possibile utilizzare il comando Artisan incorporato per visualizzare le versioni installate dei pacchetti:&lt;/p&gt;
 
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;algolia-adding-custom-styles&quot;&gt;Adding Custom Styles&lt;/h2&gt;
-
-&lt;p&gt;If you&#039;d like to customize the styling of the search results, Algolia exposes custom CSS classes that you can modify:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;/* Main dropdown wrapper */
-.algolia-autocomplete .ds-dropdown-menu {
-  width: 500px;
-}
-
-/* Main category (eg. Getting Started) */
-.algolia-autocomplete .algolia-docsearch-suggestion--category-header {
-  color: darkgray;
-  border: 1px solid gray;
-}
-
-/* Category (eg. Downloads) */
-.algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
-  color: gray;
-}
-
-/* Title (eg. Bootstrap CDN) */
-.algolia-autocomplete .algolia-docsearch-suggestion--title {
-  font-weight: bold;
-  color: black;
-}
-
-/* Description description (eg. Bootstrap currently works...) */
-.algolia-autocomplete .algolia-docsearch-suggestion--text {
-  font-size: 0.8rem;
-  color: gray;
-}
-
-/* Highlighted text */
-.algolia-autocomplete .algolia-docsearch-suggestion--highlight {
-  color: blue;
-}
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;php artisan splade:show-versions
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr /&gt;
-
-&lt;p&gt;For more details, visit the &lt;a href=&quot;https://community.algolia.com/docsearch/what-is-docsearch.html&quot;&gt;official Algolia DocSearch documentation.&lt;/a&gt;&lt;/p&gt;
-
-            <h2><a href="/it/docs/custom-404-page">Custom 404 Page</a></h2>
+            <h2><a href="/it/docs/components/chartjs/base">Base</a></h2>
         <h3>By </h3>
-        &lt;h1 id=&quot;custom-404-page&quot;&gt;Custom 404 Page&lt;/h1&gt;
+        &lt;h1 id=&quot;base&quot;&gt;Base&lt;/h1&gt;
 
-&lt;p&gt;This starter template includes a custom &lt;strong&gt;404 Not Found&lt;/strong&gt; error page, located at &lt;code&gt;/source/404.blade.php&lt;/code&gt;. &lt;a href=&quot;/404&quot;&gt;To preview the 404 page&lt;/a&gt;, you can visit &lt;code&gt;/404&lt;/code&gt; in your browser.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- source/404.blade.php --&amp;gt;
-@extends(&#039;_layouts.master&#039;)
-
-@section(&#039;body&#039;)
-&amp;lt;div class=&quot;flex flex-col items-center mt-32 text-gray-700&quot;&amp;gt;
-    &amp;lt;h1 class=&quot;text-6xl leading-none mb-2&quot;&amp;gt;404&amp;lt;/h1&amp;gt;
-    &amp;lt;h2 class=&quot;text-3xl&quot;&amp;gt;Page not found&amp;lt;/h2&amp;gt;
-
-    &amp;lt;hr class=&quot;block w-full max-w-lg mx-auto my-8 border&quot;&amp;gt;
-
-    &amp;lt;p class=&quot;text-xl&quot;&amp;gt;Need to update this page? See the &amp;lt;a title=&quot;404 Page Documentation&quot; href=&quot;/docs/404&quot;&amp;gt; documentation here&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-@endsection
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Depending on where your site is hosted, you may need to configure your server to use the custom 404 page. For more details, visit the &lt;a href=&quot;https://jigsaw.tighten.co/docs/custom-404-page/&quot;&gt;Jigsaw documentation about configuring a custom 404 page.&lt;/a&gt;&lt;/p&gt;
-
-            <h2><a href="/it/docs/customizing-your-site">Customizing Your Site</a></h2>
+            <h2><a href="/it/docs/advanced/echarts">Echarts</a></h2>
         <h3>By </h3>
-        &lt;h1 id=&quot;customizing&quot;&gt;Customizing Your Site&lt;/h1&gt;
+        &lt;h1 id=&quot;echarts&quot;&gt;Echarts&lt;/h1&gt;
 
-&lt;h2&gt;Styles&lt;/h2&gt;
-
-&lt;p&gt;This starter template comes pre-loaded with &lt;a href=&quot;https://tailwindcss.com&quot;&gt;Tailwind CSS&lt;/a&gt;, a utility CSS framework that allows you to customize and build complex designs without touching a line of CSS. There are also a few base Sass files in the &lt;code&gt;/source/_assets/sass&lt;/code&gt; folder, set up with the expectation that you can add any custom CSS into &lt;code&gt;_documentation.scss&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;You can re-work the architecture of the Sass includes any way you’d like; just make sure to keep the &lt;code&gt;@tailwind&lt;/code&gt; references in your final files.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scss&quot;&gt;// source/_assets/sass/main.scss
-
-@tailwind preflight;
-@tailwind components;
-
-// Code syntax highlighting,
-// powered by https://highlightjs.org
-@import &#039;~highlight.js/styles/a11y-light.css&#039;;
-
-@import &#039;base&#039;;
-@import &#039;navigation&#039;;
-@import &#039;documentation&#039;;
-
-@tailwind utilities;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;customizing-typography&quot;&gt;Typography Styles&lt;/h2&gt;
-
-&lt;p&gt;Here’s a quick preview of what some of the basic type styles will look like in this starter template:&lt;/p&gt;
-
-&lt;div class=&quot;example pt-6&quot;&gt;
-
-&lt;h1&gt;h1 Heading&lt;/h1&gt;
-
-&lt;h2&gt;h2 Heading&lt;/h2&gt;
-
-&lt;h3&gt;h3 Heading&lt;/h3&gt;
-
-&lt;h4&gt;h4 Heading&lt;/h4&gt;
-
-&lt;h5&gt;h5 Heading&lt;/h5&gt;
-
-&lt;h6&gt;h6 Heading&lt;/h6&gt;
-
-&lt;p&gt;The quick brown fox jumps over the lazy dog&lt;/p&gt;
-
-&lt;p&gt;&lt;s&gt;The quick brown fox jumps over the lazy dog&lt;/s&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;u&gt;The quick brown fox jumps over the lazy dog&lt;/u&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;The quick brown fox jumps over the lazy dog&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The quick brown fox jumps over the lazy dog&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;The quick brown fox jumps over the lazy dog&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;small&gt;The quick brown fox jumps over the lazy dog&lt;/small&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The quick brown fox jumps over the lazy dog&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&quot;#&quot;&gt;The quick brown fox jumps over the lazy dog&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;class Foo extends bar
-{
-    public function fooBar()
-    {
-        //
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-            <h2><a href=""></a></h2>
-        <h3>By </h3>
-        &lt;p&gt;Echarts è una libreria JavaScript open-source per la creazione di grafici e visualizzazioni dei dati. Può essere utilizzata con Laravel, un framework PHP per lo sviluppo di applicazioni web, e Apache, un server web open-source.&lt;/p&gt;
+&lt;p&gt;Echarts è una libreria JavaScript open-source per la creazione di grafici e visualizzazioni dei dati. Può essere utilizzata con Laravel, un framework PHP per lo sviluppo di applicazioni web, e Apache, un server web open-source.&lt;/p&gt;
 
 &lt;p&gt;Per utilizzare Echarts con Laravel e Apache, dovrai prima installare e configurare Laravel e Apache sul tuo computer. Una volta fatto ciò, puoi seguire i seguenti passaggi:&lt;/p&gt;
 
-&lt;p&gt;Installa Echarts utilizzando il gestore dei pacchetti npm:
-Copy code
-npm install echarts --save
-Importa Echarts nel tuo file JavaScript utilizzando il seguente codice:
-Copy code
-import echarts from &#039;echarts&#039;;
-Crea un nuovo grafico utilizzando il seguente codice:
-Copy code
-let myChart = echarts.init(document.getElementById(&#039;myChart&#039;));
-Definire i dati per il grafico utilizzando il seguente codice:
-Copy code
-let data = [120, 200, 150, 80, 70, 110, 130];
-Definire le opzioni per il grafico utilizzando il seguente codice:
-Copy code
-let options = {
+&lt;p&gt;Installa Echarts utilizzando il gestore dei pacchetti npm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;npm install echarts --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Importa Echarts nel tuo file JavaScript utilizzando il seguente codice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;import echarts from &#039;echarts&#039;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Crea un nuovo grafico utilizzando il seguente codice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;let myChart = echarts.init(document.getElementById(&#039;myChart&#039;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Definire i dati per il grafico utilizzando il seguente codice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;let data = [120, 200, 150, 80, 70, 110, 130];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Definire le opzioni per il grafico utilizzando il seguente codice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;let options = {
     xAxis: {
         type: &#039;category&#039;,
         data: [&#039;Mon&#039;, &#039;Tue&#039;, &#039;Wed&#039;, &#039;Thu&#039;, &#039;Fri&#039;, &#039;Sat&#039;, &#039;Sun&#039;]
@@ -282,118 +121,49 @@ let options = {
         type: &#039;line&#039;
     }]
 };
-Imposta le opzioni per il grafico utilizzando il seguente codice:
-Copy code
-myChart.setOption(options);
-Mostra il grafico utilizzando il seguente codice:
-Copy code
-myChart.showLoading();
-In questo modo, puoi utilizzare Echarts con Laravel e Apache per creare un grafico e visualizzare i dati. Tuttavia, questo è solo un semplice esempio e puoi personalizzare il codice per soddisfare le tue esigenze specifiche.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-            <h2><a href="/it/docs/first-blog-doc">My First Doc</a></h2>
-        <h3>By Keith Damiani</h3>
-        &lt;h2&gt;This is my &lt;em&gt;very first&lt;/em&gt; blog post, and it&#039;s a brilliant one!&lt;/h2&gt;
+&lt;p&gt;Imposta le opzioni per il grafico utilizzando il seguente codice:&lt;/p&gt;
 
-            <h2><a href="/it/docs/getting-started">Getting Started</a></h2>
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;myChart.setOption(options);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mostra il grafico utilizzando il seguente codice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;myChart.showLoading();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In questo modo, puoi utilizzare Echarts con Laravel e Apache per creare un grafico e visualizzare i dati. Tuttavia, questo è solo un semplice esempio e puoi personalizzare il codice per soddisfare le tue esigenze specifiche.&lt;/p&gt;
+
+            <h2><a href="/it/docs/installazione">Installazione Automatizzata</a></h2>
         <h3>By </h3>
-        &lt;h1 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h1&gt;
+        &lt;h1 id=&quot;installazione&quot;&gt;Installazione&lt;/h1&gt;
 
-&lt;p&gt;This is a starter template for creating a beautiful, customizable documentation site for your project with minimal effort. You’ll only have to change a few settings and you’re ready to go.&lt;/p&gt;
+&lt;p&gt;Un&#039;applicazione Laravel fresca è il modo ideale per iniziare con questo pacchetto.&lt;/p&gt;
 
-&lt;h2 id=&quot;getting-started-configuration&quot;&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;Per installare il bacchetto basta mettere il seguente comando nella linea di comando:&lt;/p&gt;
 
-&lt;p&gt;As with all Jigsaw sites, configuration settings can be found in &lt;code&gt;config.php&lt;/code&gt;; you can update the variables in that file with settings specific to your project. You can also add new configuration variables there to use across your site; take a look at the &lt;a href=&quot;http://jigsaw.tighten.co/docs/site-variables/&quot;&gt;Jigsaw documentation&lt;/a&gt; to learn more.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;composer require laraxot/module_chart
 
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// config.php
-return [
-    &#039;baseUrl&#039; =&amp;gt; &#039;https://my-awesome-jigsaw-site.com/&#039;,
-    &#039;production&#039; =&amp;gt; false,
-    &#039;siteName&#039; =&amp;gt; &#039;My Site&#039;,
-    &#039;siteDescription&#039; =&amp;gt; &#039;Give your documentation a boost with Jigsaw.&#039;,
-    &#039;docsearchApiKey&#039; =&amp;gt; &#039;&#039;,
-    &#039;docsearchIndexName&#039; =&amp;gt; &#039;&#039;,
-    &#039;navigation&#039; =&amp;gt; require_once(&#039;navigation.php&#039;),
-];
+php artisan module_chart:install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Tip: This configuration file is also where you’ll define any &quot;collections&quot; (for example, a collection of the contributors to your site, or a collection of blog posts). Check out the official &lt;a href=&quot;https://jigsaw.tighten.co/docs/collections/&quot;&gt;Jigsaw documentation&lt;/a&gt; to learn more.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;getting-started-adding-content&quot;&gt;Adding Content&lt;/h3&gt;
-
-&lt;p&gt;You can write your content using a &lt;a href=&quot;http://jigsaw.tighten.co/docs/content-other-file-types/&quot;&gt;variety of file types&lt;/a&gt;. By default, this starter template expects your content to be located in the &lt;code&gt;source/docs&lt;/code&gt; folder. If you change this, be sure to update the URL references in &lt;a href=&quot;/docs/navigation.php&quot;&gt;navigation.php&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/docs/navigation&quot;&gt;Read more about navigation.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The first section of each content page contains a YAML header that specifies how it should be rendered. The &lt;code&gt;title&lt;/code&gt; attribute is used to dynamically generate HTML &lt;code&gt;title&lt;/code&gt; and OpenGraph tags for each page. The &lt;code&gt;extends&lt;/code&gt; attribute defines which parent Blade layout this content file will render with (e.g. &lt;code&gt;_layouts.documentation&lt;/code&gt; will render with &lt;code&gt;source/_layouts/documentation.blade.php&lt;/code&gt;), and the &lt;code&gt;section&lt;/code&gt; attribute defines the Blade &quot;section&quot; that expects this content to be placed into it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;---
-title: Navigation
-description: Building a navigation menu for your site
-extends: _layouts.documentation
-section: content
----
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jigsaw.tighten.co/docs/content-blade/&quot;&gt;Read more about Jigsaw layouts.&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;getting-started-adding-assets&quot;&gt;Adding Assets&lt;/h3&gt;
-
-&lt;p&gt;Any assets that need to be compiled (such as JavaScript, Less, or Sass files) can be added to the &lt;code&gt;source/_assets/&lt;/code&gt; directory, and Laravel Mix will process them when running &lt;code&gt;npm run dev&lt;/code&gt; or &lt;code&gt;npm run prod&lt;/code&gt;. The processed assets will be stored in &lt;code&gt;/source/assets/build/&lt;/code&gt; (note there is no underscore on this second &lt;code&gt;assets&lt;/code&gt; directory).&lt;/p&gt;
-
-&lt;p&gt;Then, when Jigsaw builds your site, the entire &lt;code&gt;/source/assets/&lt;/code&gt; directory containing your built files (and any other directories containing static assets, such as images or fonts, that you choose to store there) will be copied to the destination build folders (&lt;code&gt;build_local&lt;/code&gt;, on your local machine).&lt;/p&gt;
-
-&lt;p&gt;Files that don&#039;t require processing (such as images and fonts) can be added directly to &lt;code&gt;/source/assets/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jigsaw.tighten.co/docs/compiling-assets/&quot;&gt;Read more about compiling assets in Jigsaw using Laravel Mix.&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;getting-started-building-your-site&quot;&gt;Building Your Site&lt;/h2&gt;
-
-&lt;p&gt;Now that you’ve edited your configuration variables and know how to customize your styles and content, let’s build the site.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# build static files with Jigsaw
-./vendor/bin/jigsaw build
-
-# compile assets with Laravel Mix
-# options: dev, prod
-npm run dev
-&lt;/code&gt;&lt;/pre&gt;
-
-            <h2><a href="/it/docs/navigation">Navigation</a></h2>
+            <h2><a href="/it/docs/introduzione">Introducendo Chart</a></h2>
         <h3>By </h3>
-        &lt;h1 id=&quot;navigation&quot;&gt;Navigation&lt;/h1&gt;
+        &lt;h1 id=&quot;introducendo-chart&quot;&gt;Introducendo Chart&lt;/h1&gt;
 
-&lt;p&gt;The navigation menu in the left-hand sidebar is defined using an array in &lt;code&gt;navigation.php&lt;/code&gt;. Nested pages can be added by using the &lt;code&gt;children&lt;/code&gt; associative array.&lt;/p&gt;
+&lt;p&gt;Il modulo &quot;module_Chart&quot; è un pacchetto per Laravel che fornisce funzionalità per la gestione di un Chart all&#039;interno di un&#039;applicazione Laravel. Il modulo include metodi per gestire i post del Chart, le categorie e i tag, nonché per generare la struttura del Chart e le pagine del Chart.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;&amp;lt;?php
-// navigation.php
+&lt;p&gt;Per utilizzare il modulo, è necessario installarlo tramite Composer con il comando composer require laraxot/module_Chart. Una volta installato, il modulo può essere utilizzato nell&#039;applicazione Laravel tramite il seguente codice:&lt;/p&gt;
 
-return [
-    &#039;Getting Started&#039; =&amp;gt; [
-        &#039;url&#039; =&amp;gt; &#039;docs/getting-started&#039;,
-        &#039;children&#039; =&amp;gt; [
-            &#039;Customizing Your Site&#039; =&amp;gt; &#039;docs/customizing-your-site&#039;,
-            &#039;Navigation&#039; =&amp;gt; &#039;docs/navigation&#039;,
-            &#039;Algolia DocSearch&#039; =&amp;gt; &#039;docs/algolia-docsearch&#039;,
-            &#039;Custom 404 Page&#039; =&amp;gt; &#039;docs/custom-404-page&#039;,
-        ],
-    ],
-    &#039;Jigsaw Docs&#039; =&amp;gt; &#039;https://jigsaw.tighten.co/docs/installation&#039;,
-];
-
-// config.php
-&#039;navigation&#039; =&amp;gt; require_once(&#039;navigation.php&#039;),
-
-// blade files
-$page-&amp;gt;navigation
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;use Laraxot\ModuleChart\Facades\ModuleChart;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Il modulo include diverse funzionalità per la gestione del Chart, come ad esempio il metodo createPost() per creare un nuovo post del Chart, o il metodo &lt;em&gt;getCategories()&lt;/em&gt; per recuperare tutte le categorie del Chart.&lt;/p&gt;
+
+&lt;p&gt;Per utilizzare il modulo, è necessario prima configurare l&#039;applicazione per supportare le funzionalità del Chart. La configurazione può essere eseguita tramite il comando Artisan &lt;em&gt;php artisan Chart:install&lt;/em&gt;, che creerà le tabelle del database necessarie per gestire i post del Chart, le categorie e i tag, e aggiungerà le route e i controller per la gestione del Chart all&#039;applicazione.&lt;/p&gt;
+
+&lt;p&gt;Una volta configurato il modulo, è possibile utilizzarlo per creare e gestire i post del Chart, gestire le categorie e i tag, e generare la struttura del Chart e le pagine del Chart. Per ulteriori informazioni su come utilizzare il modulo e su tutte le sue funzionalità, consultare la documentazione disponibile nel repository su GitHub.&lt;/p&gt;
 
             </main>
 
