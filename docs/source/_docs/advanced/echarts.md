@@ -1,21 +1,44 @@
+---
+title: Echarts
+description: Echarts
+extends: _layouts.documentation
+section: content
+path: it/docs/advanced/
+---
+
+# Echarts {#echarts}
+
 Echarts è una libreria JavaScript open-source per la creazione di grafici e visualizzazioni dei dati. Può essere utilizzata con Laravel, un framework PHP per lo sviluppo di applicazioni web, e Apache, un server web open-source.
 
 Per utilizzare Echarts con Laravel e Apache, dovrai prima installare e configurare Laravel e Apache sul tuo computer. Una volta fatto ciò, puoi seguire i seguenti passaggi:
 
 Installa Echarts utilizzando il gestore dei pacchetti npm:
-Copy code
+
+```console
 npm install echarts --save
+```
+
 Importa Echarts nel tuo file JavaScript utilizzando il seguente codice:
-Copy code
+
+```javascript
 import echarts from 'echarts';
+```
+
 Crea un nuovo grafico utilizzando il seguente codice:
-Copy code
+
+```javascript
 let myChart = echarts.init(document.getElementById('myChart'));
+```
+
 Definire i dati per il grafico utilizzando il seguente codice:
-Copy code
+
+```javascript
 let data = [120, 200, 150, 80, 70, 110, 130];
+```
+
 Definire le opzioni per il grafico utilizzando il seguente codice:
-Copy code
+
+```javascript
 let options = {
     xAxis: {
         type: 'category',
@@ -29,12 +52,20 @@ let options = {
         type: 'line'
     }]
 };
+```
+
 Imposta le opzioni per il grafico utilizzando il seguente codice:
-Copy code
+
+```javascript
 myChart.setOption(options);
+```
+
 Mostra il grafico utilizzando il seguente codice:
-Copy code
+
+```javascript
 myChart.showLoading();
+```
+
 In questo modo, puoi utilizzare Echarts con Laravel e Apache per creare un grafico e visualizzare i dati. Tuttavia, questo è solo un semplice esempio e puoi personalizzare il codice per soddisfare le tue esigenze specifiche.
 
 

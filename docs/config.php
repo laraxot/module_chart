@@ -1,48 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Str;
+
+$moduleName = 'Chart';
 
 return [
     'baseUrl' => '',
     'production' => false,
-    'siteName' => 'Docs Starter Template',
-    'siteDescription' => 'Beautiful docs powered by Jigsaw',
-    'lang'=>'it',
-    /*
-    'path' => function ($page) {
-        return $page->lang.'/'.$page->collection.'/' . Str::slug($page->getFilename());
-    },
-    */
+    'siteName' => 'Modulo '.$moduleName,
+    'siteDescription' => 'Modulo '.$moduleName,
+    'lang' => 'it',
 
     'collections' => [
-        'posts'=>[
-            'path'=>function ($page) {
-                return $page->lang.'/posts/' . Str::slug($page->getFilename());
+        'posts' => [
+            'path' => function ($page) {
+                return $page->lang.'/posts/'.Str::slug($page->getFilename());
             },
         ],
-        'docs'=>[
-            'path'=>function ($page) {
-                return $page->lang.'/docs/' . Str::slug($page->getFilename());
+        'docs' => [
+            'path' => function ($page) {
+                return $page->lang.'/docs/'.Str::slug($page->getFilename());
             },
-        ]
-    ],
-
-    /*
-    'path' => '{language}/{type}/{-title}',
-
-    'collections' => [
-       'docs-it' => [
-            'type' => 'docs',
-            'language' => 'it',
         ],
-
-        'docs-en' => [
-            'type' => 'docs',
-            'language' => 'en',
-        ],
-        'posts',
     ],
-    */
 
     // Algolia DocSearch credentials
     'docsearchApiKey' => env('DOCSEARCH_KEY'),
@@ -66,7 +48,7 @@ return [
         if (Str::startsWith($path, 'http')) {
             return $path;
         }
-        //return Str::startsWith($path, 'http') ? $path : '/' . trimPath($path);
+        // return Str::startsWith($path, 'http') ? $path : '/' . trimPath($path);
         return url('/'.$page->lang.'/'.trimPath($path));
     },
 ];

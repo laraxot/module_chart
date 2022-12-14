@@ -1,6 +1,10 @@
 {
     "name": "laraxot/module_chart",
-    "description": "chart management",
+    "description": "Modulo Chart",
+    "homepage": "http://laraxot.github.io/module_chart",
+    "authors": [
+
+    ],
     "license": "MIT",
     "require": {
         "tightenco/jigsaw": "^1.6",

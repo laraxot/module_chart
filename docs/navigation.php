@@ -1,27 +1,71 @@
 <?php
 
-//*
+declare(strict_types=1);
+
 return [
-    'Getting Started' => [
-        'url' => 'docs/getting-started',
+    'Introduzione' => [
+        'url' => '#',
         'children' => [
-            'Customizing Your Site' => ['url'=>'docs/customizing-your-site'],
-            'Navigation' => ['url'=>'docs/navigation'],
-            'Algolia DocSearch' => ['url'=>'docs/algolia-docsearch'],
-            'Custom 404 Page' => ['url'=>'docs/custom-404-page'],
+            'Introducendo '.$moduleName => [
+                'url' => 'docs/introduzione',
+            ],
+            /*'Crediti' => [
+                'url' => 'docs/crediti',
+            ],*/
+            'Installazione' => [
+                'url' => 'docs/installazione',
+            ],
+            /*$moduleName.' Starter Kit' => [
+                'url' => 'docs/starter-kit',
+            ],*/
+            'Aggiornamenti' => [
+                'url' => 'docs/aggiornamenti',
+            ],
+            /*'Tabella di Marcia' => [
+                'url' => 'docs/tabella-di-marcia',
+            ],
+            'Comparazioni' => [
+                'url' => 'docs/comparazioni',
+            ],*/
         ],
     ],
-    'Jigsaw Docs' => 'https://jigsaw.tighten.co/docs/installation',
-];
-//*/
+    'Metodi Principali' => [
+        'url' => '#',
+        'children' => [
+            'Funzionalità 1' => [
+                'url' => 'docs/methods/',
+            ],
+            'Funzionalità 2' => [
+                'url' => 'docs/methods/',
+            ],
+        ],
+    ],
+    'Componenti' => [
+        'url' => '#',
+        'children' => [
+            'Chartjs' => [
+                'url' => '#',
+                'children' => [
+                    'Base' => [
+                        'url' => 'docs/components/chartjs/base',
+                    ],
+                ],
+            ],
+        ],
+        'Componenti 2' => [
+            'url' => 'docs/components/',
+        ],
+    ],
 
-/*
-$data=[];
-foreach ($docs as $doc) {
-    $k=$doc->title;
-    $v=['url'=>$doc->getPath()];
-    $data[$k]=$v;
-}
-*/
-//ddd(get_defined_vars());
-//return $data;
+    'Caratteristiche Avanzate' => [
+        'url' => '#',
+        'children' => [
+            'Echarts' => [
+                'url' => 'docs/advanced/echarts',
+            ],
+            'Caratteristiche Avanzate 2' => [
+                'url' => 'docs/advanced/',
+            ],
+        ],
+    ],
+];
