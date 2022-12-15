@@ -54,7 +54,9 @@
     },
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": [
+                "Modules\\Chart\\Providers\\ChartServiceProvider"
+            ],
             "aliases": {
 
             }

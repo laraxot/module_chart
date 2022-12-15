@@ -1,0 +1,2 @@
+providers:
+  - Modules\Chart\Providers\ChartServiceProvider
