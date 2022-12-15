@@ -12,6 +12,7 @@ use Illuminate\View\Component;
  */
 class Base extends Component {
     public string $type;
+    public string $title;
     public array $labels;
     public array $data;
     public string $chartid;

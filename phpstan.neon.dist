@@ -9,6 +9,7 @@ parameters:
     excludePaths:
         - ./vendor/*
         - ./docs/*
+        - ./Tests/*
 
     checkModelProperties: true
     checkMissingIterableValueType: false
