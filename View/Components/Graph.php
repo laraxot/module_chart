@@ -17,6 +17,7 @@ class Graph extends Component {
     public string $type;
     public string $url;
     public string $graph_id;
+    public array $colors = [];
 
     public function __construct(string $id, string $url, ?string $type = 'graph') {
         $this->graph_id = $id;
