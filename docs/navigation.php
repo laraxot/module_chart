@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 return [
-    'Introduzione' => [
-        'url' => '#',
+    'Introduzione al modulo '.$moduleName => [
+        'url' => 'docs/introduzione',
         'children' => [
-            'Introducendo '.$moduleName => [
-                'url' => 'docs/introduzione',
-            ],
+            // 'Introducendo '.$moduleName => [
+            //     'url' => 'docs/introduzione',
+            // ],
             /*'Crediti' => [
                 'url' => 'docs/crediti',
             ],*/
@@ -32,12 +32,12 @@ return [
     'Metodi Principali' => [
         'url' => '#',
         'children' => [
-            'Funzionalità 1' => [
-                'url' => 'docs/methods/',
-            ],
-            'Funzionalità 2' => [
-                'url' => 'docs/methods/',
-            ],
+            // 'Funzionalità 1' => [
+            //     'url' => 'docs/methods/',
+            // ],
+            // 'Funzionalità 2' => [
+            //     'url' => 'docs/methods/',
+            // ],
         ],
     ],
     'Componenti' => [
@@ -55,9 +55,9 @@ return [
                 'url' => 'docs/components/graph',
             ],
         ],
-        'Componenti 2' => [
-            'url' => 'docs/components/',
-        ],
+        // 'Componenti 2' => [
+        //     'url' => 'docs/components/',
+        // ],
     ],
 
     'Caratteristiche Avanzate' => [
@@ -66,9 +66,9 @@ return [
             'Echarts' => [
                 'url' => 'docs/advanced/echarts',
             ],
-            'Caratteristiche Avanzate 2' => [
-                'url' => 'docs/advanced/',
-            ],
+            // 'Caratteristiche Avanzate 2' => [
+            //     'url' => 'docs/advanced/',
+            // ],
         ],
     ],
 ];
