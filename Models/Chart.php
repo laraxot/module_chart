@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Chart\Models;
 
 use ErrorException;
-use Modules\Quaeris\Models\SurveyPdf;
 use Modules\Cms\Services\PanelService;
+use Modules\Quaeris\Models\SurveyPdf;
 
 /**
  * Modules\Chart\Models\Chart.
