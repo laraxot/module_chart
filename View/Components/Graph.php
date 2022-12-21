@@ -8,7 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
-// use Modules\Xot\Services\PanelService;
+// use Modules\Cms\Services\PanelService;
 
 /**
  * Class Chart.

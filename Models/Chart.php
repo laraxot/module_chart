@@ -6,7 +6,7 @@ namespace Modules\Chart\Models;
 
 use ErrorException;
 use Modules\Quaeris\Models\SurveyPdf;
-use Modules\Xot\Services\PanelService;
+use Modules\Cms\Services\PanelService;
 
 /**
  * Modules\Chart\Models\Chart.
