@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
 use Modules\Chart\Models\Panels\Traits\ChartTrait;
-use Modules\Xot\Models\Panels\XotBasePanel;
+use Modules\Cms\Models\Panels\XotBasePanel;
 
 class ChartPanel extends XotBasePanel {
     use ChartTrait;

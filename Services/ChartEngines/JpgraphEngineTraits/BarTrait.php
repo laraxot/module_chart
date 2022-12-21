@@ -448,7 +448,7 @@ trait BarTrait {
         $value_pos = ['bottom', 'top'];
         foreach ($datay as $k => $v) {
             $tmp = new BarPlot($v);
-            
+
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetValuePos($value_pos[$k]);
             $tmp->SetColor($colors[$k]);

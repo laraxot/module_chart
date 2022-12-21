@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Models\Panels\Policies;
 
+use Modules\Cms\Models\Panels\Policies\XotBasePanelPolicy;
 use Modules\Xot\Contracts\PanelContract;
 use Modules\Xot\Contracts\UserContract;
-use Modules\Xot\Models\Panels\Policies\XotBasePanelPolicy;
 
 /**
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
