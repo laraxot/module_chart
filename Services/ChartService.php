@@ -148,9 +148,9 @@ class ChartService {
             case 0:
                 $this->chart_engine = JpgraphEngine::make();
                 break;
-            case 1:
-                $this->chart_engine = ChartJsEngine::make();
-                break;
+            //case 1:
+            //    $this->chart_engine = ChartJsEngine::make();
+            //    break;
             default:
                 throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
         }
