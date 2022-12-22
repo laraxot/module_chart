@@ -9,7 +9,6 @@
         }
     ],
     "require" : {
-        "php": "^8.1",
         "amenadiel/jpgraph": "^4.1",
         "laraxot/module_xot": "dev-master",
         "illuminate/contracts": "^8.83|^9.30",
