@@ -41,7 +41,6 @@ trait BarTrait {
                     'borderWidth' => 2,
                 ],
             ],
-            'responsive' => false,
             'plugins' => [
                 'legend' => [
                     'position' => 'right',

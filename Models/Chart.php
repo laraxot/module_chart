@@ -6,7 +6,6 @@ namespace Modules\Chart\Models;
 
 use ErrorException;
 use Modules\Cms\Services\PanelService;
-use Modules\Quaeris\Models\SurveyPdf;
 
 /**
  * Modules\Chart\Models\Chart.
@@ -156,7 +155,7 @@ class Chart extends BaseModel {
         // dddx([$name, $panel->row, $parent->{$name}]);
         // $value = $parent->chart->{$name};
 
-        // if (! $parent instanceof SurveyPdf) { //outside Quae
+        
 
         $value = $parent->chart->attributes[$name] ?? null;
 

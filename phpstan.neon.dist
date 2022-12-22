@@ -2,7 +2,9 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
+
     level: 1
+
     paths:
         - .
 
@@ -10,6 +12,14 @@ parameters:
         - ./vendor/*
         - ./docs/*
         - ./Tests/*
+    
+    bootstrapFiles:
+        #- ./Modules/Xot/Services/vendor/autoload.php
+
+    scanFiles:
+        #- ./Modules/Xot/Helpers/Helper.php
+        - ./vendor/amenadiel/jpgraph/src/config.inc.php
+    
 
     checkModelProperties: true
     checkMissingIterableValueType: false
