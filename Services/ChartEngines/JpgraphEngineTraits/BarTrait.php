@@ -534,7 +534,10 @@ trait BarTrait {
                 $txt2->SetPos($x, 35);
                 $graph->AddText($txt2);
             }
-        } else {
+        }
+        /* 
+        else branch is unreachable because previous condition is always true.   
+        else {
             foreach ($datay1 as $i => $v) {
                 $txt = new Text($v.'');
 
@@ -545,6 +548,7 @@ trait BarTrait {
                 $graph->AddText($txt);
             }
         }
+        */
 
         // foreach ($datay1 as $i => $v) {
         //     $txt = new Text($v.'');
