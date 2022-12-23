@@ -22,9 +22,10 @@ trait MixedTrait {
         $charts = $mixed->charts()->get();
 
         if (0 === $charts->count()) {
-            $sql = rowsToSql($mixed->charts());
+            $sql='';
+            //$sql = rowsToSql($mixed->charts());
 
-            throw new Exception('charts vuoto sql:['.$sql.']');
+            throw new Exception('charts vuoto sql:['.$sql.']['.__LINE__.']['.__FILE__.']');
         }
 
         $imgs = [];
