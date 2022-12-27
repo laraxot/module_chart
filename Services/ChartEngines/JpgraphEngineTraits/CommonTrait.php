@@ -126,6 +126,7 @@ trait CommonTrait {
 
         foreach ($this->data as $k => $data) {
             if (Str::contains($this->vars['chart_type'], 'horiz')) {
+                //cannot access offset 'label' on mixed
                 if ('NR' == $this->data[$k]['label']) {
                     $list_color = explode(',', $this->vars['list_color']);
                     $colors[$k] = $list_color[0].'@'.$this->vars['transparency'];

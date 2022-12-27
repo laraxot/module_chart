@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Chart\View\Components;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Auth;
+use Exception;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Support\Renderable;
 
 // use Modules\Cms\Services\PanelService;
 
@@ -19,14 +20,19 @@ class Graph extends Component {
     public string $graph_id;
     public array $colors = [];
 
-    public function __construct(string $id, string $url, ?string $type = 'graph') {
+    public function __construct(string $id, string $url, string $type = 'graph') {
         $this->graph_id = $id;
         $this->url = '#';
-        if (Auth::check()) {
-            $this->url = url_queries(['api_token' => Auth::user()->api_token], $url);
+        $user=Auth::user();
+        if (Auth::check() && $user!=null) {
+            $this->url = url_queries(['api_token' => $user->api_token], $url);
         }
         $this->type = $type;
-        $this->colors = config('graph.colors', []);
+        $colors=config('graph.colors', []);
+        if(!is_array($colors)){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        $this->colors = $colors;
     }
 
     public function render(): Renderable {

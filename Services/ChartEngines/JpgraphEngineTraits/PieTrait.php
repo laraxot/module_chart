@@ -97,9 +97,10 @@ trait PieTrait {
         // $this->vars['footer']='media';
         $labels = $this->data->pluck('label')->all();
 
-        $this->vars['footer'] = 'Media: '.round($this->data->avg('value'), 2);
+        $this->vars['footer'] = 'Media: '.round((float)$this->data->avg('value'), 2);
 
         $data = $this->data->pluck('value')->all();
+        //Cannot access offset 'avg' on mixed.
         if (isset($this->data->first()['avg'])) {
             $data = $this->data->pluck('avg')->all();
         }
@@ -147,6 +148,7 @@ trait PieTrait {
         $graph->subtitle->Set($this->vars['subtitle']);
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
+        //150    Cannot cast mixed to float. 
         $footer_txt = 'Media '.number_format((float) $data[0], 2);
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);

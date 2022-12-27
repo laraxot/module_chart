@@ -8,8 +8,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Services\FileService;
@@ -29,7 +30,9 @@ class ApiController extends Controller {
         $image_base64 = base64_decode($image_parts[1], true);
 
         // $content = base64_decode($data['content']);
-
+        if($image_base64==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
         File::put($filename, $image_base64);
 
         return response()->json([
