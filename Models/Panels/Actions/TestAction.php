@@ -9,7 +9,7 @@ namespace Modules\Chart\Models\Panels\Actions;
 // -------- services --------
 
 use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
-use Modules\Theme\Services\ThemeService;
+use Modules\UI\Services\ThemeService;
 
 // -------- bases -----------
 
