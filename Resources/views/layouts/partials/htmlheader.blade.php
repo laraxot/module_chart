@@ -6,7 +6,7 @@
     {!! Theme::metatags() !!}
     @php
         //Theme::add('pub_theme::dist/css/app.css', 1);
-        //Theme::add('theme::css/cookie-consent.css');
+        //Theme::add('ui::css/cookie-consent.css');
     @endphp
     <livewire:styles />
     {!! Theme::showStyles(false) !!}
