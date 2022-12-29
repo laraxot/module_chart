@@ -15,7 +15,7 @@
 Theme::add('pub_theme::dist/js/manifest.js');
 Theme::add('pub_theme::dist/js/vendor.js');
 Theme::add('pub_theme::dist/js/app.js');
-//Theme::add('pub_theme::js/theme.js');
+//Theme::add('pub_ui::js/theme.js');
 @endphp
 
 
