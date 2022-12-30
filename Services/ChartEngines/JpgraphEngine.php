@@ -6,7 +6,6 @@ namespace Modules\Chart\Services\ChartEngines;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Themes\UniversalTheme;
-use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -29,7 +28,7 @@ class JpgraphEngine extends BaseChartEngine {
     public int $width = 250;
     public int $height = 250;
 
-    //Property Modules\Chart\Services\ChartEngines\JpgraphEngine::$type is never read, only written.
+    // Property Modules\Chart\Services\ChartEngines\JpgraphEngine::$type is never read, only written.
     private string $type = ''; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
 
     public string $title = ''; // 'Lei ha appena svolto una pratica con BIM GSP S.p.A. o utilizzato un canale di contatto di BIM GSP S.p.A. può indicarci il motivo del contatto? ';
@@ -91,13 +90,11 @@ class JpgraphEngine extends BaseChartEngine {
         return $this;
     }
 
-   
     public function setType(string $type): self {
         $this->type = $type;
 
         return $this;
     }
-    
 
     public function setColor(string $color): self {
         $this->color = $color;
@@ -133,8 +130,6 @@ class JpgraphEngine extends BaseChartEngine {
             $res = $this->{$extra->type}(...$var);
         }
 
-        // $res1 = $this->horizontalLine(70, 'riferimento');
-
         return $this;
     }
 
@@ -155,7 +150,7 @@ class JpgraphEngine extends BaseChartEngine {
             // 172    Parameter #1 $width of static method Intervention\Image\ImageManager::canvas()
             // expects int, mixed given.
             if (! is_numeric($width) || ! is_numeric($height)) {
-                throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
+                throw new \Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
             }
             $width = (int) $width;
             $height = (int) $height;
@@ -170,7 +165,7 @@ class JpgraphEngine extends BaseChartEngine {
         } else {
             try {
                 $this->graph->Stroke(public_path($this->filename));
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 dddx([$e->getMessage(), $e->getFile(), $e->getLine(), $e]);
             }
         }

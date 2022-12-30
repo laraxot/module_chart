@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
-use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
-use Modules\Quaeris\Services\LimeModelService;
 use Modules\Xot\Services\FileService;
 
 trait MixedTrait {
@@ -22,10 +20,10 @@ trait MixedTrait {
         $charts = $mixed->charts()->get();
 
         if (0 === $charts->count()) {
-            $sql='';
-            //$sql = rowsToSql($mixed->charts());
+            $sql = '';
+            // $sql = rowsToSql($mixed->charts());
 
-            throw new Exception('charts vuoto sql:['.$sql.']['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('charts vuoto sql:['.$sql.']['.__LINE__.']['.__FILE__.']');
         }
 
         $imgs = [];
@@ -34,7 +32,7 @@ trait MixedTrait {
             $vars = array_merge($vars, $chart->toArray());
 
             if (Str::startsWith($vars['type'], 'mixed')) {
-                throw new Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
+                throw new \Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
             }
 
             if ($k > 0) {
@@ -43,7 +41,7 @@ trait MixedTrait {
                 $vars['footer'] = '';
             }
 
-            $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+            $tmp = $vars['callback']->mergeVars($vars)->getImg();
 
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),

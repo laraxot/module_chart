@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
-use Exception;
 use Illuminate\Support\Str;
 use Modules\Chart\Models\MixedChart;
-use Modules\Quaeris\Services\LimeModelService;
 use Modules\Xot\Services\FileService;
 
 trait MixedTrait {
@@ -24,7 +22,7 @@ trait MixedTrait {
             $rows = $mixed->charts();
             // $sql = Str::replaceArray('?', $rows->getBindings(), $rows->toSql());
             $sql = str_replace('?', $rows->getBindings(), $rows->toSql());
-            throw new Exception('charts vuoto sql:['.$sql.']');
+            throw new \Exception('charts vuoto sql:['.$sql.']');
         }
 
         $imgs = [];
@@ -32,13 +30,13 @@ trait MixedTrait {
             $vars = $this->vars;
             $vars = array_merge($vars, $chart->toArray());
             if (Str::startsWith($vars['type'], 'mixed')) {
-                throw new Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
+                throw new \Exception('crei un loop infinito['.__LINE__.']['.__FILE__.']');
             }
 
             $vars['style_float'] = 'left';
             $vars['style_clear'] = 'none';
 
-            $tmp = LimeModelService::make()->mergeVars($vars)->getImg();
+            $tmp = $vars['callback']->mergeVars($vars)->getImg();
 
             $imgs[] = [
                 'img_path' => FileService::fixPath(public_path($tmp)),
