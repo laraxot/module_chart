@@ -8,7 +8,8 @@ use Illuminate\Support\Collection;
 
 /**
  * Undocumented interface.
- * @property array                     $vars
+ *
+ * @property array $vars
  */
 interface ChartEngineContract {
     public function setData(Collection $data): self;

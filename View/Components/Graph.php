@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Chart\View\Components;
 
 use Exception;
-use Illuminate\View\Component;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\Component;
 
 // use Modules\Cms\Services\PanelService;
 
@@ -23,13 +23,13 @@ class Graph extends Component {
     public function __construct(string $id, string $url, string $type = 'graph') {
         $this->graph_id = $id;
         $this->url = '#';
-        $user=Auth::user();
-        if (Auth::check() && $user!=null) {
+        $user = Auth::user();
+        if (Auth::check() && null != $user) {
             $this->url = url_queries(['api_token' => $user->api_token], $url);
         }
         $this->type = $type;
-        $colors=config('graph.colors', []);
-        if(!is_array($colors)){
+        $colors = config('graph.colors', []);
+        if (! is_array($colors)) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->colors = $colors;

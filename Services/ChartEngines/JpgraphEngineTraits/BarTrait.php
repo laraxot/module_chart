@@ -253,7 +253,7 @@ trait BarTrait {
         return $this;
     }
 
-    public function bar2():self {
+    public function bar2(): self {
         // dddx($this->vars);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         $graph = $this->getGraph();
@@ -392,7 +392,7 @@ trait BarTrait {
     }
 
     // barre verticali accumulate
-    public function bar3():self {
+    public function bar3(): self {
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         $graph = $this->getGraph();
         $graph->img->SetMargin(50, 50, 50, 100);
@@ -522,7 +522,7 @@ trait BarTrait {
 
         if (is_array($datay1)) {
             foreach ($datay1 as $i => $v) {
-                //Cannot access offset 0 on mixed.
+                // Cannot access offset 0 on mixed.
                 $txt = new Text($v[0].'');
                 $x = 50 + ($delta * $i) + ($delta / 3);
                 // $txt->SetPos($x, 25);
@@ -536,8 +536,8 @@ trait BarTrait {
                 $graph->AddText($txt2);
             }
         }
-        /* 
-        else branch is unreachable because previous condition is always true.   
+        /*
+        else branch is unreachable because previous condition is always true.
         else {
             foreach ($datay1 as $i => $v) {
                 $txt = new Text($v.'');

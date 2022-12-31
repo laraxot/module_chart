@@ -155,8 +155,6 @@ class Chart extends BaseModel {
         // dddx([$name, $panel->row, $parent->{$name}]);
         // $value = $parent->chart->{$name};
 
-        
-
         $value = $parent->chart->attributes[$name] ?? null;
 
         $this->{$name} = $value;

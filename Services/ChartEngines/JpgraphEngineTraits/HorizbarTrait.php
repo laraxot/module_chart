@@ -187,7 +187,7 @@ trait HorizbarTrait {
 
         // Now create a bar pot
         $bplot = new BarPlot($datay);
-        
+
         $bplot = $this->applyPlotStyle($bplot);
 
         // Add the bar to the graph
