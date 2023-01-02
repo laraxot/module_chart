@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\JpgraphEngineTraits;
 
-use Amenadiel\JpGraph\Graph\PieGraph;
 use Amenadiel\JpGraph\Plot\PiePlotC;
+use Amenadiel\JpGraph\Graph\PieGraph;
+use Modules\Xot\Contracts\ModelContract;
 
-trait PieTrait {
+trait PieTrait
+{
     /**
      * Undocumented function.
      * https://jpgraph.net/download/manuals/chunkhtml/ch16.html.
      * https://jpgraph.net/download/manuals/chunkhtml/example_src/piecex2.html.
      */
-    public function pie1(): self {
+    public function pie1(): self
+    {
         $labels = $this->data->pluck('label')->all();
         $data = $this->data->pluck('value')->all();
         // dddx([$this->data, $data, $this->vars]);
@@ -43,7 +46,7 @@ trait PieTrait {
         // trasparenza da 0 a 1, inserito per ogni colore
         $color_array = explode(',', $this->vars['list_color']);
         foreach ($color_array as $k => $color) {
-            $color_array[$k] = $color.'@'.$this->vars['transparency'];
+            $color_array[$k] = $color . '@' . $this->vars['transparency'];
         }
         $p1->SetSliceColors($color_array);
 
@@ -92,16 +95,20 @@ trait PieTrait {
         return $this;
     }
 
-    public function pieAvg(): self {
+    public function pieAvg(): self
+    {
         // $this->vars['subtitle']='nnn';
         // $this->vars['footer']='media';
         $labels = $this->data->pluck('label')->all();
 
-        $this->vars['footer'] = 'Media: '.round((float) $this->data->avg('value'), 2);
+        $this->vars['footer'] = 'Media: ' . round((float) $this->data->avg('value'), 2);
 
         $data = $this->data->pluck('value')->all();
         // Cannot access offset 'avg' on mixed.
-        if (isset($this->data->first()['avg'])) {
+
+        /** @var ModelContract $first_data */
+        $first_data = $this->data->first();
+        if (isset($first_data->avg)) {
             $data = $this->data->pluck('avg')->all();
         }
 
@@ -129,7 +136,7 @@ trait PieTrait {
         // trasparenza da 0 a 1, inserito per ogni colore
         $color_array = explode(',', $this->vars['list_color']);
         foreach ($color_array as $k => $color) {
-            $color_array[$k] = $color.'@0.6';
+            $color_array[$k] = $color . '@0.6';
         }
         $p1->SetSliceColors($color_array);
 
@@ -149,7 +156,10 @@ trait PieTrait {
         $graph->subtitle->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
         // 150    Cannot cast mixed to float.
-        $footer_txt = 'Media '.number_format((float) $data[0], 2);
+        $footer_txt = 'Media N.D.';
+        if (\is_array($data)&&isset($data[0])&&\is_numeric($data[0])) {
+            $footer_txt = 'Media ' . number_format((float) $data[0], 2);
+        }
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], $this->vars['font_size']);
 

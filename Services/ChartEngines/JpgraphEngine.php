@@ -29,7 +29,7 @@ class JpgraphEngine extends BaseChartEngine {
     public int $height = 250;
 
     // Property Modules\Chart\Services\ChartEngines\JpgraphEngine::$type is never read, only written.
-    private string $type = ''; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
+    private string $type; // quale tipo di grafico andiamo a fare a barre a linee orizzontale, verticale
 
     public string $title = ''; // 'Lei ha appena svolto una pratica con BIM GSP S.p.A. o utilizzato un canale di contatto di BIM GSP S.p.A. può indicarci il motivo del contatto? ';
 
@@ -41,7 +41,7 @@ class JpgraphEngine extends BaseChartEngine {
 
     public Collection $data;
 
-    // --- FONT
+    // --- FONT91
     public string $color;
     public string $family;
     public string $style;

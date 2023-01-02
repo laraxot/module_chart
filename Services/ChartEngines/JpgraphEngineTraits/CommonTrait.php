@@ -12,11 +12,13 @@ use Illuminate\Support\Str;
 /**
  * Undocumented trait.
  */
-trait CommonTrait {
+trait CommonTrait
+{
     /**
      * Undocumented function.
      */
-    public function applyGraphStyle(Graph $graph): Graph {
+    public function applyGraphStyle(Graph $graph): Graph
+    {
         $style = $this->vars;
 
         // Nice shadow
@@ -30,7 +32,8 @@ trait CommonTrait {
         return $graph;
     }
 
-    public function applyGraphXStyle(Axis $xaxis): void {
+    public function applyGraphXStyle(Axis $xaxis): void
+    {
         $style = $this->vars;
         $xaxis->SetFont($style['font_family'], $style['font_style'], $style['font_size']);
         $xaxis->SetLabelAngle($style['x_label_angle']);
@@ -40,7 +43,8 @@ trait CommonTrait {
         // $graph->xaxis->SetLabelAlign('right', 'center');
     }
 
-    public function applyGraphYStyle(Axis $yaxis): void {
+    public function applyGraphYStyle(Axis $yaxis): void
+    {
         $style = $this->vars;
         // Add some grace to y-axis so the bars doesn't go
         // all the way to the end of the plot area
@@ -58,10 +62,11 @@ trait CommonTrait {
         $yaxis->HideTicks(false, false);
     }
 
-    public function applyPlotStyle_old(BarPlot $plot): BarPlot {
+    public function applyPlotStyle_old(BarPlot $plot): BarPlot
+    {
         $style = $this->vars;
         // $plot->SetFillColor($style['color']);
-        $plot->SetFillColor($style['color'].'@'.$this->vars['transparency']); // trasparenza, da 0 a 1
+        $plot->SetFillColor($style['color'] . '@' . $this->vars['transparency']); // trasparenza, da 0 a 1
 
         // $bplot->SetShadow('darkgreen', 1, 1);
         // dddx([get_defined_vars(), $this->vars]);
@@ -116,7 +121,8 @@ trait CommonTrait {
         return $plot;
     }
 
-    public function applyPlotStyle(BarPlot $plot): BarPlot {
+    public function applyPlotStyle(BarPlot $plot): BarPlot
+    {
         // dddx($this);
         $style = $this->vars;
         // $plot->SetFillColor(['red','red','red','red','red', 'green']);
@@ -124,17 +130,19 @@ trait CommonTrait {
         $colors = [];
         // dddx(collect($this->vars['chart_type']));
 
-        foreach ($this->data as $k => $data) {
+        foreach ($this->data as $k => $d) {
             if (Str::contains($this->vars['chart_type'], 'horiz')) {
                 // cannot access offset 'label' on mixed
-                if ('NR' == $this->data[$k]['label']) {
-                    $list_color = explode(',', $this->vars['list_color']);
-                    $colors[$k] = $list_color[0].'@'.$this->vars['transparency'];
-                } else {
-                    $colors[$k] = $style['color'].'@'.$this->vars['transparency'];
+                if (\is_array($this->data[$k])) {
+                    if ('NR' == $this->data[$k]['label']) {
+                        $list_color = explode(',', $this->vars['list_color']);
+                        $colors[$k] = $list_color[0] . '@' . $this->vars['transparency'];
+                    } else {
+                        $colors[$k] = $style['color'] . '@' . $this->vars['transparency'];
+                    }
                 }
             } else {
-                $colors = $style['color'].'@'.$this->vars['transparency'];
+                $colors = $style['color'] . '@' . $this->vars['transparency'];
             }
         }
 
@@ -195,7 +203,8 @@ trait CommonTrait {
         return $plot;
     }
 
-    public function setTitle(string $title): self {
+    public function setTitle(string $title): self
+    {
         $style = $this->vars;
         // Set up the title for the graph
         // $graph->title->Set('Bar gradient with left reflection');
