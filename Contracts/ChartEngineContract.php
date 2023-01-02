@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Contracts;
 
-use Illuminate\Support\Collection;
+use Spatie\LaravelData\DataCollection;
 
 /**
  * Undocumented interface.
@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
  * @property array $vars
  */
 interface ChartEngineContract {
-    public function setData(Collection $data): self;
+    public function setData(DataCollection $data): self;
 
     public function setWidthHeight(int $width, int $height): self;
 

@@ -15,9 +15,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Chart\Contracts\ChartEngineContract;
@@ -25,6 +23,7 @@ use Modules\Chart\Services\ChartEngines\ChartJsEngine;
 use Modules\Chart\Services\ChartEngines\JpgraphEngine;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\HtmlService;
+use Spatie\LaravelData\DataCollection;
 
 /**
  * ChartService.
@@ -53,7 +52,7 @@ class ChartService {
         return static::getInstance();
     }
 
-    public function setData(Collection $data): self {
+    public function setData(DataCollection $data): self {
         // $this->data = $data;
         $this->chart_engine->setData($data);
 
@@ -141,7 +140,7 @@ class ChartService {
         // dddx([$this->chart_engine->vars['engine_type'],$type_number]);
 
         if (! \is_int($type_number)) {
-            throw new Exception('config chart.type is not an Integer');
+            throw new \Exception('config chart.type is not an Integer');
         }
         $this->type_number = $type_number;
         switch ($this->type_number) {
@@ -152,7 +151,7 @@ class ChartService {
             //    $this->chart_engine = ChartJsEngine::make();
             //    break;
             default:
-                throw new Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
+                throw new \Exception('type ['.$this->type.'] not exists ['.__LINE__.']['.class_basename(__CLASS__).']');
         }
 
         return $this;
@@ -183,7 +182,7 @@ class ChartService {
         $html = $this->toHtml()->render();
         $content = HtmlService::toPdf(['html' => $html, 'out' => 'content_PDF']);
         if (! \is_string($content)) {
-            throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
+            throw new \Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
         }
 
         File::put(storage_path('test.pdf'), $content);

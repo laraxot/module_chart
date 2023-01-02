@@ -6,10 +6,10 @@ namespace Modules\Chart\Services\ChartEngines;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Themes\UniversalTheme;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Spatie\LaravelData\DataCollection;
 
 class JpgraphEngine extends BaseChartEngine {
     use JpgraphEngineTraits\BarTrait;
@@ -39,7 +39,10 @@ class JpgraphEngine extends BaseChartEngine {
 
     public array $imgs = [];
 
-    public Collection $data;
+    /**
+     *  @var DataCollection<AnswerData>
+     */
+    public DataCollection $data;
 
     // --- FONT91
     public string $color;
@@ -84,7 +87,7 @@ class JpgraphEngine extends BaseChartEngine {
         return $this->vars;
     }
 
-    public function setData(Collection $data): self {
+    public function setData(DataCollection $data): self {
         $this->data = $data;
 
         return $this;

@@ -11,17 +11,15 @@ use Amenadiel\JpGraph\Plot\LinePlot;
 use Amenadiel\JpGraph\Text\Text;
 use Amenadiel\JpGraph\Themes\UniversalTheme;
 
-trait BarTrait
-{
+trait BarTrait {
     /**
      * Undocumented function.
      */
-    public function bar1(): self
-    {
+    public function bar1(): self {
         // We need some data
-        $datay = $this->data->pluck('value')->all();
-        $datax = $this->data->pluck('label')->all();
-        $datax1 = $this->data->pluck('count')->all();
+        $datay = $this->data->toCollection()->pluck('value')->all();
+        $datax = $this->data->toCollection()->pluck('label')->all();
+        $datax1 = $this->data->toCollection()->pluck('count')->all();
 
         // Setup the graph.
 
@@ -98,7 +96,7 @@ trait BarTrait
 
         $lplot->SetBarCenter();
         $lplot->SetColor('navy');
-        $lplot->SetLegend('Riferimento ' . $this->width);
+        $lplot->SetLegend('Riferimento '.$this->width);
         // $lplot->mark->SetType(MARK_X, '', 1.0);
         $lplot->mark->SetWeight(12);
         $lplot->mark->SetWidth(18);
@@ -108,7 +106,7 @@ trait BarTrait
         $delta = $this->width / \count($datax1);
         $delta = $delta - 1;
         foreach ($datax1 as $i => $v) {
-            $txt = new Text($v . '');
+            $txt = new Text($v.'');
 
             // Position the string at absolute pixels (0,20).
             // ( (0,0) is the upper left corner )
@@ -137,13 +135,12 @@ trait BarTrait
         return $this;
     }
 
-    public function bar2_funzionante(): self
-    {
+    public function bar2_funzionante(): self {
         // We need some data
 
-        $datax = $this->data->pluck('label')->all();
-        $datay = $this->data->pluck('value')->all();
-        $datax1 = $this->data->pluck('value1')->all();
+        $datax = $this->data->toCollection()->pluck('label')->all();
+        $datay = $this->data->toCollection()->pluck('value')->all();
+        $datax1 = $this->data->toCollection()->pluck('value1')->all();
         /*
         dddx([
             'data' => $this->data,
@@ -194,7 +191,7 @@ trait BarTrait
         $delta = ($this->width - 100) / \count($datax1);
         $delta = $delta;
         foreach ($datax1 as $i => $v) {
-            $txt = new Text($v . '');
+            $txt = new Text($v.'');
 
             $x = 50 + ($delta * $i) + ($delta / 3);
 
@@ -204,7 +201,7 @@ trait BarTrait
         }
 
         $avg = collect($datay)->avg();
-        if (!is_numeric($avg)) {
+        if (! is_numeric($avg)) {
             $avg = 0;
         }
 
@@ -256,21 +253,20 @@ trait BarTrait
         return $this;
     }
 
-    public function bar2(): self
-    {
+    public function bar2(): self {
         // dddx($this->vars);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         $graph = $this->getGraph();
         $graph->img->SetMargin(50, 50, 50, 100);
-        $labels = $this->data->pluck('label')->all();
-        $datay = $this->data->pluck('value')->all();
-        $datay1 = $this->data->pluck('value1')->all();
+        $labels = $this->data->toCollection()->pluck('label')->all();
+        $datay = $this->data->toCollection()->pluck('value')->all();
+        $datay1 = $this->data->toCollection()->pluck('value1')->all();
 
         // dddx($datay[0]);
         // dddx($datay1);
         // nel caso non ci siano risultati
         // gli do dei dati vuoti per fargli produrre un grafico vuoto
-        if (!isset($datay[0])) {
+        if (! isset($datay[0])) {
             // dddx($datay1);
             // dddx('errore');
             $datay1 = [0 => 0];
@@ -279,7 +275,7 @@ trait BarTrait
             // dddx($datay[0]);
         }
 
-        if (!\is_array($datay[0])) {
+        if (! \is_array($datay[0])) {
             $datay = [$datay];
         } else {
             $tmp = [];
@@ -310,7 +306,7 @@ trait BarTrait
             $tmp = new BarPlot($v);
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetColor($colors[$k]);
-            $tmp->SetFillColor($colors[$k] . '@' . $this->vars['transparency']); // trasparenza da 0 a 1
+            $tmp->SetFillColor($colors[$k].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
             // $tmp->SetFillColor($colors[$k]);
 
             if (isset($this->vars['legend'])) {
@@ -350,7 +346,7 @@ trait BarTrait
         if (isset($this->vars['totali'])) {
             $str = '';
             foreach ($this->vars['totali'] as $k => $v) {
-                $str .= $k . ' ' . $v . ' - ';
+                $str .= $k.' '.$v.' - ';
             }
             $graph->footer->center->Set($str);
             $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
@@ -381,7 +377,7 @@ trait BarTrait
         $delta = ($this->width - 100) / \count($datay1);
         $delta = $delta;
         foreach ($datay1 as $i => $v) {
-            $txt = new Text($v . '');
+            $txt = new Text($v.'');
 
             $x = 50 + ($delta * $i) + ($delta / 3);
 
@@ -398,18 +394,17 @@ trait BarTrait
     }
 
     // barre verticali accumulate
-    public function bar3(): self
-    {
+    public function bar3(): self {
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         $graph = $this->getGraph();
         $graph->img->SetMargin(50, 50, 50, 100);
-        $labels = $this->data->pluck('label')->all();
-        $datay = $this->data->pluck('value')->all();
-        $datay1 = $this->data->pluck('value1')->all();
+        $labels = $this->data->toCollection()->pluck('label')->all();
+        $datay = $this->data->toCollection()->pluck('value')->all();
+        $datay1 = $this->data->toCollection()->pluck('value1')->all();
 
         // nel caso non ci siano risultati
         // gli do dei dati vuoti per fargli produrre un grafico vuoto
-        if (!isset($datay[0])) {
+        if (! isset($datay[0])) {
             // dddx($datay1);
             // dddx('errore');
             $datay1 = [0 => 0];
@@ -418,7 +413,7 @@ trait BarTrait
             // dddx($datay[0]);
         }
 
-        if (!\is_array($datay[0])) {
+        if (! \is_array($datay[0])) {
             $datay = [$datay];
         } else {
             $tmp = [];
@@ -461,7 +456,7 @@ trait BarTrait
             $tmp = $this->applyPlotStyle($tmp);
             $tmp->SetValuePos($value_pos[$k]);
             $tmp->SetColor($colors[$k]);
-            $tmp->SetFillColor($colors[$k] . '@' . $this->vars['transparency']); // trasparenza da 0 a 1
+            $tmp->SetFillColor($colors[$k].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
             // $tmp->SetWidth(50);
             if (isset($this->vars['legend'])) {
                 $str = $this->vars['legend'][$k] ?? '--no set';
@@ -519,7 +514,7 @@ trait BarTrait
         if (isset($this->vars['totali'])) {
             $str = '';
             foreach ($this->vars['totali'] as $k => $v) {
-                $str .= $k . ' ' . $v . ' - ';
+                $str .= $k.' '.$v.' - ';
             }
             $graph->footer->center->Set($str);
             $graph->footer->center->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
@@ -531,8 +526,8 @@ trait BarTrait
         if (is_array($datay1)) {
             foreach ($datay1 as $i => $v) {
                 $txt = new Text('');
-                if (\is_array($v)&&isset($v[0])) {
-                    $txt = new Text($v[0] . '');
+                if (\is_array($v) && isset($v[0])) {
+                    $txt = new Text($v[0].'');
                 }
                 $x = 50 + ($delta * $i) + ($delta / 3);
                 // $txt->SetPos($x, 25);
@@ -541,7 +536,7 @@ trait BarTrait
                 $graph->AddText($txt);
 
                 $txt2 = new Text('');
-                if (\is_array($v)&&isset($v[1])) {
+                if (\is_array($v) && isset($v[1])) {
                     $txt2 = new Text($v[1]);
                 }
                 // $txt2->SetPos($x, $this->height - 58);

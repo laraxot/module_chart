@@ -127,9 +127,9 @@ trait LineTrait {
 
         $graph = $this->getGraph();
 
-        $datax = $this->data->pluck('label')->all();
+        $datax = $this->data->toCollection()->pluck('label')->all();
         $datay = [];
-        $values = $this->data->pluck('values');
+        $values = $this->data->toCollection()->pluck('values');
         foreach ($values as $item) {
             /**
              * @var Collection
