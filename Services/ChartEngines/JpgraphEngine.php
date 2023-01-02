@@ -38,10 +38,6 @@ class JpgraphEngine extends BaseChartEngine {
     public array $vars = [];
 
     public array $imgs = [];
-
-    /**
-     *  @var DataCollection<AnswerData>
-     */
     public DataCollection $data;
 
     // --- FONT91
