@@ -24,11 +24,11 @@ trait LineTrait {
 
         $graph = $this->getGraph();
 
-        $datax = $this->data->pluck('label')->all();
+        $datax = $this->data->toCollection()->pluck('label')->all();
         $datay = [];
 
         for ($i = 0; $i < $n; ++$i) {
-            $datay[$i] = $this->data->pluck('datay'.$i)->all();
+            $datay[$i] = $this->data->toCollection()->pluck('datay'.$i)->all();
         }
 
         // Setup the graph

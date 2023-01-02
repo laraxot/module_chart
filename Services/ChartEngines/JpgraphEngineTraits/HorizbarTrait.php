@@ -135,8 +135,8 @@ trait HorizbarTrait {
     }
 
     public function horizbar3(): self {
-        $datay = $this->data->pluck('value')->all();
-        $datax = $this->data->pluck('label')->all();
+        $datay = $this->data->toCollection()->pluck('value')->all();
+        $datax = $this->data->toCollection()->pluck('label')->all();
 
         if (isset($this->vars['names']) && \is_array($this->vars['names']) && '' !== $this->vars['group_by']) {
             // dddx($this->vars['names']);

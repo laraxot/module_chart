@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use Modules\Chart\Services\ChartJsBuilder;
 
 trait LineTrait {
@@ -37,9 +38,9 @@ trait LineTrait {
 
         // $graph = $this->getGraph();
 
-        $datax = $this->data->pluck('label')->all();
+        $datax = $this->data->toCollection()->pluck('label')->all();
         $datay = [];
-        $values = $this->data->pluck('values');
+        $values = $this->data->toCollection()->pluck('values');
         foreach ($values as $item) {
             /**
              * @var Collection
