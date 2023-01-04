@@ -154,7 +154,7 @@ class ChartJsBuilder {
      * @param mixed $value
      *
      * @return mixed
-     *               Method Modules\Chart\Services\ChartJsBuilder::get() is unused.
+     *               Method Modules\Chart\Services\ChartJsBuilder::get() is unused
      */
 
     /**

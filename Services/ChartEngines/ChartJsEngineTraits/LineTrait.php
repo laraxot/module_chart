@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Services\ChartEngines\ChartJsEngineTraits;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Modules\Chart\Services\ChartJsBuilder;
 
 trait LineTrait {
