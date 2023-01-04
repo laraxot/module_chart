@@ -13,4 +13,5 @@ class AnswerData extends Data {
     public float|array $value;
     public float|array|string $value1 = '';
     public ?Collection $values;
+    public ?string $_key;
 }
