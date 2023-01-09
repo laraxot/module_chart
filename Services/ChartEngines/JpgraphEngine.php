@@ -172,6 +172,7 @@ class JpgraphEngine extends BaseChartEngine {
         return $this;
     }
 
+    // diventato GetGraphAction
     public function getGraph(): Graph {
         // Create the graph. These two calls are always required
         $graph = new Graph($this->width, $this->height, 'auto');
