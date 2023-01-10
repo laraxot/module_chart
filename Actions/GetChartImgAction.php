@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Actions;
 
-use Modules\Chart\Datas\AnswerData;
 use Modules\Chart\Datas\ChartData;
 use Modules\Quaeris\Datas\QuestionData;
-use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetChartImgAction {
@@ -15,14 +13,11 @@ class GetChartImgAction {
 
     /**
      * Undocumented function.
-     *
-     * @param DataCollection<AnswerData> $answers
      */
-    public function execute(DataCollection $answers, ChartData $chart, ?QuestionData $question = null): string {
+    public function execute(ChartData $chart, QuestionData $question): string {
         $engine_type = $chart->engine_type ?? 'JpGraph';
         $engine = __NAMESPACE__.'\Get'.$engine_type.'ImgAction';
-        // dddx($answers);
-        $res = app($engine)->execute($answers, $chart, $question);
+        $res = app($engine)->execute($chart, $question);
 
         return $res;
     }

@@ -9,10 +9,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-use Modules\Chart\Datas\AnswerData;
 use Modules\Chart\Datas\ChartData;
 use Modules\Quaeris\Datas\QuestionData;
-use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetJpGraphImgAction {
@@ -20,18 +18,17 @@ class GetJpGraphImgAction {
 
     /**
      * Undocumented function.
-     *
-     * @param DataCollection<AnswerData> $answers
      */
-    public function execute(DataCollection $answers, ChartData $chart, ?QuestionData $question = null): string {
+    public function execute(ChartData $chart, QuestionData $question): string {
         $graphs = [];
         if (Str::startsWith($chart->type, 'mixed')) {
             $parz = \array_slice(explode(':', $chart->type), 1);
             $parz = implode('|', $parz);
             // $res = $this->mixed(...$parz);
-            $class = 'Modules\Quaeris\Actions\Question\\MixedAction';
+            $class = 'Modules\Quaeris\Actions\Question\MixedAction';
             $graphs = app($class)->execute($parz, $chart, $question);
         } else {
+            $answers = app(GetAnswersByQuestionTitleAction::class)->execute($question);
             $class = __NAMESPACE__.'\JpGraph\\'.Str::studly($chart->type).'Action';
             $graphs[] = app($class)->execute($answers, $chart);
         }
