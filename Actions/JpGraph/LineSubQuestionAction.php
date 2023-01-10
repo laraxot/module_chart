@@ -19,7 +19,7 @@ class LineSubQuestionAction {
         // Setup the graph.
         // $this->vars['names'] = ['A1', 'A2', 'A3', 'A4'];
         // $names = $this->vars['names'];
-        $names = ['A1' => 'a1', 'A2' => 'a2', 'A3' => 'a3', 'A4' => 'a4'];
+        $names = ['A1' => 'a1', 'A3' => 'a3',  'A10' => 'a10', 'A7' => 'a7', 'A9' => 'a9', 'A8' => 'a8'];
         $n = \count($names);
 
         // $graph = $this->getGraph();
@@ -28,7 +28,9 @@ class LineSubQuestionAction {
         $datax = $answers->toCollection()->pluck('label')->all();
         $datay = [];
         $values = $answers->toCollection()->pluck('value');
-        // dddx([$answers, $values]);
+
+        dddx([$answers, $values]);
+
         foreach ($values as $item) {
             /**
              * @var Collection
@@ -37,9 +39,15 @@ class LineSubQuestionAction {
             foreach ($names as $k1 => $v1) {
                 // dddx([$k1, $v1, $v]);
                 // $datay[$k1][] = $v->get($k1) ?? '-';
-                $datay[$k1][] = $v ?? '-';
+                // dddx([$item, $k1]);
+                // $datay[$k1][] = $v ?? '-';
+                // dddx($item);
+                $datay[$k1][] = collect($item)->get($k1) ?? '-';
             }
         }
+
+        dddx($datay);
+
         $datay = array_values($datay);
         $names = array_values($names);
 
@@ -94,13 +102,13 @@ class LineSubQuestionAction {
         for ($i = 0; $i < $n; ++$i) {
             $p[$i] = new LinePlot($datay[$i]);
             $graph->Add($p[$i]);
-            $p[$i]->SetColor($colors[$i]);
+            // $p[$i]->SetColor($colors[$i]);
             $p[$i]->SetLegend($names[$i]);
             $p[$i]->mark->SetType($marks[$i], '', 1.2);
-            $p[$i]->mark->SetColor($colors[$i]);
+            // $p[$i]->mark->SetColor($colors[$i]);
             // dddx($this->vars['transparency']);
             // $p[$i]->mark->SetFillColor($colors[$i].'@'.$this->vars['transparency']); // trasparenza da 0 a 1
-            $p[$i]->mark->SetFillColor($colors[$i]);
+            // $p[$i]->mark->SetFillColor($colors[$i]);
             $p[$i]->SetCenter();
         }
 
