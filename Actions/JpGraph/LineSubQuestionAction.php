@@ -19,8 +19,8 @@ class LineSubQuestionAction {
         // Setup the graph.
         // $this->vars['names'] = ['A1', 'A2', 'A3', 'A4'];
         // $names = $this->vars['names'];
-        $names = ['A1' => 'a1', 'A3' => 'a3',  'A10' => 'a10', 'A7' => 'a7', 'A9' => 'a9', 'A8' => 'a8'];
-        $n = \count($names);
+
+        $n = \count($chart->sublabels);
 
         // $graph = $this->getGraph();
         $graph = app(GetGraphAction::class)->execute($chart);
@@ -29,14 +29,14 @@ class LineSubQuestionAction {
         $datay = [];
         $values = $answers->toCollection()->pluck('value');
 
-        dddx([$answers, $values]);
+        // dddx([$answers, $values]);
 
         foreach ($values as $item) {
             /**
              * @var Collection
              */
             $v = $item;
-            foreach ($names as $k1 => $v1) {
+            foreach ($chart->sublabels as $k1 => $v1) {
                 // dddx([$k1, $v1, $v]);
                 // $datay[$k1][] = $v->get($k1) ?? '-';
                 // dddx([$item, $k1]);
@@ -46,10 +46,10 @@ class LineSubQuestionAction {
             }
         }
 
-        dddx($datay);
+        // dddx(['answers' => $answers, 'datay' => $datay]);
 
         $datay = array_values($datay);
-        $names = array_values($names);
+        $names = array_values($chart->sublabels);
 
         // for ($i = 0; $i < $n; ++$i) {
         //    $datay[$i] = $this->data->pluck('datay'.$i)->all();

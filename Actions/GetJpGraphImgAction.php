@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Modules\Chart\Datas\ChartData;
+use Modules\Quaeris\Actions\Question\GetAnswersByQuestionTitleAction;
 use Modules\Quaeris\Datas\QuestionData;
 use Spatie\QueueableAction\QueueableAction;
 

@@ -12,5 +12,6 @@ class AnswerData extends Data {
     public float|array $value = 0;
     public float|array|string $value1 = '';
     public ?string $_key;
-    public ?array $sub_labels;
+    // public ?array $sub_labels;
+    public $values;
 }
