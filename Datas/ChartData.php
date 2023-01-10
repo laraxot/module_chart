@@ -34,5 +34,6 @@ class ChartData extends Data {
     public ?string $footer;
     public int $plot_value_pos = 0;
     public string $answer_value_no_txt = 'no_set';
+    public string $answer_value_txt = 'no_set';
     public ?string $legend;
 }

@@ -189,10 +189,4 @@ class ChartService {
 
         return $this;
     }
-
-    /*
-    public function getGraph() {
-        return $this->chart_engine->getGraph();
-    }
-    */
 }

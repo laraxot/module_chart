@@ -21,6 +21,7 @@ class GetChartImgAction {
     public function execute(DataCollection $answers, ChartData $chart, ?QuestionData $question = null): string {
         $engine_type = $chart->engine_type ?? 'JpGraph';
         $engine = __NAMESPACE__.'\Get'.$engine_type.'ImgAction';
+        // dddx($answers);
         $res = app($engine)->execute($answers, $chart, $question);
 
         return $res;

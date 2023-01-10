@@ -16,17 +16,18 @@ class Bar2Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-        // dddx($this->vars);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         // $graph = $this->getGraph();
+        // dddx($answers);
         $graph = app(GetGraphAction::class)->execute($chart);
         $graph->img->SetMargin(50, 50, 50, 100);
+        // dddx(debug_backtrace());
+        // dddx($answers);
         $labels = $answers->toCollection()->pluck('label')->all();
         $datay = $answers->toCollection()->pluck('value')->all();
         $datay1 = $answers->toCollection()->pluck('value1')->all();
 
-        // dddx($datay[0]);
-        // dddx($datay1);
+        // dddx([$labels, $datay, $datay1]);
         // nel caso non ci siano risultati
         // gli do dei dati vuoti per fargli produrre un grafico vuoto
         if (! isset($datay[0])) {
