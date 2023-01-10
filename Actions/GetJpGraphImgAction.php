@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Modules\Chart\Datas\ChartData;
-use Modules\Quaeris\Actions\Question\GetAnswersByQuestionTitleAction;
+use Modules\Quaeris\Actions\Question\GetAnswersByQuestionDataAction;
 use Modules\Quaeris\Datas\QuestionData;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -29,7 +29,7 @@ class GetJpGraphImgAction {
             $class = 'Modules\Quaeris\Actions\Question\MixedAction';
             $graphs = app($class)->execute($parz, $chart, $question);
         } else {
-            $answers = app(GetAnswersByQuestionTitleAction::class)->execute($question);
+            $answers = app(GetAnswersByQuestionDataAction::class)->execute($question);
             $class = __NAMESPACE__.'\JpGraph\\'.Str::studly($chart->type).'Action';
             $graphs[] = app($class)->execute($answers, $chart);
         }
