@@ -166,6 +166,23 @@ title=&quot;Valori Giornalieri&quot;
 
 &lt;p&gt;In questo modo, puoi utilizzare Echarts con Laravel e Apache per creare un grafico e visualizzare i dati. Tuttavia, questo è solo un semplice esempio e puoi personalizzare il codice per soddisfare le tue esigenze specifiche.&lt;/p&gt;
 
+            <h2><a href="/it/docs/errori">Soluzione agli Errori</a></h2>
+        <h3>By </h3>
+        &lt;h1 id=&quot;soluzione-agli-errori&quot;&gt;Soluzione agli Errori&lt;/h1&gt;
+
+&lt;h2&gt;Errore:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;Can&#039;t write to file &quot;/var/www/base_example/public_html/chart/uuid-uuid-uuid-uuid-uuid.png&quot;. Check that the process running PHP has enough permission.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Soluzione&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;cd base_example/public_html
+mkdir chart
+cd ..
+sudo chmod 777 -R .
+&lt;/code&gt;&lt;/pre&gt;
+
             <h2><a href="/it/docs/components/graph">Graph</a></h2>
         <h3>By </h3>
         &lt;h1 id=&quot;graph&quot;&gt;Graph&lt;/h1&gt;
