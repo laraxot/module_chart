@@ -36,11 +36,14 @@ class LineSubQuestionAction {
         //     $answers->toCollection()->pluck('values')->first(),
         // ]);
 
+        /* -- MA PERCHE' !!!
         if (is_null($answers->toCollection()->pluck('values')->first())) {
             $values = $answers->toCollection()->pluck('value');
         } else {
             $values = $answers->toCollection()->pluck('values');
         }
+        */
+        $values = $answers->toCollection()->pluck('value');
 
         foreach ($values as $item) {
             /**

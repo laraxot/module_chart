@@ -13,5 +13,5 @@ class AnswerData extends Data {
     public float|array|string $value1 = '';
     public ?string $_key;
     // public ?array $sub_labels;
-    public $values;
+    // public $values; NO ! NO ! NO !
 }
