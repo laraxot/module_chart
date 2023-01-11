@@ -10,24 +10,27 @@ use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class Horizbar1Action {
+class Horizbar1Action
+{
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart): Graph {
+    public function execute(DataCollection $answers, ChartData $chart): Graph
+    {
         $datay = $answers->toCollection()->pluck('value')->all();
 
         $datax = $answers->toCollection()->pluck('label')->all();
 
         $tmp = [];
-        if (count($chart->sublabels) > 0) {
-            $i = 0;
-            foreach ($chart->sublabels as $k => $v) {
-                $tmp[$i++] = collect($datay)->sum($k);
-            }
-            $datax = array_values($chart->sublabels);
-            $datay = $tmp;
 
-            // dddx(['datay' => $datay, 'datax' => $datax, 'tmp' => $tmp]);
+        if (null !== $chart->sublabels) {
+            if (count($chart->sublabels) > 0) {
+                $i = 0;
+                foreach ($chart->sublabels as $k => $v) {
+                    $tmp[$i++] = collect($datay)->sum($k);
+                }
+                $datax = array_values($chart->sublabels);
+                $datay = $tmp;
+            }
         }
 
         // dddx([$datax, $datay]);
