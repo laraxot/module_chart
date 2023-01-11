@@ -9,6 +9,8 @@ section: content
 
 Modules/Quaeris/Actions/Question/GetAnswersByQuestionDataAction.php è l'azione che prende le risposte per i grafici dai vari question type.
 
+si può mettere un dddx($class) per vedere che classe usa
+
 Le query per fare i grafici possono essere ad esempio:
 
 ```mysql
