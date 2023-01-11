@@ -14,16 +14,10 @@ class Horizbar1Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-        // $datay = $answers->toCollection()->pluck('value')->all();
-
-        if (is_null($answers->toCollection()->pluck('values')->first())) {
-            $datay = $answers->toCollection()->pluck('value');
-        } else {
-            $datay = $answers->toCollection()->pluck('values');
-        }
+        $datay = $answers->toCollection()->pluck('value')->all();
 
         $datax = $answers->toCollection()->pluck('label')->all();
-       
+
         $tmp = [];
 
         if (null !== $chart->sublabels) {
