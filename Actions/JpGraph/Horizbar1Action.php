@@ -15,7 +15,21 @@ class Horizbar1Action {
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
         $datay = $answers->toCollection()->pluck('value')->all();
+
         $datax = $answers->toCollection()->pluck('label')->all();
+
+        $tmp = [];
+        if (count($chart->sublabels) > 0) {
+            $i = 0;
+            foreach ($chart->sublabels as $k => $v) {
+                $tmp[$i++] = collect($datay)->sum($k);
+            }
+            $datax = array_values($chart->sublabels);
+            $datay = $tmp;
+
+            // dddx(['datay' => $datay, 'datax' => $datax, 'tmp' => $tmp]);
+        }
+
         // dddx([$datax, $datay]);
         // if (isset($this->vars['names']) && \is_array($this->vars['names']) && '' !== $this->vars['group_by']) {
         //     // dddx($this->vars['names']);
