@@ -27,9 +27,17 @@ class LineSubQuestionAction {
 
         $datax = $answers->toCollection()->pluck('label')->all();
         $datay = [];
-        $values = $answers->toCollection()->pluck('value');
+        // $values = $answers->toCollection()->pluck('value');
+        // dddx([
+        //     $answers->toCollection()->pluck('value'),
+        //     $answers->toCollection()->pluck('values')->first(),
+        // ]);
 
-        // dddx([$answers, $values]);
+        if (is_null($answers->toCollection()->pluck('values')->first())) {
+            $values = $answers->toCollection()->pluck('value');
+        } else {
+            $values = $answers->toCollection()->pluck('values');
+        }
 
         foreach ($values as $item) {
             /**
