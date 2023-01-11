@@ -233,6 +233,85 @@ php artisan module_chart:install
 
 &lt;p&gt;Il modulo &quot;module_chart&quot; è un pacchetto aggiuntivo per Laravel che fornisce funzionalità per creare grafici e diagrammi.&lt;/p&gt;
 
+            <h2><a href="/it/docs/query">Query</a></h2>
+        <h3>By </h3>
+        &lt;h1 id=&quot;query-chart&quot;&gt;Query&lt;/h1&gt;
+
+&lt;p&gt;Modules/Quaeris/Actions/Question/GetAnswersByQuestionDataAction.php è l&#039;azione che prende le risposte per i grafici dai vari question type.&lt;/p&gt;
+
+&lt;p&gt;Le query per fare i grafici possono essere ad esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;select
+    lime_survey_657328.id,
+    lime_survey_657328.submitdate,
+    lime_survey_657328.token,
+    657328X660X28949SQ002 as _key,
+    ask_lang.answer as _value,
+    DATE_FORMAT(submitdate, &quot;%Y-%b&quot;) as _group_by,
+    null as _group_by_value,
+    DATE_FORMAT(submitdate, &quot;%Y-%m&quot;) as _sort_by,
+    657328X660X28864 as _key1,
+    ask2_lang.answer as _value1,
+    null as _subs,
+    AVG(ask_lang.answer) AS value,
+    count(ask_lang.answer) AS value1
+from
+    `lime_survey_657328`
+
+    left join `lime_answers` as `ask0` on `ask0`.`qid` = 28949
+    and `ask0`.`code` = 657328X660X28949SQ002
+
+    left join `lime_answer_l10ns` as `ask_lang` on `ask_lang`.`aid` = `ask0`.`aid`
+    and `ask_lang`.`language` = &#039;it&#039;
+
+    left join `lime_answers` as `ask2` on `ask2`.`qid` = 28864
+    and `ask2`.`code` = 657328X660X28864
+
+    left join `lime_answer_l10ns` as `ask2_lang` on `ask2_lang`.`aid` = `ask2`.`aid`
+    and `ask2_lang`.`language` = &#039;it&#039;
+where
+    `submitdate` is not null
+    and `657328X660X28949SQ002` is not null
+    and concat(&#039;&#039;, ask_lang.answer * 1) = ask_lang.answer
+group by
+    `_group_by`,
+    `_key1`
+order by
+    `_sort_by` asc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;La query è scomponibile in varie parti per controllare:&lt;/p&gt;
+
+&lt;p&gt;Esempio:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;select
+    lime_survey_657328.id,
+    lime_survey_657328.submitdate,
+    lime_survey_657328.token,
+    /*657328X660X28949SQ002 as _key,*/
+    ask_lang.answer as _value,
+    657328X660X28864 as _key1,
+    ask2_lang.answer as _value1,
+    /*AVG(ask_lang.answer) AS value*/
+from
+    `lime_survey_657328`
+    left join `lime_answers` as `ask0` on `ask0`.`qid` = 28949
+    and `ask0`.`code` = 657328X660X28949SQ002
+    left join `lime_answer_l10ns` as `ask_lang` on `ask_lang`.`aid` = `ask0`.`aid`
+    and `ask_lang`.`language` = &#039;it&#039;
+    left join `lime_answers` as `ask2` on `ask2`.`qid` = 28864
+    and `ask2`.`code` = 657328X660X28864
+    left join `lime_answer_l10ns` as `ask2_lang` on `ask2_lang`.`aid` = `ask2`.`aid`
+    and `ask2_lang`.`language` = &#039;it&#039;
+where
+    `submitdate` like &#039;2022-10-%&#039;
+    and ask2_lang.answer = &#039;BELLUNO&#039;
+    and `657328X660X28949SQ002` is not null
+    and concat(&#039;&#039;, ask_lang.answer * 1) = ask_lang.answer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In questo caso avremo un $answer con value (media) e values (valori da cui calcola la media)&lt;/p&gt;
+
             </main>
 
         <script src="https://laraxot.github.io/module_chart/assets/build/js/main.js?id=73af017f2129fa41a4b5f03922c4c99d"></script>
