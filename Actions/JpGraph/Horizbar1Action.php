@@ -23,7 +23,7 @@ class Horizbar1Action {
         }
 
         $datax = $answers->toCollection()->pluck('label')->all();
-
+       
         $tmp = [];
 
         if (null !== $chart->sublabels) {
