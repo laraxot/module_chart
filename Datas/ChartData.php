@@ -28,7 +28,7 @@ class ChartData extends Data {
     public int $plot_perc_width;
     public int $plot_value_show;
     public string $plot_value_format;
-    public string $plot_value_color; // #000000
+    public ?string $plot_value_color = '#000000';
     public string $transparency;
     public ?string $engine_type;
     public ?string $footer;
