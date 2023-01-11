@@ -140,7 +140,6 @@ class Bar2Action {
 
         // cifre sopra il grafico
         $delta = ($chart->width - 100) / \count($datay1);
-        $delta = $delta;
         foreach ($datay1 as $i => $v) {
             $txt = new Text($v.'');
 
