@@ -14,7 +14,17 @@ class Horizbar1Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
+<<<<<<< Updated upstream
         $datay = $answers->toCollection()->pluck('value')->all();
+=======
+        // $datay = $answers->toCollection()->pluck('value')->all();
+       
+        if (is_null($answers->toCollection()->pluck('values')->first())) {
+            $datay = $answers->toCollection()->pluck('value');
+        } else {
+            $datay = $answers->toCollection()->pluck('values');
+        }
+>>>>>>> Stashed changes
 
         $datax = $answers->toCollection()->pluck('label')->all();
 
