@@ -33,8 +33,8 @@ class ChartData extends Data {
     public ?string $engine_type;
     public ?string $footer;
     public int $plot_value_pos = 0;
-    public string $answer_value_no_txt = 'no_set';
-    public string $answer_value_txt = 'no_set';
+    public ?string $answer_value_no_txt;
+    public ?string $answer_value_txt;
     public ?string $legend;
     public ?array $sublabels;
 }
