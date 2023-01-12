@@ -14,8 +14,7 @@ class LineSubQuestionAction {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-       
-        //dddx([$answers,$chart->sublabels]);
+        // dddx([$answers,$chart->sublabels]);
         // dddx([$answers, $chart]);
         // $datax = $this->data->pluck('label')->all();
         // Setup the graph.

@@ -14,7 +14,6 @@ class Horizbar1Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-
         $datay = $answers->toCollection()->pluck('value')->all();
 
         $datax = $answers->toCollection()->pluck('label')->all();

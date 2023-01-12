@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Actions\JpGraph;
 
-use Amenadiel\JpGraph\Text\Text;
 use Amenadiel\JpGraph\Graph\Graph;
-use Modules\Chart\Datas\ChartData;
-use Amenadiel\JpGraph\Plot\BarPlot;
 use Amenadiel\JpGraph\Plot\AccBarPlot;
+use Amenadiel\JpGraph\Plot\BarPlot;
+use Amenadiel\JpGraph\Text\Text;
+use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
-use Amenadiel\JpGraph\Plot\GroupBarPlot;
 use Spatie\QueueableAction\QueueableAction;
 
 class Bar3Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-        
         $graph = app(GetGraphAction::class)->execute($chart);
         $graph->img->SetMargin(50, 50, 50, 100);
         $labels = $answers->toCollection()->pluck('label')->all();
@@ -77,7 +75,6 @@ class Bar3Action {
         // ...and add it to the graPH
         $graph->Add($gbplot);
 
-       
         if (\count($datay) > 1) {
             // dddx($this->data->first()['title_type']);
             // dddx($this->vars['title']);
@@ -99,7 +96,7 @@ class Bar3Action {
 
         // cifre sopra il grafico
         $delta = ($chart->width - 100) / \count($datay1);
-        
+
         if (is_array($datay1)) {
             foreach ($datay1 as $i => $v) {
                 $txt = new Text('');
