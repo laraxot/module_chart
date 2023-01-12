@@ -41,13 +41,13 @@ class Pie1Action {
         // Create the pie plot
         $p1 = new PiePlotC($data);
 
-        // $p1->SetSliceColors(explode(',', $this->vars['list_color']));
+        // $p1->SetSliceColors(explode(',', $chart->list_color));
         // trasparenza da 0 a 1, inserito per ogni colore
-        // $color_array = explode(',', $chart->list_color);
-        // foreach ($color_array as $k => $color) {
-        //     $color_array[$k] = $color.'@'.$chart->transparency;
-        // }
-        // $p1->SetSliceColors($color_array);
+        $color_array = explode(',', $chart->list_color);
+        foreach ($color_array as $k => $color) {
+            $color_array[$k] = $color.'@'.$chart->transparency;
+        }
+        $p1->SetSliceColors($color_array);
 
         $p1->SetLegends($labels);
         // $graph->legend->SetPos(0.5,0.98,'center','bottom');
