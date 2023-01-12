@@ -14,27 +14,38 @@ class Horizbar1Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-        $datay = $answers->toCollection()->pluck('value')->all();
+        $data = $answers->toCollection()->pluck('value')->all();
 
-        $datax = $answers->toCollection()->pluck('label')->all();
+        $labels = $answers->toCollection()->pluck('label')->all();
 
+        // dddx(['data' => $data, 'labels' => $labels]);
+        $data = collect($data)->map(function ($item) {
+            if (is_array($item)) {
+                return array_values($item)[0];
+            }
+
+            return $item;
+        })->all();
+
+        /*
         $tmp = [];
-
         if (null !== $chart->sublabels) {
+            dddx([$answers, $chart->sublabels]);
             if (count($chart->sublabels) > 0) {
                 $i = 0;
                 foreach ($chart->sublabels as $k => $v) {
-                    $tmp[$i++] = collect($datay)->sum($k);
+                    $tmp[$i++] = collect($data)->sum($k);
                 }
-                $datax = array_values($chart->sublabels);
-                $datay = $tmp;
+                $labels = array_values($chart->sublabels);
+                $data = $tmp;
             }
         }
+        */
 
-        // dddx([$datax, $datay]);
+        // dddx([$labels, $data]);
         // if (isset($this->vars['names']) && \is_array($this->vars['names']) && '' !== $this->vars['group_by']) {
         //     // dddx($this->vars['names']);
-        //     $datax = array_values($this->vars['names']); // 4 debug
+        //     $labels = array_values($this->vars['names']); // 4 debug
         // }
 
         // dddx([$this->data, $this->data->pluck('label')->all(), $this->vars['names'], $this->vars['group_by']]);
@@ -71,7 +82,7 @@ class Horizbar1Action {
         // $graph->title->SetFont($this->vars['font_family'], $this->vars['font_style'], 11);
 
         // Setup X-axis
-        $graph->xaxis->SetTickLabels($datax) + 10;
+        $graph->xaxis->SetTickLabels($labels) + 10;
 
         // $graph->xaxis->SetLabelAngle($this->vars['style']['x_label_angle']);
 
@@ -82,7 +93,7 @@ class Horizbar1Action {
         // $graph->xaxis->SetLabelAlign('right', 'center');
 
         // Now create a bar pot
-        $bplot = new BarPlot($datay);
+        $bplot = new BarPlot($data);
         // $bplot = $this->applyPlotStyle($bplot);
         $bplot = app(ApplyPlotStyleAction::class)->execute($bplot, $chart);
 
