@@ -59,6 +59,8 @@ class Horizbar1Action {
         // Rotate graph 90 degrees and set margin
         $graph->Set90AndMargin(250, 20, 50, 30);
 
+        $graph = app(ApplyGraphStyleAction::class)->execute($graph, $chart);
+
         // a true inserisce un bordo in più
         // $graph->SetFrame(true, 'green', 5);
 
