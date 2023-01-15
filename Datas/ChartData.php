@@ -35,6 +35,7 @@ class ChartData extends Data {
     public int $plot_value_pos = 0;
     public ?string $answer_value_no_txt;
     public ?string $answer_value_txt;
-    public ?string $legend;
+    // public ?string $legend;
+    public ?array $legend;
     public ?array $sublabels;
 }
