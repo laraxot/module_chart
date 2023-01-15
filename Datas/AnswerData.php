@@ -18,4 +18,6 @@ class AnswerData extends Data {
     public float $avg = 0;
     // public int $tot = 1;
     // public int $tot_nulled = 0;
+    public ?string $title;
+    public ?string $subtitle;
 }
