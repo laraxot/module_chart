@@ -16,11 +16,15 @@ class Bar2Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
-        //dddx($answers);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         // $graph = $this->getGraph();
         // dddx($answers);
         $graph = app(GetGraphAction::class)->execute($chart);
+        //dddx($graph);
+        //$graph->SetScale('textlin',$chart->min,$chart->max);
+
+        //$graph->SetScale('textlin');
+
         $graph->img->SetMargin(50, 50, 50, 100);
         // dddx(debug_backtrace());
         // dddx($answers);
