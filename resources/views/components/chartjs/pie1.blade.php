@@ -20,7 +20,7 @@
         const data = {
             labels: labels,
             datasets: [{
-                label: '{{$title}}',
+                label: '{{ $title }}',
                 data: mydata,
                 backgroundColor: [
                     'rgb(255, 99, 132)',
