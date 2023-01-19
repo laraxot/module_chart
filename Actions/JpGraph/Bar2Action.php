@@ -16,6 +16,7 @@ class Bar2Action {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart): Graph {
+        //dddx($answers);
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         // $graph = $this->getGraph();
         // dddx($answers);

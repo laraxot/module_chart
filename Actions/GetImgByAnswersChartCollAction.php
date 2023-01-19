@@ -24,6 +24,8 @@ class GetImgByAnswersChartCollAction {
         $graphs = [];
         foreach ($coll as $v) {
             $class = 'Modules\Chart\Actions\JpGraph\\'.Str::studly($v->chart->type).'Action';
+            /*if(false==str_contains($class,'PieAvgAction'))
+            dddx($class);*/
             $graphs[] = app($class)->execute($v->answers, $v->chart);
         }
         $img = 'chart/'.Str::uuid().'.png';

@@ -51,7 +51,7 @@ class PieAvgAction {
 
         // trasparenza da 0 a 1, inserito per ogni colore
         $color_array = explode(',', $chart->list_color);
-        dddx($color_array);
+
         foreach ($color_array as $k => $color) {
             $color_array[$k] = $color.'@0.6';
         }
