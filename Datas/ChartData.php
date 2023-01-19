@@ -41,6 +41,6 @@ class ChartData extends Data {
     public ?float $avg;
 
     public function getColors() {
-        return explode($this->list_color);
+        return explode(',',$this->list_color);
     }
 }
