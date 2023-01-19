@@ -14,7 +14,6 @@ class PieAvgAction {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart) {
-        // dddx([$answers, $chart]);
         $labels = $answers->toCollection()->pluck('label')->all();
 
         // $this->vars['footer'] = 'Media: '.round((float) $this->data->toCollection()->avg('value'), 2);
@@ -52,6 +51,7 @@ class PieAvgAction {
 
         // trasparenza da 0 a 1, inserito per ogni colore
         $color_array = explode(',', $chart->list_color);
+        dddx($color_array);
         foreach ($color_array as $k => $color) {
             $color_array[$k] = $color.'@0.6';
         }
@@ -75,7 +75,7 @@ class PieAvgAction {
         // 150    Cannot cast mixed to float.
         $footer_txt = 'Media N.D.';
         if (\is_array($data) && isset($data[0]) && \is_numeric($data[0])) {
-            $footer_txt = 'Media '.number_format((float) $data[0], 2);
+            $footer_txt = 'Media '.number_format((float) $chart->avg, 2);
         }
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($chart->font_family, $chart->font_style, $chart->font_size);

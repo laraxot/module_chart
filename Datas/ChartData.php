@@ -15,7 +15,7 @@ class ChartData extends Data {
     public ?string $title;
     public ?string $subtitle;
     public string $list_color;
-    public string $color; // #000000
+    // public string $color; // #000000 // non si deve più usare, sostituito da list_color
     public ?string $bg_color; // #000000
     public string $font_family;
     public string $font_size;
@@ -38,4 +38,9 @@ class ChartData extends Data {
     // public ?string $legend;
     public ?array $legend;
     public ?array $sublabels;
+    public ?float $avg;
+
+    public function getColors() {
+        return explode($this->list_color);
+    }
 }
