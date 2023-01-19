@@ -61,7 +61,9 @@ class GetImgByAnswersChartCollAction {
             $filename1 = 'chart/'.Str::uuid().'.png';
             // dddx($graph);
             // $graph->SetScale("textlin",0,65);
+            
             $graph->Stroke(public_path($filename1));
+            
             $img = Image::make(public_path($filename1));
             $imgs[] = $img;
             $width += $img->width();

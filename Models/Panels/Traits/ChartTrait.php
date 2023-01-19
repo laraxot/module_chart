@@ -138,12 +138,12 @@ trait ChartTrait {
                 ],
             ],
 
-            (object) [
+            /*(object) [
                 'type' => 'SelectColor',
                 'name' => 'chart.color',
                 'comment' => null,
                 'col_size' => 4,
-            ],
+            ],*/
 
             (object) [
                 'type' => 'ListColor',
