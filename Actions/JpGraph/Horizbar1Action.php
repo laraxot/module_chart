@@ -6,6 +6,7 @@ namespace Modules\Chart\Actions\JpGraph;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\BarPlot;
+use Illuminate\Support\Str;
 use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
@@ -18,7 +19,7 @@ class Horizbar1Action {
 
         $labels = $answers->toCollection()->pluck('label')->all();
 
-        // dddx(['data' => $data, 'labels' => $labels]);
+        // dddx(['data' => $data, 'labels' => $labels, 'chart' => $chart]);
         $data = collect($data)->map(function ($item) {
             if (is_array($item)) {
                 return array_values($item)[0];
@@ -98,6 +99,20 @@ class Horizbar1Action {
         $bplot = new BarPlot($data);
         // $bplot = $this->applyPlotStyle($bplot);
         $bplot = app(ApplyPlotStyleAction::class)->execute($bplot, $chart);
+
+        // per mettere il colore diverso alla label NR, ma qui non va bene
+        // if (Str::contains($chart->type, 'horiz')) {
+        //     $colors = [];
+        //     // dddx(['data' => $data, 'labels' => $labels, 'chart' => $chart]);
+        //     foreach ($labels as $k => $label) {
+        //         if ('NR' == $label) {
+        //             $colors[$k] = $chart->getColors()[1].'@'.$chart->transparency;
+        //         } else {
+        //             $colors[$k] = $chart->getColors()[0].'@'.$chart->transparency;
+        //         }
+        //     }
+        //     $bplot->SetFillColor($colors); // trasparenza, da 0 a 1
+        // }
 
         // Add the bar to the graph
         $graph->Add($bplot);

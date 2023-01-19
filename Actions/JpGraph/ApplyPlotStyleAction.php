@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Chart\Actions\JpGraph;
 
 use Amenadiel\JpGraph\Plot\BarPlot;
-use Illuminate\Support\Str;
 use Modules\Chart\Datas\ChartData;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -15,33 +14,16 @@ class ApplyPlotStyleAction {
     public function execute(BarPlot $plot, ChartData $data): BarPlot {
         $colors = [];
 
-        // foreach ($data as $k => $d) {
-        //     if (Str::contains($data->chart_type, 'horiz')) {
-        //         // cannot access offset 'label' on mixed
-        //         if (\is_array($this->data[$k])) {
-        //             if ('NR' == $this->data[$k]['label']) {
-        //                 $list_color = explode(',', $this->vars['list_color']);
-        //                 $colors[$k] = $list_color[0].'@'.$this->vars['transparency'];
-        //             } else {
-        //                 $colors[$k] = $style['color'].'@'.$this->vars['transparency'];
-        //             }
-        //         }
-        //     } else {
-        //         $colors = $style['color'].'@'.$this->vars['transparency'];
-        //     }
-        // }
-
         // $plot->SetFillColor($colors); // trasparenza, da 0 a 1
 
-       
         // $plot->SetFillColor($this->data[5]['color'].'@'.$this->vars['transparency']); // trasparenza, da 0 a 1
-        $plot->SetFillColor($data->list_color??'red'.'@'.$data->transparency); // trasparenza, da 0 a 1
-       
+        $plot->SetFillColor($data->list_color ?? 'red@'.$data->transparency); // trasparenza, da 0 a 1
+
         // $bplot->SetShadow('darkgreen', 1, 1);
         // dddx([get_defined_vars(), $this->vars]);
 
-        $plot->SetColor($data->list_color??'red');
-       
+        $plot->SetColor($data->list_color ?? 'red');
+
         // You can change the width of the bars if you like
         $plot->SetWidth($data->plot_perc_width / 100);
         // $plot->SetWidth(10);
