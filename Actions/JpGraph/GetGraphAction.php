@@ -51,7 +51,7 @@ class GetGraphAction {
         return $graph;
     }
 
-    public function applyGraphXStyle(Axis $xaxis, ChartData $data): void {
+    public function applyGraphXStyle(Axis &$xaxis, ChartData $data): void {
         $xaxis->SetFont($data->font_family, $data->font_style, $data->font_size);
         $xaxis->SetLabelAngle($data->x_label_angle);
         // Some extra margin looks nicer
@@ -60,7 +60,7 @@ class GetGraphAction {
         // $graph->xaxis->SetLabelAlign('right', 'center');
     }
 
-    public function applyGraphYStyle(Axis $yaxis, ChartData $data): void {
+    public function applyGraphYStyle(Axis &$yaxis, ChartData $data): void {
         // Add some grace to y-axis so the bars doesn't go
         // all the way to the end of the plot area
         // "restringe" la visualizzazione delle barre
@@ -68,7 +68,8 @@ class GetGraphAction {
         // dddx($style['yaxis_hide']);
         // We don't want to display Y-axis
         // visualizza delle colonne verticali "in sottofondo/di riferimento"
-        if (null == $data->yaxis_hide || 0 == $data->yaxis_hide) {
+        // if (null == $data->yaxis_hide || 0 == $data->yaxis_hide) {
+        if ($data->yaxis_hide) {
             $yaxis->Hide();
         }
 

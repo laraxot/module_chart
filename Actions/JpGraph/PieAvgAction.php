@@ -19,17 +19,20 @@ class PieAvgAction {
         // $this->vars['footer'] = 'Media: '.round((float) $this->data->toCollection()->avg('value'), 2);
 
         $data = $answers->toCollection()->pluck('value')->all();
+
+        // dddx($answers);
         // Cannot access offset 'avg' on mixed.
 
-        /** @var ModelContract $first_data */
-        $first_data = $answers->first();
-        if (isset($first_data->avg)) {
-            $data = $answers->toCollection()->pluck('avg')->all();
-        }
-
+        /* @var ModelContract $first_data */
+        // $first_data = $answers->first();
+        // if (isset($first_data->avg)) {
+        //    $data = $answers->toCollection()->pluck('avg')->all();
+        // }
+        // dddx($data);
         if (isset($chart->max)) {
             $sum = collect($data)->sum();
             $other = $chart->max - $sum;
+            // $other = $chart->max - $chart->avg;
             if ($other > 0.01) {
                 // $color_array[1] = 'white';
                 $data[] = $other;
@@ -38,6 +41,7 @@ class PieAvgAction {
                     $labels[0] = $chart->answer_value_txt;
                 }
             }
+            // $data = [$chart->avg, $other];
         }
 
         // A new pie graph
@@ -55,6 +59,7 @@ class PieAvgAction {
         foreach ($color_array as $k => $color) {
             $color_array[$k] = $color.'@0.6';
         }
+        // dddx($color_array);
         $p1->SetSliceColors($color_array);
 
         // nasconde i label
@@ -75,10 +80,10 @@ class PieAvgAction {
         // 150    Cannot cast mixed to float.
         $footer_txt = 'Media N.D.';
         if (\is_array($data) && isset($data[0]) && \is_numeric($data[0])) {
-            $footer_txt = 'Media '.number_format((float) $chart->avg, 2);
+            // $footer_txt = 'Media '.number_format((float) $chart->avg, 2);
+            $footer_txt = 'Media '.number_format((float) $data[0], 2);
         }
 
-        
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($chart->font_family, $chart->font_style, $chart->font_size);
 

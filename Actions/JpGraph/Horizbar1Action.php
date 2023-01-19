@@ -102,16 +102,16 @@ class Horizbar1Action {
 
         // per mettere il colore diverso alla label NR, ma qui non va bene
         // if (Str::contains($chart->type, 'horiz')) {
-        //     $colors = [];
-        //     // dddx(['data' => $data, 'labels' => $labels, 'chart' => $chart]);
-        //     foreach ($labels as $k => $label) {
-        //         if ('NR' == $label) {
-        //             $colors[$k] = $chart->getColors()[1].'@'.$chart->transparency;
-        //         } else {
-        //             $colors[$k] = $chart->getColors()[0].'@'.$chart->transparency;
-        //         }
-        //     }
-        //     $bplot->SetFillColor($colors); // trasparenza, da 0 a 1
+        $colors = [];
+        // dddx(['data' => $data, 'labels' => $labels, 'chart' => $chart]);
+        foreach ($labels as $k => $label) {
+            if ('NR' == $label) {
+                $colors[$k] = $chart->getColors()[1].'@'.$chart->transparency;
+            } else {
+                $colors[$k] = $chart->getColors()[0].'@'.$chart->transparency;
+            }
+        }
+        $bplot->SetFillColor($colors); // trasparenza, da 0 a 1
         // }
 
         // Add the bar to the graph
