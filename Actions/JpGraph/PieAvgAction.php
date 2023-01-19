@@ -77,6 +77,8 @@ class PieAvgAction {
         if (\is_array($data) && isset($data[0]) && \is_numeric($data[0])) {
             $footer_txt = 'Media '.number_format((float) $chart->avg, 2);
         }
+
+        
         $graph->footer->center->Set($footer_txt);
         $graph->footer->center->SetFont($chart->font_family, $chart->font_style, $chart->font_size);
 
