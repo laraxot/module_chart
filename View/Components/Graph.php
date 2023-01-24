@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Chart\View\Components;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
@@ -30,7 +29,7 @@ class Graph extends Component {
         $this->type = $type;
         $colors = config('graph.colors', []);
         if (! is_array($colors)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->colors = $colors;
     }
