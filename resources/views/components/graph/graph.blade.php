@@ -13,7 +13,7 @@
 
                 this.ctx = document.getElementById(id).getContext('2d');
                 this.url = document.getElementById(id).getAttribute('url');
-                this.type = document.getElementById(id).getAttribute('type');
+                // this.type = document.getElementById(id).getAttribute('type');
 
                 console.log(id, this);
 
@@ -29,15 +29,9 @@
             load = function() {
                 this.fetchData().then(data => {
                     const myChart = new Chart(this.ctx, {
-                        type: this.type,
+                        type: data.type,
                         data: data,
-                        options: {
-                            /*scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }*/
-                        }
+                        options: data.options,
                     });
                 });
             }
