@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Datas;
 
+use Illuminate\Support\Str;
+use Spatie\Color\Hex;
 use Spatie\LaravelData\Data;
 
 class ChartData extends Data {
@@ -41,6 +43,19 @@ class ChartData extends Data {
     public ?float $avg;
 
     public function getColors() {
-        return explode(',',$this->list_color);
+        return explode(',', $this->list_color);
+    }
+
+    public function getColorsRgba(float $alpha = 1): array {
+        $colors = $this->getColors();
+
+        return collect($colors)->map(function ($item) use ($alpha) {
+            if (! Str::startsWith($item, '#')) {
+                return $item;
+            }
+            $hex = Hex::fromString($item);
+
+            return (string) $hex->toRgba($alpha);
+        })->all();
     }
 }
