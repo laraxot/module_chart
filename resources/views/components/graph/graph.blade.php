@@ -29,7 +29,7 @@
             load = function() {
                 this.fetchData().then(config => {
 
-                    console.log(config.options);
+                    console.log(config);
                     // const labels = ['marzo', 'aprile', 'maggio'];
                     const data = {
                         labels: config[0].labels,
