@@ -1,4 +1,4 @@
-<div >
+<div wire:init="loadGraph">
     <canvas id="{{ $graph_id }}" width="400" height="400" url="{{ $url }}"
         type="{{ $type }}"></canvas>
     @php
@@ -20,17 +20,11 @@
                 this.load();
             }
 
-            fetchData = async function() {
-                const response = await fetch(this.url);
-                const data = await response.json();
-                return data;
-            }
 
             load = function() {
-                this.fetchData().then(config => {
-
-                    const myChart = new Chart(this.ctx, config);
-                });
+                    // TODO: se il config è un array con più config vanno messi uno affianco all'altro
+                    const myChart = new Chart(this.ctx, {!! html_entity_decode($config) !!}
+                    );
             }
 
         }
