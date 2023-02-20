@@ -23,13 +23,13 @@ class Graph2 extends Component {
 
     public function loadGraph(){
         $this->readyToLoadGraph = true;
+
     }
     public function mount(string $id, string $url, string $type = 'graph') {
         $this->graph_id = $id;
         $this->url = '#';
         $this->config =[];
         $user = Auth::user();
-        dddx("ciao");
         if (Auth::check() && null != $user) {
             $this->url = url_queries(['api_token' => $user->api_token], $url);
            // dddx($this->config);
@@ -46,14 +46,16 @@ class Graph2 extends Component {
         /**
          * @phpstan-var view-string
          */
+        error_log("ciii");
         $view = 'chart::livewire.graph2.'.$this->type;
         if ( $this->readyToLoadGraph) {
             $request = Request::create($this->url, "GET");
             $response = app()->handle($request);
 
             $this->config = json_decode($response->getContent());
+
         }
-        $view_params = ["config"=> json_encode($this->config)];
+        $view_params = ["config"=> json_encode($this->config), "load" => $this->readyToLoadGraph];
         return view($view, $view_params);
     }
 }
