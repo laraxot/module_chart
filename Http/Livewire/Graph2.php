@@ -6,6 +6,7 @@ namespace Modules\Chart\Http\Livewire;
 
 use Auth;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Request;
 
@@ -46,7 +47,7 @@ class Graph2 extends Component {
         /**
          * @phpstan-var view-string
          */
-        error_log("ciii");
+       Log::error("test");
         $view = 'chart::livewire.graph2.'.$this->type;
         if ( $this->readyToLoadGraph) {
             $request = Request::create($this->url, "GET");
