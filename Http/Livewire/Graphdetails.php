@@ -15,17 +15,14 @@ use Request;
 /**
  * Class Chart.
  */
-class Graph2 extends Component {
+class Graphdetails extends Component {
     public string $type;
     public string $url;
     public string $graph_id;
     public array $colors = [];
-    public $readyToLoadGraph = false;
+    public array $config = [];
+    public int $num = 1;
 
-    public function loadGraph(){
-        $this->readyToLoadGraph = true;
-
-    }
     public function mount(string $id, string $url, string $type = 'graph') {
         $this->graph_id = $id;
         $this->url = '#';
@@ -46,8 +43,18 @@ class Graph2 extends Component {
         /**
          * @phpstan-var view-string
          */
-        $view = 'chart::livewire.graph2.'.$this->type;
+        $view = 'chart::livewire.graphdetails.'.$this->type;
 
+            $request = Request::create($this->url, "GET");
+            $response = app()->handle($request);
+
+            $tmp= json_decode($response->getContent(), true);
+            if ($tmp != null) {
+                $this->config = $tmp;
+                $this->num = count($this->config);
+            }else{
+                Log::error("fetch data error for $this->graph_id");
+            }
         return view($view, []);
     }
 }
