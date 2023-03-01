@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Http\Livewire;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
+use Modules\Cms\Actions\GetViewAction;
+use Illuminate\Contracts\Support\Renderable;
 
 // use Modules\Cms\Services\PanelService;
 // TODO:

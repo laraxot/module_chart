@@ -46,7 +46,7 @@ class Graph2 extends Component {
          */
         $view = app(GetViewAction::class)->execute($this->tpl);
         $view_params = [
-            'view' => $viewm,
+            'view' => $view,
         ];
 
         return view($view, $view_params);
