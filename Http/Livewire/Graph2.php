@@ -32,7 +32,7 @@ class Graph2 extends Component {
             $this->url = url_queries(['api_token' => $user->api_token], $url.'?id='.$this->graph_id);
             // dddx($this->config);
         }
-        $this->tpl = $pl;
+        $this->tpl = $tpl;
         $colors = config('graph.colors', []);
         if (! is_array($colors)) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
