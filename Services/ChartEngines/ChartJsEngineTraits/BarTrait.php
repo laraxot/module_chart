@@ -58,7 +58,7 @@ trait BarTrait {
         $view_params['filename'] = 'prova123';
 
         // dddx($view_params);
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html;
 

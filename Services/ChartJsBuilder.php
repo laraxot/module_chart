@@ -144,7 +144,7 @@ class ChartJsBuilder {
             'size' => $chart['size'],
         ];
 
-        return view()->make($view, $view_params);
+        return view($view, $view_params);
     }
 
     /**

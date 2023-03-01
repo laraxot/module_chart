@@ -74,7 +74,7 @@ trait HorizbarTrait {
         echo '</pre>'; */
 
         // dddx($view_params);
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html;
         // dddx($html);
@@ -276,7 +276,7 @@ trait HorizbarTrait {
         $view = 'chart::chartjs.default';
         $view_params = compact('chartjs');
 
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html; // se non mostro js non viene elaborato e non salva.. ipotesi phantomJS
 

@@ -121,7 +121,7 @@ class ChartService {
 
         $view_params = array_merge($view_params, $this->getVars());
 
-        return view()->make($view, $view_params);
+        return view($view, $view_params);
     }
 
     public function setEngine(?string $type = 'jpgraph'): self {

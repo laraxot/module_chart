@@ -45,7 +45,7 @@ trait PieTrait {
         $view_params['filename'] = 'prova123';
 
         // dddx($view_params);
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html;
 
@@ -64,7 +64,7 @@ trait PieTrait {
 
         // dddx($view_params);
 
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html; // se non mostro js non viene elaborato
 
@@ -83,7 +83,7 @@ trait PieTrait {
 
         // dddx($view_params);
 
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html; // se non mostro js non viene elaborato
 
@@ -197,7 +197,7 @@ trait PieTrait {
         $view_params['filename'] = 'prova123';
 
         // dddx($view_params);
-        $out = view()->make($view, $view_params);
+        $out = view($view, $view_params);
         $html = $out->render();
         echo $html;
 
