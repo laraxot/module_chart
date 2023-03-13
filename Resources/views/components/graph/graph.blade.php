@@ -1,4 +1,4 @@
-<div >
+<div>
     <canvas id="{{ $graph_id }}" width="400" height="400" url="{{ $url }}"
         type="{{ $type }}"></canvas>
     @php
