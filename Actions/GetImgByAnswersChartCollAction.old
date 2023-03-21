@@ -56,20 +56,18 @@ class GetImgByAnswersChartCollAction {
         if ($graphs->isEmpty()) {
             throw new \Exception('$graphs is an empty collection ['.__LINE__.']['.class_basename(__CLASS__).']');
         }
-        // $graphs = $graphs->shuffle();
+
         foreach ($graphs as $graph) {
             $filename1 = 'chart/'.Str::uuid().'.png';
             // dddx($graph);
             // $graph->SetScale("textlin",0,65);
-
-
+            
             $graph->Stroke(public_path($filename1));
-
+            
             $img = Image::make(public_path($filename1));
             $imgs[] = $img;
             $width += $img->width();
             $height = max($height, $img->height());
-
         }
         // $imgs = collect($imgs);
         // dddx
@@ -90,8 +88,7 @@ class GetImgByAnswersChartCollAction {
             $img_canvas->insert($v, 'top-left ', $delta, 0);
             $delta += $v->width();
         }
-        // $img_canvas->save(public_path($filename), 100);
-        $img_canvas->save(public_path().'/'.$filename, 100);
+        $img_canvas->save(public_path($filename), 100);
         /*  } else {
               try {
                   $graph->Stroke(public_path($filename));
