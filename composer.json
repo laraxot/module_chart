@@ -10,11 +10,12 @@
     ],
     "require" : {
         "amenadiel/jpgraph": "^4.1",
-        "illuminate/contracts": "^8.83|^9.30",
+        "illuminate/contracts": "^9.0|^10.0",
+        "illuminate/support": "^9.12|^10.0",
         "laraxot/module_cms": "dev-master",
         "laraxot/module_xot": "dev-master",
         "phpdocumentor/type-resolver": "^1.5",
-        "spatie/laravel-package-tools": "^1.9.0"
+        "spatie/laravel-package-tools": "^1.11.3"
     },
     "require-dev" : {
         "fakerphp/faker" : "^1.14",
