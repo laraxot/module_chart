@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Models;
 
-use ErrorException;
+use Illuminate\Support\Str;
 use Modules\Cms\Services\PanelService;
 
 /**
@@ -80,7 +80,8 @@ use Modules\Cms\Services\PanelService;
  *
  * @mixin \Eloquent
  */
-class Chart extends BaseModel {
+class Chart extends BaseModel
+{
     /**
      * Undocumented variable.
      *
@@ -137,7 +138,8 @@ class Chart extends BaseModel {
     /**
      * @return int|string|null
      */
-    public function getParentStyle(string $name) {
+    public function getParentStyle(string $name)
+    {
         $panel = PanelService::make()->getRequestPanel();
 
         if (null === $panel) {
@@ -169,7 +171,8 @@ class Chart extends BaseModel {
     /**
      * @return int|string|null
      */
-    public function getPanelRow(string $parent_field, string $my_field) {
+    public function getPanelRow(string $parent_field, string $my_field)
+    {
         $panel = PanelService::make()->getRequestPanel();
         if (! \is_object($panel)) {
             return null;
@@ -180,7 +183,7 @@ class Chart extends BaseModel {
             $value = $panel_row->{$parent_field};
             $this->{$my_field} = $value;
             $this->save();
-        } catch (ErrorException $e) {
+        } catch (\ErrorException $e) {
             $msg = [
                 'message' => $e->getMessage(),
                 'line' => $e->getLine(),
@@ -195,7 +198,8 @@ class Chart extends BaseModel {
     }
 
     // ---------- Getter
-    public function getColorAttribute(?string $value): ?string {
+    public function getColorAttribute(?string $value): ?string
+    {
         if (null !== $value) {
             // return $value;
         }
@@ -203,7 +207,8 @@ class Chart extends BaseModel {
         return (string) $this->getParentStyle('color');
     }
 
-    public function getListColorAttribute(?string $value): ?string {
+    public function getListColorAttribute(?string $value): ?string
+    {
         if (null !== $value) {
             return $value;
         }
@@ -211,7 +216,8 @@ class Chart extends BaseModel {
         return (string) $this->getParentStyle('list_color');
     }
 
-    public function getXLabelAngleAttribute(?string $value): ?string {
+    public function getXLabelAngleAttribute(?string $value): ?string
+    {
         if (null !== $value) {
             return $value;
         }
@@ -225,7 +231,8 @@ class Chart extends BaseModel {
         return (string) $this->getParentStyle('x_label_angle');
     }
 
-    public function getFontFamilyAttribute(?int $value): int {
+    public function getFontFamilyAttribute(?int $value): int
+    {
         if (null !== $value && 0 !== $value) {
             return (int) $value;
         }
@@ -233,7 +240,8 @@ class Chart extends BaseModel {
         return (int) $this->getParentStyle('font_family');
     }
 
-    public function getFontStyleAttribute(?int $value): int {
+    public function getFontStyleAttribute(?int $value): int
+    {
         if (null !== $value && 0 !== $value) {
             return (int) $value;
         }
@@ -241,7 +249,8 @@ class Chart extends BaseModel {
         return (int) $this->getParentStyle('font_style');
     }
 
-    public function getFontSizeAttribute(?int $value): int {
+    public function getFontSizeAttribute(?int $value): int
+    {
         if (null !== $value && 0 !== $value) {
             return (int) $value;
         }
@@ -249,7 +258,8 @@ class Chart extends BaseModel {
         return (int) $this->getParentStyle('font_size');
     }
 
-    public function getTypeAttribute(?string $value): ?string {
+    public function getTypeAttribute(?string $value): ?string
+    {
         if (null !== $value) {
             return $value;
         }
@@ -260,7 +270,8 @@ class Chart extends BaseModel {
         return (string) $this->getPanelRow('chart_type', 'type');
     }
 
-    public function getWidthAttribute(?string $value): ?int {
+    public function getWidthAttribute(?string $value): ?int
+    {
         if (null !== $value && 0 !== $value) {
             return (int) $value;
         }
@@ -268,11 +279,25 @@ class Chart extends BaseModel {
         return (int) $this->getPanelRow('width', 'width');
     }
 
-    public function getHeightAttribute(?string $value): ?int {
+    public function getHeightAttribute(?string $value): ?int
+    {
         if (null !== $value && 0 !== $value) {
             return (int) $value;
         }
 
         return (int) $this->getPanelRow('height', 'height');
+    }
+
+    public function getSettings()
+    {
+        if (Str::startsWith($this->type, 'mixed')) {
+            $parz = \array_slice(explode(':', $this->type), 1);
+            $mixed_id = implode('|', $parz);
+            $mixed = MixedChart::firstWhere(['id' => $mixed_id]);
+
+            return $mixed->charts->toArray();
+        }
+
+        return [$this->toArray()];
     }
 }
