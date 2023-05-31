@@ -11,26 +11,16 @@ use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class PieAvgAction {
+class PieAvgAction
+{
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart) {
-        // dddx($answers);
+    public function execute(DataCollection $answers, ChartData $chart)
+    {
         $labels = $answers->toCollection()->pluck('label')->all();
-
-        // $this->vars['footer'] = 'Media: '.round((float) $this->data->toCollection()->avg('value'), 2);
 
         $data = $answers->toCollection()->pluck('avg')->all();
 
-        // dddx($answers);
-        // Cannot access offset 'avg' on mixed.
-
-        /* @var ModelContract $first_data */
-        // $first_data = $answers->first();
-        // if (isset($first_data->avg)) {
-        //    $data = $answers->toCollection()->pluck('avg')->all();
-        // }
-        // dddx($data);
         if (isset($chart->max)) {
             $sum = collect($data)->sum();
             $other = $chart->max - $sum;
