@@ -15,11 +15,12 @@ class PieAvgAction {
     use QueueableAction;
 
     public function execute(DataCollection $answers, ChartData $chart) {
+        // dddx($answers);
         $labels = $answers->toCollection()->pluck('label')->all();
 
         // $this->vars['footer'] = 'Media: '.round((float) $this->data->toCollection()->avg('value'), 2);
 
-        $data = $answers->toCollection()->pluck('value')->all();
+        $data = $answers->toCollection()->pluck('avg')->all();
 
         // dddx($answers);
         // Cannot access offset 'avg' on mixed.
