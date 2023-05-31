@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Chart\Actions\JpGraph;
+namespace Modules\Chart\Actions\JpGraph\V1;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Graph\PieGraph;
@@ -18,7 +18,9 @@ class Pie1Action
     public function execute(DataCollection $answers, ChartData $chart): Graph
     {
         $labels = $answers->toCollection()->pluck('label')->all();
-        $data = $answers->toCollection()->pluck('value')->all();
+        $data = $answers->toCollection()->pluck('avg')->all();
+
+        dddx(['labels' => $labels, 'data' => $data, 'answers' => $answers]);
         // dddx($chart->max);
         if (isset($chart->max)) {
             $sum = collect($data)->sum();

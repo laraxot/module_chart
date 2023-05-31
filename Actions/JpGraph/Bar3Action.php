@@ -8,14 +8,22 @@ use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\AccBarPlot;
 use Amenadiel\JpGraph\Plot\BarPlot;
 use Amenadiel\JpGraph\Text\Text;
+use Modules\Chart\Datas\AnswerData;
 use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class Bar3Action {
+class Bar3Action
+{
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart): Graph {
+    /**
+     * ---.
+     *
+     * @param DataCollection<AnswerData>
+     */
+    public function execute(DataCollection $answers, ChartData $chart): Graph
+    {
         $graph = app(GetGraphAction::class)->execute($chart);
         $graph->img->SetMargin(50, 50, 50, 100);
         $labels = $answers->toCollection()->pluck('label')->all();

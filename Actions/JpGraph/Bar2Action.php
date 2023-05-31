@@ -12,19 +12,20 @@ use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class Bar2Action {
+class Bar2Action
+{
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart): Graph {
-       
+    public function execute(DataCollection $answers, ChartData $chart): Graph
+    {
         // https:// jpgraph.net/features/src/show-example.php?target=new_bar1.php
         // $graph = $this->getGraph();
         // dddx($answers);
         $graph = app(GetGraphAction::class)->execute($chart);
-        //dddx($graph);
-        //$graph->SetScale('textlin',$chart->min,$chart->max);
+        // dddx($graph);
+        // $graph->SetScale('textlin',$chart->min,$chart->max);
 
-        //$graph->SetScale('textlin');
+        // $graph->SetScale('textlin');
 
         $graph->img->SetMargin(50, 50, 50, 100);
         // dddx(debug_backtrace());
@@ -72,12 +73,13 @@ class Bar2Action {
         $colors = explode(',', $chart->list_color);
         $bplot = [];
 
+        $i = 0;
         foreach ($datay as $k => $v) {
             $tmp = new BarPlot($v);
             // $tmp = $this->applyPlotStyle($tmp);
             $tmp = app(ApplyPlotStyleAction::class)->execute($tmp, $chart);
-            $tmp->SetColor($colors[$k]);
-            $tmp->SetFillColor($colors[$k].'@'.$chart->transparency); // trasparenza da 0 a 1
+            $tmp->SetColor($colors[$i]);
+            $tmp->SetFillColor($colors[$i].'@'.$chart->transparency); // trasparenza da 0 a 1
             // $tmp->SetFillColor($colors[$k]);
 
             if (isset($chart->legend)) {
@@ -86,6 +88,7 @@ class Bar2Action {
             }
 
             $bplot[] = $tmp;
+            ++$i;
         }
 
         // Create the grouped bar plot
