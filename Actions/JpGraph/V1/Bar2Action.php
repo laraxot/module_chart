@@ -6,6 +6,7 @@ namespace Modules\Chart\Actions\JpGraph\V1;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\BarPlot;
+use Amenadiel\JpGraph\Text\Text;
 use Modules\Chart\Actions\JpGraph\ApplyPlotStyleAction;
 use Modules\Chart\Actions\JpGraph\GetGraphAction;
 use Modules\Chart\Datas\ChartData;
@@ -19,6 +20,7 @@ class Bar2Action
     public function execute(DataCollection $answers, ChartData $chart): Graph
     {
         $data = $answers->toCollection()->pluck('avg')->all();
+        $data1 = $answers->toCollection()->pluck('value')->all();
 
         $labels = $answers->toCollection()->pluck('label')->all();
 
@@ -49,6 +51,17 @@ class Bar2Action
         $bplot->SetFillColor($colors); // trasparenza, da 0 a 1
 
         $graph->Add($bplot);
+
+        $delta = ($chart->width - 100) / \count($data1);
+        foreach ($data1 as $i => $v) {
+            $txt = new Text($v.'');
+
+            $x = 50 + ($delta * $i) + ($delta / 3);
+
+            $txt->SetPos($x, 25);
+
+            $graph->AddText($txt);
+        }
 
         return $graph;
     }
