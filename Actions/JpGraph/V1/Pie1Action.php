@@ -7,6 +7,7 @@ namespace Modules\Chart\Actions\JpGraph\V1;
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Graph\PieGraph;
 use Amenadiel\JpGraph\Plot\PiePlotC;
+use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
 use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
@@ -20,10 +21,11 @@ class Pie1Action
         $labels = $answers->toCollection()->pluck('label')->all();
         $data = $answers->toCollection()->pluck('avg')->all();
 
-        dddx(['labels' => $labels, 'data' => $data, 'answers' => $answers]);
+        // dddx(['labels' => $labels, 'data' => $data, 'answers' => $answers]);
         // dddx($chart->max);
         if (isset($chart->max)) {
             $sum = collect($data)->sum();
+
             $other = $chart->max - $sum;
             // dddx([$sum, $other, $this->vars['max']]);
             if ($other > 0.01) {
