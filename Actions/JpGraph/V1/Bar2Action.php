@@ -35,7 +35,8 @@ class Bar2Action
         $labels = $answers->toCollection()->pluck('label')->all();
         // $datay = $answers->toCollection()->pluck('value')->all();
         $datay = $answers->toCollection()->pluck('avg')->all();
-        $datay1 = $answers->toCollection()->pluck('value1')->all();
+        // $datay1 = $answers->toCollection()->pluck('value1')->all();
+        $datay1 = $answers->toCollection()->pluck('value')->all();
 
         // dddx([$labels, $datay, $datay1]);
         // nel caso non ci siano risultati
