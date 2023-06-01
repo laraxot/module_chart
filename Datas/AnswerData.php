@@ -15,7 +15,7 @@ class AnswerData extends Data {
     public ?string $key;
     // public ?array $sub_labels;
     // public $values; NO ! NO ! NO !
-    public float $avg = 0;
+    public float|array $avg = 0;
     // public int $tot = 1;
     // public int $tot_nulled = 0;
     public ?string $title;
