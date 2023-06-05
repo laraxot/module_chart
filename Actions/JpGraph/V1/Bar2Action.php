@@ -10,12 +10,16 @@ use Amenadiel\JpGraph\Plot\BarPlot;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Amenadiel\JpGraph\Plot\GroupBarPlot;
 >>>>>>> d8e62bc6e1fe49ebe66acf0d1ed09c883dddbf5b
 =======
 use Amenadiel\JpGraph\Plot\GroupBarPlot;
 >>>>>>> 98652ed (.)
+=======
+use Amenadiel\JpGraph\Plot\GroupBarPlot;
+>>>>>>> 518d7a8 (.)
 use Amenadiel\JpGraph\Text\Text;
 =======
 >>>>>>> 0390595 (up)
@@ -40,11 +44,14 @@ class Bar2Action
         $data1 = $answers->toCollection()->pluck('value')->all();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0390595 (up)
 =======
 =======
 >>>>>>> 98652ed (.)
+=======
+>>>>>>> 518d7a8 (.)
         $legends = [0];
         if (isset($data1[0]) && is_array($data1[0])) { // questionario multiplo
             $legends = array_keys($data1[0]);
@@ -52,12 +59,15 @@ class Bar2Action
             $data1 = $answers->toCollection()->pluck('avg')->all();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d8e62bc6e1fe49ebe66acf0d1ed09c883dddbf5b
 =======
         $data1 = $answers->toCollection()->pluck('value')->all();
 >>>>>>> 3d8b5ee (.)
 =======
 >>>>>>> 98652ed (.)
+=======
+>>>>>>> 518d7a8 (.)
 
         $labels = $answers->toCollection()->pluck('label')->all();
 
@@ -93,11 +103,14 @@ class Bar2Action
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $graph->Add($bplot);
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> 98652ed (.)
+=======
+>>>>>>> 518d7a8 (.)
         foreach ($legends as $i => $legend) {
             if (0 === $legend) {
                 $tmp_data = $data;
@@ -133,6 +146,7 @@ class Bar2Action
 
         // $graph->Add($bplot);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d8e62bc6e1fe49ebe66acf0d1ed09c883dddbf5b
 
         $delta = ($chart->width - 100) / \count($data1);
@@ -153,6 +167,11 @@ class Bar2Action
 
         $delta = ($chart->width - 100) / \count($data1);
 
+=======
+
+        $delta = ($chart->width - 100) / \count($data1);
+
+>>>>>>> 518d7a8 (.)
         foreach ($data1 as $i => $v) {
             $txt = new Text($v.'');
 
