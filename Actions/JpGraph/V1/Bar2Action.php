@@ -6,6 +6,7 @@ namespace Modules\Chart\Actions\JpGraph\V1;
 
 use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\BarPlot;
+use Amenadiel\JpGraph\Plot\GroupBarPlot;
 use Amenadiel\JpGraph\Text\Text;
 use Modules\Chart\Actions\JpGraph\ApplyPlotStyleAction;
 use Modules\Chart\Actions\JpGraph\GetGraphAction;
@@ -19,6 +20,12 @@ class Bar2Action {
     public function execute(DataCollection $answers, ChartData $chart): Graph {
         $data = $answers->toCollection()->pluck('avg')->all();
         $data1 = $answers->toCollection()->pluck('value')->all();
+        $legends = [0];
+        if (isset($data1[0]) && is_array($data1[0])) { // questionario multiplo
+            $legends = array_keys($data1[0]);
+            $data = $answers->toCollection()->pluck('value')->all();
+            $data1 = $answers->toCollection()->pluck('avg')->all();
+        }
 
         $labels = $answers->toCollection()->pluck('label')->all();
 
@@ -33,6 +40,7 @@ class Bar2Action {
 
         $graph->xaxis->SetTickLabels($labels) + 10;
 
+        /*
         $bplot = new BarPlot($data);
         // $bplot = $this->applyPlotStyle($bplot);
         $bplot = app(ApplyPlotStyleAction::class)->execute($bplot, $chart);
@@ -47,10 +55,47 @@ class Bar2Action {
             }
         }
         $bplot->SetFillColor($colors); // trasparenza, da 0 a 1
+        */
+        $colors = explode(',', $chart->list_color);
+        $bplot = [];
 
-        $graph->Add($bplot);
+        foreach ($legends as $i => $legend) {
+            if (0 === $legend) {
+                $tmp_data = $data;
+            } else {
+                $tmp_data = array_column($data, $legend);
+            }
+
+            // dddx(['data' => $data, 'tmp_data' => $tmp_data]);
+            $tmp = new BarPlot($tmp_data);
+            // $tmp = $this->applyPlotStyle($tmp);
+            $tmp = app(ApplyPlotStyleAction::class)->execute($tmp, $chart);
+            $tmp->SetColor($colors[$i]);
+            $tmp->SetFillColor($colors[$i].'@'.$chart->transparency); // trasparenza da 0 a 1
+            // $tmp->SetFillColor($colors[$k]);
+            /*
+            if (isset($chart->legend)) {
+                $str = $chart->legend[$k] ?? '--no set';
+                $tmp->SetLegend($str);
+            }
+            */
+            if (0 !== $legend) {
+                $tmp->SetLegend($legend);
+            }
+
+            $bplot[] = $tmp;
+            ++$i;
+        }
+
+        // Create the grouped bar plot
+        $gbplot = new GroupBarPlot($bplot);
+        // ...and add it to the graPH
+        $graph->Add($gbplot);
+
+        // $graph->Add($bplot);
 
         $delta = ($chart->width - 100) / \count($data1);
+
         foreach ($data1 as $i => $v) {
             $txt = new Text($v.'');
 
