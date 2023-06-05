@@ -16,10 +16,14 @@ class AnswerData extends Data {
     // public ?array $sub_labels;
     // public $values; NO ! NO ! NO !
 <<<<<<< HEAD
+<<<<<<< HEAD
     public float|array|string $avg = 0;
 =======
     public float|array $avg = 0;
 >>>>>>> 7ed4080 (.)
+=======
+    public float|array|string $avg = 0;
+>>>>>>> d8e62bc (.)
     // public int $tot = 1;
     // public int $tot_nulled = 0;
     public ?string $title;
