@@ -8,12 +8,16 @@ use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Plot\BarPlot;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Amenadiel\JpGraph\Plot\GroupBarPlot;
 >>>>>>> d8e62bc6e1fe49ebe66acf0d1ed09c883dddbf5b
 use Amenadiel\JpGraph\Text\Text;
 =======
 >>>>>>> 0390595 (up)
+=======
+use Amenadiel\JpGraph\Text\Text;
+>>>>>>> 3d8b5ee (.)
 use Modules\Chart\Actions\JpGraph\ApplyPlotStyleAction;
 use Modules\Chart\Actions\JpGraph\GetGraphAction;
 use Modules\Chart\Datas\ChartData;
@@ -28,6 +32,7 @@ class Bar2Action
     {
         $data = $answers->toCollection()->pluck('avg')->all();
 <<<<<<< HEAD
+<<<<<<< HEAD
         $data1 = $answers->toCollection()->pluck('value')->all();
 <<<<<<< HEAD
 =======
@@ -40,6 +45,9 @@ class Bar2Action
             $data1 = $answers->toCollection()->pluck('avg')->all();
         }
 >>>>>>> d8e62bc6e1fe49ebe66acf0d1ed09c883dddbf5b
+=======
+        $data1 = $answers->toCollection()->pluck('value')->all();
+>>>>>>> 3d8b5ee (.)
 
         $labels = $answers->toCollection()->pluck('label')->all();
 
@@ -126,6 +134,17 @@ class Bar2Action
         }
 =======
 >>>>>>> 0390595 (up)
+
+        $delta = ($chart->width - 100) / \count($data1);
+        foreach ($data1 as $i => $v) {
+            $txt = new Text($v.'');
+
+            $x = 50 + ($delta * $i) + ($delta / 3);
+
+            $txt->SetPos($x, 25);
+
+            $graph->AddText($txt);
+        }
 
         return $graph;
     }
