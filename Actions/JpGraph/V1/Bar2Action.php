@@ -13,12 +13,10 @@ use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class Bar2Action
-{
+class Bar2Action {
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart): Graph
-    {
+    public function execute(DataCollection $answers, ChartData $chart): Graph {
         $data = $answers->toCollection()->pluck('avg')->all();
         $data1 = $answers->toCollection()->pluck('value')->all();
 
