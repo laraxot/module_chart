@@ -21,16 +21,13 @@ class Horizbar1Action
     {
         $data = $answers->toCollection()->pluck('avg')->all();
 
-        $labels = $answers->toCollection()->pluck('label')->all();
-        /*
-        $data = collect($data)->map(function ($item) {
-            if (is_array($item)) {
-                return array_values($item)[0];
-            }
+        $labels = $answers->toCollection()
+            ->pluck('label')
+            ->map(function ($item) {
+                return wordwrap($item, 25, PHP_EOL);
+            })
+            ->all();
 
-            return $item;
-        })->all();
-        */
         $graph = app(GetGraphAction::class)->execute($chart);
 
         $graph->SetScale('textlin');
