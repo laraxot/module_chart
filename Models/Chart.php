@@ -113,6 +113,7 @@ class Chart extends BaseModel
         'group_by',
         'sort_by',
         'transparency',
+        'colors',
     ];
 
     /**
@@ -133,6 +134,13 @@ class Chart extends BaseModel
         'plot_value_show' => 1,
         'plot_value_pos' => 1,
         'plot_value_color' => '#000000',
+    ];
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'colors' => 'array'
     ];
 
     /**

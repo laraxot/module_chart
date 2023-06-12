@@ -48,6 +48,9 @@ class CreateChartsTable extends XotBaseMigration {
                 if (! $this->hasColumn('list_color')) {
                     $table->string('list_color')->nullable();
                 }
+                if (! $this->hasColumn('colors')) {
+                    $table->json('colors');
+                }
                 if (! $this->hasColumn('grace')) {
                     $table->string('grace')->nullable();
                 }
