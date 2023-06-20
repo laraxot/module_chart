@@ -1,2 +1,0 @@
-va in collisione conjpgraph
-"szymach/c-pchart": "^3.0",

@@ -1,5 +1,0 @@
-//-- Server side SVG rendering of ECharts
-https://gist.github.com/pissang/4c32ee30e35c91336af72b129a1a4a73
-
-//-- libreria in php
-https://github.com/hisune/Echarts-PHP

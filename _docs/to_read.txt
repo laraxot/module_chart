@@ -1,5 +1,0 @@
-https://jpgraph.net/download/manuals/chunkhtml/example_src/manualtickex1a.html
-
-/ Now get labels at the start of each month
-$dateUtils = new DateScaleUtils();
-list($tickPositions,$minTickPositions) = $dateUtils->GetTicks($datax);

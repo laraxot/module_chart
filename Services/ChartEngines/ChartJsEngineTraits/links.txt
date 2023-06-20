@@ -1,6 +1,0 @@
-https://quickchart.io/documentation/chart-js/custom-pie-doughnut-chart-labels/
-
-
-https://github.com/chartjs/chartjs-plugin-datalabels/blob/master/docs/samples/advanced/multiple-labels.md
-
-
