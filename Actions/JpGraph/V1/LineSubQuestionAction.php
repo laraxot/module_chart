@@ -11,12 +11,10 @@ use Modules\Chart\Datas\ChartData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class LineSubQuestionAction
-{
+class LineSubQuestionAction {
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart): Graph
-    {
+    public function execute(DataCollection $answers, ChartData $chart): Graph {
         $graph = app(GetGraphAction::class)->execute($chart);
 
         $labels = $answers->toCollection()->pluck('label')->all();

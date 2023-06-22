@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Modules\Chart\Models\Chart;
 
 trait HasChartTrait {
+    
     public function chart(): MorphOne {
         return $this->morphOne(Chart::class, 'post')
 

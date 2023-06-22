@@ -33,5 +33,3 @@ vendor/
 package-lock.json
 *.lock
 package-lock.json
-node_modules
-docs/node_modules/
