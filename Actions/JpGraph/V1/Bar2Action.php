@@ -32,7 +32,7 @@ class Bar2Action
         $labels = $answers->toCollection()->pluck('label')->all();
 
         $graph = app(GetGraphAction::class)->execute($chart);
-
+        $graph->img->SetMargin(50, 50, 50, 100);
         $graph->ygrid->SetFill(false);
         $graph->xaxis->SetTickLabels($labels);
         $graph->xaxis->SetLabelAngle($chart->x_label_angle);

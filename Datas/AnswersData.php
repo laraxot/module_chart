@@ -8,8 +8,9 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 
 class AnswersData extends Data {
-    public int $tot;
+    public int $tot = 0;
     public string $title = 'no_set';
+    public string $footer = 'no_set';
     /**
      *  @var DataCollection<AnswerData>
      */
