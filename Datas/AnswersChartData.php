@@ -15,36 +15,59 @@ class AnswersChartData extends Data {
 
     public ChartData $chart;
 
+    public function getChartJsType():string{
+        $type = $this->chart->type;
+        switch ($type) {
+            case 'pieAvg': // questa è una media ha un solo valore
+                $type = 'doughnut';
+                break;
+            case 'horizbar1':
+                $type = 'bar';
+                break;
+            case 'pie1':
+                $type = 'doughnut';
+                break;
+            case 'lineSubQuestion':
+                $type = 'line';
+                break;
+            case 'bar2':
+                $type = 'bar';
+                break;
+            case 'bar1':
+                $type = 'bar';
+                break;
+            case 'bar3':
+                $type = 'bar';
+                break;
+
+            default:
+                dddx($type);
+                break;
+        }
+
+        return $type;
+
+    }
+
     public function getChartJsData(): array{
-        // dddx('a');
+        
+        if($this->chart->type == 'pieAvg'){
+            $data = $this->answers->toCollection()->pluck('avg')->all();
+        }else{
+            $data = $this->answers->toCollection()->pluck('value')->all();
+        }
+
         $setup = [
             'datasets' => [
                 [
-                    'label' => 'Blog posts created',
-                    // 'data' => [0, rand(1,100), 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                    'data' => [5, 2],
+                    'label' => '',
+                    'data' => $data,
                     // 'data' => $data,
                 ],
             ],
-            'labels' => ['Jan', 'Feb'],
+            'labels' => $this->answers->toCollection()->pluck('label')->all(),
         ];
 
-        // dddx($setup);
-        // foreach($this->answers as $answer){
-        //     dddx($answer);
-        // }
-
-
-        return [
-            'datasets' => [
-                [
-                    'label' => 'Blog posts created',
-                    // 'data' => [0, rand(1,100), 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                    'data' => [5, 2],
-                    // 'data' => $data,
-                ],
-            ],
-            'labels' => ['Jan', 'Feb'],
-        ];
+        return $setup;
     }
 }
