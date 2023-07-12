@@ -54,6 +54,10 @@ class AnswersData extends Data {
     }
 
     public function getChartJsData(): array{
+        $colors = explode(',', $this->chart->list_color);
+
+
+
 
         if(in_array($this->chart->type ,['pieAvg', 'pie1'])){
             $data = $this->answers->toCollection()->pluck('avg')->all();
@@ -66,12 +70,23 @@ class AnswersData extends Data {
                 [
                     'label' => '',
                     'data' => $data,
+                    'borderColor' => $colors,
+                    'backgroundColor' => $colors,
                 ],
             ],
             'labels' => $this->answers->toCollection()->pluck('label')->all(),
         ];
 
         return $setup;
+    }
+
+    public function getChartJsOptions(): array {
+        $options = [];
+        if(in_array($this->chart->type ,['horizbar1'])){
+            $options = ['indexAxis' => 'y'];
+        }
+        return $options;
+
     }
 
 }
