@@ -54,13 +54,14 @@ class AnswersData extends Data {
     }
 
     public function getChartJsData(): array{
-        $colors = explode(',', $this->chart->list_color);
+        // $colors = explode(',', $this->chart->list_color);
+        // dddx($this->answers->toCollection()->pluck('label')->all());
 
-
-
+        $colors = "rgba(255, 99, 132, 1)";
 
         if(in_array($this->chart->type ,['pieAvg', 'pie1'])){
             $data = $this->answers->toCollection()->pluck('avg')->all();
+            $colors = ["rgba(255, 99, 132, 1)","rgba(54, 162, 235, 1)"];
         }else{
             $data = $this->answers->toCollection()->pluck('value')->all();
         }
@@ -68,10 +69,11 @@ class AnswersData extends Data {
         $setup = [
             'datasets' => [
                 [
-                    'label' => '',
+                    'label' => 'aaa',
                     'data' => $data,
                     'borderColor' => $colors,
                     'backgroundColor' => $colors,
+                    
                 ],
             ],
             'labels' => $this->answers->toCollection()->pluck('label')->all(),
@@ -81,10 +83,21 @@ class AnswersData extends Data {
     }
 
     public function getChartJsOptions(): array {
-        $options = [];
-        if(in_array($this->chart->type ,['horizbar1'])){
-            $options = ['indexAxis' => 'y'];
+        $legend_display = true;
+        if(!in_array($this->chart->type ,['pie1'])){
+            $legend_display = false;
         }
+
+        $options['plugins'] = [
+                    'legend' => [
+                        'display' => $legend_display,
+                    ]
+                ];
+
+        if(in_array($this->chart->type ,['horizbar1'])){
+            $options['indexAxis'] = 'y';
+        }
+        // dddx($options);
         return $options;
 
     }
