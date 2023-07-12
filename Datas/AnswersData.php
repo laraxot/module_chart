@@ -75,28 +75,37 @@ class AnswersData extends Data {
 
         
 
-        $datasets = [
-            [
-                'label' => 'Rispondenti',
-                'data' => $data,
-                'borderColor' => $this->chart->getColorsRgba(1),
-                'backgroundColor' => $this->chart->getColorsRgba(0.2),
-                
-            ],
-        ];
 
-        if(is_array($data[0])){
-            $invited = [];
-            $answers = [];
-            foreach($data as $tmp){
-                // dddx($tmp);
-                
+
+
+        if (isset($data[0]) && is_array($data[0])) { // questionario multiplo
+            $legends = array_keys($data[0]);
+            foreach($legends as $legend){
+                $tmp = [
+                    'label' => $legend,
+                    'data' => array_column($data, $legend),
+
+                ];
+                $datasets[] = $tmp;
+
             }
+        }else{
+            $datasets = [
+                [
+                    'label' => 'Rispondenti',
+                    'data' => $data,
+                    'borderColor' => $this->chart->getColorsRgba(1),
+                    'backgroundColor' => $this->chart->getColorsRgba(0.2),
+                    
+                ],
+            ];
         }
+
 
         $setup = [
             'datasets' => $datasets,
             'labels' => $this->answers->toCollection()->pluck('label')->all(),
+            // 'labels' => ['tasso'],
         ];
         // dddx($setup);
         return $setup;
@@ -124,9 +133,8 @@ class AnswersData extends Data {
                     // 'legend' => [
                     //     'display' => $legend_display,
                     // ],
-                    // 'title' => $title,
+                    'title' => $title,
 
-                    "plugin"
                 ];
 
         if(in_array($this->chart->type ,['horizbar1'])){
