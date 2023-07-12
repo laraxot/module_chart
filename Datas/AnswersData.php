@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Datas;
 
+use Illuminate\Support\Arr;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 
@@ -54,44 +55,78 @@ class AnswersData extends Data {
     }
 
     public function getChartJsData(): array{
-        // $colors = explode(',', $this->chart->list_color);
-        // dddx($this->answers->toCollection()->pluck('label')->all());
-
-        $colors = "rgba(255, 99, 132, 1)";
+        $data = $this->answers->toCollection()->pluck('value')->all();
 
         if(in_array($this->chart->type ,['pieAvg', 'pie1'])){
             $data = $this->answers->toCollection()->pluck('avg')->all();
-            $colors = ["rgba(255, 99, 132, 1)","rgba(54, 162, 235, 1)"];
-        }else{
-            $data = $this->answers->toCollection()->pluck('value')->all();
+
+            if (isset($this->chart->max)) {
+                $sum = collect($data)->sum();
+                $other = $this->chart->max - $sum;
+                if ($other > 0.01) {
+                    $data[] = $other;
+                    $labels[] = $this->chart->answer_value_no_txt ?? 'answer_value_no_txt';
+                    if (2 === \count($labels) && \strlen((string) $labels[0]) < 3) {
+                        $labels[0] = $this->chart->answer_value_txt;
+                    }
+                }
+            }
+        }
+
+        
+
+        $datasets = [
+            [
+                'label' => 'Rispondenti',
+                'data' => $data,
+                'borderColor' => $this->chart->getColorsRgba(1),
+                'backgroundColor' => $this->chart->getColorsRgba(0.2),
+                
+            ],
+        ];
+
+        if(is_array($data[0])){
+            $invited = [];
+            $answers = [];
+            foreach($data as $tmp){
+                // dddx($tmp);
+                
+            }
         }
 
         $setup = [
-            'datasets' => [
-                [
-                    'label' => 'aaa',
-                    'data' => $data,
-                    'borderColor' => $colors,
-                    'backgroundColor' => $colors,
-                    
-                ],
-            ],
+            'datasets' => $datasets,
             'labels' => $this->answers->toCollection()->pluck('label')->all(),
         ];
-
+        // dddx($setup);
         return $setup;
     }
 
     public function getChartJsOptions(): array {
         $legend_display = true;
+        $title = [];
+
         if(!in_array($this->chart->type ,['pie1'])){
             $legend_display = false;
         }
 
+        if($this->title != 'no_set'){
+            $title = [
+                'display' => true,
+                'text' => $this->title,
+                'font' => [
+                    'size' => 14,
+                ],
+            ];
+        }
+
         $options['plugins'] = [
-                    'legend' => [
-                        'display' => $legend_display,
-                    ]
+                    // 'legend' => [
+                    //     'display' => $legend_display,
+                    // ],
+                    // 'title' => $title,
+
+                    "plugin"
                 ];
 
         if(in_array($this->chart->type ,['horizbar1'])){
