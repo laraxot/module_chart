@@ -73,10 +73,10 @@ class AnswersData extends Data {
             }
         }
 
-        
-
-
-
+        if(in_array($this->chart->type ,['bar2'])){
+            dddx($this->answers);
+            // dddx($this->answers->toCollection()->pluck('avg')->all());
+        }
 
         if (isset($data[0]) && is_array($data[0])) { // questionario multiplo
             $legends = array_keys($data[0]);
@@ -92,7 +92,7 @@ class AnswersData extends Data {
         }else{
             $datasets = [
                 [
-                    'label' => 'Rispondenti',
+                    'label' => ['Percentuale'],
                     'data' => $data,
                     'borderColor' => $this->chart->getColorsRgba(1),
                     'backgroundColor' => $this->chart->getColorsRgba(0.2),
@@ -140,6 +140,45 @@ class AnswersData extends Data {
         if(in_array($this->chart->type ,['horizbar1'])){
             $options['indexAxis'] = 'y';
         }
+
+
+
+        // [plugins: [{
+        //     id: "centerText"
+        //     , afterDatasetsDraw(chart, args, options) {
+        //         const {ctx, chartArea: {left, right, top, bottom, width, height}} = chart;
+
+        //         ctx.save();
+
+        //         var fontSize = width * 4.5 / 100;
+        //         var lineHeight = fontSize + (fontSize * {{$take}} / 100);
+
+        //         ctx.font = "bolder " + fontSize + "px Arial";
+        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        //         ctx.textAlign = "center";
+        //         ctx.fillText("{{$average}}", width / 2, (height / 2 + top - (lineHeight)));
+        //         ctx.restore();
+
+        //         ctx.font = fontSize + "px Arial";
+        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        //         ctx.textAlign = "center";
+        //         ctx.fillText("MEDIA", width / 2, (height / 2 + top) + fontSize - lineHeight);
+        //         ctx.restore();
+
+        //         ctx.font = fontSize + "px Arial";
+        //         ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        //         ctx.textAlign = "center";
+        //         ctx.fillText("COMPLESSIVA", width / 2, (height / 2 + top) + fontSize);
+        //         ctx.restore();
+        //     }
+        // }]]
+
+
+
+
+
+
+
         // dddx($options);
         return $options;
 
