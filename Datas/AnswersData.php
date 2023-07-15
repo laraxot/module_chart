@@ -73,10 +73,10 @@ class AnswersData extends Data {
             }
         }
 
-        if(in_array($this->chart->type ,['bar2'])){
-            dddx($this->answers);
-            // dddx($this->answers->toCollection()->pluck('avg')->all());
-        }
+        // if(in_array($this->chart->type ,['bar2'])){
+        //     dddx($this->answers);
+        //     // dddx($this->answers->toCollection()->pluck('avg')->all());
+        // }
 
         if (isset($data[0]) && is_array($data[0])) { // questionario multiplo
             $legends = array_keys($data[0]);
