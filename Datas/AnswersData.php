@@ -79,13 +79,14 @@ class AnswersData extends Data {
         // }
 
         if (isset($data[0]) && is_array($data[0])) { // questionario multiplo
+            // dddx([$this->chart, $this->answers]);
             $legends = array_keys($data[0]);
-            foreach($legends as $legend){
+            foreach($legends as $key => $legend){
                 $tmp = [
                     'label' => $legend,
                     'data' => array_column($data, $legend),
-                    'borderColor' => $this->chart->getColorsRgba(1),
-                    'backgroundColor' => $this->chart->getColorsRgba(0.2),
+                    'borderColor' => $this->chart->getColorsRgba(1)[$key],
+                    'backgroundColor' => $this->chart->getColorsRgba(0.2)[$key],
                 ];
                 $datasets[] = $tmp;
 
