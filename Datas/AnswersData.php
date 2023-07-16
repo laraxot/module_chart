@@ -84,7 +84,8 @@ class AnswersData extends Data {
                 $tmp = [
                     'label' => $legend,
                     'data' => array_column($data, $legend),
-
+                    'borderColor' => $this->chart->getColorsRgba(1),
+                    'backgroundColor' => $this->chart->getColorsRgba(0.2),
                 ];
                 $datasets[] = $tmp;
 
