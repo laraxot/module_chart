@@ -85,7 +85,7 @@ class AnswersData extends Data {
                 $tmp = [
                     'label' => $legend,
                     'data' => array_column($data, $legend),
-                    'borderColor' => $this->chart->getColorsRgba(1)[$key],
+                    'borderColor' => $this->chart->getColorsRgba(0.2)[$key],
                     'backgroundColor' => $this->chart->getColorsRgba(0.2)[$key],
                 ];
                 $datasets[] = $tmp;
@@ -96,7 +96,7 @@ class AnswersData extends Data {
                 [
                     'label' => ['Percentuale'],
                     'data' => $data,
-                    'borderColor' => $this->chart->getColorsRgba(1),
+                    'borderColor' => $this->chart->getColorsRgba(0.2),
                     'backgroundColor' => $this->chart->getColorsRgba(0.2),
                     
                 ],
@@ -117,10 +117,6 @@ class AnswersData extends Data {
         $legend_display = true;
         $title = [];
 
-        // if(!in_array($this->chart->type ,['pie1'])){
-        //     $legend_display = false;
-        // }
-
         if($this->title != 'no_set'){
             $title = [
                 'display' => true,
@@ -131,20 +127,18 @@ class AnswersData extends Data {
             ];
         }
 
-        // $title = [
-        //     'display' => true,
-        //     'text' => 'Ice Cream Truck',
-        //     'position' => 'bottom'
-        // ];
+        if($this->footer != 'no_set'){
+            $title = [
+                'display' => true,
+                'text' => $this->footer,
+                'position' => 'bottom'
+            ];
+        }
 
         $options['plugins'] = [
-                    // 'legend' => [
-                    //     'display' => $legend_display,
-                    // ],
                     'title' => $title,
-
                 ];
-        // dddx($options);
+
         if(in_array($this->chart->type ,['horizbar1'])){
             $options['indexAxis'] = 'y';
         }
