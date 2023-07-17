@@ -117,9 +117,9 @@ class AnswersData extends Data {
         $legend_display = true;
         $title = [];
 
-        if(!in_array($this->chart->type ,['pie1'])){
-            $legend_display = false;
-        }
+        // if(!in_array($this->chart->type ,['pie1'])){
+        //     $legend_display = false;
+        // }
 
         if($this->title != 'no_set'){
             $title = [
@@ -131,6 +131,12 @@ class AnswersData extends Data {
             ];
         }
 
+        // $title = [
+        //     'display' => true,
+        //     'text' => 'Ice Cream Truck',
+        //     'position' => 'bottom'
+        // ];
+
         $options['plugins'] = [
                     // 'legend' => [
                     //     'display' => $legend_display,
@@ -138,10 +144,38 @@ class AnswersData extends Data {
                     'title' => $title,
 
                 ];
-
+        // dddx($options);
         if(in_array($this->chart->type ,['horizbar1'])){
             $options['indexAxis'] = 'y';
         }
+
+
+
+        // dddx($options);
+        return $options;
+
+        // var options = {
+        //     tooltips: {
+        //             callbacks: {
+        //                 label: function(tooltipItem) {
+        //                     return "$" + Number(tooltipItem.yLabel) + " and so worth it !";
+        //                 }
+        //             }
+        //         },
+        //             title: {
+        //                       display: true,
+        //                       text: 'Ice Cream Truck',
+        //                       position: 'bottom'
+        //                   },
+        //             scales: {
+        //                 yAxes: [{
+        //                     ticks: {
+        //                         beginAtZero:true
+        //                     }
+        //                 }]
+        //             }
+        //     };
+            
 
 
 
@@ -181,8 +215,7 @@ class AnswersData extends Data {
 
 
 
-        // dddx($options);
-        return $options;
+
 
     }
 
