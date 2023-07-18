@@ -85,8 +85,8 @@ class AnswersData extends Data {
                 $tmp = [
                     'label' => $legend,
                     'data' => array_column($data, $legend),
-                    'borderColor' => $this->chart->getColorsRgba(0.2)[$key],
-                    'backgroundColor' => $this->chart->getColorsRgba(0.2)[$key],
+                    'borderColor' => $this->chart->getColorsRgba(0.2)[$key] ?? null,
+                    'backgroundColor' => $this->chart->getColorsRgba(0.2)[$key] ?? null,
                 ];
                 $datasets[] = $tmp;
 
@@ -98,7 +98,7 @@ class AnswersData extends Data {
                     'data' => $data,
                     'borderColor' => $this->chart->getColorsRgba(0.2),
                     'backgroundColor' => $this->chart->getColorsRgba(0.2),
-                    
+
                 ],
             ];
         }
@@ -169,7 +169,7 @@ class AnswersData extends Data {
         //                 }]
         //             }
         //     };
-            
+
 
 
 
