@@ -143,6 +143,12 @@ class AnswersData extends Data {
             $options['indexAxis'] = 'y';
         }
 
+        // $options['plugins']['tooltip']['title'] = [
+        //     'display' => true,
+        //     // 'title' => 'prova',
+        //     'text' => 'provaaaa',
+        // ];
+
 
 
         // dddx($options);
