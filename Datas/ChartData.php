@@ -8,7 +8,8 @@ use Illuminate\Support\Str;
 use Spatie\Color\Hex;
 use Spatie\LaravelData\Data;
 
-class ChartData extends Data {
+class ChartData extends Data
+{
     public string $type; // horizbar1, pie ecc
     public float $max;
     public float $min;
@@ -22,14 +23,14 @@ class ChartData extends Data {
     public string $font_family;
     public string $font_size;
     public string $font_style;
-    public int $y_grace;
-    public int $yaxis_hide;
+    public ?int $y_grace;
+    public ?int $yaxis_hide;
     public string $x_label_angle;
     public int $show_box;
     public int $x_label_margin;
     public int $plot_perc_width;
     public int $plot_value_show;
-    public string $plot_value_format;
+    public ?string $plot_value_format;
     public ?string $plot_value_color = '#000000';
     public string $transparency;
     public ?string $engine_type;
@@ -42,11 +43,13 @@ class ChartData extends Data {
     public ?array $sublabels;
     public ?float $avg;
 
-    public function getColors() {
+    public function getColors()
+    {
         return explode(',', $this->list_color);
     }
 
-    public function getColorsRgba(float $alpha = 1): array {
+    public function getColorsRgba(float $alpha = 1): array
+    {
         $colors = $this->getColors();
 
         return collect($colors)->map(function ($item) use ($alpha) {
@@ -57,5 +60,17 @@ class ChartData extends Data {
 
             return (string) $hex->toRgba($alpha);
         })->all();
+    }
+
+
+    public function getActionClass(): string
+    {
+        $type=$this->type;
+        $engine = 'JpGraph\V1';
+
+        $action = Str::studly($type).'Action';
+
+        $actionClass = '\Modules\Chart\Actions\\'.$engine.'\\'.$action;
+        return $actionClass;
     }
 }

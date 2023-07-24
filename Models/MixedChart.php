@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Models;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -34,7 +35,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  *
  * @mixin \Eloquent
  */
-class MixedChart extends BaseModel {
+class MixedChart extends BaseModel
+{
     /**
      * @var array<string>
      */
@@ -45,7 +47,15 @@ class MixedChart extends BaseModel {
 
     // ---- relations
 
-    public function charts(): MorphMany {
-        return $this->morphMany(Chart::class, 'post');
+    public function charts(): MorphMany
+    {
+        Relation::morphMap([
+            'question_chart'=>'Modules\Quaeris\Models\QuestionChart',
+            'mixed_chart'=>'Modules\Chart\Models\MixedChart',
+        ]);
+
+        $res=$this->morphMany(Chart::class, 'post');
+
+        return $res;
     }
 }

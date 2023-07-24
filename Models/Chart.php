@@ -303,7 +303,8 @@ class Chart extends BaseModel
             $mixed_id = implode('|', $parz);
             $mixed = MixedChart::firstWhere(['id' => $mixed_id]);
 
-            return $mixed->charts->toArray();
+            $res=$mixed->charts->toArray();
+            return $res;
         }
 
         return [$this->toArray()];
