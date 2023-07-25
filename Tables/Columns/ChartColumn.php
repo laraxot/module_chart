@@ -4,6 +4,7 @@ namespace Modules\Chart\Tables\Columns;
 
 use Filament\Tables\Columns\Column;
 use Illuminate\Contracts\View\View;
+use Modules\Chart\Datas\AnswersData;
 
 class ChartColumn extends Column
 {
@@ -23,7 +24,27 @@ class ChartColumn extends Column
     protected string $view = 'chart::tables.columns.chart-column';
     //protected string $view='filament::widgets.chart-widget';
 
+    public array $chartData = [
 
+        'datasets' => [
+            [
+                'label' => 'loading...',
+                'data' => [],
+            ],
+        ],
+        'labels' => [],
+
+    ];
+
+    public string $chartType = 'bar';
+    public array $chartOptions = [];
+
+    public function setAnswersData(AnswersData $answersData){
+        $this->chartData = $answersData->getChartJsData();
+        $this->chartType = $answersData->getChartJsType();
+        $this->chartOptions = $answersData->getChartJsOptions();
+        return $this;
+    }
 
     public function render():View{
         $view_params=[
@@ -45,15 +66,7 @@ class ChartColumn extends Column
 
     protected function getData(): array
     {
-         return [
-            'datasets' => [
-                [
-                    'label' => 'Blog posts created',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                ],
-            ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        ];
+        return $this->chartData;
     }
 
     protected function getFilters(): ?array
@@ -73,15 +86,11 @@ class ChartColumn extends Column
 
     public function getOptions(): ?array
     {
-        return static::$options;
+        return $this->chartOptions;
     }
 
     public function getType():string{
-
-
-
-        return 'bar';
-
+        return $this->chartType;
     }
 
     public function updateChartData()

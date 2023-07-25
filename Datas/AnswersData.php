@@ -46,7 +46,10 @@ class AnswersData extends Data {
                 break;
 
             default:
-                dddx($type);
+                dddx([
+                    'type'=>$type,
+                    'chart'=>$this->chart,
+                ]);
                 break;
         }
 

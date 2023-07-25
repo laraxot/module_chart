@@ -1,4 +1,4 @@
-<div>
+<div style="width:100%">
     @php
     /*
         dddx([
