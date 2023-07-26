@@ -17,11 +17,11 @@ class ChartsColumn extends Column
         //$charts=$this->record->charts;
         //$data=request()->all(); // vedere se c'e' qualche trait per i filtri 
         Assert::isInstanceOf($this->record, \Modules\Quaeris\Models\QuestionChart::class, '[wip]');
-        
+
         $res=[];
         $rows=app(\Modules\Quaeris\Actions\QuestionChart\GetChartsDataByQuestionChart::class)
             ->execute($this->record);
-
+        
         if(count($rows)==3){
             
             return [ 
