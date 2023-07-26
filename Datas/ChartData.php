@@ -43,7 +43,7 @@ class ChartData extends Data
     public ?array $sublabels;
     public ?float $avg;
 
-    public function getColors()
+    public function getColors():array
     {
         return explode(',', $this->list_color);
     }

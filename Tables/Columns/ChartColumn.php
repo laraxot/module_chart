@@ -39,7 +39,7 @@ class ChartColumn extends Column
     public string $chartType = 'bar';
     public array $chartOptions = [];
 
-    public function setAnswersData(AnswersData $answersData){
+    public function setAnswersData(AnswersData $answersData):self{
         $this->chartData = $answersData->getChartJsData();
         $this->chartType = $answersData->getChartJsType();
         $this->chartOptions = $answersData->getChartJsOptions();

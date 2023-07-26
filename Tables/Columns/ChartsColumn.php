@@ -6,16 +6,17 @@ use Filament\Tables\Columns\Column;
 use Illuminate\Contracts\View\View;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
+use Webmozart\Assert\Assert;
 
 class ChartsColumn extends Column
 {
 
     protected string $view = 'chart::tables.columns.charts-column';
     
-    public function getComponents(){
+    public function getComponents():array{
         //$charts=$this->record->charts;
-        $data=request()->all();
-        dddx($data);
+        //$data=request()->all(); // vedere se c'e' qualche trait per i filtri 
+        Assert::isInstanceOf($this->record, \Modules\Quaeris\Models\QuestionChart::class, '[wip]');
         
         $res=[];
         $rows=app(\Modules\Quaeris\Actions\QuestionChart\GetChartsDataByQuestionChart::class)

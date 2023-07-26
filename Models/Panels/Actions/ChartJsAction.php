@@ -33,6 +33,9 @@ class ChartJsAction extends XotBasePanelAction {
         return view()->make($view, $view_params);
     }
 
+    /**
+     * @return mixed
+     */
     public function postHandle() {
     }
 }

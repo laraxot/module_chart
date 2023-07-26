@@ -22,6 +22,9 @@ class Graphdetails extends Component {
     public array $config = [];
     public int $num = 1;
 
+    /**
+     * @return void
+     */
     public function mount(string $id, string $url, string $tpl = 'graph') {
         $this->graph_id = $id;
         $this->url = '#';

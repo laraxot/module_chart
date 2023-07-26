@@ -18,7 +18,7 @@ class Graph2 extends Component {
     public string $url;
     public string $graph_id;
     public array $colors = [];
-    public $readyToLoadGraph = false;
+    public bool $readyToLoadGraph = false;
 
     public function loadGraph() {
         $this->readyToLoadGraph = true;

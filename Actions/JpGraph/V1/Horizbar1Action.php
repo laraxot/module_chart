@@ -23,7 +23,7 @@ class Horizbar1Action
 
         $labels = $answers->toCollection()
             ->pluck('label')
-            ->map(function ($item) {
+            ->map(function (string $item) {
                 return wordwrap($item, 25, PHP_EOL);
             })
             ->all();

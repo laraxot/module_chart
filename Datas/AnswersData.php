@@ -58,6 +58,7 @@ class AnswersData extends Data {
     }
 
     public function getChartJsData(): array{
+        $datasets=[];
         $data = $this->answers->toCollection()->pluck('value')->all();
 
         if(in_array($this->chart->type ,['pieAvg', 'pie1'])){

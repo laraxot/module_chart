@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Actions\JpGraph\V1;
 
-use Amenadiel\JpGraph\Graph\PieGraph;
-use Amenadiel\JpGraph\Plot\PiePlotC;
-use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
+use Amenadiel\JpGraph\Graph\Graph;
 use Modules\Chart\Datas\ChartData;
+use Amenadiel\JpGraph\Plot\PiePlotC;
+use Amenadiel\JpGraph\Graph\PieGraph;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
+use Modules\Chart\Actions\JpGraph\ApplyGraphStyleAction;
 
 class PieAvgAction
 {
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart)
+    public function execute(DataCollection $answers, ChartData $chart):Graph 
     {
         $labels = $answers->toCollection()->pluck('label')->all();
 

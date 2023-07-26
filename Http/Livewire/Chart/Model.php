@@ -24,6 +24,9 @@ class Model extends Component
     public string $model_type;
     public string $model_id;
 
+    /**
+     * @return void
+     */
     public function mount(ModelContract $model, string $tpl = 'v1')
     {
         $this->model_type = app(GetModelTypeByModelAction::class)->execute($model);
