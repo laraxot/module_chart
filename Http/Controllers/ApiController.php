@@ -15,6 +15,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Services\FileService;
 
+use function Safe\base64_decode;
+
 class ApiController extends Controller {
     public function imageStore(Request $request): JsonResponse {
         $data = $request->all();

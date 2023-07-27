@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Chart\Actions\JpGraph;
 
+use Amenadiel\JpGraph\Graph\Graph;
 use Amenadiel\JpGraph\Graph\PieGraph;
 use Amenadiel\JpGraph\Plot\PiePlotC;
 use Modules\Chart\Datas\ChartData;
@@ -13,7 +14,7 @@ use Spatie\QueueableAction\QueueableAction;
 class PieAvgAction {
     use QueueableAction;
 
-    public function execute(DataCollection $answers, ChartData $chart) {
+    public function execute(DataCollection $answers, ChartData $chart):Graph {
         $labels = $answers->toCollection()->pluck('label')->all();
 
         // $this->vars['footer'] = 'Media: '.round((float) $this->data->toCollection()->avg('value'), 2);
