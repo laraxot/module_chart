@@ -41,7 +41,6 @@ use Modules\Cms\Services\PanelService;
  * @property string|null                     $lang
  * @property string|null                     $grace
  * @property string                          $transparency
- *
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart    newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Chart    newQuery()
@@ -77,8 +76,10 @@ use Modules\Cms\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart    whereXLabelMargin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart    whereYGrace($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Chart    whereYaxisHide($value)
- *
+ * @property array $colors
+ * @method static \Illuminate\Database\Eloquent\Builder|Chart whereColors($value)
  * @mixin \Eloquent
+ * @mixin IdeHelperChart
  */
 class Chart extends BaseModel
 {

@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property string|null                                                            $updated_by
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\Chart\Models\Chart[] $charts
  * @property int|null                                                               $charts_count
- *
  * @method static \Modules\Chart\Database\Factories\MixedChartFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    newQuery()
@@ -32,8 +31,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    whereUpdatedBy($value)
- *
  * @mixin \Eloquent
+ * @mixin IdeHelperMixedChart
  */
 class MixedChart extends BaseModel
 {
