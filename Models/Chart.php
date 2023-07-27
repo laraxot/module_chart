@@ -78,8 +78,8 @@ use Modules\Cms\Services\PanelService;
  * @method static \Illuminate\Database\Eloquent\Builder|Chart    whereYaxisHide($value)
  * @property array $colors
  * @method static \Illuminate\Database\Eloquent\Builder|Chart whereColors($value)
- * @mixin \Eloquent
  * @mixin IdeHelperChart
+ * @mixin \Eloquent
  */
 class Chart extends BaseModel
 {

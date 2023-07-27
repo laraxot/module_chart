@@ -31,8 +31,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MixedChart    whereUpdatedBy($value)
- * @mixin \Eloquent
  * @mixin IdeHelperMixedChart
+ * @mixin \Eloquent
  */
 class MixedChart extends BaseModel
 {
