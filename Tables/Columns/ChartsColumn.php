@@ -55,8 +55,16 @@ class ChartsColumn extends Column
             'requ1'=>request()->query('tableFilters'),
         ]);
         //*/
-        $filters['date_from']=Carbon::parse($filters['date_from']);
-        $filters['date_to']=Carbon::parse($filters['date_to']);
+        if(isset($filters['date_from'])){
+            $filters['date_from']=Carbon::parse($filters['date_from']);
+        }else{
+            $filters['date_from'] = null;
+        }
+        if(isset($filters['date_to'])){
+            $filters['date_to']=Carbon::parse($filters['date_to']);
+        }else{
+            $filters['date_to'] = null;
+        }
 
         Assert::isInstanceOf($this->record, \Modules\Quaeris\Models\QuestionChart::class, '[wip]');
 
