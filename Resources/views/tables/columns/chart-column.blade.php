@@ -7,15 +7,18 @@
 
             'get_Defined_vars'=>get_defined_vars(),
             ]);
+             <pre>{{print_r($obj->getCachedData(),true)}}</pre>
             */
+            
     @endphp
+       
     <canvas
                 x-data="{
                     chart: null,
 
                     init: function () {
                         let chart = this.initChart()
-
+                       
                         $wire.on('updateChartData', async ({ data }) => {
                             chart.data = this.applyColorToData(data)
                             chart.update('resize')
@@ -29,7 +32,7 @@
 
                     initChart: function (data = null) {
                         data = data ?? {{ json_encode($obj->getCachedData()) }}
-
+                        
                         return (this.chart = new Chart($el, {
                             type: '{{ $obj->getType() }}',
                             data: this.applyColorToData(data),
