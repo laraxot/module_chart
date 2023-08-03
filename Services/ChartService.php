@@ -35,6 +35,8 @@ class ChartService {
     private int $type = 0;
     private int $type_number = 0;
 
+    public array $vars=[];
+
     public function __construct() {
         // ne setti uno di default e semmai cambi tipo
         $this->chart_engine = JpgraphEngine::make();

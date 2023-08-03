@@ -21,7 +21,6 @@ class Bar3Action
 
     /**
      * ---.
-     *
      * @param DataCollection<AnswerData>
      */
     public function execute(DataCollection $answers, ChartData $chart): Graph

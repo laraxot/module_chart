@@ -30,6 +30,7 @@ class ApplyPlotStyleAction {
 
         // We want to display the value of each bar at the top
         // se tolto non mostra i valori
+        // Right side of || is always false.
         if (null == $data->plot_value_show || 0 == $data->plot_value_show) {
             $plot->value->Show();
         }

@@ -8,9 +8,10 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Log;
 use Modules\Cms\Actions\GetViewAction;
 use Illuminate\Contracts\Support\Renderable;
+use function Safe\json_decode;
 
 // use Modules\Cms\Services\PanelService;
-// TODO:
+
 /**
  * Class Chart.
  */

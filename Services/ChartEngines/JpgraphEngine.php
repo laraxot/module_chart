@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Spatie\LaravelData\DataCollection;
+use function Safe\realpath;
 
 class JpgraphEngine extends BaseChartEngine {
     use JpgraphEngineTraits\BarTrait;

@@ -11,6 +11,7 @@ namespace Modules\Chart\Services;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
+use function Safe\json_encode;
 
 class ChartJsBuilder {
     private static ?self $_instance = null;

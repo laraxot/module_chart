@@ -20,11 +20,12 @@ class Graph2 extends Component {
     public array $colors = [];
     public bool $readyToLoadGraph = false;
 
-    public function loadGraph() {
+    public function loadGraph():self {
         $this->readyToLoadGraph = true;
+        return $this;
     }
 
-    public function mount(string $id, string $url, string $tpl = 'graph') {
+    public function mount(string $id, string $url, string $tpl = 'graph'):void {
         $this->graph_id = $id;
         $this->url = '#';
         $user = \Auth::user();

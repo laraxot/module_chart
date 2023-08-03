@@ -159,7 +159,7 @@ class Chart extends BaseModel
         if (null === $parent) {
             return $this->attributes[$name] ?? null;
         }
-        $parent = $parent->row;
+        $parent = $parent->getRow();
         if (! method_exists($parent, 'chart')) {
             return $this->attributes[$name] ?? null;
         }

@@ -13,6 +13,9 @@ class ChartsColumn extends Column
 {
     protected string $view = 'chart::tables.columns.charts-column';
 
+    /**
+     * @var array<string, string>
+     */
     protected $listeners = ['updateFilter' => 'updateFilter'];
 
 

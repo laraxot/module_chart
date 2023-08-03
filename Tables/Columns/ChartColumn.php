@@ -6,6 +6,7 @@ use Filament\Tables\Columns\Column;
 use Illuminate\Contracts\View\View;
 use Modules\Chart\Datas\AnswersData;
 use Livewire\Component;
+use function Safe\json_encode;
 
 //use Illuminate\Session\SessionManager;
 

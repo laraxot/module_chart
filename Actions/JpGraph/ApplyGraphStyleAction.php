@@ -12,7 +12,7 @@ use Spatie\QueueableAction\QueueableAction;
 class ApplyGraphStyleAction {
     use QueueableAction;
 
-    public function execute(Graph &$graph, ChartData $chart) {
+    public function execute(Graph &$graph, ChartData $chart):Graph {
         // Nice shadow
         $graph->SetShadow();
 

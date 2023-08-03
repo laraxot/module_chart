@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Chart\Models\Panels;
 
 use Illuminate\Http\Request;
+use Modules\Chart\Models\MixedChart;
 // --- Services --
 
 use Modules\Cms\Models\Panels\XotBasePanel;
@@ -13,6 +14,9 @@ use Modules\Cms\Models\Panels\XotBasePanel;
  * MixedChartPanel.
  */
 class MixedChartPanel extends XotBasePanel {
+
+
+    public MixedChart $row;
     /**
      * The model the resource corresponds to.
      */

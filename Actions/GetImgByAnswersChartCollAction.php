@@ -17,7 +17,6 @@ class GetImgByAnswersChartCollAction {
 
     /**
      * Undocumented function.
-     *
      * @param DataCollection<AnswersChartData>
      */
     public function execute(DataCollection $coll): string {
