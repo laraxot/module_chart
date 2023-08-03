@@ -79,6 +79,8 @@ class ChartsColumn extends Column
         if(count($rows)==3) {
             return [
                 Split::make([
+                    // Parameter #1 $answersData of method Modules\Chart\Tables\Columns\ChartColumn::setAnswersData() expects Modules\Chart\Datas\AnswersData,
+                    //iterable<Modules\Chart\Datas\AnswerData>&Spatie\LaravelData\DataCollection given.
                 ChartColumn::make('id')->setAnswersData($rows[0]),
                 Stack::make([
                     ChartColumn::make('id')->setAnswersData($rows[1]),
@@ -104,6 +106,9 @@ class ChartsColumn extends Column
         */
     }
 
+    /**
+     * @return void
+     */
     public function updateFilter(array $filter)
     {
         dddx($filter);

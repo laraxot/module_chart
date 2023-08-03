@@ -19,12 +19,8 @@ class Bar3Action
 {
     use QueueableAction;
 
-    /**
-     * ---.
-     * @param DataCollection<AnswerData>
-     */
-    public function execute(DataCollection $answers, ChartData $chart): Graph
-    {
+    
+    public function execute(DataCollection $answers, ChartData $chart):Graph {
         $graph = app(GetGraphAction::class)->execute($chart);
         $graph->img->SetMargin(50, 50, 50, 100);
         $labels = $answers->toCollection()->pluck('label')->all();

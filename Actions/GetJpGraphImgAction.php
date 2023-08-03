@@ -42,6 +42,7 @@ class GetJpGraphImgAction {
 
     /**
      * @var Collection<Graph>
+     * @return void
      */
     public function save(string $filename, Collection $graphs) {
         if (File::exists(public_path($filename))) {
