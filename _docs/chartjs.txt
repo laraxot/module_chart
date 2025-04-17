@@ -1,0 +1,3 @@
+https://www.chartjs3.com/docs/chart/getting-started/
+
+https://chartjs-plugin-datalabels.netlify.app/
